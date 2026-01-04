@@ -17,19 +17,21 @@ function Mobile() {
     if (obj) {
       // 2. יצירת האנימציה
       gsap.to(obj.rotation, {
-        y: (130 * Math.PI) / 3, // סיבוב של 130 מעלות
+        y: (130 * Math.PI) / 60, // סיבוב של 130 מעלות
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 2, // מספר גבוה יותר (כמו 1 או 2) נותן תחושה "חלקה" ופחות נוקשה
+          pin: true, // זה "נועץ" את הטלפון למסך בזמן הגלילה
+          markers: false,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1, // מספר גבוה יותר (כמו 1 או 2) נותן תחושה "חלקה" ופחות נוקשה
         },
       });
     }
   }
 
   return (
-    <section ref={sectionRef} className="h-screen w-full">
+    <section ref={sectionRef} className="h-[300vh] w-full">
       {/* הקישור שהעתקת מספליין הולך לכאן */}
       <Spline
         scene="https://prod.spline.design/y370lu4mUtbuPWMr/scene.splinecode"
