@@ -47,6 +47,14 @@ h2 {
   letter-spacing: 0.07em;
 }
 
+h3 {
+  font-family: var(--font-baloo2);
+  font-weight: 400;
+  font-size: 1.75rem;
+  line-height: 120%;
+  letter-spacing: 0.07em;
+}
+
 @layer utilities {
   .quote {
     font-family: var(--font-cinzel);
