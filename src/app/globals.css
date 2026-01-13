@@ -10,6 +10,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-cinzel: var(--font-cinzel);
+  --font-baloo2: var(--font-baloo2);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +25,34 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+p {
+  font-family: var(--font-baloo2);
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 160%;
+  letter-spacing: 0.07em;
+}
+
+h2 {
+  font-family: var(--font-baloo2);
+  font-weight: 500;
+  font-size: 2.375rem;
+  line-height: 112%;
+  letter-spacing: 0.07em;
+}
+
+@layer utilities {
+  .quote {
+    font-family: var(--font-cinzel);
+    font-weight: 500;
+    font-size: 3.125rem;
+    line-height: 120%;
+    letter-spacing: 0.07em;
+  }
 }
