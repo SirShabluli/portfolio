@@ -28,6 +28,89 @@ export default function Home() {
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
               <p>
+                This represents the "Co-watching" goal of the app. it
+                acknowledges the long-term potential of a relationship. It moves
+                the focus from a digital "hit" to a real-world outcome: the
+                eventual transition from two separate apartments to one shared
+                living room.
+              </p>
+            </div>
+            <div className="col-span-4 md:col-span-4 md:col-start-5 outline outline-1 outline-red-500">
+              MIDDLE
+            </div>
+            <div className=" col-span-4 md:col-span-3 md:col-start-9 outline outline-1 outline-red-500 flex flex-col gap-4 justify-center">
+              <span className="mt-10 flex items-center quote">
+                &ldquo;might be your first step towards a new couch&ldquo;
+              </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
+            <div className="col-span-4 md:col-span-4 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
+              <p>HERRE CHANGES</p>
+              <h3>Here</h3>
+            </div>
+            <div className="col-span-4 md:col-span-3 md:col-start-6 outline outline-1 outline-red-500 flex flex-col justify-center">
+              <span className="quote">
+                “Some things shouldn&apos;t be dealt with alone...”
+              </span>
+            </div>
+            <div className=" col-span-4 md:col-span-3 md:col-start-9 outline outline-1 outline-red-500 flex flex-col gap-4">
+              <h2>Empathy in Loneliness</h2>
+
+              <p>
+                The "Empty State" is the most vulnerable moment for a user on a
+                dating app. The Deep Dive: When a user sees "No Chats," they
+                often feel a sense of rejection. To counter this, I illustrated
+                a messy, empty pizza box with crumbs and a half-finished glass
+                of wine. This scene is intentionally "unpolished" to mirror the
+                reality of a solo night in. By changing the CTA (Call to Action)
+                from a standard "Start Browsing" to "Find Someone to Clean Up
+                With," I used humor to validate the user&apos;s experience. It
+                tells the user that the app "gets" the messiness of being single
+                and positions the platform as a partner in finding someone to
+                share those raw, uncurated moments with.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+            <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
+              <p>
+                I drew inspiration from the iconic Netflix Profile Selection
+                screen—the first thing millions of people see when they turn on
+                their TV
+              </p>
+              <h3>Here</h3>
+            </div>
+            <div className="col-span-4 md:col-span-4 md:col-start-5 outline outline-1 outline-red-500">
+              MIDDLE
+            </div>
+            <div className=" col-span-4 md:col-span-3 md:col-start-9 outline outline-1 outline-red-500 flex flex-col gap-4">
+              <h2>Sharing is Caring</h2>
+              <p>
+                The challenge was to design a screen that encourages users to
+                invite friends without feeling like &quot;spam.&quot;
+              </p>
+              <span className=" flex items-center quote">
+                &ldquo;Spread the word, not always sharing is spoiling&ldquo;
+              </span>
+              <p>
+                By mimicking the Netflix startup UI, I eliminated the
+                &quot;learning curve&quot; for the user. They already know what
+                to do on this screen before they even read the text. It
+                transforms a marketing goal (user acquisition) into a seamless
+                part of the product’s DNA
+              </p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+            <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
+              <p>
                 Technical errors and verification loops are high-friction points
                 that lead to app abandonment. I chose to address this through
                 the literal interpretation of a common dating term:
@@ -36,23 +119,49 @@ export default function Home() {
               <p>
                 By illustrating a grumpy cat wearing a fish hat, the app takes a
                 self-deprecating tone. This "wink" at the user transforms a
-                moment of potential anger ("Why won't it verify me?") into a
-                moment of levity. It humanizes the technology, suggesting that
-                the error might be a "fishy" mistake on the system's part rather
-                than a failure of the user, making them much more likely to try
-                again.
+                moment of potential anger ("Why won&apos;t it verify me?") into
+                a moment of levity. It humanizes the technology, suggesting that
+                the error might be a "fishy" mistake on the system&apos;s part
+                rather than a failure of the user, making them much more likely
+                to try again.
               </p>
             </div>
             <div className="col-span-4 md:col-span-4 md:col-start-5 outline outline-1 outline-red-500">
               MIDDLE
             </div>
-            <div className="col-span-4 md:col-span-3 md:col-start-9 outline outline-1 outline-red-500 flex flex-col">
+            <div className="pt-50 col-span-4 md:col-span-3 md:col-start-9 outline outline-1 outline-red-500 flex flex-col gap-4">
               <h2>Defusing Frustration</h2>
-              <p>Using a "Pun" as a tool for de-escalation.</p>
-              <span className="mt-10 quote">
+              <p>Using a &quot;Pun&quot; as a tool for de-escalation.</p>
+              <span className="mt-10 flex items-center quote">
                 &ldquo;Something smells fishy, but it might just be our
                 mistake&ldquo;
               </span>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+            <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
+              <span className="mt-10 flex items-center quote">
+                &ldquo;The upgrade that makes everything fall into place&ldquo;
+              </span>
+            </div>
+            <div className="col-span-4 md:col-span-3 md:col-start-5 outline outline-1 outline-red-500 flex flex-col justify-center gap-4">
+              <h2>Premium Comfort</h2>
+              <p>
+                Premium services often feel cold or overly "techy". To keep the
+                warm, illustrated feel of the app, I chose a Golden Chaise
+                Lounge to represent the upgrade.
+              </p>
+              <p>
+                If the app is about the "living room experience," the premium
+                version should be the ultimate piece of furniture. It’s an
+                expansion of the basic couch—offering more comfort, more
+                features, and a touch of luxury without losing the "homey" vibe.
+              </p>
+            </div>
+            <div className="pt-50 col-span-4 md:col-span-4 md:col-start-8 outline outline-1 outline-red-500 flex flex-col gap-4">
+              <h2>Defusing Frustration</h2>
             </div>
           </div>
         </section>
