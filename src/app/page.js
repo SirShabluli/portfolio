@@ -18,41 +18,29 @@ export default function Home() {
 
   useGSAP(
     () => {
-      const pockets = gsap.utils.toArray(".phone-pocket");
-
-      // מציאת אובייקט הטלפון בתוך Spline
-      const phoneModel = splineApp
-        ? splineApp.findObjectByName("Mobile")
-        : null;
-
-      pockets.forEach((pocket, index) => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: pocket,
-            start: "top center",
-            end: "bottom bottom",
-            scrub: 1.5,
-          },
-        });
-
-        // אנימציה 1: תנועה על הגריד (DOM)
-        tl.to(
-          phoneRef.current,
-          {
-            x: () => pocket.getBoundingClientRect().left,
-            y: () => pocket.getBoundingClientRect().top,
-            width: () => pocket.getBoundingClientRect().width,
-            height: () => pocket.getBoundingClientRect().height / 2,
-            duration: 1,
-            ease: "power2.inOut",
-          },
-          0
-        );
-
-        // אנימציה 2: שליטה ב-Spline (3D) - רק אם ה-App נטען
-        if (phoneModel) {
-          tl.to(phoneModel.rotation, {}, 0);
-        }
+      if (!splineApp) return;
+      const phoneModel = splineApp.findObjectByName("Mobile");
+      const mainTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: mainRef.current,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.5,
+          pin: "#phone-wrapper", // נועץ את כל ה-Wrapper לאורך כל הגלילה
+          pinSpacing: false,
+          markers: false,
+        },
+      });
+      mainTl.to(phoneRef.current, {
+        xPercent: 0, // זז שמאלה ב-150 אחוז מהרוחב שלו
+        scale: 1.8,
+        scrollTrigger: {
+          trigger: ".section-1", // תוסיף Class כזה לסקשן השני
+          start: "top center",
+          end: "center center",
+          scrub: true,
+          markers: true,
+        },
       });
     },
     { scope: mainRef, dependencies: [splineApp] }
@@ -67,7 +55,8 @@ export default function Home() {
 
       <div
         ref={phoneRef}
-        className="fixed z-50 pointer-events-none flex items-center justify-center w-[40rem] h-[80rem]"
+        id="mobile-wrapper"
+        className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center"
       >
         <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
       </div>
@@ -87,9 +76,9 @@ export default function Home() {
           Here&apos;s a link to my LinkedIn
         </a>
       </section>
-      <section>
+      <section className="section-1">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
-          <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
+          <div className=" col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
             <p>
               This represents the "Co-watching" goal of the app. it acknowledges
               the long-term potential of a relationship. It moves the focus from
