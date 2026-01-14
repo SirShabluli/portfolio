@@ -5,9 +5,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-function Mobile({ onSplineLoad, scale = 1 }) {
+function Mobile({ onSplineLoad }) {
   return (
-    <div style={{ transform: `scale(${scale})` }}>
+    <div className="overflow-visible">
       <Spline
         scene="https://prod.spline.design/y370lu4mUtbuPWMr/scene.splinecode"
         onLoad={(app) => onSplineLoad(app)}

@@ -20,12 +20,13 @@ export default function Home() {
     () => {
       if (!splineApp) return;
       const phoneModel = splineApp.findObjectByName("Mobile");
+      phoneModel.scale.set(3, 3, 3);
       const mainTl = gsap.timeline({
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
           end: "bottom bottom",
-          scrub: 1.5,
+          scrub: 2,
           pin: "#phone-wrapper", // נועץ את כל ה-Wrapper לאורך כל הגלילה
           pinSpacing: false,
           markers: false,
@@ -33,7 +34,7 @@ export default function Home() {
       });
       mainTl.to(phoneRef.current, {
         xPercent: 0, // זז שמאלה ב-150 אחוז מהרוחב שלו
-        scale: 1.8,
+
         scrollTrigger: {
           trigger: ".section-1", // תוסיף Class כזה לסקשן השני
           start: "top center",
@@ -42,7 +43,20 @@ export default function Home() {
           markers: true,
         },
       });
+
+      mainTl.to(phoneRef.current, {
+        xPercent: -25, // זז שמאלה ב-150 אחוז מהרוחב שלו
+
+        scrollTrigger: {
+          trigger: ".section-2", // תוסיף Class כזה לסקשן השני
+          start: "top center",
+          end: "center center",
+          scrub: true,
+          markers: true,
+        },
+      });
     },
+
     { scope: mainRef, dependencies: [splineApp] }
   ); // חשוב: התלות ב-splineApp
 
@@ -56,7 +70,7 @@ export default function Home() {
       <div
         ref={phoneRef}
         id="mobile-wrapper"
-        className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center"
+        className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center overflow-visible"
       >
         <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
       </div>
@@ -96,7 +110,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="section-2">
         <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
           <div className="col-span-4 md:col-span-4 phone-pocket outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
             <p>HERRE CHANGES</p>
@@ -126,7 +140,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="section-3">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
           <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
             <p>
@@ -158,7 +172,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="section-4">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
           <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
             <p>
@@ -189,7 +203,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section>
+      <section className="section-5">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
           <div className="col-span-4 md:col-span-3 outline outline-1 outline-red-500 md:col-start-2 flex flex-col justify-center gap-5">
             <span className="mt-10 flex items-center quote">
