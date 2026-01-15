@@ -27,7 +27,7 @@ export default function Home() {
     () => {
       if (!splineApp) return;
       const phoneModel = splineApp.findObjectByName("Mobile");
-      if (phoneModel) phoneModel.scale.set(4, 4, 4);
+      if (phoneModel) phoneModel.scale.set(5, 5, 5);
 
       // 1. נעיצה בלבד - זה גורם לטלפון להישאר תקוע למסך לאורך כל הדרך
       ScrollTrigger.create({
