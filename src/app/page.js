@@ -55,7 +55,7 @@ export default function Home() {
 
         if (phoneModel) {
           // כאן אנחנו מוסיפים את הסיבוב שרצית, הוא יסתיים בדיוק כשהתנועה מסתיימת
-          tl.to(phoneModel.rotation, { y: rotationY, duration: 1 }, 0);
+          tl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
         }
 
         // Text animations - animate text elements within this section
