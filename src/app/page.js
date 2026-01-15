@@ -20,45 +20,45 @@ export default function Home() {
     () => {
       if (!splineApp) return;
       const phoneModel = splineApp.findObjectByName("Mobile");
-      phoneModel.scale.set(3, 3, 3);
-      const mainTl = gsap.timeline({
-        scrollTrigger: {
-          trigger: mainRef.current,
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 2,
-          pin: "#phone-wrapper", // נועץ את כל ה-Wrapper לאורך כל הגלילה
-          pinSpacing: false,
-          markers: false,
-        },
-      });
-      mainTl.to(phoneRef.current, {
-        xPercent: 0, // זז שמאלה ב-150 אחוז מהרוחב שלו
+      if (phoneModel) phoneModel.scale.set(3, 3, 3);
 
-        scrollTrigger: {
-          trigger: ".section-1", // תוסיף Class כזה לסקשן השני
-          start: "top center",
-          end: "center center",
-          scrub: true,
-          markers: true,
-        },
+      // 1. נעיצה בלבד - זה גורם לטלפון להישאר תקוע למסך לאורך כל הדרך
+      ScrollTrigger.create({
+        trigger: mainRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        pin: "#mobile-wrapper",
+        pinSpacing: false,
       });
 
-      mainTl.to(phoneRef.current, {
-        xPercent: -25, // זז שמאלה ב-150 אחוז מהרוחב שלו
+      // פונקציית עזר קטנה כדי שלא תכתוב את אותו קוד 5 פעמים
+      const animateSection = (sectionClass, xPercentValue, rotationY = 0) => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionClass,
+            start: "top center",
+            end: "center center",
+            scrub: 1,
+          },
+        });
 
-        scrollTrigger: {
-          trigger: ".section-2", // תוסיף Class כזה לסקשן השני
-          start: "top center",
-          end: "center center",
-          scrub: true,
-          markers: true,
-        },
-      });
+        tl.to(phoneRef.current, { xPercent: xPercentValue, duration: 3 });
+
+        if (phoneModel) {
+          // כאן אנחנו מוסיפים את הסיבוב שרצית, הוא יסתיים בדיוק כשהתנועה מסתיימת
+          tl.to(phoneModel.rotation, { y: rotationY, duration: 1 }, 0);
+        }
+      };
+
+      // 2. הפעלת האנימציות לכל סקשן בנפרד
+      animateSection(".section-1", 0, 0);
+      animateSection(".section-2", -25, Math.PI * 0.5); // סיבוב רבע סיבוב
+      animateSection(".section-3", 0, Math.PI); // חזרה למרכז וחצי סיבוב
+      animateSection(".section-4", 300, Math.PI * 2);
+      animateSection(".section-5", 50, Math.PI * 2); // סיבוב שלם
     },
-
     { scope: mainRef, dependencies: [splineApp] }
-  ); // חשוב: התלות ב-splineApp
+  );
 
   return (
     <main
@@ -68,11 +68,15 @@ export default function Home() {
       {/* העברת פונקציית הטעינה לקומפוננטה */}
 
       <div
-        ref={phoneRef}
         id="mobile-wrapper"
-        className="fixed inset-0 pointer-events-none z-50 flex items-center justify-center overflow-visible"
+        className="fixed flex items-center justify-center inset-0 pointer-events-none z-50 overflow-visible"
       >
-        <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
+        <div
+          ref={phoneRef}
+          className="min-w-screen flex items-center justify-center"
+        >
+          <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
+        </div>
       </div>
       <section className="flex min-h-screen flex-col items-center justify-center">
         <h1 className="text-6xl font-bold tracking-tighter italic">
