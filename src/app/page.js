@@ -20,15 +20,16 @@ export default function Home() {
     () => {
       if (!splineApp) return;
       const phoneModel = splineApp.findObjectByName("Mobile");
-      if (phoneModel) phoneModel.scale.set(3, 3, 3);
+      if (phoneModel) phoneModel.scale.set(4, 4, 4);
 
       // 1. נעיצה בלבד - זה גורם לטלפון להישאר תקוע למסך לאורך כל הדרך
       ScrollTrigger.create({
         trigger: mainRef.current,
         start: "top top",
-        end: "bottom bottom",
+        end: "bottom top",
         pin: "#mobile-wrapper",
         pinSpacing: false,
+        markers: true,
       });
 
       // פונקציית עזר קטנה כדי שלא תכתוב את אותו קוד 5 פעמים
@@ -38,7 +39,8 @@ export default function Home() {
             trigger: sectionClass,
             start: "top center",
             end: "center center",
-            scrub: 1,
+            scrub: 2,
+            markers: true,
           },
         });
 
@@ -52,10 +54,10 @@ export default function Home() {
 
       // 2. הפעלת האנימציות לכל סקשן בנפרד
       animateSection(".section-1", 0, 0);
-      animateSection(".section-2", -25, Math.PI * 0.5); // סיבוב רבע סיבוב
-      animateSection(".section-3", 0, Math.PI); // חזרה למרכז וחצי סיבוב
-      animateSection(".section-4", 300, Math.PI * 2);
-      animateSection(".section-5", 50, Math.PI * 2); // סיבוב שלם
+      animateSection(".section-2", -25, Math.PI * 2); // סיבוב רבע סיבוב
+      animateSection(".section-3", 0, Math.PI * 4); // חזרה למרכז וחצי סיבוב
+      animateSection(".section-4", 0, Math.PI * 2);
+      animateSection(".section-5", 25, Math.PI * 2); // סיבוב שלם
     },
     { scope: mainRef, dependencies: [splineApp] }
   );
