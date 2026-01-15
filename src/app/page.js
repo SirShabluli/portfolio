@@ -86,10 +86,10 @@ export default function Home() {
       // 2. הפעלת האנימציות לכל סקשן בנפרד
       // Values in vw - calculated to align with grid columns
       animateSection(".section-1", 0, 0); // center (columns 5-8)
-      animateSection(".section-2", -20, Math.PI * 0.15); // left (around column 2-5)
+      animateSection(".section-2", -25, Math.PI * 0.15); // left (around column 2-5)
       animateSection(".section-3", 0, Math.PI * 0); // center
       animateSection(".section-4", 0, Math.PI * -2); // center
-      animateSection(".section-5", 20, Math.PI * 0); // right (around column 8-11)
+      animateSection(".section-5", 25, Math.PI * 0); // right (around column 8-11)
     },
     { scope: mainRef, dependencies: [splineApp] }
   );
