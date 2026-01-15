@@ -17,7 +17,7 @@ export default function Home() {
   const [splineApp, setSplineApp] = useState(null);
 
   // Debug flags - set to true/false to toggle
-  const showOutlines = true; // Change to false to hide red outlines
+  const showOutlines = false; // Change to false to hide red outlines
   const showMarkers = false; // Change to false to hide GSAP markers
 
   // Helper function to conditionally add outline classes
@@ -138,8 +138,12 @@ export default function Home() {
               from two separate apartments to one shared living room.
             </p>
           </div>
-          <div className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}></div>
-          <div className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}>
+          <div
+            className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
+          ></div>
+          <div
+            className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
+          >
             <span className="mt-10 flex items-center quote">
               &ldquo;might be your first step towards a new couch&ldquo;
             </span>
@@ -148,13 +152,19 @@ export default function Home() {
       </section>
       <section className="section-2">
         <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
-          <div className={`col-span-4 md:col-span-4 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}></div>
-          <div className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}>
+          <div
+            className={`col-span-4 md:col-span-4 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+          ></div>
+          <div
+            className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
+          >
             <span className="quote">
               “Some things shouldn&apos;t be dealt with alone...”
             </span>
           </div>
-          <div className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}>
+          <div
+            className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+          >
             <h2>Empathy in Loneliness</h2>
 
             <p>
@@ -175,7 +185,9 @@ export default function Home() {
       </section>
       <section className="section-3">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
-          <div className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}>
+          <div
+            className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+          >
             <p>
               I drew inspiration from the iconic Netflix Profile Selection
               screen—the first thing millions of people see when they turn on
@@ -183,8 +195,12 @@ export default function Home() {
             </p>
             <h3>Here</h3>
           </div>
-          <div className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}></div>
-          <div className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}>
+          <div
+            className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}
+          ></div>
+          <div
+            className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
+          >
             <h2>Sharing is Caring</h2>
             <p>
               The challenge was to design a screen that encourages users to
@@ -205,7 +221,9 @@ export default function Home() {
       </section>
       <section className="section-4">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
-          <div className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}>
+          <div
+            className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+          >
             <p>
               Technical errors and verification loops are high-friction points
               that lead to app abandonment. I chose to address this through the
@@ -221,8 +239,12 @@ export default function Home() {
               failure of the user, making them much more likely to try again.
             </p>
           </div>
-          <div className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}></div>
-          <div className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4`}>
+          <div
+            className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
+          ></div>
+          <div
+            className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4`}
+          >
             <h2>Defusing Frustration</h2>
             <p>Using a &quot;Pun&quot; as a tool for de-escalation.</p>
             <span className="mt-10 flex items-center quote">
@@ -234,12 +256,16 @@ export default function Home() {
       </section>
       <section className="section-5">
         <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
-          <div className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}>
+          <div
+            className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+          >
             <span className="mt-10 flex items-center quote">
               &ldquo;The upgrade that makes everything fall into place&ldquo;
             </span>
           </div>
-          <div className={`col-span-4 md:col-span-3 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}>
+          <div
+            className={`col-span-4 md:col-span-3 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
+          >
             <h2>Premium Comfort</h2>
             <p>
               Premium services often feel cold or overly "techy". To keep the
@@ -253,7 +279,9 @@ export default function Home() {
               and a touch of luxury without losing the "homey" vibe.
             </p>
           </div>
-          <div className={`pt-50 phone-pocket col-span-4 md:col-span-4 md:col-start-8 ${outline} flex flex-col gap-4`}>
+          <div
+            className={`pt-50 phone-pocket col-span-4 md:col-span-4 md:col-start-8 ${outline} flex flex-col gap-4`}
+          >
             <h2></h2>
           </div>
         </div>
