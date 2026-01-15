@@ -105,7 +105,7 @@ export default function Home() {
       >
         <div
           ref={phoneRef}
-          className="min-w-screen flex items-center justify-center"
+          className="min-w-screen min-h-screen flex items-center justify-center"
         >
           <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
         </div>
