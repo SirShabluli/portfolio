@@ -127,7 +127,7 @@ export default function Home() {
         </a>
       </section>
       <section className="section-1">
-        <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+        <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
           <div
             className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
           >
