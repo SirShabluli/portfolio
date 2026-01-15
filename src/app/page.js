@@ -40,7 +40,7 @@ export default function Home() {
       });
 
       // פונקציית עזר קטנה כדי שלא תכתוב את אותו קוד 5 פעמים
-      const animateSection = (sectionClass, xPercentValue, rotationY = 0) => {
+      const animateSection = (sectionClass, xVwValue, rotationY = 0) => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionClass,
@@ -51,7 +51,8 @@ export default function Home() {
           },
         });
 
-        tl.to(phoneRef.current, { xPercent: xPercentValue, duration: 3 });
+        // Use vw units for responsive positioning based on grid
+        tl.to(phoneRef.current, { x: `${xVwValue}vw`, duration: 3 });
 
         if (phoneModel) {
           // כאן אנחנו מוסיפים את הסיבוב שרצית, הוא יסתיים בדיוק כשהתנועה מסתיימת
@@ -83,11 +84,12 @@ export default function Home() {
       };
 
       // 2. הפעלת האנימציות לכל סקשן בנפרד
-      animateSection(".section-1", 0, 0);
-      animateSection(".section-2", -25, Math.PI * 0.15); // סיבוב רבע סיבוב
-      animateSection(".section-3", 0, Math.PI * 0); // חזרה למרכז וחצי סיבוב
-      animateSection(".section-4", 0, Math.PI * -2);
-      animateSection(".section-5", 25, Math.PI * 0); // סיבוב שלם
+      // Values in vw - calculated to align with grid columns
+      animateSection(".section-1", 0, 0); // center (columns 5-8)
+      animateSection(".section-2", -20, Math.PI * 0.15); // left (around column 2-5)
+      animateSection(".section-3", 0, Math.PI * 0); // center
+      animateSection(".section-4", 0, Math.PI * -2); // center
+      animateSection(".section-5", 20, Math.PI * 0); // right (around column 8-11)
     },
     { scope: mainRef, dependencies: [splineApp] }
   );
@@ -101,12 +103,9 @@ export default function Home() {
 
       <div
         id="mobile-wrapper"
-        className="fixed flex items-center justify-center inset-0 pointer-events-none z-50 overflow-visible"
+        className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center pointer-events-none z-50 overflow-visible"
       >
-        <div
-          ref={phoneRef}
-          className="min-w-screen min-h-screen flex items-center justify-center"
-        >
+        <div ref={phoneRef} className="flex items-center justify-center">
           <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
         </div>
       </div>
