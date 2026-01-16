@@ -18,7 +18,7 @@ export default function Home() {
 
   // Debug flags - set to true/false to toggle
   const showOutlines = false; // Change to false to hide red outlines
-  const showMarkers = false; // Change to false to hide GSAP markers
+  const showMarkers = true; // Change to false to hide GSAP markers
 
   // Helper function to conditionally add outline classes
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
@@ -36,7 +36,7 @@ export default function Home() {
       ScrollTrigger.create({
         trigger: mainRef.current,
         start: "top top",
-        end: "bottom top",
+        end: "max", // הטלפון נשאר עד הסוף המוחלט של הדף
         pin: "#mobile-wrapper",
         pinSpacing: false,
         markers: showMarkers,
@@ -64,7 +64,7 @@ export default function Home() {
 
         if (phoneModel) {
           // כאן אנחנו מוסיפים את הסיבוב שרצית, הוא יסתיים בדיוק כשהתנועה מסתיימת
-          tl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
+          tl.to(phoneModel.rotation, { y: rotationY, duration: 10 }, 0);
         }
 
         // שינוי המסך ב-Spline - ScrollTrigger נפרד שמשנה את המסך באמצע הסקשן
@@ -282,8 +282,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="section-5">
-        <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+      <section className="section-5 ">
+        <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
           <div
             className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
           >
@@ -314,6 +314,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <section></section>
     </main>
   );
 }
