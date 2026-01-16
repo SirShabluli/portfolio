@@ -29,6 +29,9 @@ export default function Home() {
       const phoneModel = splineApp.findObjectByName("Mobile");
       if (phoneModel) phoneModel.scale.set(5, 5, 5);
 
+      // משתנה שעוקב אחרי המסך הנוכחי (כדי שנוכל לחזור אחורה חלק)
+      let currentScreen = 0;
+
       // 1. נעיצה בלבד - זה גורם לטלפון להישאר תקוע למסך לאורך כל הדרך
       ScrollTrigger.create({
         trigger: mainRef.current,
@@ -64,29 +67,22 @@ export default function Home() {
           tl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
         }
 
-        // שינוי המסך ב-Spline - מונפש עם הגלילה
+        // שינוי המסך ב-Spline - ScrollTrigger נפרד שמשנה את המסך באמצע הסקשן
         if (splineApp) {
-          // יוצרים אובייקט זמני שGSAP יכול לנפש
-          // למשל אם screenIndex=2, זה יתחיל מ-0 וילך ל-2
-          const screenChange = { value: 0 };
-
-          // מוסיפים אנימציה שמשנה את value מ-0 ל-screenIndex
-          tl.to(
-            screenChange,
-            {
-              value: screenIndex, // המסך הסופי (0,1,2,3,4)
-              duration: 1, // משך האנימציה
-              onUpdate: () => {
-                // בכל פריים של האנימציה, מעדכנים את המסך ב-Spline
-                // Math.round מעגל את המספר (1.7 -> 2, 0.3 -> 0)
-                splineApp.setVariable(
-                  "screenIndex",
-                  Math.round(screenChange.value)
-                );
-              },
+          ScrollTrigger.create({
+            trigger: sectionClass,
+            start: "top center", // מתחיל כשאמצע הסקשן במרכז המסך
+            end: "bottom center",
+            onEnter: () => {
+              // כשמגיעים לאמצע הסקשן (גלילה קדימה)
+              splineApp.setVariable("screenIndex", screenIndex);
             },
-            0
-          ); // ה-0 אומר שהאנימציה מתחילה באותו זמן כמו תנועת הטלפון
+            onEnterBack: () => {
+              // כשחוזרים לאמצע הסקשן (גלילה אחורה)
+              splineApp.setVariable("screenIndex", screenIndex);
+            },
+            markers: showMarkers,
+          });
         }
 
         // Text animations - animate text elements within this section
