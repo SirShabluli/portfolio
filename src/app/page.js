@@ -40,7 +40,12 @@ export default function Home() {
       });
 
       // פונקציית עזר קטנה כדי שלא תכתוב את אותו קוד 5 פעמים
-      const animateSection = (sectionClass, xVwValue, rotationY = 0) => {
+      const animateSection = (
+        sectionClass,
+        xVwValue,
+        rotationY = 0,
+        screenIndex = 0
+      ) => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionClass,
@@ -59,6 +64,31 @@ export default function Home() {
           tl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
         }
 
+        // שינוי המסך ב-Spline - מונפש עם הגלילה
+        if (splineApp) {
+          // יוצרים אובייקט זמני שGSAP יכול לנפש
+          // למשל אם screenIndex=2, זה יתחיל מ-0 וילך ל-2
+          const screenChange = { value: 0 };
+
+          // מוסיפים אנימציה שמשנה את value מ-0 ל-screenIndex
+          tl.to(
+            screenChange,
+            {
+              value: screenIndex, // המסך הסופי (0,1,2,3,4)
+              duration: 1, // משך האנימציה
+              onUpdate: () => {
+                // בכל פריים של האנימציה, מעדכנים את המסך ב-Spline
+                // Math.round מעגל את המספר (1.7 -> 2, 0.3 -> 0)
+                splineApp.setVariable(
+                  "screenIndex",
+                  Math.round(screenChange.value)
+                );
+              },
+            },
+            0
+          ); // ה-0 אומר שהאנימציה מתחילה באותו זמן כמו תנועת הטלפון
+        }
+
         // Text animations - animate text elements within this section
         const section = document.querySelector(sectionClass);
         if (section) {
@@ -68,7 +98,7 @@ export default function Home() {
 
           // Animate quotes - slide in from right after phone settles
           quotes.forEach((quote) => {
-            tl.from(quote, { x: 100, opacity: 0, duration: 5 }, "-=1");
+            tl.from(quote, { x: -100, opacity: 0, duration: 5 }, "-=1");
           });
 
           // Animate headings - fade and slide from top
@@ -85,11 +115,11 @@ export default function Home() {
 
       // 2. הפעלת האנימציות לכל סקשן בנפרד
       // Values in vw - calculated to align with grid columns
-      animateSection(".section-1", 0, 0); // center (columns 5-8)
-      animateSection(".section-2", -25, Math.PI * 0.15); // left (around column 2-5)
-      animateSection(".section-3", 0, Math.PI * 0); // center
-      animateSection(".section-4", 0, Math.PI * -2); // center
-      animateSection(".section-5", 25, Math.PI * 0); // right (around column 8-11)
+      animateSection(".section-1", 0, 0, 2); // center (columns 5-8), screen 0
+      animateSection(".section-2", -25, Math.PI * 0.15, 0); // left (around column 2-5), screen 1
+      animateSection(".section-3", 0, Math.PI * 0, 4); // center, screen 2
+      animateSection(".section-4", 0, Math.PI * -2, 1); // center, screen 3
+      animateSection(".section-5", 25, Math.PI * 0, 3); // right (around column 8-11), screen 4
     },
     { scope: mainRef, dependencies: [splineApp] }
   );
@@ -131,10 +161,11 @@ export default function Home() {
             className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
           >
             <p>
-              This represents the "Co-watching" goal of the app. it acknowledges
-              the long-term potential of a relationship. It moves the focus from
-              a digital "hit" to a real-world outcome: the eventual transition
-              from two separate apartments to one shared living room.
+              This represents the &quot;Co-watching&quot; goal of the app. it
+              acknowledges the long-term potential of a relationship. It moves
+              the focus from a digital &quot;hit&quot; to a real-world outcome:
+              the eventual transition from two separate apartments to one shared
+              living room.
             </p>
           </div>
           <div
@@ -173,8 +204,10 @@ export default function Home() {
               empty pizza box with crumbs and a half-finished glass of wine.
               This scene is intentionally "unpolished" to mirror the reality of
               a solo night in. By changing the CTA (Call to Action) from a
-              standard "Start Browsing" to "Find Someone to Clean Up With," I
-              used humor to validate the user&apos;s experience. It tells the
+              standard "Start Browsing" to "Find Someone to Clean Up With,"
+            </p>
+            <p>
+              I used humor to validate the user&apos;s experience. It tells the
               user that the app "gets" the messiness of being single and
               positions the platform as a partner in finding someone to share
               those raw, uncurated moments with.
