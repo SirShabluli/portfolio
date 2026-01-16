@@ -18,7 +18,7 @@ export default function Home() {
 
   // Debug flags - set to true/false to toggle
   const showOutlines = false; // Change to false to hide red outlines
-  const showMarkers = true; // Change to false to hide GSAP markers
+  const showMarkers = false; // Change to false to hide GSAP markers
 
   // Helper function to conditionally add outline classes
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
