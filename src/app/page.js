@@ -49,7 +49,8 @@ export default function Home() {
         rotationY = 0,
         screenIndex = 0
       ) => {
-        const tl = gsap.timeline({
+        // Timeline for phone movement and rotation only (with scrub)
+        const phoneTl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionClass,
             start: "top center",
@@ -60,11 +61,11 @@ export default function Home() {
         });
 
         // Use vw units for responsive positioning based on grid
-        tl.to(phoneRef.current, { x: `${xVwValue}vw`, duration: 3 });
+        phoneTl.to(phoneRef.current, { x: `${xVwValue}vw`, duration: 3 });
 
         if (phoneModel) {
           // כאן אנחנו מוסיפים את הסיבוב שרצית, הוא יסתיים בדיוק כשהתנועה מסתיימת
-          tl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
+          phoneTl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
         }
 
         // שינוי המסך ב-Spline - ScrollTrigger נפרד שמשנה את המסך באמצע הסקשן
@@ -85,26 +86,40 @@ export default function Home() {
           });
         }
 
-        // Text animations - animate text elements within this section
+        // Text animations - separate timeline without scrub
         const section = document.querySelector(sectionClass);
         if (section) {
           const quotes = section.querySelectorAll(".quote");
           const headings = section.querySelectorAll("h2, h3");
           const paragraphs = section.querySelectorAll("p");
 
-          // Animate quotes - slide in from right after phone settles
+          // Create a timeline for text animations that triggers once
+          const textTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionClass,
+              start: "top center",
+              toggleActions: "play none none reverse",
+              markers: showMarkers,
+            },
+          });
+
+          // Animate quotes - slide in from left
           quotes.forEach((quote) => {
-            tl.from(quote, { x: -100, opacity: 0, duration: 5 }, "-=1");
+            textTl.from(quote, { x: -100, opacity: 0, duration: 0.8 }, "-=0.6");
           });
 
           // Animate headings - fade and slide from top
           headings.forEach((heading) => {
-            tl.from(heading, { y: 50, opacity: 0, duration: 0.8 }, "-=0.8");
+            textTl.from(heading, { y: 50, opacity: 0, duration: 0.6 }, "-=0.4");
           });
 
           // Animate paragraphs - subtle fade in
           paragraphs.forEach((paragraph) => {
-            tl.from(paragraph, { y: 30, opacity: 0, duration: 0.8 }, "-=0.6");
+            textTl.from(
+              paragraph,
+              { y: 30, opacity: 0, duration: 0.6 },
+              "-=0.4"
+            );
           });
         }
       };
