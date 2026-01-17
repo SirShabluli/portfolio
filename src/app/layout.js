@@ -14,11 +14,15 @@ const geistMono = Geist_Mono({
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
 const baloo2 = Baloo_2({
   variable: "--font-baloo2",
   subsets: ["latin"],
+  display: 'swap',
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata = {

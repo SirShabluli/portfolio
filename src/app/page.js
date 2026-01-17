@@ -64,7 +64,7 @@ export default function Home() {
 
         if (phoneModel) {
           // כאן אנחנו מוסיפים את הסיבוב שרצית, הוא יסתיים בדיוק כשהתנועה מסתיימת
-          tl.to(phoneModel.rotation, { y: rotationY, duration: 10 }, 0);
+          tl.to(phoneModel.rotation, { y: rotationY, duration: 5 }, 0);
         }
 
         // שינוי המסך ב-Spline - ScrollTrigger נפרד שמשנה את המסך באמצע הסקשן
