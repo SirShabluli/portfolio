@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Mobile from "./components/Mobile";
 import { useRef, useState } from "react";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -171,12 +172,14 @@ export default function Home() {
           <div
             className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
           >
+            <h2>Merging Private Spaces</h2>
+            <p>This represents the &quot;Co-watching&quot; goal of the app. </p>
             <p>
-              This represents the &quot;Co-watching&quot; goal of the app. it
-              acknowledges the long-term potential of a relationship. It moves
-              the focus from a digital &quot;hit&quot; to a real-world outcome:
-              the eventual transition from two separate apartments to one shared
-              living room.
+              {" "}
+              it acknowledges the long-term potential of a relationship. It
+              moves the focus from a digital &quot;hit&quot; to a real-world
+              outcome: the eventual transition from two separate apartments to
+              one shared living room.
             </p>
           </div>
           <div
@@ -236,6 +239,13 @@ export default function Home() {
               screen—the first thing millions of people see when they turn on
               their TV
             </p>
+            <Image
+              src="/images/WhosWatching.png"
+              alt="Netflix Who's Watching screen"
+              width={800}
+              height={600}
+              className="w-full h-auto"
+            />
             <h3>Here</h3>
           </div>
           <div

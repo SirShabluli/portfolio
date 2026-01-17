@@ -7,7 +7,7 @@ import { useGSAP } from "@gsap/react";
 
 function Mobile({ onSplineLoad }) {
   return (
-    <div>
+    <div className="flex items-center justify-center w-full h-full">
       <Spline
         scene="https://prod.spline.design/y370lu4mUtbuPWMr/scene.splinecode"
         onLoad={(app) => onSplineLoad(app)}
