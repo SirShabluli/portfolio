@@ -1,10 +1,10 @@
-const { default: Image } = require("next/image");
+import Image from "next/image";
 
-function StepSection({ step }) {
+export default function StepSection({ step }) {
   return (
     <div className="step-container grid grid-cols-12 h-screen w-full items-center gap-8 px-12">
-      {/* צד שמאל: טקסטים - תופס 5 עמודות מתוך 12 */}
-      <div className="text-side col-start-1 col-span-3 flex flex-col justify-center">
+      {/* צד שמאל: טקסטים - תופס 3 עמודות מתוך 12, מתחיל מעמודה 2 */}
+      <div className="text-side col-start-2 col-span-3 flex flex-col justify-center">
         <span className="text-sm uppercase tracking-widest opacity-40 font-mono">
           Step {step.id}
         </span>
@@ -30,12 +30,14 @@ function StepSection({ step }) {
         )}
       </div>
 
-      {/* צד ימין: תמונות - תופס 7 עמודות מתוך 12 */}
-      <div className="image-side col-span-7 relative flex flex-col items-center justify-center">
+      {/* צד ימין: תמונות - תופס 5 עמודות, מתחיל עמודה 2 מימין */}
+      <div className="image-side col-end-11 col-span-5 relative flex flex-col items-center justify-center">
         <div className="relative group">
           <Image
             src={step.image}
-            className="w-full max-w-[500px] shadow-2xl rounded-sm border border-white/5"
+            width={1000}
+            height={1000}
+            className="w-full shadow-2xl rounded-sm border border-white/5"
             alt={step.title}
           />
 

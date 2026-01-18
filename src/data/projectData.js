@@ -22,7 +22,7 @@ export const catProjectSteps = [
     title: "Blueprint",
     description:
       "Stripping away the noise to find the clean lines underneath. Mapping the vector paths.",
-    image: "images/catFrame3.png",
+    image: "/images/catFrame3.png",
     subCaption: "", // כאן בדרך כלל אין כיתוב כי התמונה מדברת בעד עצמה
     quotes: [],
   },
@@ -31,7 +31,7 @@ export const catProjectSteps = [
     title: "The Result",
     description:
       "Translating an abstract idea into a finalized, scalable vector artwork.",
-    image: "images/catFrame4.png",
+    image: "/images/catFrame4.png",
     subCaption: "",
     quotes: [
       {

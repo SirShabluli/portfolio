@@ -1,5 +1,7 @@
 import PhoneShowcase from "./components/PhoneShowcase";
 import Image from "next/image";
+import StepSection from "./components/StepSection";
+import { catProjectSteps } from "../data/projectData";
 
 export default function Home() {
   // Debug flags - set to true/false to toggle
@@ -14,7 +16,7 @@ export default function Home() {
     { xPosition: -25, rotation: Math.PI * 0.15, screenIndex: 0 },
     { xPosition: 0, rotation: Math.PI * 0, screenIndex: 4 },
     { xPosition: 0, rotation: Math.PI * -2, screenIndex: 1 },
-    { xPosition: 25, rotation: Math.PI * 0, screenIndex: 3 }
+    { xPosition: 25, rotation: Math.PI * 0, screenIndex: 3 },
   ];
 
   return (
@@ -36,16 +38,24 @@ export default function Home() {
           Here&apos;s a link to my LinkedIn
         </a>
       </section>
-
+      {catProjectSteps.map((step) => (
+        <StepSection key={step.id} step={step} />
+      ))}
       {/* Phone showcase with all sections */}
-      <PhoneShowcase sections={sections} showOutlines={showOutlines} showMarkers={showMarkers}>
+      <PhoneShowcase
+        sections={sections}
+        showOutlines={showOutlines}
+        showMarkers={showMarkers}
+      >
         <section className="section-1">
           <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
               <h2>Merging Private Spaces</h2>
-              <p>This represents the &quot;Co-watching&quot; goal of the app. </p>
+              <p>
+                This represents the &quot;Co-watching&quot; goal of the app.{" "}
+              </p>
               <p>
                 {" "}
                 it acknowledges the long-term potential of a relationship. It
@@ -85,16 +95,17 @@ export default function Home() {
 
               <p>
                 The "Empty State" is the most vulnerable moment for a user on a
-                dating app. The Deep Dive: When a user sees "No Chats," they often
-                feel a sense of rejection. To counter this, I illustrated a messy,
-                empty pizza box with crumbs and a half-finished glass of wine.
-                This scene is intentionally "unpolished" to mirror the reality of
-                a solo night in. By changing the CTA (Call to Action) from a
-                standard "Start Browsing" to "Find Someone to Clean Up With,"
+                dating app. The Deep Dive: When a user sees "No Chats," they
+                often feel a sense of rejection. To counter this, I illustrated
+                a messy, empty pizza box with crumbs and a half-finished glass
+                of wine. This scene is intentionally "unpolished" to mirror the
+                reality of a solo night in. By changing the CTA (Call to Action)
+                from a standard "Start Browsing" to "Find Someone to Clean Up
+                With,"
               </p>
               <p>
-                I used humor to validate the user&apos;s experience. It tells the
-                user that the app "gets" the messiness of being single and
+                I used humor to validate the user&apos;s experience. It tells
+                the user that the app "gets" the messiness of being single and
                 positions the platform as a partner in finding someone to share
                 those raw, uncurated moments with.
               </p>
@@ -136,10 +147,10 @@ export default function Home() {
               </span>
               <p>
                 By mimicking the Netflix startup UI, I eliminated the
-                &quot;learning curve&quot; for the user. They already know what to
-                do on this screen before they even read the text. It transforms a
-                marketing goal (user acquisition) into a seamless part of the
-                product's DNA
+                &quot;learning curve&quot; for the user. They already know what
+                to do on this screen before they even read the text. It
+                transforms a marketing goal (user acquisition) into a seamless
+                part of the product's DNA
               </p>
             </div>
           </div>
@@ -151,17 +162,18 @@ export default function Home() {
             >
               <p>
                 Technical errors and verification loops are high-friction points
-                that lead to app abandonment. I chose to address this through the
-                literal interpretation of a common dating term:
+                that lead to app abandonment. I chose to address this through
+                the literal interpretation of a common dating term:
               </p>
               <h3>Catfish</h3>
               <p>
                 By illustrating a grumpy cat wearing a fish hat, the app takes a
-                self-deprecating tone. This "wink" at the user transforms a moment
-                of potential anger ("Why won&apos;t it verify me?") into a moment
-                of levity. It humanizes the technology, suggesting that the error
-                might be a "fishy" mistake on the system&apos;s part rather than a
-                failure of the user, making them much more likely to try again.
+                self-deprecating tone. This "wink" at the user transforms a
+                moment of potential anger ("Why won&apos;t it verify me?") into
+                a moment of levity. It humanizes the technology, suggesting that
+                the error might be a "fishy" mistake on the system&apos;s part
+                rather than a failure of the user, making them much more likely
+                to try again.
               </p>
             </div>
             <div
@@ -194,14 +206,14 @@ export default function Home() {
               <h2>Premium Comfort</h2>
               <p>
                 Premium services often feel cold or overly "techy". To keep the
-                warm, illustrated feel of the app, I chose a Golden Chaise Lounge
-                to represent the upgrade.
+                warm, illustrated feel of the app, I chose a Golden Chaise
+                Lounge to represent the upgrade.
               </p>
               <p>
                 If the app is about the "living room experience," the premium
                 version should be the ultimate piece of furniture. It's an
-                expansion of the basic couch—offering more comfort, more features,
-                and a touch of luxury without losing the "homey" vibe.
+                expansion of the basic couch—offering more comfort, more
+                features, and a touch of luxury without losing the "homey" vibe.
               </p>
             </div>
             <div
