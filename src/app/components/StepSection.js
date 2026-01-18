@@ -31,25 +31,24 @@ export default function StepSection({ step }) {
       </div>
 
       {/* צד ימין: תמונות - תופס 5 עמודות, מתחיל עמודה 2 מימין */}
-      <div className="image-side col-end-11 col-span-5 relative flex flex-col items-center justify-center">
-        <div className="relative group">
+      <div className="image-side col-end-11 col-span-5 flex flex-col justify-center border-2">
+        <div className="relative w-full h-[60vh]">
           <Image
             src={step.image}
-            width={1000}
-            height={1000}
-            className="w-full shadow-2xl rounded-sm border border-white/5"
+            fill
+            className="object-cover shadow-2xl rounded-sm border border-white/5"
             alt={step.title}
           />
-
-          {/* הצגה מותנית של הכיתוב מתחת לתמונה */}
-          {step.subCaption && (
-            <div className="absolute -bottom-16 left-0 right-0">
-              <p className="text-[11px] leading-relaxed opacity-40 italic font-light max-w-[300px] mx-auto text-center">
-                "{step.subCaption}"
-              </p>
-            </div>
-          )}
         </div>
+
+        {/* הצגה מותנית של הכיתוב מתחת לתמונה */}
+        {step.subCaption && (
+          <div className="w-full mt-8">
+            <p className="leading-relaxed opacity-40 italic font-light text-left">
+              "{step.subCaption}"
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
