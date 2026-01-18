@@ -30,30 +30,6 @@ export default function PhoneShowcase({
 
       let currentScreen = 0;
 
-      // Pin the phone wrapper
-      ScrollTrigger.create({
-        trigger: mainRef.current,
-        start: "top bottom",
-        end: "max",
-        pin: "#mobile-wrapper",
-        pinSpacing: false,
-        markers: showMarkers,
-      });
-
-      // Show/hide phone based on section-1
-      ScrollTrigger.create({
-        trigger: ".section-1",
-        start: "top top",
-        end: "max",
-        markers: showMarkers,
-        onEnter: () => {
-          gsap.to("#mobile-wrapper", { opacity: 1, duration: 0.3 });
-        },
-        onLeaveBack: () => {
-          gsap.to("#mobile-wrapper", { opacity: 0, duration: 0.3 });
-        },
-      });
-
       // Animate each section
       const animateSection = (
         sectionClass,
@@ -144,12 +120,12 @@ export default function PhoneShowcase({
   return (
     <main
       ref={mainRef}
-      className="relative bg-black text-white overflow-visible flex flex-col gap-40"
+      className="relative bg-black text-white overflow-visible"
     >
-      {/* Mobile wrapper - pinned */}
+      {/* Mobile wrapper - sticky */}
       <div
         id="mobile-wrapper"
-        className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center pointer-events-none z-50 overflow-visible opacity-0"
+        className="sticky top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-50 overflow-visible"
       >
         <div ref={phoneRef} className="flex items-center justify-center">
           <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
@@ -157,7 +133,9 @@ export default function PhoneShowcase({
       </div>
 
       {/* Children sections */}
-      {children}
+      <div className="relative" style={{ marginTop: "-100vh" }}>
+        {children}
+      </div>
     </main>
   );
 }
