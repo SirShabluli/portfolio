@@ -31,7 +31,7 @@ export const catProjectSteps = [
     title: "The Result",
     description:
       "Translating an abstract idea into a finalized, scalable vector artwork.",
-    image: "/images/catFrame4.png",
+    image: "/images/catFrame4.svg",
     subCaption: "",
     quotes: [
       {

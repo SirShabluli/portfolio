@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function StepSection({ step }) {
   return (
-    <div className="step-container grid grid-cols-12 h-screen w-full items-center gap-8 px-12">
+    <div className="step-container grid grid-cols-12 h-screen w-full items-center gap-8 px-12 bg-black text-white">
       {/* צד שמאל: טקסטים - תופס 3 עמודות מתוך 12, מתחיל מעמודה 2 */}
       <div className="text-side col-start-2 col-span-3 flex flex-col justify-center">
         <span className="text-sm uppercase tracking-widest opacity-40 font-mono">
@@ -31,15 +31,14 @@ export default function StepSection({ step }) {
       </div>
 
       {/* צד ימין: תמונות - תופס 5 עמודות, מתחיל עמודה 2 מימין */}
-      <div className="image-side col-end-11 col-span-5 flex flex-col justify-center border-2">
-        <div className="relative w-full h-[60vh]">
-          <Image
-            src={step.image}
-            fill
-            className="object-cover shadow-2xl rounded-sm border border-white/5"
-            alt={step.title}
-          />
-        </div>
+      <div className="image-side col-end-10 col-span-4 flex flex-col justify-center border-2">
+        <Image
+          src={step.image}
+          width={1000}
+          height={1000}
+          className="w-full h-auto shadow-2xl rounded-sm border border-white/5"
+          alt={step.title}
+        />
 
         {/* הצגה מותנית של הכיתוב מתחת לתמונה */}
         {step.subCaption && (
