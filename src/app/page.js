@@ -1,6 +1,6 @@
 import PhoneShowcase from "./components/PhoneShowcase";
 import Image from "next/image";
-import StepSection from "./components/StepSection";
+import AIProcess from "./components/AIProcess";
 import { catProjectSteps } from "../data/projectData";
 
 export default function Home() {
@@ -38,9 +38,7 @@ export default function Home() {
           Here&apos;s a link to my LinkedIn
         </a>
       </section>
-      {catProjectSteps.map((step) => (
-        <StepSection key={step.id} step={step} />
-      ))}
+      <AIProcess data={catProjectSteps} />
       {/* Phone showcase with all sections */}
       <PhoneShowcase
         sections={sections}
