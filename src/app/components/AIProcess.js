@@ -14,38 +14,83 @@ export default function AIProcess({ data }) {
 
   useGSAP(
     () => {
-      // 1. תופסים את כל השלבים
       const steps = gsap.utils.toArray(".step-container");
 
-      // 2. יוצרים טיימליין שמחובר לגלילה
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          // ככל שיש יותר שלבים, הגלילה תהיה ארוכה יותר (כדי שיהיה זמן להתרשם)
-          end: `+=${data.length * 100}%`,
-          pin: true, // נועץ את כל הסקשן למסך
-          scrub: 1, // מחבר את האנימציה ישירות לגלגלת
+          end: `+=${data.length * 50}%`,
+          pin: true,
+          scrub: 1,
         },
       });
 
-      // 3. מריצים את האנימציה על כל שלב
       steps.forEach((step, i) => {
+        // תופסים את האלמנטים הפנימיים של כל שלב
+        const textSide = step.querySelector(".text-side");
+        const imageSide = step.querySelector(".image-side");
+
         if (i === 0) {
-          // השלב הראשון מופיע מיד
+          // שלב ראשון מוצג מיד
           gsap.set(step, { opacity: 1 });
+          gsap.set(textSide, { opacity: 1, y: 0 });
+          gsap.set(imageSide, { clipPath: "inset(0% 0% 0% 0%)" });
         } else {
-          // שאר השלבים נכנסים ב-Fade In
-          tl.to(step, {
-            opacity: 1,
-            duration: 0, // משך הזמן היחסי בתוך הגלילה
-            ease: "power2.inOut",
-          });
+          // כניסה של שלב חדש:
+
+          // 1. התמונה מופיעה עם wipe effect (מימין לשמאל)
+          tl.to(step, { opacity: 1, duration: 0 });
+          tl.fromTo(
+            imageSide,
+            { clipPath: "inset(0% 100% 0% 0%)" },
+            {
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 3,
+              ease: "power2.inOut",
+            },
+            "<"
+          );
+
+          // 2. הטקסט עושה Fade In ומחליק קצת מלמטה
+          tl.from(
+            textSide,
+            {
+              opacity: 0,
+              y: 0,
+              duration: 2,
+              ease: "power2.out",
+            },
+            "<0.3"
+          ); // מתחיל קצת אחרי התמונה
         }
 
-        // אם זה לא השלב האחרון, נעלים את הטקסט או את כל השלב לפני שהבא נכנס
+        // יציאה של השלב (לפני שהבא נכנס)
         if (i < steps.length - 1) {
-          tl.to(step, { opacity: 0, duration: 0.5 }, "+=0.5");
+          // הטקסט נעלם ב-Fade Out
+          tl.to(
+            textSide,
+            {
+              opacity: 0,
+              y: 0,
+              duration: 2,
+              ease: "power2.in",
+            },
+            "+=1"
+          ); // הדיליי הזה משאיר את השלב "נעול" על המסך לקצת זמן
+
+          // התמונה נעלמת עם wipe effect (משמאל לימין)
+          tl.to(
+            imageSide,
+            {
+              clipPath: "inset(0% 0% 0% 100%)",
+              duration: 3,
+              ease: "power2.inOut",
+            },
+            "<"
+          );
+
+          tl.to(step, { opacity: 0, duration: 0 });
         }
       });
     },

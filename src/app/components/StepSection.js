@@ -31,7 +31,7 @@ export default function StepSection({ step }) {
       </div>
 
       {/* צד ימין: תמונות - תופס 5 עמודות, מתחיל עמודה 2 מימין */}
-      <div className="image-side col-end-10 col-span-4 flex flex-col justify-center border-2">
+      <div className="image-side col-end-10 col-span-4 flex flex-col justify-center">
         <Image
           src={step.image}
           width={1000}
