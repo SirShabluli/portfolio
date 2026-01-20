@@ -20,9 +20,9 @@ export default function AIProcess({ data }) {
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          end: `+=${data.length * 100}%`,
+          end: `+=${data.length * 40}%`,
           pin: true,
-          scrub: 2,
+          scrub: 1,
         },
       });
 

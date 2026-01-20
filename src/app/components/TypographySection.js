@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { gsap } from "gsap";
 import Button from "./Button";
 
 export default function TypographySection({ data }) {
@@ -8,13 +9,50 @@ export default function TypographySection({ data }) {
     "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz";
   const numbers = "0123456789";
   const symbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-
+  const contentRef = useRef(null);
+  const descriptionRef = useRef(null);
   // State לניהול הפונט הנבחר
   const [selectedFont, setSelectedFont] = useState(data.fonts[0]);
 
   // פונקציה לשינוי הפונט
   const changeFont = (font) => {
-    setSelectedFont(font);
+    const tl = gsap.timeline();
+    // 1. אנימציית יציאה - כל אחד בסגנון שלו
+    tl.to(contentRef.current, {
+      opacity: 0,
+      filter: "blur(15px)", // הטקסט מיטשטש
+      scale: 0.98, // מתכווץ טיפה
+      duration: 0.7,
+      ease: "power2.in",
+    })
+      .to(
+        descriptionRef.current,
+        {
+          opacity: 0,
+          x: -20, // התיאור בורח שמאלה
+          duration: 0.3,
+          ease: "power2.in",
+        },
+        "<"
+      ) // מתחיל יחד עם הטקסט
+
+      // 2. שינוי ה-State באמצע
+      .call(() => setSelectedFont(font))
+
+      // 3. אנימציית כניסה - חזרה לחיים
+      .to(contentRef.current, {
+        opacity: 1,
+        filter: "blur(0px)",
+        scale: 1,
+        duration: 0.6,
+        ease: "back.out(1.7)", // נותן קפיצה קטנה בסוף
+      })
+      .fromTo(
+        descriptionRef.current,
+        { opacity: 0, x: 20 }, // מתחיל מימין
+        { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" },
+        "-=0.3" // מתחיל קצת לפני שהטקסט מסיים (Overlap)
+      );
   };
 
   return (
@@ -46,6 +84,7 @@ export default function TypographySection({ data }) {
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,
           }}
+          ref={contentRef}
         >
           <div className="tracking-tight break-words">{alphabet}</div>
           <div className="tracking-tighter">{numbers}</div>
@@ -53,13 +92,15 @@ export default function TypographySection({ data }) {
         </div>
 
         {/* תיאור הפונט בתחתית */}
-        <div className="space-y-2 mt-2 pt-8 border-t border-white/10 max-w-xs">
-          <h4 className="text-lg font-bold">
-            {selectedFont.name} - {selectedFont.weightName}
-          </h4>
-          <p className="text-sm opacity-60 leading-relaxed font-light">
-            {selectedFont.description}
-          </p>
+        <div className="space-y-2 mt-2 pt-8 border-t border-white/10 max-w-xs ">
+          <div ref={descriptionRef}>
+            <h4 className="text-lg font-bold">
+              {selectedFont.name} - {selectedFont.weightName}
+            </h4>
+            <p className="text-sm opacity-60 leading-relaxed font-light">
+              {selectedFont.description}
+            </p>
+          </div>
         </div>
       </div>
     </section>
