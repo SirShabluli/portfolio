@@ -34,14 +34,14 @@ export default function TypographySection({ data }) {
               variant={selectedFont.id === font.id ? "outline" : "unselected"}
               onClick={() => changeFont(font)}
             >
-              {font.weightName}
+              {font.name} {font.weightName}
             </Button>
           ))}
         </div>
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
         <div
-          className="space-y-4 max-w-4xl text-[2.875rem] leading-[1.28]"
+          className="space-y-2 max-w-4xl text-[2.875rem] leading-[1.28]"
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,
@@ -53,7 +53,7 @@ export default function TypographySection({ data }) {
         </div>
 
         {/* תיאור הפונט בתחתית */}
-        <div className="space-y-2 mt-16 pt-8 border-t border-white/10 max-w-xs">
+        <div className="space-y-2 mt-2 pt-8 border-t border-white/10 max-w-xs">
           <h4 className="text-lg font-bold">
             {selectedFont.name} - {selectedFont.weightName}
           </h4>

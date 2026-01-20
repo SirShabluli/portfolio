@@ -65,13 +65,5 @@ export const netflixTypography = {
       description:
         "Official Netflix font, medium weight for balanced readability",
     },
-    {
-      id: 3,
-      name: "Netflix Sans",
-      weight: "700",
-      weightName: "Bold",
-      fontFamily: "var(--font-netflix)",
-      description: "Official Netflix font, bold weight for strong impact",
-    },
   ],
 };
