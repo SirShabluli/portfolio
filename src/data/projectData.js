@@ -47,9 +47,7 @@ export const catProjectSteps = [
 
 export const typographyData = {
   fontName: "Netflix Sans",
-  fontWeight: "Bold",
-  alphabet: "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz",
-  numbers: "0123456789",
-  symbols: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~",
-  description: "Official Netflix font, as used in the mobile, and desktop apps"
+  fontWeight: "300",
+  fontFamily: "var(--font-netflix)", // המשתנה של הפונט
+  description: "Official Netflix font, as used in the mobile, and desktop apps",
 };
