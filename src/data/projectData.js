@@ -45,9 +45,33 @@ export const catProjectSteps = [
   },
 ];
 
-export const typographyData = {
-  fontName: "Netflix Sans",
-  fontWeight: "300",
-  fontFamily: "var(--font-netflix)", // המשתנה של הפונט
-  description: "Official Netflix font, as used in the mobile, and desktop apps",
+// Typography data for Netflix project
+export const netflixTypography = {
+  fonts: [
+    {
+      id: 1,
+      name: "Netflix Sans",
+      weight: "300",
+      weightName: "Light",
+      fontFamily: "var(--font-netflix)",
+      description: "Official Netflix font, light weight for subtle elegance",
+    },
+    {
+      id: 2,
+      name: "Netflix Sans",
+      weight: "500",
+      weightName: "Medium",
+      fontFamily: "var(--font-netflix)",
+      description:
+        "Official Netflix font, medium weight for balanced readability",
+    },
+    {
+      id: 3,
+      name: "Netflix Sans",
+      weight: "700",
+      weightName: "Bold",
+      fontFamily: "var(--font-netflix)",
+      description: "Official Netflix font, bold weight for strong impact",
+    },
+  ],
 };

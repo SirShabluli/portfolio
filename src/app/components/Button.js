@@ -42,7 +42,6 @@ export default function Button({
   return (
     <button
       className={`${baseStyles} ${sizeStyles[size]} ${fontStyles[font]} ${variantStyles[variant]} ${className}`}
-      a
       onClick={onClick}
       {...props}
     >

@@ -2,7 +2,10 @@ import PhoneShowcase from "./components/PhoneShowcase";
 import Image from "next/image";
 import AIProcess from "./components/AIProcess";
 import TypographySection from "./components/TypographySection";
-import { catProjectSteps, typographyData } from "../data/projectData";
+import {
+  catProjectSteps,
+  netflixTypography,
+} from "../data/projectData";
 
 export default function Home() {
   // Debug flags - set to true/false to toggle
@@ -39,7 +42,7 @@ export default function Home() {
           Here&apos;s a link to my LinkedIn
         </a>
       </section>
-      <TypographySection data={typographyData} />
+      <TypographySection data={netflixTypography} />
       <AIProcess data={catProjectSteps} />
       {/* Phone showcase with all sections */}
       <PhoneShowcase
