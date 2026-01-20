@@ -20,9 +20,9 @@ export default function AIProcess({ data }) {
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          end: `+=${data.length * 50}%`,
+          end: `+=${data.length * 100}%`,
           pin: true,
-          scrub: 1,
+          scrub: 2,
         },
       });
 
@@ -36,58 +36,62 @@ export default function AIProcess({ data }) {
           gsap.set(step, { opacity: 1 });
           gsap.set(textSide, { opacity: 1, y: 0 });
           gsap.set(imageSide, { clipPath: "inset(0% 0% 0% 0%)" });
-        } else {
-          // כניסה של שלב חדש:
+        }
 
-          // 1. התמונה מופיעה עם wipe effect (מימין לשמאל)
-          tl.to(step, { opacity: 1, duration: 0 });
-          tl.fromTo(
-            imageSide,
-            { clipPath: "inset(0% 100% 0% 0%)" },
+        // יציאה של השלב (לפני שהבא נכנס)
+        if (i < steps.length - 1) {
+          // 1. הטקסט נעלם ב-Fade Out
+          tl.to(
+            textSide,
             {
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 3,
+              opacity: 0,
+              y: 0,
+              duration: 1,
+              ease: "power2.in",
+            },
+            "+=1"
+          );
+
+          // 2. התמונה נעלמת עם wipe effect (משמאל לימין)
+          tl.to(
+            imageSide,
+            {
+              clipPath: "inset(0% 0% 0% 100%)",
+              duration: 1,
               ease: "power2.inOut",
             },
             "<"
           );
 
-          // 2. הטקסט עושה Fade In ומחליק קצת מלמטה
+          // 3. מראה את השלב הבא
+          const nextStep = steps[i + 1];
+          const nextTextSide = nextStep.querySelector(".text-side");
+          const nextImageSide = nextStep.querySelector(".image-side");
+
+          tl.to(nextStep, { opacity: 1, duration: 0 });
+
+          // 4. הטקסט החדש נכנס
           tl.from(
-            textSide,
+            nextTextSide,
             {
               opacity: 0,
               y: 0,
               duration: 2,
               ease: "power2.out",
             },
-            "<0.3"
-          ); // מתחיל קצת אחרי התמונה
-        }
+            "<1"
+          );
 
-        // יציאה של השלב (לפני שהבא נכנס)
-        if (i < steps.length - 1) {
-          // הטקסט נעלם ב-Fade Out
-          tl.to(
-            textSide,
+          // 5. התמונה החדשה נכנסת עם wipe (מימין לשמאל)
+          tl.fromTo(
+            nextImageSide,
+            { clipPath: "inset(0% 100% 0% 0%)" },
             {
-              opacity: 0,
-              y: 0,
-              duration: 2,
-              ease: "power2.in",
-            },
-            "+=1"
-          ); // הדיליי הזה משאיר את השלב "נעול" על המסך לקצת זמן
-
-          // התמונה נעלמת עם wipe effect (משמאל לימין)
-          tl.to(
-            imageSide,
-            {
-              clipPath: "inset(0% 0% 0% 100%)",
-              duration: 3,
+              clipPath: "inset(0% 0% 0% 0%)",
+              duration: 1,
               ease: "power2.inOut",
             },
-            "<"
+            "<1"
           );
 
           tl.to(step, { opacity: 0, duration: 0 });

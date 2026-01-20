@@ -13,7 +13,7 @@ export default function PhoneShowcase({
   children,
   sections = [],
   showOutlines = false,
-  showMarkers = false,
+  showMarkers = true,
 }) {
   const mainRef = useRef(null);
   const phoneRef = useRef(null);
