@@ -18,7 +18,7 @@ export default function ColorPalette({ colors }) {
       {/* קונטיינר הסטריפים - עמודות 4-12 */}
       <div
         ref={containerRef}
-        className="col-span-8 flex h-[60vh] gap-2 items-stretch"
+        className="col-span-8 flex h-[40vh] gap-2 items-stretch"
       >
         {colors.map((color) => (
           <ColorStrip key={color.id} color={color} />
@@ -38,18 +38,17 @@ function ColorStrip({ color }) {
 
     // הרחבת הסטריפ
     gsap.to(stripRef.current, {
-      delay: 0.1,
       flexGrow: 4,
-      duration: 0.1,
-      ease: "power1.inOut",
+      duration: 0.6,
+      ease: "power2.out",
     });
     // הצגת התוכן רק אחרי שהסטריפ סיים להתרחב
     gsap.to(contentRef.current, {
       opacity: 1,
       y: 0,
-      duration: 0.1,
-      delay: 0.3, // זהה למשך זמן ההרחבה
-      ease: "expo.out",
+      duration: 0.4,
+      delay: 0.6,
+      ease: "linear",
     });
   };
 
@@ -60,13 +59,13 @@ function ColorStrip({ color }) {
     // החזרה למצב רגיל
     gsap.to(stripRef.current, {
       flexGrow: 1,
-      duration: 0.1,
-      ease: "power1.out",
+      duration: 0.4,
+      ease: "linear",
     });
     gsap.to(contentRef.current, {
       opacity: 0,
       y: 10,
-      duration: 0.01,
+      duration: 0.1,
     });
   };
 

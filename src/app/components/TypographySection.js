@@ -56,7 +56,7 @@ export default function TypographySection({ data }) {
   };
 
   return (
-    <section className="grid grid-cols-12 w-full bg-black text-white py-24 px-12 gap-y-12">
+    <section className="grid grid-cols-12 w-full min-h-screen bg-black text-white py-24 px-12 gap-y-12">
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}
       <div className="col-span-2 col-start-1">
         <h3 className="text-sm font-medium tracking-tight">Typography</h3>
@@ -79,25 +79,25 @@ export default function TypographySection({ data }) {
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
         <div
-          className="space-y-2 max-w-4xl text-[2.875rem] leading-[1.28]"
+          className="space-y-2 max-w-4xl min-h-80 text-[2.875rem] leading-[1.28] overflow-hidden"
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,
           }}
           ref={contentRef}
         >
-          <div className="tracking-tight break-words">{alphabet}</div>
+          <div className="tracking-tight wrap-break-word">{alphabet}</div>
           <div className="tracking-tighter">{numbers}</div>
           <div className="opacity-80 break-all">{symbols}</div>
         </div>
 
         {/* תיאור הפונט בתחתית */}
-        <div className="space-y-2 mt-2 pt-8 border-t border-white/10 max-w-xs ">
+        <div className="space-y-1 mt-4 max-w-l ">
           <div ref={descriptionRef}>
-            <h4 className="text-lg font-bold">
+            {/* <h4 className="text-lg font-bold">
               {selectedFont.name} - {selectedFont.weightName}
-            </h4>
-            <p className="text-sm opacity-60 leading-relaxed font-light">
+            </h4> */}
+            <p className="text-xs opacity-60 leading-relaxed font-light">
               {selectedFont.description}
             </p>
           </div>
