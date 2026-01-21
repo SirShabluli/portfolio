@@ -7,6 +7,7 @@ export const catProjectSteps = [
     subCaption:
       "Sleepy tabby cat on a couch, paws hanging down, warm evening light, cozy illustrated style",
     quotes: [],
+    animation: { in: "none", out: "fadeout" },
   },
   {
     id: 2,
@@ -67,3 +68,48 @@ export const netflixTypography = {
     },
   ],
 };
+
+export const netflixColors = [
+  {
+    id: 1,
+    name: "Dark Grey",
+    hex: "#333333",
+    description: "Primary background",
+    textColor: "white",
+  },
+  {
+    id: 2,
+    name: "White",
+    hex: "#FFFFFF",
+    description: "Basic contrast",
+    textColor: "black",
+  },
+  {
+    id: 3,
+    name: "Netflix Red",
+    hex: "#E41E26",
+    description: "Brand primary",
+    textColor: "white",
+  },
+  {
+    id: 4,
+    name: "Netflix Dark red",
+    hex: "#710F11",
+    description: "Brand primary",
+    textColor: "white",
+  },
+  {
+    id: 5,
+    name: "Beige",
+    hex: "#E4C384",
+    description: "Complementary accent with warmth undertones",
+    textColor: "white",
+  },
+  {
+    id: 6,
+    name: "Golden Beige",
+    hex: "#FFD628",
+    description: "Complementary accent with warmth undertones",
+    textColor: "white",
+  },
+];

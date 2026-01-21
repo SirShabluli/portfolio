@@ -35,7 +35,6 @@ export default function AIProcess({ data }) {
           // שלב ראשון מוצג מיד
           gsap.set(step, { opacity: 1 });
           gsap.set(textSide, { opacity: 1, y: 0 });
-          gsap.set(imageSide, { clipPath: "inset(0% 0% 0% 0%)" });
         }
 
         // יציאה של השלב (לפני שהבא נכנס)
@@ -44,7 +43,7 @@ export default function AIProcess({ data }) {
           tl.to(
             textSide,
             {
-              opacity: 0,
+              opacity: 1,
               y: 0,
               duration: 1,
               ease: "power2.in",
