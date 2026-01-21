@@ -20,84 +20,74 @@ export default function AIProcess({ data }) {
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          end: `+=${data.length * 40}%`,
+          end: `+=${data.length * 150}%`,
           pin: true,
           scrub: 1,
         },
       });
 
       steps.forEach((step, i) => {
-        // תופסים את האלמנטים הפנימיים של כל שלב
-        const textSide = step.querySelector(".text-side");
-        const imageSide = step.querySelector(".image-side");
+        const textSide = mainRef.current.querySelector(`.text-side-${i}`);
+        const imageSide = mainRef.current.querySelector(`.image-side-${i}`);
 
         if (i === 0) {
-          // שלב ראשון מוצג מיד
-          gsap.set(step, { opacity: 1 });
+          // שלב ראשון - גלוי
+          gsap.set(step, { zIndex: 10 });
           gsap.set(textSide, { opacity: 1, y: 0 });
+          gsap.set(imageSide, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)" });
+        } else {
+          // שאר השלבים - מוסתרים מאחורי הראשון
+          gsap.set(step, { zIndex: 1 });
+          gsap.set(textSide, { opacity: 0, y: 50 });
+          gsap.set(imageSide, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)" });
         }
 
-        // יציאה של השלב (לפני שהבא נכנס)
+        // אם יש שלב בא בתור, נתאר את המעבר אליו
         if (i < steps.length - 1) {
-          // 1. הטקסט נעלם ב-Fade Out
+          const nextText = mainRef.current.querySelector(`.text-side-${i + 1}`);
+          const nextImage = mainRef.current.querySelector(`.image-side-${i + 1}`);
+
+          // 1. הטקסט הנוכחי יוצא (עולה למעלה ונעלם)
           tl.to(
             textSide,
             {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: "power2.in",
-            },
-            "+=1"
-          );
-
-          // 2. התמונה נעלמת עם wipe effect (משמאל לימין)
-          tl.to(
-            imageSide,
-            {
-              clipPath: "inset(0% 0% 0% 100%)",
-              duration: 1,
-              ease: "power2.inOut",
-            },
-            "<"
-          );
-
-          // 3. מראה את השלב הבא
-          const nextStep = steps[i + 1];
-          const nextTextSide = nextStep.querySelector(".text-side");
-          const nextImageSide = nextStep.querySelector(".image-side");
-
-          tl.to(nextStep, { opacity: 1, duration: 0 });
-
-          // 4. הטקסט החדש נכנס
-          tl.from(
-            nextTextSide,
-            {
               opacity: 0,
-              y: 0,
-              duration: 2,
-              ease: "power2.out",
+              y: -50,
+              duration: 1,
             },
-            "<1"
-          );
+            "+=0.5",
+          ); // השהייה קלה כדי שהמשתמש יספיק לקרוא
 
-          // 5. התמונה החדשה נכנסת עם wipe (מימין לשמאל)
+          // 2. התמונה הבאה נכנסת (נערמת מעל הנוכחית)
           tl.fromTo(
-            nextImageSide,
-            { clipPath: "inset(0% 100% 0% 0%)" },
+            nextImage,
+            {
+              opacity: 1, // היא כבר לא שקופה, היא פשוט חתוכה
+              clipPath: "inset(0% 0% 0% 100%)", // מתחילה סגורה מימין
+              zIndex: 10 + i, // קומה גבוהה יותר
+            },
             {
               clipPath: "inset(0% 0% 0% 0%)",
-              duration: 1,
+              duration: 1.5,
               ease: "power2.inOut",
             },
-            "<1"
+            "<", // קורה בדיוק כשהטקסט הישן נעלם
           );
 
-          tl.to(step, { opacity: 0, duration: 0 });
+          // 3. הטקסט הבא נכנס (עולה מלמטה)
+          tl.fromTo(
+            nextText,
+            { opacity: 0, y: 50 },
+            { opacity: 1, y: 0, duration: 1 },
+            "-=0.5", // מתחיל טיפה לפני שהתמונה מסיימת
+          );
+
+          // 4. ניקוי שקט: מכבים את התמונה הישנה מאחורי החדשה
+          tl.set(imageSide, { opacity: 0 });
         }
       });
     },
-    { scope: mainRef, dependencies: [data] }
+    { scope: mainRef, dependencies: [data] },
   );
 
   return (
@@ -105,8 +95,8 @@ export default function AIProcess({ data }) {
       ref={mainRef}
       className="relative h-screen overflow-hidden bg-black"
     >
-      {data.map((step) => (
-        <StepSection key={step.id} step={step} />
+      {data.map((step, index) => (
+        <StepSection key={step.id} step={step} index={index} />
       ))}
     </section>
   );
