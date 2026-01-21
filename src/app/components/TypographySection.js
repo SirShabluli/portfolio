@@ -33,7 +33,7 @@ export default function TypographySection({ data }) {
           duration: 0.3,
           ease: "power2.in",
         },
-        "<"
+        "<",
       ) // מתחיל יחד עם הטקסט
 
       // 2. שינוי ה-State באמצע
@@ -51,7 +51,7 @@ export default function TypographySection({ data }) {
         descriptionRef.current,
         { opacity: 0, x: 20 }, // מתחיל מימין
         { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" },
-        "-=0.3" // מתחיל קצת לפני שהטקסט מסיים (Overlap)
+        "-=0.3", // מתחיל קצת לפני שהטקסט מסיים (Overlap)
       );
   };
 
@@ -79,7 +79,7 @@ export default function TypographySection({ data }) {
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
         <div
-          className="space-y-2 max-w-4xl min-h-80 text-[2.875rem] leading-[1.28] overflow-hidden"
+          className="space-y-2 max-w-4xl min-h-85 text-[2.875rem] justify-center leading-[1.28] overflow-hidden"
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,

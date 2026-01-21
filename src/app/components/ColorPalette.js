@@ -10,7 +10,7 @@ export default function ColorPalette({ colors }) {
       {/* כותרת וטקסט בצד שמאל */}
       <div className="col-span-3 space-y-8">
         <h3 className="text-2xl font-medium">Colour</h3>
-        <p className="text-sm opacity-60 max-w-[180px] leading-relaxed">
+        <p className="text-sm opacity-60 max-w-45 leading-relaxed">
           Keeping the same theme of Netflix while adding warmth and prestige
         </p>
       </div>
@@ -39,15 +39,16 @@ function ColorStrip({ color }) {
     // הרחבת הסטריפ
     gsap.to(stripRef.current, {
       flexGrow: 4,
-      duration: 0.6,
-      ease: "power2.out",
+      duration: 0.05,
+      ease: "power1.out",
+      delay: 0.4,
     });
     // הצגת התוכן רק אחרי שהסטריפ סיים להתרחב
     gsap.to(contentRef.current, {
       opacity: 1,
       y: 0,
-      duration: 0.4,
-      delay: 0.6,
+      duration: 0.1,
+      delay: 0.8,
       ease: "linear",
     });
   };
@@ -59,7 +60,7 @@ function ColorStrip({ color }) {
     // החזרה למצב רגיל
     gsap.to(stripRef.current, {
       flexGrow: 1,
-      duration: 0.4,
+      duration: 0.0,
       ease: "linear",
     });
     gsap.to(contentRef.current, {
@@ -74,7 +75,7 @@ function ColorStrip({ color }) {
       ref={stripRef}
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="relative flex-grow cursor-pointer transition-all overflow-hidden "
+      className="relative flex-grow cursor-default transition-all overflow-hidden "
       style={{ backgroundColor: color.hex }}
     >
       {/* פרטי הצבע שמופיעים ב-Hover */}
