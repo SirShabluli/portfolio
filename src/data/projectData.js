@@ -109,7 +109,7 @@ export const netflixColors = [
     id: 6,
     name: "Golden Beige",
     hex: "#FFD628",
-    description: "Complementary accent with warmth undertones",
-    textColor: "white",
+    description: "Unique feeling of luxury and warmth",
+    textColor: "black",
   },
 ];

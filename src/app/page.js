@@ -2,9 +2,11 @@ import PhoneShowcase from "./components/PhoneShowcase";
 import Image from "next/image";
 import AIProcess from "./components/AIProcess";
 import TypographySection from "./components/TypographySection";
+import ColorPalette from "./components/ColorPalette";
 import {
   catProjectSteps,
   netflixTypography,
+  netflixColors,
 } from "../data/projectData";
 
 export default function Home() {
@@ -43,6 +45,7 @@ export default function Home() {
         </a>
       </section>
       <TypographySection data={netflixTypography} />
+      <ColorPalette colors={netflixColors} />
       <AIProcess data={catProjectSteps} />
       {/* Phone showcase with all sections */}
       <PhoneShowcase
