@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono, Cinzel, Baloo_2 } from "next/font/google";
 import "./globals.css";
+import SmoothScroll from "./components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${baloo2.variable} antialiased`}
       >
+        <SmoothScroll />
         {children}
       </body>
     </html>

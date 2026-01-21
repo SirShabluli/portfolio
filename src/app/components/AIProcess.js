@@ -48,7 +48,11 @@ export default function AIProcess({ data }) {
               duration: 1,
               ease: "power2.in",
             },
+<<<<<<< HEAD
             "+=1",
+=======
+            "+=1"
+>>>>>>> netflix
           );
 
           // 2. התמונה נעלמת עם wipe effect (משמאל לימין)
@@ -59,7 +63,11 @@ export default function AIProcess({ data }) {
               duration: 1,
               ease: "power2.inOut",
             },
+<<<<<<< HEAD
             "<",
+=======
+            "<"
+>>>>>>> netflix
           );
 
           // 3. מראה את השלב הבא
@@ -78,7 +86,11 @@ export default function AIProcess({ data }) {
               duration: 2,
               ease: "power2.out",
             },
+<<<<<<< HEAD
             "<1",
+=======
+            "<1"
+>>>>>>> netflix
           );
 
           // 5. התמונה החדשה נכנסת עם wipe (מימין לשמאל)
@@ -90,14 +102,22 @@ export default function AIProcess({ data }) {
               duration: 1,
               ease: "power2.inOut",
             },
+<<<<<<< HEAD
             "<1",
+=======
+            "<1"
+>>>>>>> netflix
           );
 
           tl.to(step, { opacity: 0, duration: 0 });
         }
       });
     },
+<<<<<<< HEAD
     { scope: mainRef, dependencies: [data] },
+=======
+    { scope: mainRef, dependencies: [data] }
+>>>>>>> netflix
   );
 
   return (
