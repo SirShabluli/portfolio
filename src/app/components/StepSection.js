@@ -6,7 +6,9 @@ export default function StepSection({ step, index }) {
       className={`step-container step-container-${index} absolute inset-0 grid grid-cols-12 h-screen w-full items-center gap-8 px-12 text-white ${index === 0 ? "bg-black" : ""}`}
       data-step={index}
     >
-      <div className={`text-side text-side-${index} col-start-2 col-span-3 flex flex-col justify-center`}>
+      <div
+        className={`text-side text-side-${index} col-start-2 col-span-3 flex flex-col justify-center z-50`}
+      >
         <span className="text-sm uppercase tracking-widest opacity-40 font-mono">
           Step {step.id}
         </span>
@@ -14,10 +16,14 @@ export default function StepSection({ step, index }) {
         <p className="text-xl mt-6 opacity-70 max-w-sm leading-relaxed">
           {step.description}
         </p>
-        {/* ... שאר תוכן הטקסט (quotes וכו') */}
+        <p className="mt-8 opacity-40 italic font-light text-left min-h-12">
+          {step.subCaption ? `"${step.subCaption}"` : "\u00A0"}
+        </p>
       </div>
 
-      <div className={`image-side image-side-${index} col-end-10 col-span-4 flex flex-col justify-center`}>
+      <div
+        className={`image-side image-side-${index} col-end-10 col-span-4 flex flex-col justify-center`}
+      >
         <Image
           src={step.image}
           width={1000}
@@ -25,11 +31,6 @@ export default function StepSection({ step, index }) {
           className="w-full h-auto shadow-2xl rounded-sm border border-white/5"
           alt={step.title}
         />
-        {step.subCaption && (
-          <p className="mt-8 opacity-40 italic font-light text-left">
-            "{step.subCaption}"
-          </p>
-        )}
       </div>
     </div>
   );

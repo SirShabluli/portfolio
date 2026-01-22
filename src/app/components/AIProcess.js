@@ -27,27 +27,28 @@ export default function AIProcess({ data }) {
       });
 
       steps.forEach((step, i) => {
-        const textSide = mainRef.current.querySelector(`.text-side-${i}`);
-        const imageSide = mainRef.current.querySelector(`.image-side-${i}`);
+        const textSide = step.querySelector(".text-side");
+        const imageSide = step.querySelector(".image-side");
 
         if (i === 0) {
-          // שלב ראשון - גלוי
+          // שלב ראשון - גלוי לגמרי
           gsap.set(step, { zIndex: 10 });
           gsap.set(textSide, { opacity: 1, y: 0 });
           gsap.set(imageSide, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)" });
         } else {
-          // שאר השלבים - מוסתרים מאחורי הראשון
+          // שאר השלבים - מוסתרים
           gsap.set(step, { zIndex: 1 });
           gsap.set(textSide, { opacity: 0, y: 50 });
           gsap.set(imageSide, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)" });
         }
 
-        // אם יש שלב בא בתור, נתאר את המעבר אליו
+        // מעבר לשלב הבא
         if (i < steps.length - 1) {
-          const nextText = mainRef.current.querySelector(`.text-side-${i + 1}`);
-          const nextImage = mainRef.current.querySelector(`.image-side-${i + 1}`);
+          const nextStep = steps[i + 1];
+          const nextText = nextStep.querySelector(".text-side");
+          const nextImage = nextStep.querySelector(".image-side");
 
-          // 1. הטקסט הנוכחי יוצא (עולה למעלה ונעלם)
+          // 1. טקסט נוכחי יוצא למעלה
           tl.to(
             textSide,
             {
@@ -56,33 +57,31 @@ export default function AIProcess({ data }) {
               duration: 1,
             },
             "+=0.5",
-          ); // השהייה קלה כדי שהמשתמש יספיק לקרוא
+          );
 
-          // 2. התמונה הבאה נכנסת (נערמת מעל הנוכחית)
+          // 2. Container הבא עולה למעלה
+          tl.set(nextStep, { zIndex: 20 + i });
+
+          // 3. תמונה חדשה נכנסת עם wipe
           tl.fromTo(
             nextImage,
-            {
-              opacity: 1, // היא כבר לא שקופה, היא פשוט חתוכה
-              clipPath: "inset(0% 0% 0% 100%)", // מתחילה סגורה מימין
-              zIndex: 10 + i, // קומה גבוהה יותר
-            },
+            { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" },
             {
               clipPath: "inset(0% 0% 0% 0%)",
               duration: 1.5,
               ease: "power2.inOut",
             },
-            "<", // קורה בדיוק כשהטקסט הישן נעלם
+            "<",
           );
 
-          // 3. הטקסט הבא נכנס (עולה מלמטה)
+          // 4. טקסט חדש נכנס - אחרי שהתמונה סיימה
           tl.fromTo(
             nextText,
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 1 },
-            "-=0.5", // מתחיל טיפה לפני שהתמונה מסיימת
           );
 
-          // 4. ניקוי שקט: מכבים את התמונה הישנה מאחורי החדשה
+          // 5. מכבים את התמונה הישנה
           tl.set(imageSide, { opacity: 0 });
         }
       });
