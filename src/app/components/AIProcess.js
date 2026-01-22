@@ -57,7 +57,6 @@ export default function AIProcess({ data }) {
           tl.to(
             textSide,
             {
-<<<<<<< HEAD
               opacity: 1,
               y: 0,
               duration: 1,
@@ -103,17 +102,9 @@ export default function AIProcess({ data }) {
             { clipPath: "inset(0% 100% 0% 0%)" },
             {
               clipPath: "inset(0% 0% 0% 0%)",
-=======
-              opacity: 0,
-              y: -50,
->>>>>>> netflix
               duration: 1,
             },
-<<<<<<< HEAD
             "<1",
-=======
-            "+=0.5",
->>>>>>> netflix
           );
 
           // Container הבא עולה למעלה
