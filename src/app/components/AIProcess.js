@@ -34,12 +34,17 @@ export default function AIProcess({ data }) {
           // שלב ראשון - גלוי לגמרי
           gsap.set(step, { zIndex: 10 });
           gsap.set(textSide, { opacity: 1, y: 0 });
-          gsap.set(imageSide, { opacity: 1, clipPath: "inset(0% 0% 0% 0%)" });
-        } else {
-          // שאר השלבים - מוסתרים
+          gsap.set(imageSide, { opacity: 1 });
+        } else if (i === 3) {
+          // שלב 4 - wipe, מתחיל עם clipPath סגור
           gsap.set(step, { zIndex: 1 });
           gsap.set(textSide, { opacity: 0, y: 50 });
-          gsap.set(imageSide, { opacity: 0, clipPath: "inset(0% 0% 0% 100%)" });
+          gsap.set(imageSide, { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" });
+        } else {
+          // שלבים 2 ו-3 - fade, מתחילים שקופים בלי clipPath
+          gsap.set(step, { zIndex: 1 });
+          gsap.set(textSide, { opacity: 0, y: 50 });
+          gsap.set(imageSide, { opacity: 0 });
         }
 
         // מעבר לשלב הבא
@@ -48,7 +53,7 @@ export default function AIProcess({ data }) {
           const nextText = nextStep.querySelector(".text-side");
           const nextImage = nextStep.querySelector(".image-side");
 
-          // 1. טקסט נוכחי יוצא למעלה
+          // טקסט נוכחי יוצא למעלה
           tl.to(
             textSide,
             {
@@ -59,30 +64,49 @@ export default function AIProcess({ data }) {
             "+=0.5",
           );
 
-          // 2. Container הבא עולה למעלה
+          // Container הבא עולה למעלה
           tl.set(nextStep, { zIndex: 20 + i });
 
-          // 3. תמונה חדשה נכנסת עם wipe
-          tl.fromTo(
-            nextImage,
-            { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" },
-            {
-              clipPath: "inset(0% 0% 0% 0%)",
-              duration: 1.5,
-              ease: "power2.inOut",
-            },
-            "<",
-          );
+          // אנימציות תמונה שונות לפי המעבר
+          if (i === 0) {
+            // מעבר 1→2: fade out + fade in
+            tl.to(imageSide, { opacity: 0, duration: 1 }, "<");
+            tl.fromTo(
+              nextImage,
+              { opacity: 0 },
+              { opacity: 1, duration: 1 },
+              "<0.5",
+            );
+          } else if (i === 1) {
+            // מעבר 2→3: fade out הישנה במקביל ל-fade in החדשה
+            tl.to(imageSide, { opacity: 0, duration: 1.5 }, "<");
+            tl.fromTo(
+              nextImage,
+              { opacity: 0 },
+              { opacity: 1, duration: 1.5 },
+              "<",
+            );
+          } else if (i === 2) {
+            // מעבר 3→4: fade out הישנה במקביל ל-wipe החדשה
+            tl.to(imageSide, { opacity: 0, duration: 1.5 }, "<");
+            tl.fromTo(
+              nextImage,
+              { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" },
+              {
+                clipPath: "inset(0% 0% 0% 0%)",
+                duration: 1.5,
+                ease: "power2.inOut",
+              },
+              "<",
+            );
+          }
 
-          // 4. טקסט חדש נכנס - אחרי שהתמונה סיימה
+          // טקסט חדש נכנס
           tl.fromTo(
             nextText,
             { opacity: 0, y: 50 },
             { opacity: 1, y: 0, duration: 1 },
           );
-
-          // 5. מכבים את התמונה הישנה
-          tl.set(imageSide, { opacity: 0 });
         }
       });
     },

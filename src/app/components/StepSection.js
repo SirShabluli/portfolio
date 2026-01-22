@@ -28,7 +28,7 @@ export default function StepSection({ step, index }) {
           src={step.image}
           width={1000}
           height={1000}
-          className="w-full h-auto shadow-2xl rounded-sm border border-white/5"
+          className={`w-full h-auto shadow-2xl rounded-sm border border-white/5 ${step.imageClassName || ""}`}
           alt={step.title}
         />
       </div>

@@ -33,7 +33,7 @@ export const catProjectSteps = [
     description:
       "Translating an abstract idea into a finalized, scalable vector artwork.",
     image: "/images/catFrame4.svg",
-    imageClassName: "p-10",
+    imageClassName: "p-10 border-none shadow-none",
     subCaption: "",
     quotes: [
       {
