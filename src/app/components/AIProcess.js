@@ -30,6 +30,7 @@ export default function AIProcess({ data }) {
         const textSide = step.querySelector(".text-side");
         const imageSide = step.querySelector(".image-side");
 
+        // הגדרות התחלה
         if (i === 0) {
           // שלב ראשון - גלוי לגמרי
           gsap.set(step, { zIndex: 10 });
@@ -41,7 +42,7 @@ export default function AIProcess({ data }) {
           gsap.set(textSide, { opacity: 0, y: 50 });
           gsap.set(imageSide, { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" });
         } else {
-          // שלבים 2 ו-3 - fade, מתחילים שקופים בלי clipPath
+          // שלבים 2 ו-3 - fade, מתחילים שקופים
           gsap.set(step, { zIndex: 1 });
           gsap.set(textSide, { opacity: 0, y: 50 });
           gsap.set(imageSide, { opacity: 0 });
@@ -57,54 +58,11 @@ export default function AIProcess({ data }) {
           tl.to(
             textSide,
             {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              ease: "power2.in",
-            },
-            "+=1",
-            "+=1",
-          );
-
-          // 2. התמונה נעלמת עם wipe effect (משמאל לימין)
-          tl.to(
-            imageSide,
-            {
-              clipPath: "inset(0% 0% 0% 100%)",
-              duration: 1,
-              ease: "power2.inOut",
-            },
-            "<",
-          );
-
-          // 3. מראה את השלב הבא
-          const nextStep = steps[i + 1];
-          const nextTextSide = nextStep.querySelector(".text-side");
-          const nextImageSide = nextStep.querySelector(".image-side");
-
-          tl.to(nextStep, { opacity: 1, duration: 0 });
-
-          // 4. הטקסט החדש נכנס
-          tl.from(
-            nextTextSide,
-            {
               opacity: 0,
-              y: 0,
-              duration: 2,
-              ease: "power2.out",
-            },
-            "<1",
-          );
-
-          // 5. התמונה החדשה נכנסת עם wipe (מימין לשמאל)
-          tl.fromTo(
-            nextImageSide,
-            { clipPath: "inset(0% 100% 0% 0%)" },
-            {
-              clipPath: "inset(0% 0% 0% 0%)",
+              y: -50,
               duration: 1,
             },
-            "<1",
+            "+=0.5",
           );
 
           // Container הבא עולה למעלה
