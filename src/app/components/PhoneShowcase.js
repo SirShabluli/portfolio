@@ -58,7 +58,7 @@ export default function PhoneShowcase({
         if (splineApp) {
           ScrollTrigger.create({
             trigger: sectionClass,
-            start: "top center",
+            start: "top ß",
             end: "bottom center",
             onEnter: () => {
               splineApp.setVariable("screenIndex", screenIndex);
@@ -91,24 +91,39 @@ export default function PhoneShowcase({
           const textTl = gsap.timeline({
             scrollTrigger: {
               trigger: sectionClass,
-              start: "top top+=100",
-              toggleActions: "play none none reverse",
+              start: "top center",
+              end: "center center",
+              scrub: 1,
               markers: showMarkers,
             },
           });
+
+          // סוגי אנימציות
+          const animations = {
+            fade: { opacity: 0 },
+            "slide-up": { y: 30, opacity: 0 },
+            "slide-down": { y: -30, opacity: 0 },
+            "slide-left": { x: -100, opacity: 0 },
+            "slide-right": { x: 100, opacity: 0 },
+          };
 
           // אנימציה לפי סדר הקבוצות
           Object.keys(groups)
             .sort((a, b) => Number(a) - Number(b))
             .forEach((order, i) => {
               const elements = groups[order];
-              // קבוצה ראשונה מתחילה ב-0, השאר עם חפיפה קטנה
-              const position = i === 0 ? 0 : "-=0.3";
-              textTl.from(
-                elements,
-                { y: 20, opacity: 0, duration: 0.6 },
-                position,
-              );
+              const groupPosition = i === 0 ? 0 : "-=0.3";
+
+              // אנימציה לכל אלמנט לפי ה-data-animation שלו
+              elements.forEach((el, elIndex) => {
+                const animType = el.dataset.animation || "fade";
+                const anim = animations[animType] || animations.fade;
+                const delay = Number(el.dataset.delay) || 0;
+                const duration = Number(el.dataset.duration) || 1.6;
+                // כל האלמנטים באותה קבוצה מתחילים באותו זמן
+                const position = elIndex === 0 ? groupPosition : "<";
+                textTl.from(el, { ...anim, duration, delay }, position);
+              });
             });
         }
       };

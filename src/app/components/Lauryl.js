@@ -3,9 +3,10 @@ import Image from "next/image";
 export default function Lauryl({
   topText = "Award Winner",
   bottomText = "Best Design 2024",
+  ...props
 }) {
   return (
-    <div className="flex items-center gap-0">
+    <div className="flex items-center gap-0" {...props}>
       {/* SVG שמאל */}
       <div className="flex-shrink-0">
         <Image

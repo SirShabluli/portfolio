@@ -119,7 +119,11 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
             >
-              <span data-animate="1" className="mt-10 flex items-center quote">
+              <span
+                data-animate="1"
+                data-animation="slide-left"
+                className="mt-10 flex items-center quote"
+              >
                 &ldquo;might be your first step towards a new couch&ldquo;
               </span>
             </div>
@@ -133,7 +137,11 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
             >
-              <span data-animate="1" className="quote">
+              <span
+                data-animate="1"
+                data-animation="slide-left"
+                className="quote"
+              >
                 "Some things shouldn&apos;t be dealt with alone..."
               </span>
             </div>
@@ -192,7 +200,11 @@ export default function Home() {
                 The challenge was to design a screen that encourages users to
                 invite friends without feeling like &quot;spam.&quot;
               </p>
-              <span data-animate="1" className=" flex items-center quote">
+              <span
+                data-animate="1"
+                data-animation="slide-left"
+                className=" flex items-center quote"
+              >
                 &ldquo;Spread the word, not always sharing is spoiling&ldquo;
               </span>
               <p data-animate="2">
@@ -237,7 +249,11 @@ export default function Home() {
               <p data-animate="2">
                 Using a &quot;Pun&quot; as a tool for de-escalation.
               </p>
-              <span data-animate="1" className="mt-10 flex items-center quote">
+              <span
+                data-animate="1"
+                data-animation="slide-left"
+                className="mt-10 flex items-center quote"
+              >
                 &ldquo;Something smells fishy, but it might just be our
                 mistake&ldquo;
               </span>
@@ -249,7 +265,11 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <span data-animate="1" className="mt-10 flex items-center quote">
+              <span
+                data-animate="1"
+                data-animation="slide-left"
+                className="mt-10 flex items-center quote"
+              >
                 &ldquo;The upgrade that makes everything fall into place&ldquo;
               </span>
             </div>
