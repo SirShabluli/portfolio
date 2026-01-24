@@ -1,9 +1,10 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
 export default function ColorPalette({ colors }) {
   const containerRef = useRef(null);
+  const [activeColorId, setActiveColorId] = useState(null);
 
   return (
     <section className="grid grid-cols-12 w-full bg-black text-white py-24 px-12 items-start">
@@ -21,61 +22,68 @@ export default function ColorPalette({ colors }) {
         className="col-span-8 flex h-[40vh] gap-2 items-stretch"
       >
         {colors.map((color) => (
-          <ColorStrip key={color.id} color={color} />
+          <ColorStrip
+            key={color.id}
+            color={color}
+            isActive={activeColorId === color.id}
+            onClick={() =>
+              setActiveColorId(activeColorId === color.id ? null : color.id)
+            }
+          />
         ))}
       </div>
     </section>
   );
 }
 
-function ColorStrip({ color }) {
+function ColorStrip({ color, isActive, onClick }) {
   const contentRef = useRef(null);
   const stripRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  const onEnter = () => {
-    // ביטול אנימציות קודמות
+  // כל האנימציות במקום אחד - מגיב ל-isActive
+  useEffect(() => {
     gsap.killTweensOf([stripRef.current, contentRef.current]);
 
-    // הרחבת הסטריפ
-    gsap.to(stripRef.current, {
-      flexGrow: 4,
-      duration: 0.05,
-      ease: "power1.out",
-      delay: 0.4,
-    });
-    // הצגת התוכן רק אחרי שהסטריפ סיים להתרחב
-    gsap.to(contentRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.1,
-      delay: 0.8,
-      ease: "linear",
-    });
-  };
-
-  const onLeave = () => {
-    // ביטול אנימציות קודמות
-    gsap.killTweensOf([stripRef.current, contentRef.current]);
-
-    // החזרה למצב רגיל
-    gsap.to(stripRef.current, {
-      flexGrow: 1,
-      duration: 0.0,
-      ease: "linear",
-    });
-    gsap.to(contentRef.current, {
-      opacity: 0,
-      y: 10,
-      duration: 0.1,
-    });
-  };
+    if (isActive) {
+      // פתוח
+      gsap.to(stripRef.current, {
+        flexGrow: 4,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+      gsap.to(contentRef.current, {
+        opacity: 1,
+        y: 0,
+        duration: 0.25,
+        delay: 0.1,
+      });
+    } else if (isHovered) {
+      // Hover בלבד
+      gsap.to(stripRef.current, {
+        flexGrow: 1.5,
+        duration: 0.2,
+        ease: "power2.out",
+      });
+      gsap.to(contentRef.current, { opacity: 0, y: 0, duration: 0.0 });
+    } else {
+      // סגור
+      gsap.to(stripRef.current, {
+        flexGrow: 1,
+        duration: 0.2,
+        ease: "power2.out",
+      });
+      gsap.to(contentRef.current, { opacity: 0, y: 0, duration: 0.0 });
+    }
+  }, [isActive, isHovered]);
 
   return (
     <div
       ref={stripRef}
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
-      className="relative flex-grow cursor-default transition-all overflow-hidden "
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={onClick}
+      className="relative flex-grow cursor-pointer overflow-hidden"
       style={{ backgroundColor: color.hex }}
     >
       {/* פרטי הצבע שמופיעים ב-Hover */}

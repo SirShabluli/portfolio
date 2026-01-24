@@ -3,6 +3,7 @@ import Image from "next/image";
 import AIProcess from "./components/AIProcess";
 import TypographySection from "./components/TypographySection";
 import ColorPalette from "./components/ColorPalette";
+import GlassCard from "./components/GlassCard";
 import {
   catProjectSteps,
   netflixTypography,
@@ -44,6 +45,45 @@ export default function Home() {
           Here&apos;s a link to my LinkedIn
         </a>
       </section>
+      <section className="bg-black py-20 px-8">
+        <div className="grid grid-cols-12 gap-10 max-w-7xl mx-auto">
+          <div className="col-span-3">
+            <GlassCard
+              imageSrc="/images/catfish.png"
+              alt="Project preview"
+              aspectRatio="aspect-[9/19.5]"
+            />
+          </div>
+          <div className="col-span-3">
+            <GlassCard
+              imageSrc="/images/share.png"
+              alt="Project preview"
+              aspectRatio="aspect-[9/19.5]"
+            />
+          </div>
+          <div className="col-span-3">
+            <GlassCard
+              imageSrc="/images/match.png"
+              alt="Project preview"
+              aspectRatio="aspect-[9/19.5]"
+            />
+          </div>
+          <div className="col-span-3">
+            <GlassCard
+              imageSrc="/images/empty.png"
+              alt="Project preview"
+              aspectRatio="aspect-[9/19.5]"
+            />
+          </div>
+          <div className="col-span-3">
+            <GlassCard
+              imageSrc="/images/premium.png"
+              alt="Project preview"
+              aspectRatio="aspect-[9/19.5]"
+            />
+          </div>
+        </div>
+      </section>
       <TypographySection data={netflixTypography} />
       <ColorPalette colors={netflixColors} />
       <AIProcess data={catProjectSteps} />
@@ -60,7 +100,8 @@ export default function Home() {
             >
               <h2>Merging Private Spaces</h2>
               <p>
-                This represents the &quot;Co-watching&quot; goal of the app.{" "}
+                This represents the &quot;Co-watching&quot; goal of the
+                app.{" "}
               </p>
               <p>
                 {" "}
