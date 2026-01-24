@@ -35,7 +35,7 @@ export default function PhoneShowcase({
         sectionClass,
         xVwValue,
         rotationY = 0,
-        screenIndex = 0
+        screenIndex = 0,
       ) => {
         // Timeline for phone movement and rotation only (with scrub)
         const phoneTl = gsap.timeline({
@@ -80,7 +80,7 @@ export default function PhoneShowcase({
           const textTl = gsap.timeline({
             scrollTrigger: {
               trigger: sectionClass,
-              start: "top center",
+              start: "top top+=100",
               toggleActions: "play none none reverse",
               markers: showMarkers,
             },
@@ -91,14 +91,14 @@ export default function PhoneShowcase({
           });
 
           headings.forEach((heading) => {
-            textTl.from(heading, { y: 50, opacity: 0, duration: 0.6 }, "-=0.4");
+            textTl.from(heading, { y: 0, opacity: 0, duration: 0.6 }, "-=0.4");
           });
 
           paragraphs.forEach((paragraph) => {
             textTl.from(
               paragraph,
-              { y: 30, opacity: 0, duration: 0.6 },
-              "-=0.4"
+              { y: 0, opacity: 0, duration: 0.6 },
+              "-=1.4",
             );
           });
         }
@@ -110,11 +110,11 @@ export default function PhoneShowcase({
           `.section-${index + 1}`,
           config.xPosition || 0,
           config.rotation || 0,
-          config.screenIndex || 0
+          config.screenIndex || 0,
         );
       });
     },
-    { scope: mainRef, dependencies: [splineApp, sections] }
+    { scope: mainRef, dependencies: [splineApp, sections] },
   );
 
   return (

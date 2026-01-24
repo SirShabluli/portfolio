@@ -53,60 +53,52 @@ export default function AIProcess({ data }) {
           const nextText = nextStep.querySelector(".text-side");
           const nextImage = nextStep.querySelector(".image-side");
 
-          // טקסט נוכחי יוצא למעלה
-          tl.to(
-            textSide,
-            {
-              opacity: 0,
-              y: -50,
-              duration: 1,
-            },
-            "+=0.5",
-          );
+          // טקסט נוכחי יוצא
+          tl.to(textSide, { opacity: 0, duration: 0.5 });
 
           // Container הבא עולה למעלה
           tl.set(nextStep, { zIndex: 20 + i });
 
-          // אנימציות תמונה שונות לפי המעבר
+          // טקסט חדש נכנס קודם
+          tl.fromTo(
+            nextText,
+            { opacity: 0 },
+            { opacity: 1, duration: 0.5 },
+          );
+
+          // אנימציות תמונה - אחרי הטקסט
           if (i === 0) {
             // מעבר 1→2: fade out + fade in
-            tl.to(imageSide, { opacity: 0, duration: 1 }, "<");
+            tl.to(imageSide, { opacity: 0, duration: 0.5 });
             tl.fromTo(
               nextImage,
               { opacity: 0 },
-              { opacity: 1, duration: 1 },
-              "<0.5",
+              { opacity: 1, duration: 0.5 },
+              "<0.2",
             );
           } else if (i === 1) {
             // מעבר 2→3: fade out הישנה במקביל ל-fade in החדשה
-            tl.to(imageSide, { opacity: 0, duration: 1.5 }, "<");
+            tl.to(imageSide, { opacity: 0, duration: 0.8 });
             tl.fromTo(
               nextImage,
               { opacity: 0 },
-              { opacity: 1, duration: 1.5 },
+              { opacity: 1, duration: 0.8 },
               "<",
             );
           } else if (i === 2) {
             // מעבר 3→4: fade out הישנה במקביל ל-wipe החדשה
-            tl.to(imageSide, { opacity: 0, duration: 1.5 }, "<");
+            tl.to(imageSide, { opacity: 0, duration: 0.8 });
             tl.fromTo(
               nextImage,
               { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" },
               {
                 clipPath: "inset(0% 0% 0% 0%)",
-                duration: 1.5,
+                duration: 0.8,
                 ease: "power2.inOut",
               },
               "<",
             );
           }
-
-          // טקסט חדש נכנס
-          tl.fromTo(
-            nextText,
-            { opacity: 0, y: 50 },
-            { opacity: 1, y: 0, duration: 1 },
-          );
         }
       });
     },

@@ -9,6 +9,7 @@ import {
   netflixTypography,
   netflixColors,
 } from "../data/projectData";
+import Lauryl from "./components/Lauryl";
 
 export default function Home() {
   // Debug flags - set to true/false to toggle
@@ -44,6 +45,7 @@ export default function Home() {
         >
           Here&apos;s a link to my LinkedIn
         </a>
+        <Lauryl topText="Award Winner" bottomText="Best Design 2024" />
       </section>
       <section className="bg-black py-20 px-8">
         <div className="grid grid-cols-12 gap-10 max-w-7xl mx-auto">
@@ -213,6 +215,7 @@ export default function Home() {
                 the literal interpretation of a common dating term:
               </p>
               <h3>Catfish</h3>
+              <Lauryl topText="Intended" bottomText="PUN" />
               <p>
                 By illustrating a grumpy cat wearing a fish hat, the app takes a
                 self-deprecating tone. This "wink" at the user transforms a
