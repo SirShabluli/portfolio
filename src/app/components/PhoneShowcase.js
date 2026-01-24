@@ -70,12 +70,23 @@ export default function PhoneShowcase({
           });
         }
 
-        // Text animations - separate timeline without scrub
+        // Text animations - based on data-animate attribute
         const section = document.querySelector(sectionClass);
         if (section) {
-          const quotes = section.querySelectorAll(".quote");
-          const headings = section.querySelectorAll("h2, h3");
-          const paragraphs = section.querySelectorAll("p");
+          const animatedElements = section.querySelectorAll("[data-animate]");
+
+          // מיון לפי הערך של data-animate
+          const sorted = Array.from(animatedElements).sort((a, b) => {
+            return Number(a.dataset.animate) - Number(b.dataset.animate);
+          });
+
+          // קיבוץ לפי מספר (אלמנטים עם אותו מספר יופיעו יחד)
+          const groups = {};
+          sorted.forEach((el) => {
+            const order = el.dataset.animate;
+            if (!groups[order]) groups[order] = [];
+            groups[order].push(el);
+          });
 
           const textTl = gsap.timeline({
             scrollTrigger: {
@@ -86,21 +97,19 @@ export default function PhoneShowcase({
             },
           });
 
-          quotes.forEach((quote) => {
-            textTl.from(quote, { x: -100, opacity: 0, duration: 0.8 }, "-=0.6");
-          });
-
-          headings.forEach((heading) => {
-            textTl.from(heading, { y: 0, opacity: 0, duration: 0.6 }, "-=0.4");
-          });
-
-          paragraphs.forEach((paragraph) => {
-            textTl.from(
-              paragraph,
-              { y: 0, opacity: 0, duration: 0.6 },
-              "-=1.4",
-            );
-          });
+          // אנימציה לפי סדר הקבוצות
+          Object.keys(groups)
+            .sort((a, b) => Number(a) - Number(b))
+            .forEach((order, i) => {
+              const elements = groups[order];
+              // קבוצה ראשונה מתחילה ב-0, השאר עם חפיפה קטנה
+              const position = i === 0 ? 0 : "-=0.3";
+              textTl.from(
+                elements,
+                { y: 20, opacity: 0, duration: 0.6 },
+                position,
+              );
+            });
         }
       };
 
