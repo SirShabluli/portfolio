@@ -48,49 +48,6 @@ export default function Home() {
         <Lauryl topText="Award Winner" bottomText="Best Design 2024" />
       </section>
 
-      <section className="bg-black py-20 px-8">
-        <div className="grid grid-cols-12 gap-10 max-w-7xl mx-auto">
-          <div className="col-span-3">
-            <GlassCard
-              imageSrc="/images/catfish.png"
-              alt="Project preview"
-              aspectRatio="aspect-[9/19.5]"
-            />
-          </div>
-          <div className="col-span-3">
-            <GlassCard
-              imageSrc="/images/share.png"
-              alt="Project preview"
-              aspectRatio="aspect-[9/19.5]"
-            />
-          </div>
-          <div className="col-span-3">
-            <GlassCard
-              imageSrc="/images/match.png"
-              alt="Project preview"
-              aspectRatio="aspect-[9/19.5]"
-            />
-          </div>
-          <div className="col-span-3">
-            <GlassCard
-              imageSrc="/images/empty.png"
-              alt="Project preview"
-              aspectRatio="aspect-[9/19.5]"
-            />
-          </div>
-          <div className="col-span-3">
-            <GlassCard
-              imageSrc="/images/premium.png"
-              alt="Project preview"
-              aspectRatio="aspect-[9/19.5]"
-            />
-          </div>
-        </div>
-      </section>
-      <TypographySection data={netflixTypography} />
-      <ColorPalette colors={netflixColors} />
-      <AIProcess data={catProjectSteps} />
-      {/* Phone showcase with all sections */}
       <PhoneShowcase
         sections={sections}
         showOutlines={showOutlines}
@@ -299,6 +256,10 @@ export default function Home() {
         </section>
         <section></section>
       </PhoneShowcase>
+      <TypographySection data={netflixTypography} />
+      <ColorPalette colors={netflixColors} />
+      <AIProcess data={catProjectSteps} />
+      {/* Phone showcase with all sections */}
     </>
   );
 }
