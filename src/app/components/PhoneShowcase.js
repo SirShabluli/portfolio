@@ -58,7 +58,7 @@ export default function PhoneShowcase({
         if (splineApp) {
           ScrollTrigger.create({
             trigger: sectionClass,
-            start: "top ß",
+            start: "top center",
             end: "bottom center",
             onEnter: () => {
               splineApp.setVariable("screenIndex", screenIndex);
