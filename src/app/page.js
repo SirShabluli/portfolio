@@ -48,6 +48,54 @@ export default function Home() {
         <Lauryl topText="Award Winner" bottomText="Best Design 2024" />
       </section>
 
+      {/* Project Intro Section */}
+      <section className="bg-black py-20 px-8 min-h-screen text-white">
+        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center">
+          {/* Left side images */}
+          <div className="col-span-3 flex flex-col gap-4">
+            {/* אפשר להוסיף תמונות כאן */}
+          </div>
+
+          {/* Center - Title, Image, Description */}
+          <div className="col-span-6 flex flex-col items-center text-center gap-6">
+            <Image
+              src="/images/NetflixLogo.svg"
+              alt="Project preview"
+              width={400}
+              height={600}
+              className=""
+            />
+            <h2 className="text-red-500">Dating</h2>
+            <h3 className="text-4xl font-bold text-left">
+              What if Netflix decided to create a dating app?
+            </h3>
+            <p className="text-gray-400 text-left">
+              A fictional dating app where matching happens over shared watch
+              lists, not gym selfies. Illustrated UI concept exploring what
+              happens when comfort replaces performance.
+            </p>
+          </div>
+
+          {/* Right side images */}
+          <div className="col-span-3 flex flex-col gap-0">
+            <Image
+              src="/images/pajama1.png"
+              alt="Project preview"
+              width={400}
+              height={600}
+              className=""
+            />
+            <Image
+              src="/images/pajama2.png"
+              alt="Project preview"
+              width={400}
+              height={600}
+              className=""
+            />
+          </div>
+        </div>
+      </section>
+
       <PhoneShowcase
         sections={sections}
         showOutlines={showOutlines}
