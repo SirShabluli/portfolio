@@ -79,14 +79,14 @@ export default function Home() {
           {/* Right side images */}
           <div className="col-span-3 flex flex-col gap-0">
             <Image
-              src="/images/pajama1.png"
+              src="/images/pajama1.svg"
               alt="Project preview"
-              width={400}
+              width={600}
               height={600}
               className=""
             />
             <Image
-              src="/images/pajama2.png"
+              src="/images/pajama2.svg"
               alt="Project preview"
               width={400}
               height={600}
@@ -106,12 +106,12 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <h2 data-animate="2">Merging Private Spaces</h2>
-              <p data-animate="2">
+              <h2 data-animate="0">Merging Private Spaces</h2>
+              <p data-animate="0">
                 This represents the &quot;Co-watching&quot; goal of the
                 app.{" "}
               </p>
-              <p data-animate="2">
+              <p data-animate="0">
                 {" "}
                 it acknowledges the long-term potential of a relationship. It
                 moves the focus from a digital &quot;hit&quot; to a real-world
