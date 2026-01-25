@@ -35,7 +35,7 @@ export default function PhoneShowcase({
         sectionClass,
         xVwValue,
         rotationY = 0,
-        screenIndex = 0
+        screenIndex = 0,
       ) => {
         // Timeline for phone movement and rotation only (with scrub)
         const phoneTl = gsap.timeline({
@@ -70,37 +70,61 @@ export default function PhoneShowcase({
           });
         }
 
-        // Text animations - separate timeline without scrub
+        // Text animations - based on data-animate attribute
         const section = document.querySelector(sectionClass);
         if (section) {
-          const quotes = section.querySelectorAll(".quote");
-          const headings = section.querySelectorAll("h2, h3");
-          const paragraphs = section.querySelectorAll("p");
+          const animatedElements = section.querySelectorAll("[data-animate]");
+
+          // מיון לפי הערך של data-animate
+          const sorted = Array.from(animatedElements).sort((a, b) => {
+            return Number(a.dataset.animate) - Number(b.dataset.animate);
+          });
+
+          // קיבוץ לפי מספר (אלמנטים עם אותו מספר יופיעו יחד)
+          const groups = {};
+          sorted.forEach((el) => {
+            const order = el.dataset.animate;
+            if (!groups[order]) groups[order] = [];
+            groups[order].push(el);
+          });
 
           const textTl = gsap.timeline({
             scrollTrigger: {
               trigger: sectionClass,
               start: "top center",
-              toggleActions: "play none none reverse",
+              end: "center center",
+              scrub: 1,
               markers: showMarkers,
             },
           });
 
-          quotes.forEach((quote) => {
-            textTl.from(quote, { x: -100, opacity: 0, duration: 0.8 }, "-=0.6");
-          });
+          // סוגי אנימציות
+          const animations = {
+            fade: { opacity: 0 },
+            "slide-up": { y: 30, opacity: 0 },
+            "slide-down": { y: -30, opacity: 0 },
+            "slide-left": { x: -100, opacity: 0 },
+            "slide-right": { x: 100, opacity: 0 },
+          };
 
-          headings.forEach((heading) => {
-            textTl.from(heading, { y: 50, opacity: 0, duration: 0.6 }, "-=0.4");
-          });
+          // אנימציה לפי סדר הקבוצות
+          Object.keys(groups)
+            .sort((a, b) => Number(a) - Number(b))
+            .forEach((order, i) => {
+              const elements = groups[order];
+              const groupPosition = i === 0 ? 0 : "-=0.3";
 
-          paragraphs.forEach((paragraph) => {
-            textTl.from(
-              paragraph,
-              { y: 30, opacity: 0, duration: 0.6 },
-              "-=0.4"
-            );
-          });
+              // אנימציה לכל אלמנט לפי ה-data-animation שלו
+              elements.forEach((el, elIndex) => {
+                const animType = el.dataset.animation || "fade";
+                const anim = animations[animType] || animations.fade;
+                const delay = Number(el.dataset.delay) || 0;
+                const duration = Number(el.dataset.duration) || 1.6;
+                // כל האלמנטים באותה קבוצה מתחילים באותו זמן
+                const position = elIndex === 0 ? groupPosition : "<";
+                textTl.from(el, { ...anim, duration, delay }, position);
+              });
+            });
         }
       };
 
@@ -110,11 +134,11 @@ export default function PhoneShowcase({
           `.section-${index + 1}`,
           config.xPosition || 0,
           config.rotation || 0,
-          config.screenIndex || 0
+          config.screenIndex || 0,
         );
       });
     },
-    { scope: mainRef, dependencies: [splineApp, sections] }
+    { scope: mainRef, dependencies: [splineApp, sections] },
   );
 
   return (
