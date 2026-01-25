@@ -59,14 +59,23 @@ export default function AIProcess({ data }) {
           // Container הבא עולה למעלה
           tl.set(nextStep, { zIndex: 20 + i });
 
-          // טקסט חדש נכנס קודם
-          tl.fromTo(
-            nextText,
-            { opacity: 0 },
-            { opacity: 1, duration: 0.5 },
-          );
+          // טקסט חדש נכנס
+          if (i === 1) {
+            // מעבר 2→3: טקסט ותמונה ביחד
+            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+            tl.to(imageSide, { opacity: 0, duration: 0.8 }, "<");
+            tl.fromTo(
+              nextImage,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.8 },
+              "<",
+            );
+          } else {
+            // שאר המעברים: טקסט קודם
+            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+          }
 
-          // אנימציות תמונה - אחרי הטקסט
+          // אנימציות תמונה - אחרי הטקסט (חוץ מ-2→3)
           if (i === 0) {
             // מעבר 1→2: fade out + fade in
             tl.to(imageSide, { opacity: 0, duration: 0.5 });
@@ -77,14 +86,7 @@ export default function AIProcess({ data }) {
               "<0.2",
             );
           } else if (i === 1) {
-            // מעבר 2→3: fade out הישנה במקביל ל-fade in החדשה
-            tl.to(imageSide, { opacity: 0, duration: 0.8 });
-            tl.fromTo(
-              nextImage,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.8 },
-              "<",
-            );
+            // כבר טופל למעלה
           } else if (i === 2) {
             // מעבר 3→4: fade out הישנה במקביל ל-wipe החדשה
             tl.to(imageSide, { opacity: 0, duration: 0.8 });

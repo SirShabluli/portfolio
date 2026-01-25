@@ -47,6 +47,7 @@ export default function Home() {
         </a>
         <Lauryl topText="Award Winner" bottomText="Best Design 2024" />
       </section>
+
       <section className="bg-black py-20 px-8">
         <div className="grid grid-cols-12 gap-10 max-w-7xl mx-auto">
           <div className="col-span-3">
