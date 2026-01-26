@@ -53,19 +53,56 @@ export default function Home() {
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center">
           {/* Left side images */}
           <div className="col-span-3 flex flex-col gap-4">
+            <div className="col-span-3 flex flex-col gap-4">
+              {" "}
+              {/* המעטפת הכללית של כל הבלוק */}
+              {/* דוגמה לזוג אחד - תחזור על זה עבור כל נתון */}
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-medium  tracking-wider opacity-60">
+                  role
+                </p>
+                <p className="text-xl font-bold text-white">
+                  UI Design & Illustration
+                </p>
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-medium  tracking-wider opacity-60">
+                  Course
+                </p>
+                <p className="text-xl font-bold text-white leading-tight">
+                  "Your Cart is Empty" - Digital Product Illustration
+                </p>
+              </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-medium  tracking-wider opacity-60">
+                  Year
+                </p>
+                <p className="text-xl font-bold text-white leading-tight">
+                  2025 (4th year, parallel to graduation project)
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-1">
+              <p className="text-sm font-medium  tracking-wider opacity-60">
+                Duartion
+              </p>
+              <p className="text-xl font-bold text-white leading-tight">
+                1 month
+              </p>
+            </div>
             {/* אפשר להוסיף תמונות כאן */}
           </div>
 
           {/* Center - Title, Image, Description */}
-          <div className="col-span-6 flex flex-col items-center text-center gap-6">
+          <div className="col-span-5 flex flex-col items-center text-center gap-8">
             <Image
               src="/images/NetflixLogo.svg"
               alt="Project preview"
-              width={400}
+              width={300}
               height={600}
               className=""
             />
-            <h2 className="text-red-500">Dating</h2>
+            <h2 className="text-red-500 -mt-5">Dating</h2>
             <h3 className="text-4xl font-bold text-left">
               What if Netflix decided to create a dating app?
             </h3>
@@ -152,7 +189,7 @@ export default function Home() {
               </span>
             </div>
             <div
-              className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-2`}
             >
               <h2 data-animate="2">Empathy in Loneliness</h2>
 
@@ -166,12 +203,19 @@ export default function Home() {
                 from a standard "Start Browsing" to "Find Someone to Clean Up
                 With,"
               </p>
-              <p data-animate="2">
+              <Image
+                src="/images/tableafternight.png"
+                alt="Empty State Screen"
+                width={800}
+                height={600}
+                className="w-full h-auto my-5"
+              />
+              {/* <p data-animate="2">
                 I used humor to validate the user&apos;s experience. It tells
                 the user that the app "gets" the messiness of being single and
                 positions the platform as a partner in finding someone to share
                 those raw, uncurated moments with.
-              </p>
+              </p> */}
             </div>
           </div>
         </section>
