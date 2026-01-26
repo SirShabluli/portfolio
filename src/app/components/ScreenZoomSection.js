@@ -25,10 +25,12 @@ export default function ScreenZoomSection({
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top+=10%",
+          start: "top top",
           end: "+=150%",
           pin: true,
-          scrub: 2,
+          pinSpacing: true,
+          anticipatePin: 1,
+          scrub: 1,
         },
       });
 
