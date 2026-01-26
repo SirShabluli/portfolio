@@ -10,6 +10,7 @@ import {
   netflixColors,
 } from "../data/projectData";
 import Lauryl from "./components/Lauryl";
+import ScreenZoomSection from "./components/ScreenZoomSection";
 
 export default function Home() {
   // Debug flags - set to true/false to toggle
@@ -106,7 +107,7 @@ export default function Home() {
             <h3 className="text-4xl font-bold text-left">
               What if Netflix decided to create a dating app?
             </h3>
-            <p className="text-gray-400 text-left">
+            <p className="text-white text-left">
               A fictional dating app where matching happens over shared watch
               lists, not gym selfies. Illustrated UI concept exploring what
               happens when comfort replaces performance.
@@ -135,7 +136,7 @@ export default function Home() {
 
       <PhoneShowcase
         sections={sections}
-        showOutlines={showOutlines}
+        showOutlines={true}
         showMarkers={showMarkers}
       >
         <section className="section-1">
@@ -355,6 +356,14 @@ export default function Home() {
         </section>
         <section></section>
       </PhoneShowcase>
+
+      {/* Screen Section with Zoom */}
+      <ScreenZoomSection
+        imageSrc="/images/screen.png"
+        title="Full Experience"
+        description="A complete view of the app interface showing all the features working together."
+      />
+
       <TypographySection data={netflixTypography} />
       <ColorPalette colors={netflixColors} />
       <AIProcess data={catProjectSteps} />
