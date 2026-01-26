@@ -105,6 +105,9 @@ export default function PhoneShowcase({
             "slide-down": { y: -30, opacity: 0 },
             "slide-left": { x: -100, opacity: 0 },
             "slide-right": { x: 100, opacity: 0 },
+            "sticker": { scale: 0, rotation: -15, opacity: 0, ease: "back.out(1.7)" },
+            "sticker-left": { scale: 0, rotation: 15, x: -50, opacity: 0, ease: "back.out(1.7)" },
+            "sticker-right": { scale: 0, rotation: -15, x: 50, opacity: 0, ease: "back.out(1.7)" },
           };
 
           // אנימציה לפי סדר הקבוצות

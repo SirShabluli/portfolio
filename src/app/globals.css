@@ -24,7 +24,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
   --font-netflix-sans: "Netflix Sans", sans-serif;
 }
 
@@ -40,7 +40,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #000000;
     --foreground: #ededed;
   }
 }
@@ -73,8 +73,8 @@ p {
   font-family: var(--font-baloo2);
   font-weight: 400;
   font-size: 1.125rem;
-  line-height: 160%;
-  letter-spacing: 0.07em;
+  line-height: 150%;
+  letter-spacing: 0.04em;
 }
 
 h2 {
@@ -82,7 +82,7 @@ h2 {
   font-weight: 500;
   font-size: 2.375rem;
   line-height: 112%;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.01em;
 }
 
 h3 {
@@ -98,7 +98,7 @@ h3 {
     font-family: var(--font-cinzel);
     font-weight: 500;
     font-size: 3.125rem;
-    line-height: 120%;
+    line-height: 110%;
     letter-spacing: 0.07em;
   }
 }

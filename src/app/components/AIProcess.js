@@ -71,26 +71,10 @@ export default function AIProcess({ data }) {
               { opacity: 1, duration: 0.8 },
               "<",
             );
-          } else {
-            // שאר המעברים: טקסט קודם
-            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
-          }
-
-          // אנימציות תמונה - אחרי הטקסט (חוץ מ-2→3)
-          if (i === 0) {
-            // מעבר 1→2: fade out + fade in
-            tl.to(imageSide, { opacity: 0, duration: 0.5 });
-            tl.fromTo(
-              nextImage,
-              { opacity: 0 },
-              { opacity: 1, duration: 0.5 },
-              "<0.2",
-            );
-          } else if (i === 1) {
-            // כבר טופל למעלה
           } else if (i === 2) {
-            // מעבר 3→4: fade out הישנה במקביל ל-wipe החדשה
-            tl.to(imageSide, { opacity: 0, duration: 0.8 });
+            // מעבר 3→4: טקסט ותמונה (wipe) ביחד
+            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+            tl.to(imageSide, { opacity: 0, duration: 0.8 }, "<");
             tl.fromTo(
               nextImage,
               { opacity: 1, clipPath: "inset(0% 0% 0% 100%)" },
@@ -101,6 +85,23 @@ export default function AIProcess({ data }) {
               },
               "<",
             );
+          } else {
+            // שאר המעברים: טקסט קודם
+            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+          }
+
+          // אנימציות תמונה - אחרי הטקסט (חוץ מ-2→3 ו-3→4)
+          if (i === 0) {
+            // מעבר 1→2: fade out + fade in
+            tl.to(imageSide, { opacity: 0, duration: 0.5 });
+            tl.fromTo(
+              nextImage,
+              { opacity: 0 },
+              { opacity: 1, duration: 0.5 },
+              "<0.2",
+            );
+          } else if (i === 1 || i === 2) {
+            // כבר טופל למעלה
           }
         }
       });
