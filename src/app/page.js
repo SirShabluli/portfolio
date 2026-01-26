@@ -21,7 +21,7 @@ export default function Home() {
   // Configuration for each section
   const sections = [
     { xPosition: 0, rotation: 0, screenIndex: 2 },
-    { xPosition: -25, rotation: Math.PI * 0.15, screenIndex: 0 },
+    { xPosition: -25, rotation: Math.PI * 0.1, screenIndex: 0 },
     { xPosition: 0, rotation: Math.PI * 0, screenIndex: 4 },
     { xPosition: 0, rotation: Math.PI * -2, screenIndex: 1 },
     { xPosition: 25, rotation: Math.PI * 0, screenIndex: 3 },
@@ -143,12 +143,12 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <h2 data-animate="0">Merging Private Spaces</h2>
-              <p data-animate="0">
+              <h2>Merging Private Spaces</h2>
+              <p>
                 This represents the &quot;Co-watching&quot; goal of the
                 app.{" "}
               </p>
-              <p data-animate="0">
+              <p>
                 {" "}
                 it acknowledges the long-term potential of a relationship. It
                 moves the focus from a digital &quot;hit&quot; to a real-world
@@ -191,7 +191,9 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-2`}
             >
-              <h2 data-animate="2">Empathy in Loneliness</h2>
+              <h2 data-animate="2" className="mt-20">
+                Empathy in Loneliness
+              </h2>
 
               <p data-animate="2">
                 The "Empty State" is the most vulnerable moment for a user on a
@@ -204,6 +206,7 @@ export default function Home() {
                 With,"
               </p>
               <Image
+                data-animate="3"
                 src="/images/tableafternight.png"
                 alt="Empty State Screen"
                 width={800}
@@ -224,20 +227,19 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <p data-animate="2">
+              <p data-animate="4">
                 I drew inspiration from the iconic Netflix Profile Selection
                 screen—the first thing millions of people see when they turn on
                 their TV
               </p>
               <Image
-                data-animate="2"
+                data-animate="4"
                 src="/images/WhosWatching.png"
                 alt="Netflix Who's Watching screen"
                 width={800}
                 height={600}
                 className="w-full h-auto"
               />
-              <h3 data-animate="2">Here</h3>
             </div>
             <div
               className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}
@@ -245,7 +247,7 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
             >
-              <h2 data-animate="2">Sharing is Caring</h2>
+              <h2 data-animate="2">Share the app</h2>
               <p data-animate="2">
                 The challenge was to design a screen that encourages users to
                 invite friends without feeling like &quot;spam.&quot;
@@ -278,7 +280,7 @@ export default function Home() {
                 the literal interpretation of a common dating term:
               </p>
               <h3 data-animate="2">Catfish</h3>
-              <Lauryl data-animate="3" topText="Intended" bottomText="PUN" />
+
               <p data-animate="2">
                 By illustrating a grumpy cat wearing a fish hat, the app takes a
                 self-deprecating tone. This "wink" at the user transforms a
@@ -293,10 +295,16 @@ export default function Home() {
               className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
             ></div>
             <div
-              className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4`}
+              className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
             >
-              <h2 data-animate="2">Defusing Frustration</h2>
-              <p data-animate="2">
+              <h2 data-animate="3">Verification Failed</h2>
+              <Lauryl
+                data-animate="3"
+                data-animation="sticker"
+                topText="Intended"
+                bottomText="PUN"
+              />
+              <p data-animate="3">
                 Using a &quot;Pun&quot; as a tool for de-escalation.
               </p>
               <span
