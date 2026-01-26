@@ -277,9 +277,8 @@ export default function Home() {
               <p data-animate="2">
                 Technical errors and verification loops are high-friction points
                 that lead to app abandonment. I chose to address this through
-                the literal interpretation of a common dating term:
+                the literal interpretation of a common dating term Catfish
               </p>
-              <h3 data-animate="2">Catfish</h3>
 
               <p data-animate="2">
                 By illustrating a grumpy cat wearing a fish hat, the app takes a
@@ -297,7 +296,7 @@ export default function Home() {
             <div
               className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
             >
-              <h2 data-animate="3">Verification Failed</h2>
+              <h2 data-animate="3">The Catfish</h2>
               <Lauryl
                 data-animate="3"
                 data-animation="sticker"
@@ -310,7 +309,7 @@ export default function Home() {
               <span
                 data-animate="1"
                 data-animation="slide-left"
-                className="mt-10 flex items-center quote"
+                className="mt-0 flex items-center quote"
               >
                 &ldquo;Something smells fishy, but it might just be our
                 mistake&ldquo;
