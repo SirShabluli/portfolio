@@ -25,18 +25,18 @@ export default function ScreenZoomSection({
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top-=10%",
+          start: "top top+=10%",
           end: "+=150%",
           pin: true,
-          scrub: 1,
+          scrub: 2,
         },
       });
 
-      // zoom out + move to side + move down to center
+      // zoom out + move to side
       tl.fromTo(
         imageRef.current,
-        { scale: 2.2, x: "0", y: "0" },
-        { scale: 1.2, x: "-30%", y: "20%", duration: 1 },
+        { scale: 1.3, x: "0" },
+        { scale: 0.6, x: "-25%", duration: 1 },
       );
 
       // text fades in
@@ -53,15 +53,11 @@ export default function ScreenZoomSection({
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen bg-black overflow-hidden"
+      className="relative h-screen bg-black overflow-visible "
     >
-      <div className="absolute inset-0 flex items-start justify-center">
+      <div className="absolute inset-0 flex items-center justify-center">
         {/* Image */}
-        <div
-          ref={imageRef}
-          className="w-full max-w-5xl px-8"
-          style={{ transformOrigin: "top center" }}
-        >
+        <div ref={imageRef} className="w-full max-w-5xl px-8">
           <Image
             src={imageSrc}
             alt={alt}
