@@ -36,7 +36,7 @@ export default function ScreenZoomSection({
       tl.fromTo(
         imageRef.current,
         { scale: 1.3, x: "0" },
-        { scale: 0.6, x: "-25%", duration: 1 },
+        { scale: 0.7, x: "-25%", duration: 1 },
       );
 
       // text fades in
@@ -53,11 +53,11 @@ export default function ScreenZoomSection({
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen bg-black overflow-visible "
+      className="relative h-screen bg-black overflow-visible"
     >
-      <div className="absolute inset-0 flex items-center justify-center">
-        {/* Image */}
-        <div ref={imageRef} className="w-full max-w-5xl px-8">
+      {/* Image Grid */}
+      <div className="absolute inset-0 grid grid-cols-12 gap-8 mx-auto h-full items-center px-8">
+        <div ref={imageRef} className="col-start-3 col-span-8">
           <Image
             src={imageSrc}
             alt={alt}
@@ -68,13 +68,17 @@ export default function ScreenZoomSection({
         </div>
       </div>
 
-      {/* Text - on the right */}
-      <div
-        ref={textRef}
-        className="absolute right-8 top-1/2 -translate-y-1/2 max-w-md text-white"
-      >
-        {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
-        {description && <p className="text-gray-400 text-lg">{description}</p>}
+      {/* Text Grid */}
+      <div className="absolute inset-0 grid grid-cols-12 gap-8 mx-auto h-full items-center px-8 pointer-events-none">
+        <div
+          ref={textRef}
+          className="col-span-3 col-start-9 text-white pointer-events-auto"
+        >
+          {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
+          {description && (
+            <p className="text-gray-400 text-lg">{description}</p>
+          )}
+        </div>
       </div>
     </section>
   );
