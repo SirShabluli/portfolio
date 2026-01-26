@@ -275,13 +275,15 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <p data-animate="2">
+              <h2 data-animate="3">The Catfish</h2>
+
+              <p data-animate="3">
                 Technical errors and verification loops are high-friction points
                 that lead to app abandonment. I chose to address this through
                 the literal interpretation of a common dating term Catfish
               </p>
 
-              <p data-animate="2">
+              <p data-animate="3">
                 By illustrating a grumpy cat wearing a fish hat, the app takes a
                 self-deprecating tone. This "wink" at the user transforms a
                 moment of potential anger ("Why won&apos;t it verify me?") into
@@ -297,20 +299,20 @@ export default function Home() {
             <div
               className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
             >
-              <h2 data-animate="3">The Catfish</h2>
               <Lauryl
-                data-animate="3"
+                data-animate="4"
                 data-animation="sticker"
                 topText="Intended"
                 bottomText="PUN"
               />
-              <p data-animate="3">
+              <p data-animate="5">
                 Using a &quot;Pun&quot; as a tool for de-escalation.
               </p>
+
               <span
                 data-animate="1"
                 data-animation="slide-left"
-                className="mt-0 flex items-center quote"
+                className="mt-5 flex items-center quote"
               >
                 &ldquo;Something smells fishy, but it might just be our
                 mistake&ldquo;
