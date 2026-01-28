@@ -30,22 +30,23 @@ export default function ScreenZoomSection({
           pin: true,
           pinSpacing: true,
           anticipatePin: 1,
-          scrub: 1,
+          scrub: 0.5, // smoother scrub
+          ease: "none",
         },
       });
 
-      // zoom out + move to side
+      // zoom out + move to side - smoother with ease
       tl.fromTo(
         imageRef.current,
         { scale: 1.3, x: "0" },
-        { scale: 0.7, x: "-25%", duration: 1 },
+        { scale: 0.7, x: "-25%", duration: 1, ease: "power2.inOut" },
       );
 
       // text fades in
       tl.fromTo(
         textRef.current,
         { opacity: 0, x: 50 },
-        { opacity: 1, x: 0, duration: 0.5 },
+        { opacity: 1, x: 0, duration: 0.5, ease: "power2.out" },
         "-=0.3",
       );
     },
