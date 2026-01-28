@@ -134,6 +134,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Title Section before PhoneShowcase */}
+      <section className="min-h-screen bg-black flex items-center justify-center">
+        <h1 className="display text-white">The Product</h1>
+      </section>
+
       <PhoneShowcase
         sections={sections}
         showOutlines={true}
@@ -365,9 +370,15 @@ export default function Home() {
         title="Full Experience"
         description="A complete view of the app interface showing all the features working together."
       />
+      <section className="min-h-screen bg-black flex items-center justify-center">
+        <h1 className="display text-white">Design System</h1>
+      </section>
 
       <TypographySection data={netflixTypography} />
       <ColorPalette colors={netflixColors} />
+      <section className="min-h-screen bg-black flex items-center justify-center">
+        <h1 className="display text-white">AI as a Blueprint</h1>
+      </section>
       <AIProcess data={catProjectSteps} />
       {/* Phone showcase with all sections */}
     </>
