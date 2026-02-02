@@ -28,7 +28,11 @@ export default function PhoneShowcase({
       const phoneModel = splineApp.findObjectByName("Mobile");
       if (phoneModel) phoneModel.scale.set(5, 5, 5);
 
-      let currentScreen = 0;
+      // Set initial screen index from first section config
+      const initialScreenIndex = sections[0]?.screenIndex ?? 0;
+      splineApp.setVariable("screenIndex", initialScreenIndex);
+
+      let currentScreen = initialScreenIndex;
 
       // Animate each section
       const animateSection = (
@@ -105,9 +109,26 @@ export default function PhoneShowcase({
             "slide-down": { y: -30, opacity: 0 },
             "slide-left": { x: -100, opacity: 0 },
             "slide-right": { x: 100, opacity: 0 },
-            "sticker": { scale: 0, rotation: -15, opacity: 0, ease: "back.out(1.7)" },
-            "sticker-left": { scale: 0, rotation: 15, x: -50, opacity: 0, ease: "back.out(1.7)" },
-            "sticker-right": { scale: 0, rotation: -15, x: 50, opacity: 0, ease: "back.out(1.7)" },
+            sticker: {
+              scale: 0,
+              rotation: -15,
+              opacity: 0,
+              ease: "back.out(1.7)",
+            },
+            "sticker-left": {
+              scale: 0,
+              rotation: 15,
+              x: -50,
+              opacity: 0,
+              ease: "back.out(1.7)",
+            },
+            "sticker-right": {
+              scale: 0,
+              rotation: -15,
+              x: 50,
+              opacity: 0,
+              ease: "back.out(1.7)",
+            },
           };
 
           // אנימציה לפי סדר הקבוצות

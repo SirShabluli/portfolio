@@ -12,6 +12,7 @@ import {
 import Lauryl from "./components/Lauryl";
 import ScreenZoomSection from "./components/ScreenZoomSection";
 import HorizontalScroll from "./components/HorizontalScroll";
+import TextBlock from "./components/TextBlock";
 
 export default function Home() {
   // Debug flags - set to true/false to toggle
@@ -39,6 +40,7 @@ export default function Home() {
         <p className="mt-4 text-gray-400 font-light">
           Something creative is loading from India..
         </p>
+
         <a
           href="https://www.linkedin.com/in/eyal-mo"
           target="_blank"
@@ -47,7 +49,6 @@ export default function Home() {
         >
           Here&apos;s a link to my LinkedIn
         </a>
-        <Lauryl topText="Award Winner" bottomText="Best Design 2024" />
       </section>
 
       {/* Project Intro Section */}

@@ -34,7 +34,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-cinzel: var(--font-cinzel);
-  --font-baloo2: var(--font-baloo2);
+  --font-raleway: var(--font-raleway);
   --font-netflix: var(--font-netflix-sans);
 }
 
@@ -48,7 +48,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-baloo2), Helvetica, sans-serif;
+  font-family: var(--font-raleway), Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -70,15 +70,15 @@ body {
 }
 
 p {
-  font-family: var(--font-baloo2);
-  font-weight: 400;
-  font-size: 1rem;
+  font-family: var(--font-raleway);
+  font-weight: 500;
+  font-size: 0.9rem;
   line-height: 120%;
   letter-spacing: 0.04em;
 }
 
 h2 {
-  font-family: var(--font-baloo2);
+  font-family: var(--font-raleway);
   font-weight: 500;
   font-size: 2.375rem;
   line-height: 112%;
@@ -86,7 +86,7 @@ h2 {
 }
 
 h3 {
-  font-family: var(--font-baloo2);
+  font-family: var(--font-raleway);
   font-weight: 400;
   font-size: 1.75rem;
   line-height: 120%;

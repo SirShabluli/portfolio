@@ -103,8 +103,8 @@ export default function TypographySection({ data }) {
             {/* <h4 className="text-lg font-bold">
               {selectedFont.name} - {selectedFont.weightName}
             </h4> */}
-            <p>{selectedFont.name}</p>
-            <p className="text-xs opacity-60 leading-relaxed font-light">
+            <span className="text-[1.2rem]">{selectedFont.name}</span>
+            <p className="text-xs leading-relaxed font-light">
               {selectedFont.description}
             </p>
           </div>
