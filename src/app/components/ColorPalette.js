@@ -7,10 +7,10 @@ export default function ColorPalette({ colors }) {
   const [activeColorId, setActiveColorId] = useState(null);
 
   return (
-    <section className="grid grid-cols-12 w-full bg-black text-white py-24 px-12 items-start">
+    <section className="grid grid-cols-12 w-full bg-black text-white  px-12 items-start">
       {/* כותרת וטקסט בצד שמאל */}
-      <div className="col-span-3 space-y-8">
-        <h3 className="text-2xl font-medium">Colour</h3>
+      <div className="col-span-3 mt-24 space-y-8">
+        <span className="text-[46px] font-medium">Colour</span>
         <p className="text-sm opacity-60 max-w-45 leading-relaxed">
           Keeping the same theme of Netflix while adding warmth and prestige
         </p>
@@ -19,7 +19,7 @@ export default function ColorPalette({ colors }) {
       {/* קונטיינר הסטריפים - עמודות 4-12 */}
       <div
         ref={containerRef}
-        className="col-span-8 flex h-[40vh] gap-2 items-stretch"
+        className="col-span-8 col-start-5 flex h-[100vh] gap-1 items-stretch"
       >
         {colors.map((color) => (
           <ColorStrip
