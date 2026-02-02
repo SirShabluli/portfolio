@@ -11,6 +11,7 @@ import {
 } from "../data/projectData";
 import Lauryl from "./components/Lauryl";
 import ScreenZoomSection from "./components/ScreenZoomSection";
+import HorizontalScroll from "./components/HorizontalScroll";
 
 export default function Home() {
   // Debug flags - set to true/false to toggle
@@ -370,15 +371,21 @@ export default function Home() {
         title="Full Experience"
         description="A complete view of the app interface showing all the features working together."
       />
-      <section className="min-h-screen bg-black flex items-center justify-center">
-        <h1 className="display text-white">Design System</h1>
-      </section>
+      <HorizontalScroll>
+        <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
+          <h1 className="display text-white">Design System</h1>
+        </div>
+        <div className="min-w-screen w-screen h-screen flex-shrink-0">
+          <TypographySection data={netflixTypography} />
+        </div>
+        <div className="min-w-screen w-screen h-screen flex-shrink-0">
+          <ColorPalette colors={netflixColors} />
+        </div>
+        <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
+          <h1 className="display text-white">AI as a Blueprint</h1>
+        </div>
+      </HorizontalScroll>
 
-      <TypographySection data={netflixTypography} />
-      <ColorPalette colors={netflixColors} />
-      <section className="min-h-screen bg-black flex items-center justify-center">
-        <h1 className="display text-white">AI as a Blueprint</h1>
-      </section>
       <AIProcess data={catProjectSteps} />
       {/* Phone showcase with all sections */}
     </>
