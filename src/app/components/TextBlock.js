@@ -1,6 +1,12 @@
 "use client";
 
-export default function TextBlock({ label, title, children, className = "" }) {
+export default function TextBlock({
+  label,
+  title,
+  children,
+  className = "",
+  maxWidth = "100%", // אפשר להעביר max-w-[70%] וכו'
+}) {
   return (
     <div className={`flex flex-col ${className}`}>
       {label && (
@@ -9,11 +15,15 @@ export default function TextBlock({ label, title, children, className = "" }) {
         </span>
       )}
       {title && (
-        <span className="text-[1.5rem] font-bold leading-tight mt-0.5">
+        <span className="text-[1.4rem] font-bold leading-tight mt-0.2">
           {title}
         </span>
       )}
-      {children && <p className="mt-4">{children}</p>}
+      {children && (
+        <p className="mt-3" style={{ maxWidth }}>
+          {children}
+        </p>
+      )}
     </div>
   );
 }

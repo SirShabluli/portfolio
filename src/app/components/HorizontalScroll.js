@@ -19,7 +19,7 @@ export default function HorizontalScroll({ children }) {
 
       gsap.to(scrollElement, {
         x: -totalWidth,
-        ease: "easeinout",
+        ease: "easein",
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
