@@ -43,7 +43,7 @@ export default function ScreenZoomSection({
         textRef.current,
         { opacity: 0, x: 50 },
         { opacity: 1, x: 0, ease: "none" },
-        0.5, // starts at 50% of timeline
+        0.2, // starts at 50% of timeline
       );
     },
     { scope: sectionRef },

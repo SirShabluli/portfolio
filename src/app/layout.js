@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Cinzel, Baloo_2 } from "next/font/google";
+import { Geist, Geist_Mono, Cinzel, Raleway } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 
@@ -19,8 +19,8 @@ const cinzel = Cinzel({
   weight: ['400', '500', '600', '700'],
 });
 
-const baloo2 = Baloo_2({
-  variable: "--font-baloo2",
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
   display: 'swap',
   weight: ['400', '500', '600', '700'],
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${baloo2.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${raleway.variable} antialiased`}
       >
         <SmoothScroll />
         {children}

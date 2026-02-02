@@ -58,12 +58,18 @@ export default function TypographySection({ data }) {
   return (
     <section className="grid grid-cols-12 w-full min-h-screen bg-black text-white py-24 px-12 gap-y-12">
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}
-      <div className="col-span-2 col-start-1">
-        <h3 className="text-sm font-medium tracking-tight">Typography</h3>
+      <div className="col-span-3 col-start-1 flex flex-col gap-4">
+        <span className="text-[46px] font-medium tracking-tight">
+          Typography
+        </span>
+        <p className=" font-medium tracking-tight max-w-[66%]">
+          I decided to go with easy going vibe, i had to mix the good and feel
+          while not in the exchange of readablity
+        </p>
       </div>
 
       {/* תוכן הפונט (עמודות 4-12) */}
-      <div className="col-span-6 col-start-4 space-y-12">
+      <div className="mt-7 col-span-5 col-start-6 space-y-6">
         {/* תוויות הפונט (Badges) - דינמיות מה-data */}
         <div className="flex gap-2">
           {data.fonts.map((font) => (
@@ -92,12 +98,13 @@ export default function TypographySection({ data }) {
         </div>
 
         {/* תיאור הפונט בתחתית */}
-        <div className="space-y-1 mt-4 max-w-l ">
+        <div className="space-y-1 mt-2 max-w-[40%]">
           <div ref={descriptionRef}>
             {/* <h4 className="text-lg font-bold">
               {selectedFont.name} - {selectedFont.weightName}
             </h4> */}
-            <p className="text-xs opacity-60 leading-relaxed font-light">
+            <span className="text-[1.2rem]">{selectedFont.name}</span>
+            <p className="text-xs leading-relaxed font-light">
               {selectedFont.description}
             </p>
           </div>
