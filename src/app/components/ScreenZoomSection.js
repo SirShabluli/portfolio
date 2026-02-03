@@ -14,6 +14,7 @@ export default function ScreenZoomSection({
   title,
   description,
   alt = "Screen",
+  children,
 }) {
   const sectionRef = useRef(null);
   const imageRef = useRef(null);
@@ -73,11 +74,17 @@ export default function ScreenZoomSection({
         <div className="absolute inset-0 grid grid-cols-12 gap-8 mx-auto items-center px-8 pointer-events-none">
           <div
             ref={textRef}
-            className="col-span-3 col-start-9 text-white pointer-events-auto"
+            className="col-span-3 col-start-9 text-white pointer-events-auto flex flex-col gap-8"
           >
-            {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
-            {description && (
-              <p className="text-gray-400 text-lg">{description}</p>
+            {children ? (
+              children
+            ) : (
+              <>
+                {title && <h2 className="text-4xl font-bold mb-4">{title}</h2>}
+                {description && (
+                  <p className="text-gray-400 text-lg">{description}</p>
+                )}
+              </>
             )}
           </div>
         </div>

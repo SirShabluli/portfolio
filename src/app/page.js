@@ -152,22 +152,21 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
             >
-              <span data-animate="2" data-animation="slide-left">
+              <span data-animate="2" data-animation="fade">
                 <TextBlock label="the challenge" title="easy connections">
                   In the Netflix world, there are many types of connections. The
                   challenge was to find something that conveys the idea of two
-                  different things coming together—staying simple and universal,
-                  without relying on niche concepts.
+                  different things coming together - staying simple and
+                  universal, without relying on niche concepts.
                 </TextBlock>
               </span>
-              <span data-animate="3" data-animation="slide-left">
+              <span data-animate="3" data-animation="fade">
                 <TextBlock label="My Solution" title="obvious connection">
-                  Your couch is perfectly adjusted - the angles, the cushions,
-                  the softness. But when someone new enters the picture, maybe
-                  it's worth investing in something that works for both of you.
-                  Two couches side by side: one beige, one red velvet. Different
-                  styles, same vibe. It's not about matching perfectly - it's
-                  about being comfortable together.
+                  {`Your couch is perfectly adjusted - the angles, the cushions, the softness.
+
+But when someone new enters the picture, maybe it's worth investing in something that works for both of you.
+
+Two couches side by side: one beige, one red velvet. Different styles, same vibe. It's not about matching perfectly - it's about being comfortable together.`}
                 </TextBlock>
               </span>
             </div>
@@ -179,7 +178,7 @@ export default function Home() {
             >
               <span
                 data-animate="1"
-                data-animation="slide-left"
+                data-animation="fade"
                 className="mt-10 flex items-center quote"
               >
                 &ldquo;might be your first step towards a new couch&ldquo;
@@ -195,44 +194,40 @@ export default function Home() {
             <div
               className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
             >
-              <span
-                data-animate="1"
-                data-animation="slide-left"
-                className="quote"
-              >
+              <span data-animate="1" data-animation="fade" className="quote">
                 "Some things shouldn&apos;t be dealt with alone..."
               </span>
             </div>
             <div
               className={`col-span-2 md:col-span-2 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
             >
-              <span data-animate="2" data-animation="slide-left">
+              <span data-animate="2" data-animation="fade">
                 <TextBlock label="the challenge" title="Define ‘missing’">
                   The "Empty State" needed to tell the user: "You're missing
                   something that could make your life easier"—and position the
                   app as the solution.
                 </TextBlock>
               </span>
-              <span data-animate="4" data-animation="slide-left">
+              <span data-animate="4" data-animation="fade">
                 <TextBlock
                   label="My Solution"
                   title="Solution for a trivial pain"
                 >
-                  I identified the trivial pains of solo Netflix nights and
-                  illustrated them honestly. By showing an empty pizza box and a
-                  half-finished glass of wine, I validated the messy reality of
-                  watching alone. The message isn't "you need someone." It's
-                  "some things are just easier together."
+                  {`I identified the trivial pains of solo Netflix nights and illustrated them honestly.
+
+By showing an empty pizza box and a half-finished glass of wine, I validated the messy reality of watching alone.
+
+The message isn't "you need someone." It's "some things are just easier together."`}
                 </TextBlock>
               </span>
-              <Image
+              {/* <Image
                 data-animate="3"
                 src="/images/tableafternight.png"
                 alt="Empty State Screen"
                 width={800}
                 height={600}
                 className="w-full h-auto my-5"
-              />
+              /> */}
               {/* <p data-animate="2">
                 I used humor to validate the user&apos;s experience. It tells
                 the user that the app "gets" the messiness of being single and
@@ -247,17 +242,17 @@ export default function Home() {
             <div
               className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <span data-animate="2" data-animation="slide-left">
+              <span data-animate="2" data-animation="fade">
                 <TextBlock label="the challenge" title="immediate dismissal">
-                  The "Share the App" screen often feels like a burden. Users
-                  feel the app is forcing them to do something they don't want
-                  to. Most people just dismiss it immediately. How do you make
-                  someone pause before closing the window—and maybe act
-                  differently?
+                  {`The "Share the App" screen often feels like a burden. Users feel the app is forcing them to do something they don't want to.
+
+Most people just dismiss it immediately.
+
+How do you make someone pause before closing the window—and maybe act differently?`}
                 </TextBlock>
                 <span
                   data-animate="1"
-                  data-animation="slide-left"
+                  data-animation="fade"
                   className="mt-5 flex items-center text-lg"
                 >
                   &ldquo;Something smells fishy, but it might just be our
@@ -271,14 +266,13 @@ export default function Home() {
             <div
               className={`col-span-3 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
             >
-              <span data-animate="4" data-animation="slide-left">
+              <span data-animate="4" data-animation="fade">
                 <TextBlock label="My Solution" title="Irony">
-                  According to Netflix's rules, account sharing isn't allowed.
-                  Yet we all know the profile selection screen—filled with
-                  family members, friends, and "definitely not your ex." I took
-                  that familiar restriction and flipped it. This time, Netflix
-                  wants you to share. By mimicking the iconic "Who's Watching?"
-                  screen, I created a playful moment of recognition.
+                  {`According to Netflix's rules, account sharing isn't allowed. Yet we all know the profile selection screen—filled with family members, friends, and "definitely not your ex."
+
+I took that familiar restriction and flipped it. This time, Netflix wants you to share.
+
+By mimicking the iconic "Who's Watching?" screen, I created a playful moment of recognition.`}
                 </TextBlock>
               </span>
               <Image
@@ -297,17 +291,16 @@ export default function Home() {
             <div
               className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <span data-animate="4" data-animation="slide-left">
+              <span data-animate="4" data-animation="fade">
                 <TextBlock label="The Challenge" title="Defusing Frustration">
-                  The "Verification Failed" screen is all about frustration. It
-                  touches on pains people don't speak about - they might feel
-                  guilty, worried that their photos don't represent them, or
-                  concerned that someone else is using their imag
+                  {`The "Verification Failed" screen is all about frustration.
+
+It touches on pains people don't speak about - they might feel guilty, worried that their photos don't represent them, or concerned that someone else is using their image.`}
                 </TextBlock>
               </span>
               <span
                 data-animate="1"
-                data-animation="slide-left"
+                data-animation="fade"
                 className="mt-5 flex items-center quote"
               >
                 &ldquo;Something smells fishy, but it might just be our
@@ -320,7 +313,7 @@ export default function Home() {
             <div
               className={`pt-50 col-span-4 md:col-span-2 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
             >
-              <span data-animate="4" data-animation="slide-left">
+              <span data-animate="4" data-animation="fade">
                 <TextBlock label="My Solution" title="Empathy in frustration">
                   I turned the colloquial term "Catfish" into the illustration
                   itself: a grumpy cat wearing a fish hat, clearly unimpressed.
@@ -332,12 +325,11 @@ export default function Home() {
                 topText="Intended"
                 bottomText="PUN"
               />
-              <span data-animate="4" data-animation="slide-left">
+              <span data-animate="4" data-animation="fade">
                 <TextBlock label="" title="">
-                  This shifts blame from user to app - transforming "Why won't
-                  you verify me?" into "How dare you think I'm fake?" By
-                  humanizing the error with humor, the app becomes
-                  self-deprecating. Users are more likely to try again.
+                  {`This shifts blame from user to app - transforming "Why won't you verify me?" into "How dare you think I'm fake?"
+
+By humanizing the error with humor, the app becomes self-deprecating. Users are more likely to try again.`}
                 </TextBlock>
               </span>
             </div>
@@ -350,7 +342,7 @@ export default function Home() {
             >
               <span
                 data-animate="1"
-                data-animation="slide-left"
+                data-animation="fade"
                 className="mt-10 flex items-center quote"
               >
                 &ldquo;The upgrade that makes everything fall into place&ldquo;
@@ -359,7 +351,7 @@ export default function Home() {
             <div
               className={`col-span-3 md:col-span-2 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
             >
-              <span data-animate="2" data-animation="slide-left">
+              <span data-animate="2" data-animation="fade">
                 <TextBlock
                   label="the challenge"
                   title="Same Same but Different"
@@ -370,19 +362,18 @@ export default function Home() {
                   staying true to the original brand.
                 </TextBlock>
               </span>
-              <span data-animate="4" data-animation="slide-left">
+              <span data-animate="4" data-animation="fade">
                 <TextBlock
                   label="My Solution"
                   title="Solution for a trivial pain"
                 >
-                  Literally an addition: a chaise lounge. An extra piece that
-                  upgrades the entire couch. For the color, I introduced a
-                  golden yellow—still warm and inviting, but distinctly premium.
-                  The shift from beige to gold signals luxury without abandoning
-                  the cozy aesthetic. If the app is about the living room
-                  experience, premium should be the ultimate piece of furniture.
-                  More comfort, more features, more luxury - without losing the
-                  homey vibe.
+                  {`Literally an addition: a chaise lounge. An extra piece that upgrades the entire couch.
+
+For the color, I introduced a golden yellow—still warm and inviting, but distinctly premium.
+
+The shift from beige to gold signals luxury without abandoning the cozy aesthetic.
+
+If the app is about the living room experience, premium should be the ultimate piece of furniture. More comfort, more features, more luxury - without losing the homey vibe.`}
                 </TextBlock>
               </span>
             </div>
@@ -397,11 +388,29 @@ export default function Home() {
       </PhoneShowcase>
 
       {/* Screen Section with Zoom */}
-      <ScreenZoomSection
-        imageSrc="/images/screen.png"
-        title="Full Experience"
-        description="A complete view of the app interface showing all the features working together."
-      />
+      <ScreenZoomSection imageSrc="/images/screen.png">
+        <span data-animate="2" data-animation="fade">
+          <TextBlock label="the challenge" title="New Format">
+            Moving to desktop required rethinking the entire approach. A larger
+            canvas means more detail, more visual weight, and a different user
+            mindset. Beyond illustration, I needed to design the interface
+            itself and draw inspiration from the web.
+          </TextBlock>
+        </span>
+        <span data-animate="4" data-animation="fade">
+          <TextBlock label="My Solution" title="Multiplicity & Variety">
+            {`The larger screen allowed for more detail, so I chose one of the coziest elements possible: pajamas.
+
+By creating a repeating pattern of different pajama sets, I achieved multiple goals:
+
+Visual richness that scales flexibly across screen sizes.
+Variety that suggests diversity without being literal.
+Familiarity.
+
+The message: there are all kinds of people and pajamas - showing options without being cliché.`}
+          </TextBlock>
+        </span>
+      </ScreenZoomSection>
       <HorizontalScroll>
         <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
           <h1 className="display text-white">Design System</h1>
