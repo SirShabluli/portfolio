@@ -1,8 +1,8 @@
 export const catProjectSteps = [
   {
     id: 1,
-    title: "The Spark",
-    description: "Finding the right 'vibe' through rapid AI prototyping.",
+    title: "Starting Simple",
+    description: "Throwing a prompt at AI to see what sticks.",
     image: "/images/catFrame1.png",
     subCaption:
       "Sleepy tabby cat on a couch, paws hanging down, warm evening light, cozy illustrated style",
@@ -11,27 +11,25 @@ export const catProjectSteps = [
   },
   {
     id: 2,
-    title: "Adding Flavour",
+    title: "Adding the Twist",
     description:
-      "What if he had a fish mask? Mixing AI speed with human imagination.",
+      "Using the AI output as a base, adding a new layer. Giving it a fun twist.",
     image: "/images/catFrame2.png",
     subCaption: "cat with halloween mask of a fish",
     quotes: [],
   },
   {
     id: 3,
-    title: "Blueprint",
-    description:
-      "Stripping away the noise to find the clean lines underneath. Mapping the vector paths.",
+    title: "Hand Takes Over",
+    description: "Using the AI result as a base for hand-drawn outlines.",
     image: "/images/catFrame3.png",
     subCaption: "", // כאן בדרך כלל אין כיתוב כי התמונה מדברת בעד עצמה
     quotes: [],
   },
   {
     id: 4,
-    title: "The Result",
-    description:
-      "Translating an abstract idea into a finalized, scalable vector artwork.",
+    title: "Making It Mine",
+    description: "Removing the AI layer, illustrating freely in my own style.",
     image: "/images/catFrame4.svg",
     imageClassName: "p-10 border-none shadow-none",
     subCaption: "",

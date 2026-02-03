@@ -20,7 +20,7 @@ export default function TextBlock({
         </span>
       )}
       {children && (
-        <p className="mt-3" style={{ maxWidth }}>
+        <p className="mt-3 whitespace-pre-line" style={{ maxWidth }}>
           {children}
         </p>
       )}
