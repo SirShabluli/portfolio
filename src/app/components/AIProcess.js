@@ -20,9 +20,9 @@ export default function AIProcess({ data }) {
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          end: `+=${data.length * 50}%`,
+          end: `+=${data.length * 30}%`,
           pin: true,
-          scrub: 1,
+          scrub: 2,
         },
       });
 
@@ -62,7 +62,7 @@ export default function AIProcess({ data }) {
           // טקסט חדש נכנס
           if (i === 1) {
             // מעבר 2→3: טקסט ותמונה ביחד
-            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.1 });
             tl.to(imageSide, { opacity: 0, duration: 0.8 }, "<");
             tl.fromTo(
               nextImage,
@@ -72,7 +72,7 @@ export default function AIProcess({ data }) {
             );
           } else if (i === 2) {
             // מעבר 3→4: טקסט ותמונה (wipe) ביחד
-            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
+            tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.1 });
             tl.to(imageSide, { opacity: 0, duration: 0.8 }, "<");
             tl.fromTo(
               nextImage,
@@ -85,21 +85,19 @@ export default function AIProcess({ data }) {
               "<",
             );
           } else {
-            // שאר המעברים: טקסט קודם
+            // מעבר 1→2: טקסט ותמונה ביחד
             tl.fromTo(nextText, { opacity: 0 }, { opacity: 1, duration: 0.5 });
-          }
-
-          // אנימציות תמונה - אחרי הטקסט (חוץ מ-2→3 ו-3→4)
-          if (i === 0) {
-            // מעבר 1→2: fade out + fade in
-            tl.to(imageSide, { opacity: 0, duration: 0.5 });
+            tl.to(imageSide, { opacity: 0, duration: 0.5 }, "<");
             tl.fromTo(
               nextImage,
               { opacity: 0 },
               { opacity: 1, duration: 0.5 },
-              "<0.2",
+              "<",
             );
-          } else if (i === 1 || i === 2) {
+          }
+
+          // אנימציות תמונה - אחרי הטקסט (חוץ מ-2→3 ו-3→4)
+          if (i === 1 || i === 2) {
             // כבר טופל למעלה
           }
         }

@@ -1,6 +1,7 @@
 import PhoneShowcase from "./components/PhoneShowcase";
 import Image from "next/image";
 import AIProcess from "./components/AIProcess";
+import PathSection from "./components/PathSection";
 import TypographySection from "./components/TypographySection";
 import ColorPalette from "./components/ColorPalette";
 import GlassCard from "./components/GlassCard";
@@ -396,12 +397,14 @@ export default function Home() {
         <div className="min-w-screen w-screen h-screen flex-shrink-0">
           <ColorPalette colors={netflixColors} />
         </div>
-        <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
-          <h1 className="display text-white">AI as a Blueprint</h1>
-        </div>
       </HorizontalScroll>
 
+      <section className="min-h-screen bg-black flex items-center justify-center">
+        <h1 className="display text-white">AI as a Blueprint</h1>
+      </section>
+
       <AIProcess data={catProjectSteps} />
+
       {/* Phone showcase with all sections */}
     </>
   );
