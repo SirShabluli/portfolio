@@ -119,11 +119,11 @@ export default function AIProcess({ data }) {
                   scale: 1,
                   rotation: 0,
                   opacity: 1,
-                  duration: 0.4,
+                  duration: 0.8,
                   ease: "back.out(1.7)",
                   stagger: 0.15,
                 },
-                "-=0.3"
+                "-=0.3",
               );
             }
           }
@@ -136,7 +136,7 @@ export default function AIProcess({ data }) {
   return (
     <section
       ref={mainRef}
-      className="relative h-screen overflow-hidden bg-black"
+      className="relative flex justify- h-screen overflow-hidden bg-black"
     >
       {data.map((step, index) => (
         <StepSection key={step.id} step={step} index={index} />
