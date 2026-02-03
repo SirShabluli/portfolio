@@ -22,15 +22,39 @@ export default function StepSection({ step, index }) {
       </div>
 
       <div
-        className={`image-side image-side-${index} col-end-10 col-span-4 flex flex-col justify-center`}
+        className={`image-side image-side-${index} col-end-10 col-span-4 flex flex-col justify-center relative`}
       >
-        <Image
-          src={step.image}
-          width={1000}
-          height={1000}
-          className={`w-full h-auto shadow-2xl rounded-sm border border-white/5 ${step.imageClassName || ""}`}
-          alt={step.title}
-        />
+        <div className="image-wrapper relative">
+          <Image
+            src={step.image}
+            width={1000}
+            height={1000}
+            className={`w-full h-auto shadow-2xl rounded-sm border border-white/5 ${step.imageClassName || ""}`}
+            alt={step.title}
+          />
+        </div>
+
+        {/* Floating quotes for the last step */}
+        {step.quotes && step.quotes.length > 0 && (
+          <div className="quotes-container">
+            <div className="floating-quote absolute -top-16 -right-32 opacity-0 max-w-48">
+              <p className="text-sm italic">&ldquo;{step.quotes[0]?.text}&rdquo;</p>
+              <p className="text-xs opacity-50 mt-1">— {step.quotes[0]?.author}</p>
+            </div>
+            {step.quotes[1] && (
+              <div className="floating-quote absolute -bottom-20 -left-40 opacity-0 max-w-52">
+                <p className="text-sm italic">&ldquo;{step.quotes[1]?.text}&rdquo;</p>
+                <p className="text-xs opacity-50 mt-1">— {step.quotes[1]?.author}</p>
+              </div>
+            )}
+            {step.quotes[2] && (
+              <div className="floating-quote absolute top-1/2 -right-48 opacity-0 max-w-44">
+                <p className="text-sm italic">&ldquo;{step.quotes[2]?.text}&rdquo;</p>
+                <p className="text-xs opacity-50 mt-1">— {step.quotes[2]?.author}</p>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
