@@ -7,7 +7,7 @@ export default function StepSection({ step, index }) {
       data-step={index}
     >
       <div
-        className={`text-side text-side-${index} col-start-2 col-span-3 flex flex-col items-start justify-start pt-24 z-50`}
+        className={`text-side text-side-${index} col-start-2 col-span-2 flex flex-col items-start justify-start pt-24 z-50`}
       >
         <span className="text-[0.9rem] italic opacity-50 leading-tight">
           Step {step.id}

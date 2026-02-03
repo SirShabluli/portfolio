@@ -295,42 +295,16 @@ export default function Home() {
         <section className="section-4">
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
-              <h2 data-animate="3">The Catfish</h2>
-
-              <p data-animate="3">
-                Technical errors and verification loops are high-friction points
-                that lead to app abandonment. I chose to address this through
-                the literal interpretation of a common dating term Catfish
-              </p>
-
-              <p data-animate="3">
-                By illustrating a grumpy cat wearing a fish hat, the app takes a
-                self-deprecating tone. This "wink" at the user transforms a
-                moment of potential anger ("Why won&apos;t it verify me?") into
-                a moment of levity. It humanizes the technology, suggesting that
-                the error might be a "fishy" mistake on the system&apos;s part
-                rather than a failure of the user, making them much more likely
-                to try again.
-              </p>
-            </div>
-            <div
-              className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
-            ></div>
-            <div
-              className={`pt-50 col-span-4 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
-            >
-              <Lauryl
-                data-animate="4"
-                data-animation="sticker"
-                topText="Intended"
-                bottomText="PUN"
-              />
-              <p data-animate="5">
-                Using a &quot;Pun&quot; as a tool for de-escalation.
-              </p>
-
+              <span data-animate="4" data-animation="slide-left">
+                <TextBlock label="The Challenge" title="Defusing Frustration">
+                  The "Verification Failed" screen is all about frustration. It
+                  touches on pains people don't speak about - they might feel
+                  guilty, worried that their photos don't represent them, or
+                  concerned that someone else is using their imag
+                </TextBlock>
+              </span>
               <span
                 data-animate="1"
                 data-animation="slide-left"
@@ -338,6 +312,33 @@ export default function Home() {
               >
                 &ldquo;Something smells fishy, but it might just be our
                 mistake&ldquo;
+              </span>
+            </div>
+            <div
+              className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
+            ></div>
+            <div
+              className={`pt-50 col-span-4 md:col-span-2 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
+            >
+              <span data-animate="4" data-animation="slide-left">
+                <TextBlock label="My Solution" title="Empathy in frustration">
+                  I turned the colloquial term "Catfish" into the illustration
+                  itself: a grumpy cat wearing a fish hat, clearly unimpressed.
+                </TextBlock>
+              </span>
+              <Lauryl
+                data-animate="4"
+                data-animation="sticker"
+                topText="Intended"
+                bottomText="PUN"
+              />
+              <span data-animate="4" data-animation="slide-left">
+                <TextBlock label="" title="">
+                  This shifts blame from user to app - transforming "Why won't
+                  you verify me?" into "How dare you think I'm fake?" By
+                  humanizing the error with humor, the app becomes
+                  self-deprecating. Users are more likely to try again.
+                </TextBlock>
               </span>
             </div>
           </div>
@@ -356,20 +357,34 @@ export default function Home() {
               </span>
             </div>
             <div
-              className={`col-span-4 md:col-span-3 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-3 md:col-span-2 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
             >
-              <h2 data-animate="2">Premium Comfort</h2>
-              <p data-animate="2">
-                Premium services often feel cold or overly "techy". To keep the
-                warm, illustrated feel of the app, I chose a Golden Chaise
-                Lounge to represent the upgrade.
-              </p>
-              <p data-animate="2">
-                If the app is about the "living room experience," the premium
-                version should be the ultimate piece of furniture. It's an
-                expansion of the basic couch—offering more comfort, more
-                features, and a touch of luxury without losing the "homey" vibe.
-              </p>
+              <span data-animate="2" data-animation="slide-left">
+                <TextBlock
+                  label="the challenge"
+                  title="Same Same but Different"
+                >
+                  The premium screen offers users an elevated
+                  experience—something they don't have yet. It's about adding
+                  what's missing. Premium usually gets a distinct color while
+                  staying true to the original brand.
+                </TextBlock>
+              </span>
+              <span data-animate="4" data-animation="slide-left">
+                <TextBlock
+                  label="My Solution"
+                  title="Solution for a trivial pain"
+                >
+                  Literally an addition: a chaise lounge. An extra piece that
+                  upgrades the entire couch. For the color, I introduced a
+                  golden yellow—still warm and inviting, but distinctly premium.
+                  The shift from beige to gold signals luxury without abandoning
+                  the cozy aesthetic. If the app is about the living room
+                  experience, premium should be the ultimate piece of furniture.
+                  More comfort, more features, more luxury - without losing the
+                  homey vibe.
+                </TextBlock>
+              </span>
             </div>
             <div
               className={`pt-50 phone-pocket col-span-4 md:col-span-4 md:col-start-8 ${outline} flex flex-col gap-4`}
