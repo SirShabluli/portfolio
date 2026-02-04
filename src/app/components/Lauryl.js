@@ -16,7 +16,7 @@ export default function Lauryl({
       {/* SVG שמאל */}
       <div className="flex-shrink-0">
         <Image
-          src="/images/laurylLeaf.svg"
+          src="/images/shared/laurylLeaf.svg"
           alt="lauryl"
           width={leafWidth}
           height={leafHeight}
@@ -36,7 +36,7 @@ export default function Lauryl({
       {/* SVG ימין - מראה */}
       <div className="flex-shrink-0 -scale-x-100">
         <Image
-          src="/images/laurylLeaf.svg"
+          src="/images/shared/laurylLeaf.svg"
           alt="lauryl"
           width={leafWidth}
           height={leafHeight}

@@ -3,7 +3,7 @@ export const catProjectSteps = [
     id: 1,
     title: "Starting Simple",
     description: "Throwing a prompt at AI to see what sticks.",
-    image: "/images/catFrame1.png",
+    image: "/images/netflix-dating/catFrame1.png",
     subCaption:
       "Sleepy tabby cat on a couch, paws hanging down, warm evening light, cozy illustrated style",
     quotes: [],
@@ -14,7 +14,7 @@ export const catProjectSteps = [
     title: "Adding the Twist",
     description:
       "Using the AI output as a base, adding a new layer. Giving it a fun twist.",
-    image: "/images/catFrame2.png",
+    image: "/images/netflix-dating/catFrame2.png",
     subCaption: "cat with halloween mask of a fish",
     quotes: [],
   },
@@ -22,7 +22,7 @@ export const catProjectSteps = [
     id: 3,
     title: "Hand Takes Over",
     description: "Using the AI result as a base for hand-drawn outlines.",
-    image: "/images/catFrame3.png",
+    image: "/images/netflix-dating/catFrame3.png",
     subCaption: "", // כאן בדרך כלל אין כיתוב כי התמונה מדברת בעד עצמה
     quotes: [],
   },
@@ -30,7 +30,7 @@ export const catProjectSteps = [
     id: 4,
     title: "Making It Mine",
     description: "Removing the AI layer, illustrating freely in my own style.",
-    image: "/images/catFrame4.svg",
+    image: "/images/netflix-dating/catFrame4.svg",
     imageClassName: "p-10 border-none shadow-none",
     subCaption: "",
     quotes: [

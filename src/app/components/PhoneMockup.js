@@ -17,7 +17,7 @@ export default function PhoneMockup({
 
       {/* Phone frame - on top */}
       <Image
-        src="/images/iphoneMockup.png"
+        src="/images/shared/iphoneMockup.png"
         alt="Phone frame"
         fill
         className="object-contain pointer-events-none"

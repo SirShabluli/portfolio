@@ -79,7 +79,7 @@ export default function NetflixDatingPage() {
           {/* Center - Title, Image, Description */}
           <div className="col-span-5 flex flex-col items-center text-center gap-8">
             <Image
-              src="/images/NetflixLogo.svg"
+              src="/images/netflix-dating/NetflixLogo.svg"
               alt="Project preview"
               width={300}
               height={600}
@@ -99,14 +99,14 @@ export default function NetflixDatingPage() {
           {/* Right side images */}
           <div className="col-span-3 flex flex-col gap-0">
             <Image
-              src="/images/pajama1.svg"
+              src="/images/netflix-dating/pajama1.svg"
               alt="Project preview"
               width={600}
               height={600}
               className=""
             />
             <Image
-              src="/images/pajama2.svg"
+              src="/images/netflix-dating/pajama2.svg"
               alt="Project preview"
               width={400}
               height={600}
@@ -256,7 +256,7 @@ By mimicking the iconic "Who's Watching?" screen, I created a playful moment of 
               </span>
               <Image
                 data-animate="4"
-                src="/images/WhosWatching.png"
+                src="/images/netflix-dating/WhosWatching.png"
                 alt="Netflix Who's Watching screen"
                 width={800}
                 height={600}
@@ -369,7 +369,7 @@ If the app is about the living room experience, premium should be the ultimate p
       </PhoneShowcase>
 
       {/* Screen Section with Zoom */}
-      <ScreenZoomSection imageSrc="/images/screen.png">
+      <ScreenZoomSection imageSrc="/images/netflix-dating/screen.png">
         <span data-animate="2" data-animation="fade">
           <TextBlock label="the challenge" title="New Format">
             Moving to desktop required rethinking the entire approach. A larger

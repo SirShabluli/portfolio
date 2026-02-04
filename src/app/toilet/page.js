@@ -51,7 +51,7 @@ export default function page() {
             >
               Men's Toilet
             </h1>
-            <Button>BITCH</Button>
+            <Button size="medium">Visit Site</Button>
             <h3 className="text-2xl font-medium text-left">
               What if Netflix decided to create a dating app?
             </h3>
@@ -65,14 +65,14 @@ export default function page() {
           {/* Right side images */}
           <div className="col-span-3 flex flex-col gap-0">
             <Image
-              src="/images/pajama1.svg"
+              src="/images/netflix-dating/pajama1.svg"
               alt="Project preview"
               width={600}
               height={600}
               className=""
             />
             <Image
-              src="/images/pajama2.svg"
+              src="/images/netflix-dating/pajama2.svg"
               alt="Project preview"
               width={400}
               height={600}
