@@ -5,8 +5,8 @@ export default function page() {
   return (
     <>
       {/* Project Intro Section */}
-      <section className="bg-white py-20 px-8 min-h-screen text-black">
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center">
+      <section className="bg-white py-20 px-8 min-h-screen text-black flex items-center">
+        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center w-full">
           {/* Left side images */}
           <div className="col-span-3 flex flex-col gap-4">
             <div className="col-span-3 flex flex-col gap-4">
@@ -38,7 +38,7 @@ export default function page() {
           </div>
 
           {/* Center - Title, Image, Description */}
-          <div className="col-span-6 flex flex-col items-center text-center gap-1">
+          <div className="col-span-6  flex flex-col items-center justify-center text-center gap-1">
             <span
               className="text-5xl"
               style={{ fontFamily: "var(--font-reenie-beanie)" }}
@@ -51,7 +51,13 @@ export default function page() {
             >
               Men's Toilet
             </h1>
-            <Button size="medium">Visit Site</Button>
+            <a
+              href="https://sirshabluli.github.io/MensRestrooms/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button size="medium">Visit Site</Button>
+            </a>
             <h3 className="text-2xl font-medium text-left">
               What if Netflix decided to create a dating app?
             </h3>
@@ -65,16 +71,16 @@ export default function page() {
           {/* Right side images */}
           <div className="col-span-3 flex flex-col gap-0">
             <Image
-              src="/images/netflix-dating/pajama1.svg"
+              src="/images/toilet/peace.svg"
               alt="Project preview"
-              width={600}
-              height={600}
+              width={200}
+              height={200}
               className=""
             />
             <Image
               src="/images/netflix-dating/pajama2.svg"
               alt="Project preview"
-              width={400}
+              width={200}
               height={600}
               className=""
             />
