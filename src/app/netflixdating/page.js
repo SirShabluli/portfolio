@@ -44,13 +44,15 @@ export default function NetflixDatingPage() {
                 <p className="text-sm font-medium  tracking-wider opacity-60">
                   role
                 </p>
-                <p className="text-sm text-white">UI Design & Illustration</p>
+                <p className="text-sm font-medium text-white">
+                  UI Design & Illustration
+                </p>
               </div>
               <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium  tracking-wider opacity-60">
                   Course
                 </p>
-                <p className="text-sm text-white leading-tight">
+                <p className="text-sm text-white font-medium leading-tight">
                   "Your Cart is Empty" - Digital Product Illustration
                 </p>
               </div>
@@ -58,7 +60,7 @@ export default function NetflixDatingPage() {
                 <p className="text-sm font-medium  tracking-wider opacity-60">
                   Year
                 </p>
-                <p className="text-sm text-white leading-tight">
+                <p className="text-sm font-medium text-white leading-tight">
                   2025 (4th year, parallel to graduation project)
                 </p>
               </div>
@@ -67,7 +69,9 @@ export default function NetflixDatingPage() {
               <p className="text-sm font-medium  tracking-wider opacity-60">
                 Duartion
               </p>
-              <p className="text-sm text-white leading-tight">1 month</p>
+              <p className="text-sm text-white font-medium leading-tight">
+                1 month
+              </p>
             </div>
             {/* אפשר להוסיף תמונות כאן */}
           </div>
