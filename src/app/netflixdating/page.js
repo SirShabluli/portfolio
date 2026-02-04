@@ -44,15 +44,13 @@ export default function NetflixDatingPage() {
                 <p className="text-sm font-medium  tracking-wider opacity-60">
                   role
                 </p>
-                <p className="text-xl font-bold text-white">
-                  UI Design & Illustration
-                </p>
+                <p className="text-sm text-white">UI Design & Illustration</p>
               </div>
               <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium  tracking-wider opacity-60">
                   Course
                 </p>
-                <p className="text-xl font-bold text-white leading-tight">
+                <p className="text-sm text-white leading-tight">
                   "Your Cart is Empty" - Digital Product Illustration
                 </p>
               </div>
@@ -60,7 +58,7 @@ export default function NetflixDatingPage() {
                 <p className="text-sm font-medium  tracking-wider opacity-60">
                   Year
                 </p>
-                <p className="text-xl font-bold text-white leading-tight">
+                <p className="text-sm text-white leading-tight">
                   2025 (4th year, parallel to graduation project)
                 </p>
               </div>
@@ -69,9 +67,7 @@ export default function NetflixDatingPage() {
               <p className="text-sm font-medium  tracking-wider opacity-60">
                 Duartion
               </p>
-              <p className="text-xl font-bold text-white leading-tight">
-                1 month
-              </p>
+              <p className="text-sm text-white leading-tight">1 month</p>
             </div>
             {/* אפשר להוסיף תמונות כאן */}
           </div>
@@ -85,8 +81,8 @@ export default function NetflixDatingPage() {
               height={600}
               className=""
             />
-            <h2 className="text-red-500 -mt-5">Dating</h2>
-            <h3 className="text-4xl font-bold text-left">
+            <h2 className=" text-4xl text-red-500 -mt-5">Dating</h2>
+            <h3 className="text-2xl font-medium text-left">
               What if Netflix decided to create a dating app?
             </h3>
             <p className="text-white text-left">

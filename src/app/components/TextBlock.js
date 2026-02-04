@@ -13,7 +13,7 @@ export default function TextBlock({
       {title && <span className="text-2xl font-bold  ">{title}</span>}
       {children && (
         <p
-          className="mt-3 text-sm font-medium whitespace-pre-line"
+          className="mt-2 text-sm font-medium whitespace-pre-line"
           style={{ maxWidth }}
         >
           {children}

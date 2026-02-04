@@ -9,14 +9,14 @@ export default function StepSection({ step, index }) {
       <div
         className={`text-side text-side-${index} col-start-2 col-span-2 flex flex-col items-start justify-start pt-24 z-50`}
       >
-        <span className="text-[0.9rem] italic opacity-50 leading-tight">
+        <span className="text-sm italic opacity-50 leading-tight">
           Step {step.id}
         </span>
-        <h2 className="text-[1.4rem] font-bold leading-tight mt-0.5">
+        <h2 className="text-2xl font-bold leading-tight mt-0.5">
           {step.title}
         </h2>
-        <p className="mt-3 max-w-sm">{step.description}</p>
-        <p className="mt-4 opacity-40 italic font-light text-left min-h-12">
+        <p className="mt-3 text-sm max-w-sm">{step.description}</p>
+        <p className="mt-4 text-2xl font-cinzel opacity-100 text-left min-h-12">
           {step.subCaption ? `"${step.subCaption}"` : "\u00A0"}
         </p>
       </div>
