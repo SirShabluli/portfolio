@@ -9,18 +9,13 @@ export default function TextBlock({
 }) {
   return (
     <div className={`flex flex-col ${className}`}>
-      {label && (
-        <span className="text-[0.9rem] italic opacity-50 leading-tight">
-          {label}
-        </span>
-      )}
-      {title && (
-        <span className="text-[1.4rem] font-bold leading-tight mt-0.2">
-          {title}
-        </span>
-      )}
+      {label && <span className="text-sm italic opacity-50 ">{label}</span>}
+      {title && <span className="text-2xl font-bold  ">{title}</span>}
       {children && (
-        <p className="mt-3 whitespace-pre-line" style={{ maxWidth }}>
+        <p
+          className="mt-3 text-sm font-medium whitespace-pre-line"
+          style={{ maxWidth }}
+        >
           {children}
         </p>
       )}

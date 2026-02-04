@@ -2,7 +2,7 @@ export default function Button({
   children,
   size = "medium",
   variant = "primary",
-  font = "baloo2", // ברירת מחדל: baloo2
+  font = "raleway", // ברירת מחדל: raleway
   onClick,
   className = "",
   ...props
@@ -20,7 +20,7 @@ export default function Button({
 
   // Font variants
   const fontStyles = {
-    baloo2: "font-baloo2",
+    raleway: "font-raleway",
     netflix: "font-netflix",
     netflixBold: "font-netflix font-bold",
     cinzel: "font-cinzel",

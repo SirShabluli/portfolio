@@ -29,13 +29,33 @@
 }
 
 @theme inline {
+  /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Fonts */
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-cinzel: var(--font-cinzel);
   --font-raleway: var(--font-raleway);
   --font-netflix: var(--font-netflix-sans);
+  --font-reenie: var(--font-reenie-beanie);
+  --font-dokdo: var(--font-dokdo);
+
+  /* Font Sizes - customize these values */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  --text-5xl: 3rem;        /* 48px */
+  --text-6xl: 3.75rem;     /* 60px */
+  --text-7xl: 4.5rem;      /* 72px */
+  --text-8xl: 6rem;        /* 96px */
+  --text-9xl: 8rem;        /* 128px */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -69,44 +89,53 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-p {
-  font-family: var(--font-raleway);
-  font-weight: 500;
-  font-size: 0.85rem;
-  line-height: 120%;
-  letter-spacing: 0.04em;
-}
-
-h2 {
-  font-family: var(--font-raleway);
-  font-weight: 500;
-  font-size: 2.375rem;
-  line-height: 112%;
-  letter-spacing: 0.01em;
-}
-
-h3 {
-  font-family: var(--font-raleway);
-  font-weight: 400;
-  font-size: 1.75rem;
-  line-height: 120%;
-  letter-spacing: 0.07em;
-}
+/* ===========================================
+   DESIGN SYSTEM - Typography Utilities
+   =========================================== */
 
 @layer utilities {
-  .quote {
-    font-family: var(--font-cinzel);
-    font-weight: 500;
-    font-size: 3.125rem;
-    line-height: 110%;
-    letter-spacing: 0.07em;
+  /* Display - Hero titles */
+  .display {
+    @apply text-[9.25rem] font-cinzel font-medium leading-none tracking-tight;
   }
 
-  .display {
-    font-family: var(--font-cinzel);
-    font-weight: 500;
-    font-size: 9.25rem; /* 148px */
-    line-height: 100%;
-    letter-spacing: -0.02em;
+  /* Quote - Large decorative text */
+  .quote {
+    @apply text-[3.125rem] font-cinzel font-medium leading-tight tracking-wide;
+  }
+
+  /* Title Large - Section headers */
+  .title-lg {
+    @apply text-4xl font-raleway font-bold leading-tight;
+  }
+
+  /* Title Medium - Subsection headers */
+  .title-md {
+    @apply text-2xl font-raleway font-semibold leading-snug;
+  }
+
+  /* Title Small - Card titles */
+  .title-sm {
+    @apply text-xl font-raleway font-bold leading-tight;
+  }
+
+  /* Body - Default paragraph text */
+  .body {
+    @apply text-base font-raleway font-medium leading-relaxed tracking-wide;
+  }
+
+  /* Body Small - Secondary text */
+  .body-sm {
+    @apply text-sm font-raleway font-medium leading-relaxed tracking-wider;
+  }
+
+  /* Label - Metadata, tags */
+  .label {
+    @apply text-sm font-raleway font-medium tracking-wider opacity-60;
+  }
+
+  /* Caption - Small helper text */
+  .caption {
+    @apply text-xs font-raleway tracking-wide opacity-50;
   }
 }
