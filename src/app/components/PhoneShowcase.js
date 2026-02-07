@@ -14,6 +14,7 @@ export default function PhoneShowcase({
   sections = [],
   showOutlines = false,
   showMarkers = true,
+  bgColor,
 }) {
   const mainRef = useRef(null);
   const phoneRef = useRef(null);
@@ -168,7 +169,8 @@ export default function PhoneShowcase({
   return (
     <main
       ref={mainRef}
-      className="relative bg-black text-white overflow-visible"
+      className={`relative text-white overflow-visible ${bgColor ? "" : "bg-black"}`}
+      style={bgColor ? { backgroundColor: bgColor } : {}}
     >
       {/* Mobile wrapper - sticky */}
       <div

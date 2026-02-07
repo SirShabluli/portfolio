@@ -2,16 +2,19 @@
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-export default function ColorPalette({ colors, isDark = true, description, darkTextStyle }) {
+export default function ColorPalette({ colors, isDark = true, description, darkTextStyle, onToggle, lightBgColor }) {
   const containerRef = useRef(null);
   const [activeColorId, setActiveColorId] = useState(null);
 
   const hasDarkStyle = isDark && darkTextStyle;
 
   return (
-    <section className={`grid grid-cols-12 w-full h-full py-24 px-12 items-start justify-center transition-colors duration-500 ${
-      isDark ? "bg-black text-white" : "bg-white text-black"
-    }`}>
+    <section
+      className={`grid grid-cols-12 w-full h-full py-24 px-12 items-start justify-center transition-colors duration-500 ${
+        isDark ? "text-white" : "text-black"
+      }`}
+      style={{ backgroundColor: isDark ? "#000000" : (lightBgColor || "#FFFFFF") }}
+    >
       {/* כותרת וטקסט בצד שמאל */}
       <div className="col-span-3 space-y-8">
         <span
@@ -26,6 +29,16 @@ export default function ColorPalette({ colors, isDark = true, description, darkT
         <p className="text-sm w-[70%] leading-relaxed" style={hasDarkStyle ? { color: darkTextStyle.fillColor } : {}}>
           {description || "Keeping the same theme of Netflix while adding warmth and prestige"}
         </p>
+        {onToggle && (
+          <button
+            onClick={onToggle}
+            className={`px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
+              isDark ? "bg-white text-black" : "bg-black text-white"
+            }`}
+          >
+            {isDark ? "Light" : "Dark"}
+          </button>
+        )}
       </div>
 
       {/* קונטיינר הסטריפים - עמודות 4-12 */}
@@ -108,7 +121,6 @@ function ColorStrip({ color, isActive, onClick }) {
         <p className="text-xs opacity-80 mt-2 max-w-30">{color.description}</p>
         <div className="mt-8 space-y-1 font-mono text-[10px] uppercase tracking-widest">
           <p>HEX: {color.hex}</p>
-          {/* כאן אפשר להוסיף RGB וכו' */}
         </div>
       </div>
     </div>

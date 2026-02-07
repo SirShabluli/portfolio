@@ -67,6 +67,27 @@ export const netflixTypography = {
   ],
 };
 
+export const vegasTypography = {
+  fonts: [
+    {
+      id: 1,
+      name: "Montserrat",
+      weight: "700",
+      weightName: "Bold",
+      fontFamily: "var(--font-montserrat)",
+      description: "Strong and confident, used for headlines and key moments",
+    },
+    {
+      id: 2,
+      name: "Montserrat",
+      weight: "500",
+      weightName: "Medium",
+      fontFamily: "var(--font-montserrat)",
+      description: "Clean and readable, used for body text and UI elements",
+    },
+  ],
+};
+
 export const vegasLightColors = [
   { id: 1, name: "Black", hex: "#000000", description: "Primary text", textColor: "white" },
   { id: 2, name: "White", hex: "#FFFFFF", description: "Background", textColor: "black" },

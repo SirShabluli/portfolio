@@ -7,7 +7,7 @@ import TypographySection from "../components/TypographySection";
 import ColorPalette from "../components/ColorPalette";
 import {
   catProjectSteps,
-  netflixTypography,
+  vegasTypography,
   vegasLightColors,
   vegasDarkColors,
 } from "../../data/projectData";
@@ -35,7 +35,7 @@ export default function VegasPage() {
   return (
     <>
       {/* Project Intro Section */}
-      <section className="bg-black py-20 px-8 min-h-screen text-white">
+      <section className="bg-[#23577A] py-20 px-8 min-h-screen text-white">
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center">
           {/* Left side images */}
           <div className="col-span-3 flex flex-col gap-4">
@@ -120,7 +120,7 @@ export default function VegasPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className="min-h-screen bg-black flex items-center justify-center">
+      <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
         <h1 className="display text-white">The Product</h1>
       </section>
 
@@ -128,6 +128,7 @@ export default function VegasPage() {
         sections={sections}
         showOutlines={true}
         showMarkers={showMarkers}
+        bgColor="#23577A"
       >
         <section className="section-1">
           <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
@@ -365,37 +366,34 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       {/* Screen Section with Zoom */}
 
       <HorizontalScroll>
-        <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
+        <div className="min-w-screen w-screen h-screen bg-[#23577A] flex items-center justify-center flex-shrink-0">
           <h1 className="display text-white">Design System</h1>
         </div>
         <div className="min-w-screen w-screen h-screen flex-shrink-0">
-          <TypographySection data={netflixTypography} />
+          <TypographySection
+            data={vegasTypography}
+            bgColor="#E4EBFF"
+            textColor="#000000"
+          />
         </div>
-        <div className="min-w-screen w-screen h-screen flex-shrink-0 relative">
-          {/* Dark/Light Toggle */}
-          <button
-            onClick={() => setIsDark(!isDark)}
-            className={`absolute top-8 right-12 z-10 px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
-              isDark ? "bg-white text-black" : "bg-black text-white"
-            }`}
-          >
-            {isDark ? "Light" : "Dark"}
-          </button>
+        <div className="min-w-screen w-screen h-screen flex-shrink-0">
           <ColorPalette
             colors={isDark ? vegasDarkColors : vegasLightColors}
             isDark={isDark}
             description="A dual palette — clinical calm meets neon chaos"
             darkTextStyle={{ fillColor: "#FEDCBB", strokeColor: "#ED174B" }}
+            onToggle={() => setIsDark(!isDark)}
+            lightBgColor="#E4EBFF"
           />
         </div>
       </HorizontalScroll>
 
-      <section className="min-h-screen bg-black flex items-center justify-center">
+      <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
         <h1 className="display text-white">AI as a Blueprint</h1>
       </section>
 
       <AIProcess data={catProjectSteps} />
-      <section className="min-h-screen bg-black flex items-center justify-center">
+      <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
         <h1 className="display text-white">Reception</h1>
       </section>
       <section></section>

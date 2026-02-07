@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import Button from "./Button";
 
-export default function TypographySection({ data }) {
+export default function TypographySection({ data, bgColor = "black", textColor = "white" }) {
   // Hardcoded alphabet, numbers, and symbols - same for all fonts
   const alphabet =
     "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz";
@@ -56,7 +56,7 @@ export default function TypographySection({ data }) {
   };
 
   return (
-    <section className="grid grid-cols-12 w-full min-h-screen bg-black text-white py-24 px-12 gap-y-12">
+    <section className="grid grid-cols-12 w-full min-h-screen py-24 px-12 gap-y-12" style={{ backgroundColor: bgColor, color: textColor }}>
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}
       <div className="col-span-3 col-start-1 flex flex-col gap-4">
         <span className="text-[46px] font-medium tracking-tight">
