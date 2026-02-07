@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import PhoneShowcase from "../components/PhoneShowcase";
 import Image from "next/image";
 import AIProcess from "../components/AIProcess";
@@ -6,14 +8,15 @@ import ColorPalette from "../components/ColorPalette";
 import {
   catProjectSteps,
   netflixTypography,
-  netflixColors,
+  vegasLightColors,
+  vegasDarkColors,
 } from "../../data/projectData";
 import Lauryl from "../components/Lauryl";
-import ScreenZoomSection from "../components/ScreenZoomSection";
 import HorizontalScroll from "../components/HorizontalScroll";
 import TextBlock from "../components/TextBlock";
 
-export default function NetflixDatingPage() {
+export default function VegasPage() {
+  const [isDark, setIsDark] = useState(true);
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
   const showMarkers = false;
@@ -368,8 +371,22 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         <div className="min-w-screen w-screen h-screen flex-shrink-0">
           <TypographySection data={netflixTypography} />
         </div>
-        <div className="min-w-screen w-screen h-screen flex-shrink-0">
-          <ColorPalette colors={netflixColors} />
+        <div className="min-w-screen w-screen h-screen flex-shrink-0 relative">
+          {/* Dark/Light Toggle */}
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className={`absolute top-8 right-12 z-10 px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
+              isDark ? "bg-white text-black" : "bg-black text-white"
+            }`}
+          >
+            {isDark ? "Light" : "Dark"}
+          </button>
+          <ColorPalette
+            colors={isDark ? vegasDarkColors : vegasLightColors}
+            isDark={isDark}
+            description="A dual palette — clinical calm meets neon chaos"
+            darkTextStyle={{ fillColor: "#FEDCBB", strokeColor: "#ED174B" }}
+          />
         </div>
       </HorizontalScroll>
 

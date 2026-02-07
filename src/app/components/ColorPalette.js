@@ -2,17 +2,29 @@
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-export default function ColorPalette({ colors }) {
+export default function ColorPalette({ colors, isDark = true, description, darkTextStyle }) {
   const containerRef = useRef(null);
   const [activeColorId, setActiveColorId] = useState(null);
 
+  const hasDarkStyle = isDark && darkTextStyle;
+
   return (
-    <section className="grid grid-cols-12 w-full h-full bg-black text-white py-24 px-12 items-start justify-center">
+    <section className={`grid grid-cols-12 w-full h-full py-24 px-12 items-start justify-center transition-colors duration-500 ${
+      isDark ? "bg-black text-white" : "bg-white text-black"
+    }`}>
       {/* כותרת וטקסט בצד שמאל */}
       <div className="col-span-3 space-y-8">
-        <span className="text-[46px] font-medium">Colour</span>
-        <p className="text-sm w-[70%] leading-relaxed">
-          Keeping the same theme of Netflix while adding warmth and prestige
+        <span
+          className="text-[46px] font-medium"
+          style={hasDarkStyle ? {
+            WebkitTextStroke: `1px ${darkTextStyle.strokeColor}`,
+            WebkitTextFillColor: darkTextStyle.fillColor,
+          } : {}}
+        >
+          Colour
+        </span>
+        <p className="text-sm w-[70%] leading-relaxed" style={hasDarkStyle ? { color: darkTextStyle.fillColor } : {}}>
+          {description || "Keeping the same theme of Netflix while adding warmth and prestige"}
         </p>
       </div>
 

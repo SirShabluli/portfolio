@@ -139,4 +139,14 @@ body {
   .caption {
     @apply text-xs font-raleway tracking-wide opacity-50;
   }
+
+  /* Text Stroke - outlined text effect */
+  .text-stroke {
+    -webkit-text-stroke: 1px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
+  .text-stroke-2 {
+    -webkit-text-stroke: 2px currentColor;
+    -webkit-text-fill-color: transparent;
+  }
 }
