@@ -23,10 +23,10 @@ export default function NetflixDatingPage() {
   // Configuration for each section
   const sections = [
     { xPosition: 0, rotation: 0, screenIndex: 11 },
-    { xPosition: -25, rotation: Math.PI * 0.1, screenIndex: 12 },
-    { xPosition: 0, rotation: Math.PI * 0, screenIndex: 13 },
-    { xPosition: 0, rotation: Math.PI * -2, screenIndex: 14 },
-    { xPosition: 25, rotation: Math.PI * 0, screenIndex: 15 },
+    { xPosition: 25, rotation: Math.PI * 0.0, screenIndex: 12 },
+    { xPosition: -25, rotation: Math.PI * 0, screenIndex: 13 },
+    { xPosition: 0, rotation: Math.PI * 0, screenIndex: 14 },
+    { xPosition: 25, rotation: Math.PI * 2, screenIndex: 15 },
   ];
 
   return (
@@ -132,20 +132,20 @@ export default function NetflixDatingPage() {
               className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
             >
               <span data-animate="2" data-animation="fade">
-                <TextBlock label="the challenge" title="easy connections">
-                  In the Netflix world, there are many types of connections. The
-                  challenge was to find something that conveys the idea of two
-                  different things coming together - staying simple and
-                  universal, without relying on niche concepts.
+                <TextBlock label="the challenge" title="First Impression">
+                  How do I immediately signal that this is a Vegas app wrapped
+                  in medical language - without explaining it explicitly? If it
+                  looks too medical, users won't get the joke. If it's too
+                  obvious, there's no tension.
                 </TextBlock>
               </span>
               <span data-animate="3" data-animation="fade">
                 <TextBlock label="My Solution" title="obvious connection">
-                  {`Your couch is perfectly adjusted - the angles, the cushions, the softness.
+                  {`A man using an inhaler - a medical device, a health moment, routine treatment. But his thought bubble explodes with Vegas: neon dice, slot machines,  martini glasses, cannabis. The contrast is instant and absurd.
 
-But when someone new enters the picture, maybe it's worth investing in something that works for both of you.
-
-Two couches side by side: one beige, one red velvet. Different styles, same vibe. It's not about matching perfectly - it's about being comfortable together.`}
+The image says: medical treatment.
+ The thought bubble says: Vegas addiction. 
+The copy reveals: satire.`}
                 </TextBlock>
               </span>
             </div>
@@ -181,22 +181,23 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
               className={`col-span-2 md:col-span-2 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
             >
               <span data-animate="2" data-animation="fade">
-                <TextBlock label="the challenge" title="Define 'missing'">
-                  The "Empty State" needed to tell the user: "You're missing
-                  something that could make your life easier"—and position the
-                  app as the solution.
+                <TextBlock
+                  label="the challenge"
+                  title="Making Organization Feel Clinical"
+                >
+                  In this app's universe, everything is medical. If users
+                  organize their Vegas trips into collections, what's the
+                  medical equivalent? Where do you store your "prescriptions"?
                 </TextBlock>
               </span>
               <span data-animate="4" data-animation="fade">
                 <TextBlock
                   label="My Solution"
-                  title="Solution for a trivial pain"
+                  title="Medicine Cabinet as Collection System"
                 >
-                  {`I identified the trivial pains of solo Netflix nights and illustrated them honestly.
+                  {`A hand placing a new bottle on a medicine shelf. Clean, organized,  like a pharmacy cabinet. The bottles look clinical - clean labels,  medical colors, orderly arrangement. But inside each bottle: dark backgrounds with neon Vegas sins glowing.  Dice, cards, cocktails trapped in prescription containers.
 
-By showing an empty pizza box and a half-finished glass of wine, I validated the messy reality of watching alone.
-
-The message isn't "you need someone." It's "some things are just easier together."`}
+The duality: medical organization on the surface, Vegas chaos contained within."`}
                 </TextBlock>
               </span>
               {/* <Image
@@ -222,20 +223,21 @@ The message isn't "you need someone." It's "some things are just easier together
               className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span data-animate="2" data-animation="fade">
-                <TextBlock label="the challenge" title="immediate dismissal">
-                  {`The "Share the App" screen often feels like a burden. Users feel the app is forcing them to do something they don't want to.
-
-Most people just dismiss it immediately.
-
-How do you make someone pause before closing the window—and maybe act differently?`}
+                <TextBlock
+                  label="the challenge"
+                  title="Ratings, But Make It Vegas"
+                >
+                  {`In the Vegas-as-medicine metaphor, what are "ratings"?  What do users leave behind after trying their "prescription"?`}
                 </TextBlock>
                 <span
                   data-animate="1"
                   data-animation="fade"
                   className="mt-5 flex items-center text-lg"
                 >
-                  &ldquo;Something smells fishy, but it might just be our
-                  mistake&ldquo;
+                  "Share what worked, what stung a little, and where the side
+                  effects were totally worth it. From miracle cures to
+                  questionable detours— your notes might just save someone a
+                  headache."
                 </span>
               </span>
             </div>
@@ -246,12 +248,13 @@ How do you make someone pause before closing the window—and maybe act differen
               className={`col-span-3 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
             >
               <span data-animate="4" data-animation="fade">
-                <TextBlock label="My Solution" title="Irony">
-                  {`According to Netflix's rules, account sharing isn't allowed. Yet we all know the profile selection screen—filled with family members, friends, and "definitely not your ex."
+                <TextBlock
+                  label="My Solution"
+                  title="floating through side effects"
+                >
+                  {`A man leaping forward in the clean medical interface. Behind him: a glowing trail of neon stars - Vegas memories, past experiences, side effects documented.
 
-I took that familiar restriction and flipped it. This time, Netflix wants you to share.
-
-By mimicking the iconic "Who's Watching?" screen, I created a playful moment of recognition.`}
+Reviews become your Vegas constellation - a trail others can follow.`}
                 </TextBlock>
               </span>
               <Image
@@ -271,10 +274,10 @@ By mimicking the iconic "Who's Watching?" screen, I created a playful moment of 
               className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span data-animate="4" data-animation="fade">
-                <TextBlock label="The Challenge" title="Defusing Frustration">
-                  {`The "Verification Failed" screen is all about frustration.
-
-It touches on pains people don't speak about - they might feel guilty, worried that their photos don't represent them, or concerned that someone else is using their image.`}
+                <TextBlock label="The Challenge" title="empty state">
+                  {`in a medical app about Vegas sins, emptiness isn't cute—it's
+                  unsettling. How do I make the absence of "treatments" feel
+                  like something's missing from your life?`}
                 </TextBlock>
               </span>
               <span
@@ -293,17 +296,11 @@ It touches on pains people don't speak about - they might feel guilty, worried t
               className={`pt-50 col-span-3 md:col-span-2 md:col-start-10 ${outline} items-center flex flex-col gap-4`}
             >
               <span data-animate="4" data-animation="fade">
-                <TextBlock label="My Solution" title="Empathy in frustration">
-                  I turned the colloquial term "Catfish" into the illustration
-                  itself: a grumpy cat wearing a fish hat, clearly unimpressed.
-                </TextBlock>
-              </span>
-
-              <span data-animate="4" data-animation="fade">
-                <TextBlock label="" title="">
-                  {`This shifts blame from user to app - transforming "Why won't you verify me?" into "How dare you think I'm fake?"
-
-By humanizing the error with humor, the app becomes self-deprecating. Users are more likely to try again.`}
+                <TextBlock label="My Solution" title="Stripping Away the Life">
+                  I removed the vibrant color palette that fills the rest of the
+                  app. What's left: muted tones, sterile shelves, absence. Three
+                  simple lines form a sad face on the empty shelf -minimal, but
+                  enough to give the scene life and convey the feeling.
                 </TextBlock>
               </span>
 
@@ -335,26 +332,20 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
               <span data-animate="2" data-animation="fade">
                 <TextBlock
                   label="the challenge"
-                  title="Same Same but Different"
+                  title="Gamification in the Medical Metaphor"
                 >
-                  The premium screen offers users an elevated
-                  experience—something they don't have yet. It's about adding
-                  what's missing. Premium usually gets a distinct color while
-                  staying true to the original brand.
+                  Travel apps use badges to encourage exploration—miles
+                  traveled, countries visited, generic achievements. In a
+                  Vegas-as-medicine app, what does "progression" mean? How do I
+                  turn gamification into something that fits the metaphor?
                 </TextBlock>
               </span>
               <span data-animate="4" data-animation="fade">
                 <TextBlock
                   label="My Solution"
-                  title="Solution for a trivial pain"
+                  title="From Patient to Expert Junkie"
                 >
-                  {`Literally an addition: a chaise lounge. An extra piece that upgrades the entire couch.
-
-For the color, I introduced a golden yellow—still warm and inviting, but distinctly premium.
-
-The shift from beige to gold signals luxury without abandoning the cozy aesthetic.
-
-If the app is about the living room experience, premium should be the ultimate piece of furniture. More comfort, more features, more luxury - without losing the homey vibe.`}
+                  {`The more destinations you explore, the more "experienced" you become— not with travel, but with substances.`}
                 </TextBlock>
               </span>
             </div>
