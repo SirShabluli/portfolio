@@ -2,7 +2,7 @@
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-export default function ColorPalette({ colors, isDark = true, description, darkTextStyle, onToggle, lightBgColor }) {
+export default function ColorPalette({ colors, isDark = true, description, darkTextStyle, onToggle, lightBgColor, lightTextColor }) {
   const containerRef = useRef(null);
   const [activeColorId, setActiveColorId] = useState(null);
 
@@ -11,9 +11,12 @@ export default function ColorPalette({ colors, isDark = true, description, darkT
   return (
     <section
       className={`grid grid-cols-12 w-full h-full py-24 px-12 items-start justify-center transition-colors duration-500 ${
-        isDark ? "text-white" : "text-black"
+        isDark ? "text-white" : (lightTextColor ? "" : "text-black")
       }`}
-      style={{ backgroundColor: isDark ? "#000000" : (lightBgColor || "#FFFFFF") }}
+      style={{
+        backgroundColor: isDark ? "#000000" : (lightBgColor || "#FFFFFF"),
+        ...((!isDark && lightTextColor) ? { color: lightTextColor } : {}),
+      }}
     >
       {/* כותרת וטקסט בצד שמאל */}
       <div className="col-span-3 space-y-8">

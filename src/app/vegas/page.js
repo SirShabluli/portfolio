@@ -16,7 +16,7 @@ import HorizontalScroll from "../components/HorizontalScroll";
 import TextBlock from "../components/TextBlock";
 
 export default function VegasPage() {
-  const [isDark, setIsDark] = useState(true);
+  const [isDark, setIsDark] = useState(false);
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
   const showMarkers = false;
@@ -26,9 +26,9 @@ export default function VegasPage() {
   // Configuration for each section
   const sections = [
     { xPosition: 0, rotation: 0, screenIndex: 11 },
-    { xPosition: 25, rotation: Math.PI * 0.0, screenIndex: 12 },
-    { xPosition: -25, rotation: Math.PI * 0, screenIndex: 13 },
-    { xPosition: 0, rotation: Math.PI * 0, screenIndex: 14 },
+    { xPosition: 0, rotation: Math.PI * 0.0, screenIndex: 12 },
+    { xPosition: 0, rotation: Math.PI * 0, screenIndex: 13 },
+    { xPosition: -25, rotation: Math.PI * 0, screenIndex: 14 },
     { xPosition: 25, rotation: Math.PI * 2, screenIndex: 15 },
   ];
 
@@ -318,7 +318,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           </div>
         </section>
         <section className="section-5 ">
-          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
+          <div className="bg-black grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
@@ -363,6 +363,40 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         <section></section>
       </PhoneShowcase>
 
+      {/* Inspiration Title */}
+      <section className="bg-[#23577A] text-white py-24 px-12">
+        <span className="text-[46px] font-medium tracking-tight">
+          Inspiration
+        </span>
+      </section>
+
+      {/* Inspiration Images - Phone references */}
+      <section className="bg-[#23577A] py-12 px-12">
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-2 col-start-4">
+            <Image src="/images/vegas/mfp.png" alt="Inspiration 1" width={400} height={711} className="w-full h-auto" />
+          </div>
+          <div className="col-span-2">
+            <Image src="/images/vegas/oralb.jpg" alt="Inspiration 2" width={400} height={711} className="w-full h-auto" />
+          </div>
+          <div className="col-span-2">
+            <Image src="/images/vegas/waterllama.png" alt="Inspiration 3" width={400} height={711} className="w-full h-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* Inspiration Images - Large */}
+      <section className="bg-black min-h-screen flex flex-col gap-2">
+        <div className="grid grid-cols-2 gap-2 flex-1">
+          <Image src="/images/vegas/casinonight.jpg" alt="Inspiration 4" width={1920} height={1080} className="w-full h-full object-cover" />
+          <Image src="/images/vegas/neoncasino.webp" alt="Inspiration 5" width={1920} height={1080} className="w-full h-full object-cover" />
+        </div>
+        <div className="grid grid-cols-2 gap-2 flex-1">
+          <Image src="/images/vegas/saussy.jpg" alt="Inspiration 6" width={1920} height={1080} className="w-full h-full object-cover" />
+          <Image src="/images/vegas/slot.jpg" alt="Inspiration 7" width={1920} height={1080} className="w-full h-full object-cover" />
+        </div>
+      </section>
+
       {/* Screen Section with Zoom */}
 
       <HorizontalScroll>
@@ -383,16 +417,12 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             description="A dual palette — clinical calm meets neon chaos"
             darkTextStyle={{ fillColor: "#FEDCBB", strokeColor: "#ED174B" }}
             onToggle={() => setIsDark(!isDark)}
-            lightBgColor="#E4EBFF"
+            lightBgColor="#23577A"
+            lightTextColor="white"
           />
         </div>
       </HorizontalScroll>
 
-      <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
-        <h1 className="display text-white">AI as a Blueprint</h1>
-      </section>
-
-      <AIProcess data={catProjectSteps} />
       <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
         <h1 className="display text-white">Reception</h1>
       </section>
