@@ -17,17 +17,22 @@ export default function HorizontalScroll({ children }) {
       const scrollElement = scrollRef.current;
       const totalWidth = scrollElement.scrollWidth - window.innerWidth;
 
-      gsap.to(scrollElement, {
-        x: -totalWidth,
-        ease: "easein",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: () => `+=${totalWidth}`,
-          pin: true,
-          scrub: 1,
-          anticipatePin: 1,
-        },
+      // Small delay to let Lenis initialize before ScrollTrigger calculates positions
+      requestAnimationFrame(() => {
+        gsap.to(scrollElement, {
+          x: -totalWidth,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top top",
+            end: () => `+=${totalWidth}`,
+            pin: true,
+            scrub: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+        ScrollTrigger.refresh();
       });
     },
     { scope: containerRef },

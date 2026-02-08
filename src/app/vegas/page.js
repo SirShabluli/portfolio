@@ -1,5 +1,7 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhoneShowcase from "../components/PhoneShowcase";
 import Image from "next/image";
 import AIProcess from "../components/AIProcess";
@@ -17,9 +19,53 @@ import TextBlock from "../components/TextBlock";
 
 export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
+  const phoneImagesRef = useRef(null);
+  const largeImagesRef = useRef(null);
+
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
   const showMarkers = false;
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    if (!phoneImagesRef.current) return;
+
+    const images =
+      phoneImagesRef.current.querySelectorAll(".phone-inspiration");
+    gsap.set(images, { opacity: 0, y: 40 });
+    gsap.to(images, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      stagger: 0.15,
+      scrollTrigger: {
+        trigger: phoneImagesRef.current,
+        start: "top 80%",
+        toggleActions: "play reverse play reverse",
+      },
+    });
+
+    // Sticker effect for large inspiration images
+    if (largeImagesRef.current) {
+      const largeImages =
+        largeImagesRef.current.querySelectorAll(".large-inspiration");
+      gsap.set(largeImages, { opacity: 0, scale: 0, rotation: -15 });
+      gsap.to(largeImages, {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 0.4,
+        ease: "back.out(2.5)",
+        stagger: 0.3,
+        scrollTrigger: {
+          trigger: largeImagesRef.current,
+          start: "top 80%",
+          toggleActions: "play reverse play reverse",
+        },
+      });
+    }
+  }, []);
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
@@ -364,36 +410,194 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       </PhoneShowcase>
 
       {/* Inspiration Title */}
-      <section className="bg-[#23577A] text-white py-24 px-12">
+      <section className="bg-[#E4EBFF] text-[#23577A] py-24 px-12">
         <span className="text-[46px] font-medium tracking-tight">
           Inspiration
         </span>
       </section>
 
       {/* Inspiration Images - Phone references */}
-      <section className="bg-[#23577A] py-12 px-12">
+      <section className="bg-[#E4EBFF] py-12 px-12" ref={phoneImagesRef}>
         <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-2 col-start-4">
-            <Image src="/images/vegas/mfp.png" alt="Inspiration 1" width={400} height={711} className="w-full h-auto" />
+          <div className="col-span-3 col-start-3 phone-inspiration">
+            <Image
+              src="/images/vegas/mfp.png"
+              alt="Inspiration 1"
+              width={600}
+              height={1066}
+              className="w-full h-auto"
+            />
           </div>
-          <div className="col-span-2">
-            <Image src="/images/vegas/oralb.jpg" alt="Inspiration 2" width={400} height={711} className="w-full h-auto" />
+          <div className="col-span-3 phone-inspiration">
+            <Image
+              src="/images/vegas/oralb.jpg"
+              alt="Inspiration 2"
+              width={600}
+              height={1066}
+              className="w-full h-auto"
+            />
           </div>
-          <div className="col-span-2">
-            <Image src="/images/vegas/waterllama.png" alt="Inspiration 3" width={400} height={711} className="w-full h-auto" />
+          <div className="col-span-3 phone-inspiration">
+            <Image
+              src="/images/vegas/waterllama.png"
+              alt="Inspiration 3"
+              width={600}
+              height={1066}
+              className="w-full h-auto"
+            />
           </div>
         </div>
       </section>
 
-      {/* Inspiration Images - Large */}
-      <section className="bg-black min-h-screen flex flex-col gap-2">
-        <div className="grid grid-cols-2 gap-2 flex-1">
-          <Image src="/images/vegas/casinonight.jpg" alt="Inspiration 4" width={1920} height={1080} className="w-full h-full object-cover" />
-          <Image src="/images/vegas/neoncasino.webp" alt="Inspiration 5" width={1920} height={1080} className="w-full h-full object-cover" />
+      {/* Inspiration Images - Scattered */}
+      <section
+        className="bg-black relative overflow-hidden flex items-center justify-center"
+        style={{ height: "100vh" }}
+        ref={largeImagesRef}
+      >
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "55%",
+            rotate: "-4deg",
+            top: "-5%",
+            left: "-3%",
+            zIndex: 1,
+          }}
+        >
+          <Image
+            src="/images/vegas/casinonight.jpg"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
         </div>
-        <div className="grid grid-cols-2 gap-2 flex-1">
-          <Image src="/images/vegas/saussy.jpg" alt="Inspiration 6" width={1920} height={1080} className="w-full h-full object-cover" />
-          <Image src="/images/vegas/slot.jpg" alt="Inspiration 7" width={1920} height={1080} className="w-full h-full object-cover" />
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "50%",
+            rotate: "3deg",
+            top: "-2%",
+            right: "-5%",
+            zIndex: 2,
+          }}
+        >
+          <Image
+            src="/images/vegas/neoncasino.webp"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "48%",
+            rotate: "6deg",
+            bottom: "-5%",
+            left: "-2%",
+            zIndex: 3,
+          }}
+        >
+          <Image
+            src="/images/vegas/saussy.jpg"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "52%",
+            rotate: "-2deg",
+            top: "15%",
+            left: "22%",
+            zIndex: 4,
+          }}
+        >
+          <Image
+            src="/images/vegas/slot.jpg"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "50%",
+            rotate: "4deg",
+            bottom: "-3%",
+            right: "-4%",
+            zIndex: 5,
+          }}
+        >
+          <Image
+            src="/images/vegas/mc-casino.jpeg"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "45%",
+            rotate: "-5deg",
+            top: "2%",
+            left: "25%",
+            zIndex: 6,
+          }}
+        >
+          <Image
+            src="/images/vegas/seahouse.jpg"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "53%",
+            rotate: "2deg",
+            bottom: "5%",
+            left: "20%",
+            zIndex: 7,
+          }}
+        >
+          <Image
+            src="/images/vegas/vegasnight1.jpg"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          style={{
+            width: "48%",
+            rotate: "-3deg",
+            top: "10%",
+            right: "5%",
+            zIndex: 8,
+          }}
+        >
+          <Image
+            src="/images/vegas/vegassign.png"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
         </div>
       </section>
 
