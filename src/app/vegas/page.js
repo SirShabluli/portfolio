@@ -38,11 +38,11 @@ export default function VegasPage() {
       y: 0,
       duration: 0.8,
       ease: "power2.out",
-      stagger: 0.15,
+      stagger: 0.5,
       scrollTrigger: {
         trigger: phoneImagesRef.current,
         start: "top 80%",
-        toggleActions: "play reverse play reverse",
+        toggleActions: "play none none reset",
       },
     });
 
@@ -57,11 +57,11 @@ export default function VegasPage() {
         rotation: 0,
         duration: 0.4,
         ease: "back.out(2.5)",
-        stagger: 0.3,
+        stagger: 0.13,
         scrollTrigger: {
           trigger: largeImagesRef.current,
-          start: "top 80%",
-          toggleActions: "play reverse play reverse",
+          start: "top top",
+          toggleActions: "play none none reset",
         },
       });
     }
@@ -452,11 +452,11 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       {/* Inspiration Images - Scattered */}
       <section
         className="bg-black relative overflow-hidden flex items-center justify-center"
-        style={{ height: "100vh" }}
+        style={{ height: "170vh" }}
         ref={largeImagesRef}
       >
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "55%",
             rotate: "-4deg",
@@ -474,7 +474,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "50%",
             rotate: "3deg",
@@ -492,7 +492,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "48%",
             rotate: "6deg",
@@ -510,7 +510,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "52%",
             rotate: "-2deg",
@@ -528,7 +528,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "50%",
             rotate: "4deg",
@@ -546,7 +546,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "45%",
             rotate: "-5deg",
@@ -564,7 +564,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "53%",
             rotate: "2deg",
@@ -582,7 +582,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           />
         </div>
         <div
-          className="large-inspiration absolute rounded-lg overflow-hidden shadow-2xl"
+          className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
             width: "48%",
             rotate: "-3deg",
@@ -593,6 +593,42 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <Image
             src="/images/vegas/vegassign.png"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden"
+          style={{
+            width: "46%",
+            rotate: "5deg",
+            top: "22%",
+            right: "18%",
+            zIndex: 9,
+          }}
+        >
+          <Image
+            src="/images/vegas/casino leds.png"
+            alt="Inspiration"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+          />
+        </div>
+        <div
+          className="large-inspiration absolute rounded-lg overflow-hidden"
+          style={{
+            width: "42%",
+            rotate: "-4deg",
+            bottom: "8%",
+            left: "5%",
+            zIndex: 10,
+          }}
+        >
+          <Image
+            src="/images/vegas/fountain.png"
             alt="Inspiration"
             width={1920}
             height={1080}
