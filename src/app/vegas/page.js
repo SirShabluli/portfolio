@@ -59,7 +59,7 @@ export default function VegasPage() {
         rotation: 0,
         duration: 0.4,
         ease: "back.out(2.5)",
-        stagger: 0.13,
+        stagger: 0.23,
 
         scrollTrigger: {
           trigger: largeImagesRef.current,
@@ -300,14 +300,6 @@ The duality: medical organization on the surface, Vegas chaos contained within."
 Reviews become your Vegas constellation - a trail others can follow.`}
                 </TextBlock>
               </span>
-              <Image
-                data-animate="4"
-                src="/images/netflix-dating/WhosWatching.png"
-                alt="Netflix Who's Watching screen"
-                width={800}
-                height={600}
-                className="w-full h-auto"
-              />
             </div>
           </div>
         </section>
@@ -873,13 +865,53 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               />
             </div>
           </div>
-          <div className="min-w-screen w-screen h-screen shrink-0">
+          <div className="min-w-screen w-screen h-screen shrink-0 relative overflow-hidden">
             <TypographySection
               data={vegasTypography}
               bgColor={isDark ? "#000000" : "#E4EBFF"}
               textColor={isDark ? "#FEDCBB" : "#000000"}
               isDark={isDark}
             />
+            <div
+              className="absolute transition-opacity duration-700 z-20"
+              style={{
+                top: "52%",
+                left: "8%",
+                opacity: isDark ? 1 : 0,
+                transform: "rotate(-8deg)",
+              }}
+            >
+              <VectorToggle
+                isDark={isDark}
+                onToggle={() => setIsDark(!isDark)}
+                lightSrc="/images/vegas/toggles/stardark.svg"
+                darkSrc="/images/vegas/toggles/stardark.svg"
+                glowColor="#ED2024"
+                width={50}
+                height={50}
+                delay={0.3}
+              />
+            </div>
+            <div
+              className="absolute transition-opacity duration-700 z-20"
+              style={{
+                bottom: "12%",
+                right: "5%",
+                opacity: isDark ? 1 : 0,
+                transform: "rotate(10deg)",
+              }}
+            >
+              <VectorToggle
+                isDark={isDark}
+                onToggle={() => setIsDark(!isDark)}
+                lightSrc="/images/vegas/toggles/leaf.svg"
+                darkSrc="/images/vegas/toggles/leaf.svg"
+                glowColor="#38B14A"
+                width={60}
+                height={60}
+                delay={0.4}
+              />
+            </div>
           </div>
           <div className="min-w-screen w-screen h-screen shrink-0">
             <ColorPalette
