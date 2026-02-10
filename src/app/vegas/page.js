@@ -37,9 +37,9 @@ export default function VegasPage() {
     gsap.to(images, {
       opacity: 1,
       y: 0,
-      duration: 0.8,
+      duration: 0.5,
       ease: "power2.out",
-      stagger: 0.5,
+      stagger: 0.2,
       scrollTrigger: {
         trigger: phoneImagesRef.current,
         start: "top 80%",
@@ -62,7 +62,7 @@ export default function VegasPage() {
 
         scrollTrigger: {
           trigger: largeImagesRef.current,
-          start: "top top",
+          start: "top center",
           toggleActions: "play none none reset",
         },
       });
@@ -128,7 +128,7 @@ export default function VegasPage() {
           </div>
 
           {/* Center - Title, Image, Description */}
-          <div className="col-span-5 flex flex-col items-center text-center gap-8">
+          <div className="col-span-5 col-start-6 flex flex-col items-center text-center gap-8">
             <Image
               src="/images/netflix-dating/NetflixLogo.svg"
               alt="Project preview"
@@ -136,33 +136,16 @@ export default function VegasPage() {
               height={600}
               className=""
             />
-            <h2 className=" text-4xl text-red-500 -mt-5">Dating</h2>
+            <h2 className=" text-4xl text-white -mt-5">Retreat</h2>
             <h3 className="text-2xl font-medium text-left">
-              What if Netflix decided to create a dating app?
+              Discover your cure through scientifically guided wellness
+              treatments.
             </h3>
             <p className="text-white text-left">
-              A fictional dating app where matching happens over shared watch
-              lists, not gym selfies. Illustrated UI concept exploring what
-              happens when comfort replaces performance.
+              A travel app for Vegas—disguised as a medical wellness platform.
+              Complete with prescription language, clinical UI, and neon sins
+              glowing beneath the sterile surface.
             </p>
-          </div>
-
-          {/* Right side images */}
-          <div className="col-span-3 flex flex-col gap-0">
-            <Image
-              src="/images/netflix-dating/pajama1.svg"
-              alt="Project preview"
-              width={600}
-              height={600}
-              className=""
-            />
-            <Image
-              src="/images/netflix-dating/pajama2.svg"
-              alt="Project preview"
-              width={400}
-              height={600}
-              className=""
-            />
           </div>
         </div>
       </section>
@@ -205,14 +188,15 @@ The copy reveals: satire.`}
               className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
             ></div>
             <div
-              className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
+              className={`col-span-4 md:col-span-2 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
             >
               <span
                 data-animate="1"
                 data-animation="fade"
-                className="mt-10 flex items-center quote"
+                className="mt-10 flex items-center text-2xl line-height-1.4"
               >
-                &ldquo;might be your first step towards a new couch&ldquo;
+                explore scientifically proven sins, selected by top doctors in
+                Vegas refined through years of irresponsible research.
               </span>
             </div>
           </div>
@@ -220,17 +204,7 @@ The copy reveals: satire.`}
         <section className="section-2">
           <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-4 md:col-span-4 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
-            ></div>
-            <div
-              className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
-            >
-              <span data-animate="1" data-animation="fade" className="quote">
-                "Some things shouldn&apos;t be dealt with alone..."
-              </span>
-            </div>
-            <div
-              className={`col-span-2 md:col-span-2 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-2 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span data-animate="2" data-animation="fade">
                 <TextBlock
@@ -242,6 +216,21 @@ The copy reveals: satire.`}
                   medical equivalent? Where do you store your "prescriptions"?
                 </TextBlock>
               </span>
+              <span
+                data-animate="1"
+                data-animation="fade"
+                className="mt-1 flex items-center text-2xl line-height-1.4"
+              >
+                organize favorite destinations, tips, and itineraries into
+                customizable collections, making it easy to plan future trips
+              </span>
+            </div>
+            <div
+              className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
+            ></div>
+            <div
+              className={`col-span-2 md:col-span-2 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+            >
               <span data-animate="4" data-animation="fade">
                 <TextBlock
                   label="My Solution"
@@ -323,7 +312,10 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         <section className="section-4">
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
+            ></div>
+            <div
+              className={`col-span-3 md:col-span-2 md:col-start-6 ${outline} flex flex-col justify-center gap-5`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock label="The Challenge" title="empty state">
@@ -335,15 +327,12 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               <span
                 data-animate="1"
                 data-animation="fade"
-                className="mt-5 flex items-center quote"
+                className="mt-5 flex items-center text-lg"
               >
-                &ldquo;Something smells fishy, but it might just be our
-                mistake&ldquo;
+                An empty cabinet might not seem urgent, until it is. Small
+                actions today can prevent bigger issues tomorrow.
               </span>
             </div>
-            <div
-              className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
-            ></div>
             <div
               className={`pt-50 col-span-3 md:col-span-2 md:col-start-10 ${outline} items-center flex flex-col gap-4`}
             >
@@ -411,17 +400,22 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         <section></section>
       </PhoneShowcase>
 
-      {/* Inspiration Title */}
-      <section className="bg-[#E4EBFF] text-[#23577A] py-24 px-12">
-        <span className="text-[46px] font-medium tracking-tight">
-          Inspiration
-        </span>
-      </section>
-
       {/* Inspiration Images - Phone references */}
       <section className="bg-[#E4EBFF] py-12 px-12" ref={phoneImagesRef}>
-        <div className="grid grid-cols-12 gap-6">
-          <div className="col-span-3 col-start-3 phone-inspiration">
+        <div className="grid grid-cols-12 gap-6 items-center">
+          <div className="col-span-2 col-start-2 flex flex-col gap-4 min-h-screen">
+            <span className="text-5xl font-medium tracking-tight text-[#23577A]">
+              Inspiration
+            </span>
+            <TextBlock label="" title="" className="text-[#23577A]">
+              I studied wellness apps—Calm, Headspace, medical tracking apps.
+              Clean interfaces. Soft blues and whites. Gentle icons. Sterile
+              language. Everything designed to create trust, safety, clinical
+              authority. This became the wrapper—the medical disguise that makes
+              Vegas feel prescribed, legitimate, doctor-approved.
+            </TextBlock>
+          </div>
+          <div className="col-span-2 col-start-6 phone-inspiration">
             <Image
               src="/images/vegas/mfp.png"
               alt="Inspiration 1"
@@ -430,7 +424,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               className="w-full h-auto"
             />
           </div>
-          <div className="col-span-3 phone-inspiration">
+          <div className="col-span-2 phone-inspiration">
             <Image
               src="/images/vegas/oralb.jpg"
               alt="Inspiration 2"
@@ -439,7 +433,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               className="w-full h-auto"
             />
           </div>
-          <div className="col-span-3 phone-inspiration">
+          <div className="col-span-2 phone-inspiration">
             <Image
               src="/images/vegas/waterllama.png"
               alt="Inspiration 3"
@@ -453,10 +447,18 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Inspiration Images - Scattered */}
       <section
-        className="bg-black relative overflow-hidden flex items-center justify-center"
+        className="bg-black relative overflow-hidden grid grid-cols-12 items-center"
         style={{ height: "110vh" }}
         ref={largeImagesRef}
       >
+        <div className="col-span-2 col-start-2 z-20">
+          <TextBlock label="" title="" className="text-white">
+            The visual world of Vegas at night—neon signs, slot machines, casino
+            floors, fountain shows. Raw energy captured in light and color.
+            These references shaped the dark mode palette and the sense of
+            excess that lives beneath the clinical surface.
+          </TextBlock>
+        </div>
         <div
           className="large-inspiration absolute rounded-lg overflow-hidden"
           style={{
@@ -589,7 +591,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             width: "48%",
             rotate: "-3deg",
             top: "10%",
-            right: "5%",
+            right: "0%",
             zIndex: 8,
           }}
         >
@@ -606,7 +608,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           style={{
             width: "46%",
             rotate: "5deg",
-            top: "22%",
+            top: "40%",
             right: "18%",
             zIndex: 9,
           }}
@@ -643,7 +645,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Dual Visual Language Section */}
       <section
-        className="min-h-screen relative overflow-hidden flex items-center justify-center transition-colors duration-500"
+        className="min-h-[120vh] pb-20 relative overflow-hidden flex items-center justify-center transition-colors duration-500"
         style={{ backgroundColor: isDark ? "#000000" : "#E4EBFF" }}
       >
         {/* Center: Title + Toggle */}
