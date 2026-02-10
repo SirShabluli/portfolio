@@ -16,6 +16,7 @@ import {
 import Lauryl from "../components/Lauryl";
 import HorizontalScroll from "../components/HorizontalScroll";
 import TextBlock from "../components/TextBlock";
+import VectorToggle from "../components/VectorToggle";
 
 export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
@@ -58,6 +59,7 @@ export default function VegasPage() {
         duration: 0.4,
         ease: "back.out(2.5)",
         stagger: 0.13,
+
         scrollTrigger: {
           trigger: largeImagesRef.current,
           start: "top top",
@@ -452,7 +454,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       {/* Inspiration Images - Scattered */}
       <section
         className="bg-black relative overflow-hidden flex items-center justify-center"
-        style={{ height: "170vh" }}
+        style={{ height: "110vh" }}
         ref={largeImagesRef}
       >
         <div
@@ -639,29 +641,43 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Screen Section with Zoom */}
 
-      <HorizontalScroll>
-        <div className="min-w-screen w-screen h-screen bg-[#23577A] flex items-center justify-center flex-shrink-0">
-          <h1 className="display text-white">Design System</h1>
-        </div>
-        <div className="min-w-screen w-screen h-screen flex-shrink-0">
-          <TypographySection
-            data={vegasTypography}
-            bgColor="#E4EBFF"
-            textColor="#000000"
-          />
-        </div>
-        <div className="min-w-screen w-screen h-screen flex-shrink-0">
-          <ColorPalette
-            colors={isDark ? vegasDarkColors : vegasLightColors}
-            isDark={isDark}
-            description="A dual palette — clinical calm meets neon chaos"
-            darkTextStyle={{ fillColor: "#FEDCBB", strokeColor: "#ED174B" }}
-            onToggle={() => setIsDark(!isDark)}
-            lightBgColor="#23577A"
-            lightTextColor="white"
-          />
-        </div>
-      </HorizontalScroll>
+      {/* Vector Toggle Section */}
+      <section
+        className="min-h-screen flex items-center justify-center transition-colors duration-500"
+        style={{ backgroundColor: isDark ? "#000000" : "#E4EBFF" }}
+      >
+        <VectorToggle
+          isDark={isDark}
+          onToggle={() => setIsDark(!isDark)}
+          glowColor="#ED174B"
+        />
+      </section>
+
+      <section>
+        <HorizontalScroll>
+          <div className="min-w-screen w-screen h-screen bg-[#23577A] flex items-center justify-center flex-shrink-0 1px solid red">
+            <h1 className="display text-white">Design System</h1>
+          </div>
+          <div className="min-w-screen w-screen h-screen flex-shrink-0">
+            <TypographySection
+              data={vegasTypography}
+              bgColor="#E4EBFF"
+              textColor="#000000"
+            />
+          </div>
+          <div className="min-w-screen w-screen h-screen shrink-0">
+            <ColorPalette
+              colors={isDark ? vegasDarkColors : vegasLightColors}
+              isDark={isDark}
+              description="A dual palette — clinical calm meets neon chaos"
+              darkTextStyle={{ fillColor: "#FEDCBB", strokeColor: "#ED174B" }}
+              onToggle={() => setIsDark(!isDark)}
+              lightBgColor="#23577A"
+              lightTextColor="white"
+            />
+          </div>
+        </HorizontalScroll>
+      </section>
 
       <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
         <h1 className="display text-white">Reception</h1>

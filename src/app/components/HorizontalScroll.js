@@ -25,8 +25,8 @@ export default function HorizontalScroll({ children }) {
           start: "top top",
           end: () => `+=${totalWidth}`,
           pin: true,
-          pinType: "transform",
           scrub: true,
+          markers: true,
           invalidateOnRefresh: true,
         },
       });
@@ -35,11 +35,7 @@ export default function HorizontalScroll({ children }) {
   );
 
   return (
-    <div
-      ref={containerRef}
-      className="overflow-hidden"
-      style={{ margin: 0, padding: 0, borderTop: "1px solid blue" }}
-    >
+    <div ref={containerRef} className="overflow-hidden">
       <div ref={scrollRef} className="flex h-screen">
         {children}
       </div>
