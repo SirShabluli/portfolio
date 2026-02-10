@@ -641,18 +641,158 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Screen Section with Zoom */}
 
-      {/* Vector Toggle Section */}
+      {/* Dual Visual Language Section */}
       <section
-        className="min-h-screen flex items-center justify-center transition-colors duration-500"
+        className="min-h-screen relative overflow-hidden flex items-center justify-center transition-colors duration-500"
         style={{ backgroundColor: isDark ? "#000000" : "#E4EBFF" }}
       >
-        <VectorToggle
-          isDark={isDark}
-          onToggle={() => setIsDark(!isDark)}
-          lightSrc="/images/vegas/toggles/pilllight.svg"
-          darkSrc="/images/vegas/toggles/pilldark.svg"
-          glowColor="#ED174B"
-        />
+        {/* Center: Title + Toggle */}
+        <div className="flex flex-col items-center gap-6 z-10">
+          <h1
+            className="text-7xl font-medium transition-colors duration-500"
+            style={
+              isDark
+                ? {
+                    WebkitTextStroke: "1px #ED174B",
+                    WebkitTextFillColor: "#FEDCBB",
+                    filter:
+                      "drop-shadow(0 0 8px #ED174B) drop-shadow(0 0 25px #ED174B)",
+                  }
+                : { color: "#23577A", filter: "none" }
+            }
+          >
+            Dual Visual Language
+          </h1>
+          <button
+            onClick={() => setIsDark(!isDark)}
+            className={`px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
+              isDark ? "bg-white text-black" : "bg-black text-white"
+            }`}
+          >
+            {isDark ? "Light" : "Dark"}
+          </button>
+        </div>
+
+        {/* Scattered SVG pairs */}
+        {/* Pill - top left */}
+        <div
+          className="absolute"
+          style={{ top: "12%", left: "8%", width: 90, height: 90 }}
+        >
+          <VectorToggle
+            isDark={isDark}
+            onToggle={() => setIsDark(!isDark)}
+            lightSrc="/images/vegas/toggles/pilllight.svg"
+            darkSrc="/images/vegas/toggles/pilldark.svg"
+            glowColor="#ED174B"
+            width={90}
+            height={90}
+            delay={0.3}
+          />
+        </div>
+
+        {/* Syringe - top right */}
+        <div
+          className="absolute"
+          style={{
+            top: "40%",
+            right: "10%",
+            width: 100,
+            height: 100,
+            transform: "rotate(-160deg)",
+          }}
+        >
+          <VectorToggle
+            isDark={isDark}
+            onToggle={() => setIsDark(!isDark)}
+            lightSrc="/images/vegas/toggles/syringelight.svg"
+            darkSrc="/images/vegas/toggles/syringedark.svg"
+            glowColor="#F1BFD9"
+            width={200}
+            height={200}
+            delay={0.5}
+          />
+        </div>
+
+        {/* Star - bottom left */}
+        <div
+          className="absolute"
+          style={{ bottom: "30%", left: "15%", width: 80, height: 80 }}
+        >
+          <VectorToggle
+            isDark={isDark}
+            onToggle={() => setIsDark(!isDark)}
+            lightSrc="/images/vegas/toggles/starlight.svg"
+            darkSrc="/images/vegas/toggles/stardark.svg"
+            glowColor="#FEDCBB"
+            width={80}
+            height={80}
+            delay={0.7}
+          />
+        </div>
+
+        {/* Pill - bottom right (rotated) */}
+        <div
+          className="absolute"
+          style={{
+            bottom: "10%",
+            right: "8%",
+            width: 75,
+            height: 75,
+            transform: "rotate(25deg)",
+          }}
+        >
+          <VectorToggle
+            isDark={isDark}
+            onToggle={() => setIsDark(!isDark)}
+            lightSrc="/images/vegas/toggles/pilllight.svg"
+            darkSrc="/images/vegas/toggles/pilldark.svg"
+            glowColor="#F1BFD9"
+            width={75}
+            height={75}
+            delay={0.9}
+          />
+        </div>
+
+        {/* Star - top center-right */}
+        <div
+          className="absolute"
+          style={{ top: "8%", right: "35%", width: 60, height: 60 }}
+        >
+          <VectorToggle
+            isDark={isDark}
+            onToggle={() => setIsDark(!isDark)}
+            lightSrc="/images/vegas/toggles/starlight.svg"
+            darkSrc="/images/vegas/toggles/stardark.svg"
+            glowColor="#FEDCBB"
+            width={60}
+            height={60}
+            delay={0.4}
+          />
+        </div>
+
+        {/* Syringe - bottom center-left */}
+        <div
+          className="absolute"
+          style={{
+            bottom: "8%",
+            left: "35%",
+            width: 70,
+            height: 70,
+            transform: "rotate(-15deg)",
+          }}
+        >
+          <VectorToggle
+            isDark={isDark}
+            onToggle={() => setIsDark(!isDark)}
+            lightSrc="/images/vegas/toggles/syringelight.svg"
+            darkSrc="/images/vegas/toggles/syringedark.svg"
+            glowColor="#ED174B"
+            width={70}
+            height={70}
+            delay={0.6}
+          />
+        </div>
       </section>
 
       <section>

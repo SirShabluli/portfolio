@@ -392,17 +392,19 @@ The message: there are all kinds of people and pajamas - showing options without
           </TextBlock>
         </span>
       </ScreenZoomSection>
-      <HorizontalScroll>
-        <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
-          <h1 className="display text-white">Design System</h1>
-        </div>
-        <div className="min-w-screen w-screen h-screen flex-shrink-0">
-          <TypographySection data={netflixTypography} />
-        </div>
-        <div className="min-w-screen w-screen h-screen flex-shrink-0">
-          <ColorPalette colors={netflixColors} />
-        </div>
-      </HorizontalScroll>
+      <section>
+        <HorizontalScroll>
+          <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
+            <h1 className="display text-white">Design System</h1>
+          </div>
+          <div className="min-w-screen w-screen h-screen flex-shrink-0">
+            <TypographySection data={netflixTypography} />
+          </div>
+          <div className="min-w-screen w-screen h-screen flex-shrink-0">
+            <ColorPalette colors={netflixColors} />
+          </div>
+        </HorizontalScroll>
+      </section>
 
       <section className="min-h-screen bg-black flex items-center justify-center">
         <h1 className="display text-white">AI as a Blueprint</h1>
