@@ -22,6 +22,7 @@ export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
   const phoneImagesRef = useRef(null);
   const largeImagesRef = useRef(null);
+  const longPressTimer = useRef(null);
 
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
@@ -71,6 +72,16 @@ export default function VegasPage() {
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
+  const longPressHandlers = {
+    onMouseDown: () => {
+      longPressTimer.current = setTimeout(() => {
+        setIsDark((prev) => !prev);
+      }, 500);
+    },
+    onMouseUp: () => clearTimeout(longPressTimer.current),
+    onMouseLeave: () => clearTimeout(longPressTimer.current),
+  };
+
   // Configuration for each section
   const sections = [
     { xPosition: 0, rotation: 0, screenIndex: 11 },
@@ -83,16 +94,29 @@ export default function VegasPage() {
   return (
     <>
       {/* Project Intro Section */}
-      <section className="bg-[#23577A] py-20 px-8 min-h-screen text-white">
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center">
-          {/* Left side images */}
-          <div className="col-span-3 flex flex-col gap-4">
-            <div className="col-span-3 flex flex-col gap-4">
-              {" "}
-              {/* המעטפת הכללית של כל הבלוק */}
-              {/* דוגמה לזוג אחד - תחזור על זה עבור כל נתון */}
+      <section className="bg-[#23577A] px-8 min-h-screen text-white flex items-center justify-center">
+        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
+          {/* Logo */}
+          <div className="col-span-6 col-start-4 flex flex-col gap-7 justify-center items-center">
+            <Image
+              src="/images/netflix-dating/NetflixLogo.svg"
+              alt="Project preview"
+              width={600}
+              height={1200}
+              className="w-full h-auto"
+            />
+            <h2 className="text-6xl text-white -mt-5">Retreat</h2>
+          </div>
+          {/* Description + Metadata */}
+          <div className="col-span-6 col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
+            <p className="text-lg font-medium text-white text-left">
+              A travel app for Vegas—disguised as a medical wellness platform.
+              Complete with prescription language, clinical UI, and neon sins
+              glowing beneath the sterile surface.
+            </p>
+            <div className="flex flex-row gap-10 mt-10 text-left w-full">
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-medium  tracking-wider opacity-60">
+                <p className="text-sm font-medium tracking-wider opacity-60">
                   role
                 </p>
                 <p className="text-sm font-medium text-white">
@@ -100,52 +124,30 @@ export default function VegasPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-medium  tracking-wider opacity-60">
+                <p className="text-sm font-medium tracking-wider opacity-60">
                   Course
                 </p>
                 <p className="text-sm text-white font-medium leading-tight">
-                  "Your Cart is Empty" - Digital Product Illustration
+                  &quot;Your Cart is Empty&quot; - Digital Product Illustration
                 </p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-medium  tracking-wider opacity-60">
+                <p className="text-sm font-medium tracking-wider opacity-60">
                   Year
                 </p>
                 <p className="text-sm font-medium text-white leading-tight">
                   2025 (4th year, parallel to graduation project)
                 </p>
               </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-medium tracking-wider opacity-60">
+                  Duration
+                </p>
+                <p className="text-sm text-white font-medium leading-tight">
+                  1 month
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm font-medium  tracking-wider opacity-60">
-                Duartion
-              </p>
-              <p className="text-sm text-white font-medium leading-tight">
-                1 month
-              </p>
-            </div>
-            {/* אפשר להוסיף תמונות כאן */}
-          </div>
-
-          {/* Center - Title, Image, Description */}
-          <div className="col-span-5 col-start-6 flex flex-col items-center text-center gap-8">
-            <Image
-              src="/images/netflix-dating/NetflixLogo.svg"
-              alt="Project preview"
-              width={300}
-              height={600}
-              className=""
-            />
-            <h2 className=" text-4xl text-white -mt-5">Retreat</h2>
-            <h3 className="text-2xl font-medium text-left">
-              Discover your cure through scientifically guided wellness
-              treatments.
-            </h3>
-            <p className="text-white text-left">
-              A travel app for Vegas—disguised as a medical wellness platform.
-              Complete with prescription language, clinical UI, and neon sins
-              glowing beneath the sterile surface.
-            </p>
           </div>
         </div>
       </section>
@@ -647,6 +649,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       <section
         className="min-h-[120vh] pb-20 relative overflow-hidden flex items-center justify-center transition-colors duration-500"
         style={{ backgroundColor: isDark ? "#000000" : "#E4EBFF" }}
+        {...longPressHandlers}
       >
         {/* Center: Title + Toggle */}
         <div className="flex flex-col items-center gap-6 z-10">
@@ -665,14 +668,14 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           >
             Dual Visual Language
           </h1>
-          <button
+          {/* <button
             onClick={() => setIsDark(!isDark)}
             className={`px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
               isDark ? "bg-white text-black" : "bg-black text-white"
             }`}
           >
             {isDark ? "Light" : "Dark"}
-          </button>
+          </button> */}
         </div>
 
         {/* Scattered SVG pairs */}
@@ -709,14 +712,14 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/syringelight.svg"
             darkSrc="/images/vegas/toggles/syringedark.svg"
-            glowColor="#F1BFD9"
+            glowColor="#ED174B"
             width={200}
             height={200}
             delay={0.5}
           />
         </div>
 
-        {/* Star - bottom left */}
+        {/* Star - bottom left (green) */}
         <div
           className="absolute"
           style={{ bottom: "30%", left: "15%", width: 80, height: 80 }}
@@ -726,7 +729,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/starlight.svg"
             darkSrc="/images/vegas/toggles/stardark.svg"
-            glowColor="#FEDCBB"
+            glowColor="#ED174B"
             width={80}
             height={80}
             delay={0.7}
@@ -749,14 +752,14 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/pilllight.svg"
             darkSrc="/images/vegas/toggles/pilldark.svg"
-            glowColor="#F1BFD9"
+            glowColor="#ED174B"
             width={75}
             height={75}
             delay={0.9}
           />
         </div>
 
-        {/* Star - top center-right */}
+        {/* Star - top center-right (blue) */}
         <div
           className="absolute"
           style={{ top: "8%", right: "35%", width: 60, height: 60 }}
@@ -765,8 +768,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             isDark={isDark}
             onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/starlight.svg"
-            darkSrc="/images/vegas/toggles/stardark.svg"
-            glowColor="#FEDCBB"
+            darkSrc="/images/vegas/toggles/stardark-blue.svg"
+            glowColor="#296CB5"
             width={60}
             height={60}
             delay={0.4}
@@ -797,16 +800,85 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         </div>
       </section>
 
-      <section>
+      <section {...longPressHandlers}>
         <HorizontalScroll>
-          <div className="min-w-screen w-screen h-screen bg-[#23577A] flex items-center justify-center flex-shrink-0 1px solid red">
-            <h1 className="display text-white">Design System</h1>
+          <div
+            className="min-w-screen w-screen h-screen flex items-center justify-center shrink-0 transition-colors duration-500 relative overflow-hidden"
+            style={{ backgroundColor: isDark ? "#000000" : "#23577A" }}
+          >
+            <h1
+              className="display transition-all duration-500 z-10"
+              style={
+                isDark
+                  ? {
+                      WebkitTextStroke: "1px #ED174B",
+                      WebkitTextFillColor: "#FEDCBB",
+                      filter:
+                        "drop-shadow(0 0 8px #ED174B) drop-shadow(0 0 25px #ED174B)",
+                    }
+                  : { color: "white", filter: "none" }
+              }
+            >
+              Design System
+            </h1>
+            {/* Dark-only scattered icons */}
+            <div
+              className="absolute transition-opacity duration-700"
+              style={{ top: "15%", left: "12%", opacity: isDark ? 1 : 0 }}
+            >
+              <VectorToggle
+                isDark={isDark}
+                onToggle={() => setIsDark(!isDark)}
+                lightSrc="/images/vegas/toggles/pilllight.svg"
+                darkSrc="/images/vegas/toggles/cigar.svg"
+                glowColor="#ED174B"
+                width={100}
+                height={100}
+                delay={0.2}
+              />
+            </div>
+            <div
+              className="absolute transition-opacity duration-700"
+              style={{
+                bottom: "20%",
+                right: "10%",
+                opacity: isDark ? 1 : 0,
+                transform: "",
+              }}
+            >
+              <VectorToggle
+                isDark={isDark}
+                onToggle={() => setIsDark(!isDark)}
+                lightSrc="/images/vegas/toggles/syringelight.svg"
+                darkSrc="/images/vegas/toggles/powder.svg"
+                glowColor="##ED174B"
+                width={80}
+                height={80}
+                delay={0.4}
+              />
+            </div>
+            <div
+              className="absolute transition-opacity duration-700"
+              style={{ top: "10%", right: "20%", opacity: isDark ? 1 : 0 }}
+            >
+              <VectorToggle
+                isDark={isDark}
+                onToggle={() => setIsDark(!isDark)}
+                lightSrc="/images/vegas/toggles/starlight.svg"
+                darkSrc="/images/vegas/toggles/stardark-pink.svg"
+                glowColor="#ED174B"
+                width={50}
+                height={50}
+                delay={0.6}
+              />
+            </div>
           </div>
-          <div className="min-w-screen w-screen h-screen flex-shrink-0">
+          <div className="min-w-screen w-screen h-screen shrink-0">
             <TypographySection
               data={vegasTypography}
-              bgColor="#E4EBFF"
-              textColor="#000000"
+              bgColor={isDark ? "#000000" : "#E4EBFF"}
+              textColor={isDark ? "#FEDCBB" : "#000000"}
+              isDark={isDark}
             />
           </div>
           <div className="min-w-screen w-screen h-screen shrink-0">
@@ -823,7 +895,10 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         </HorizontalScroll>
       </section>
 
-      <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
+      <section
+        className="min-h-screen bg-[#23577A] flex items-center justify-center"
+        {...longPressHandlers}
+      >
         <h1 className="display text-white">Reception</h1>
       </section>
       <section></section>

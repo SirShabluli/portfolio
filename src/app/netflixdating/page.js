@@ -32,16 +32,42 @@ export default function NetflixDatingPage() {
   return (
     <>
       {/* Project Intro Section */}
-      <section className="bg-black py-20 px-8 min-h-screen text-white">
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center">
-          {/* Left side images */}
-          <div className="col-span-3 flex flex-col gap-4">
-            <div className="col-span-3 flex flex-col gap-4">
-              {" "}
-              {/* המעטפת הכללית של כל הבלוק */}
-              {/* דוגמה לזוג אחד - תחזור על זה עבור כל נתון */}
+      <section className="px-8 min-h-screen text-white relative overflow-hidden flex items-center justify-center">
+        <Image
+          src="/images/netflix-dating/pajamaGrid.png"
+          alt=""
+          fill
+          className="object-cover opacity-10 pointer-events-none"
+        />
+        <div
+          className="absolute inset-0 pointer-events-none z-1"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 30%, black 100%)",
+          }}
+        />
+        <div className="grid grid-cols-12  gap-8 max-w-7xl mx-auto items-center relative z-10">
+          {/* Netflix Logo */}
+          <div className=" col-span-6 col-start-4 flex flex-col gap-7 justify-center items-center">
+            <Image
+              src="/images/netflix-dating/NetflixLogo.svg"
+              alt="Project preview"
+              width={600}
+              height={1200}
+              className="w-full h-auto"
+            />
+            <h2 className=" text-6xl text-red-500 -mt-5">Dating</h2>
+          </div>
+          {/* Center - Title, Description */}
+          <div className="col-span-6 col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
+            <h3 className="text-xl font-medium text-left"></h3>
+            <p className="text-lg font-medium text-white text-left">
+              What if Netflix made a dating app? Illustrated UI exploring
+              comfort-based connection over performative attraction.
+            </p>
+            <div className="flex flex-row gap-10 mt-10 text-left w-full ">
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-medium  tracking-wider opacity-60">
+                <p className="text-sm font-medium tracking-wider opacity-60">
                   role
                 </p>
                 <p className="text-sm font-medium text-white">
@@ -49,7 +75,7 @@ export default function NetflixDatingPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-medium  tracking-wider opacity-60">
+                <p className="text-sm font-medium tracking-wider opacity-60">
                   Course
                 </p>
                 <p className="text-sm text-white font-medium leading-tight">
@@ -57,61 +83,22 @@ export default function NetflixDatingPage() {
                 </p>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-sm font-medium  tracking-wider opacity-60">
+                <p className="text-sm font-medium tracking-wider opacity-60">
                   Year
                 </p>
                 <p className="text-sm font-medium text-white leading-tight">
                   2025 (4th year, parallel to graduation project)
                 </p>
               </div>
+              <div className="flex flex-col gap-1">
+                <p className="text-sm font-medium tracking-wider opacity-60">
+                  Duration
+                </p>
+                <p className="text-sm text-white font-medium leading-tight">
+                  1 month
+                </p>
+              </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <p className="text-sm font-medium  tracking-wider opacity-60">
-                Duartion
-              </p>
-              <p className="text-sm text-white font-medium leading-tight">
-                1 month
-              </p>
-            </div>
-            {/* אפשר להוסיף תמונות כאן */}
-          </div>
-
-          {/* Center - Title, Image, Description */}
-          <div className="col-span-5 flex flex-col items-center text-center gap-8">
-            <Image
-              src="/images/netflix-dating/NetflixLogo.svg"
-              alt="Project preview"
-              width={300}
-              height={600}
-              className=""
-            />
-            <h2 className=" text-4xl text-red-500 -mt-5">Dating</h2>
-            <h3 className="text-2xl font-medium text-left">
-              What if Netflix decided to create a dating app?
-            </h3>
-            <p className="text-white text-left">
-              A fictional dating app where matching happens over shared watch
-              lists, not gym selfies. Illustrated UI concept exploring what
-              happens when comfort replaces performance.
-            </p>
-          </div>
-
-          {/* Right side images */}
-          <div className="col-span-3 flex flex-col gap-0">
-            <Image
-              src="/images/netflix-dating/pajama1.svg"
-              alt="Project preview"
-              width={600}
-              height={600}
-              className=""
-            />
-            <Image
-              src="/images/netflix-dating/pajama2.svg"
-              alt="Project preview"
-              width={400}
-              height={600}
-              className=""
-            />
           </div>
         </div>
       </section>
@@ -131,7 +118,7 @@ export default function NetflixDatingPage() {
             <div
               className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
             >
-              <span data-animate="2" data-animation="fade">
+              <span data-animation="fade">
                 <TextBlock label="the challenge" title="easy connections">
                   In the Netflix world, there are many types of connections. The
                   challenge was to find something that conveys the idea of two
@@ -139,7 +126,7 @@ export default function NetflixDatingPage() {
                   universal, without relying on niche concepts.
                 </TextBlock>
               </span>
-              <span data-animate="3" data-animation="fade">
+              <span data-animation="fade">
                 <TextBlock label="My Solution" title="obvious connection">
                   {`Your couch is perfectly adjusted - the angles, the cushions, the softness.
 

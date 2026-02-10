@@ -2,7 +2,15 @@
 import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 
-export default function ColorPalette({ colors, isDark = true, description, darkTextStyle, onToggle, lightBgColor, lightTextColor }) {
+export default function ColorPalette({
+  colors,
+  isDark = true,
+  description,
+  darkTextStyle,
+  onToggle,
+  lightBgColor,
+  lightTextColor,
+}) {
   const containerRef = useRef(null);
   const [activeColorId, setActiveColorId] = useState(null);
 
@@ -11,26 +19,34 @@ export default function ColorPalette({ colors, isDark = true, description, darkT
   return (
     <section
       className={`grid grid-cols-12 w-full h-full py-24 px-12 items-start justify-center transition-colors duration-500 ${
-        isDark ? "text-white" : (lightTextColor ? "" : "text-black")
+        isDark ? "text-white" : lightTextColor ? "" : "text-black"
       }`}
       style={{
-        backgroundColor: isDark ? "#000000" : (lightBgColor || "#FFFFFF"),
-        ...((!isDark && lightTextColor) ? { color: lightTextColor } : {}),
+        backgroundColor: isDark ? "#000000" : lightBgColor || "#FFFFFF",
+        ...(!isDark && lightTextColor ? { color: lightTextColor } : {}),
       }}
     >
       {/* כותרת וטקסט בצד שמאל */}
       <div className="col-span-3 space-y-8">
         <span
           className="text-[46px] font-medium"
-          style={hasDarkStyle ? {
-            WebkitTextStroke: `1px ${darkTextStyle.strokeColor}`,
-            WebkitTextFillColor: darkTextStyle.fillColor,
-          } : {}}
+          style={
+            hasDarkStyle
+              ? {
+                  WebkitTextStroke: `1px ${darkTextStyle.strokeColor}`,
+                  WebkitTextFillColor: darkTextStyle.fillColor,
+                }
+              : {}
+          }
         >
           Colour
         </span>
-        <p className="text-sm w-[70%] leading-relaxed" style={hasDarkStyle ? { color: darkTextStyle.fillColor } : {}}>
-          {description || "Keeping the same theme of Netflix while adding warmth and prestige"}
+        <p
+          className="text-sm w-[70%] leading-relaxed"
+          style={hasDarkStyle ? { color: darkTextStyle.fillColor } : {}}
+        >
+          {description ||
+            "Keeping the same theme of Netflix while adding warmth and prestige"}
         </p>
         {onToggle && (
           <button
@@ -112,7 +128,12 @@ function ColorStrip({ color, isActive, onClick }) {
       onMouseLeave={() => setIsHovered(false)}
       onClick={onClick}
       className="relative flex-grow cursor-pointer overflow-hidden"
-      style={{ backgroundColor: color.hex }}
+      style={{
+        backgroundColor: color.hex,
+        ...(color.border
+          ? { border: `1px solid rgba(255, 255, 255, 0.15)` }
+          : {}),
+      }}
     >
       {/* פרטי הצבע שמופיעים ב-Hover */}
       <div

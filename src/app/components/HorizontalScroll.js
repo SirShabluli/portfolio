@@ -26,7 +26,7 @@ export default function HorizontalScroll({ children }) {
           end: () => `+=${totalWidth}`,
           pin: true,
           scrub: true,
-          markers: true,
+          markers: false,
           invalidateOnRefresh: true,
         },
       });
