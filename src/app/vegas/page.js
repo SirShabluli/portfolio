@@ -649,6 +649,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         <VectorToggle
           isDark={isDark}
           onToggle={() => setIsDark(!isDark)}
+          lightSrc="/images/vegas/toggles/pilllight.svg"
+          darkSrc="/images/vegas/toggles/pilldark.svg"
           glowColor="#ED174B"
         />
       </section>
