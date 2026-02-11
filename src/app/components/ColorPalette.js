@@ -131,7 +131,7 @@ function ColorStrip({ color, isActive, onClick }) {
       style={{
         backgroundColor: color.hex,
         ...(color.border
-          ? { border: `1px solid rgba(255, 255, 255, 0.15)` }
+          ? { border: `1px solid rgba(255, 255, 255, 0.5)` }
           : {}),
       }}
     >

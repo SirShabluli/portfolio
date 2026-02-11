@@ -201,6 +201,36 @@ export const vegasDarkColors = [
   },
 ];
 
+export const toiletTypography = {
+  fonts: [
+    {
+      id: 1,
+      name: "Dokdo",
+      weight: "400",
+      weightName: "Regular",
+      fontFamily: "var(--font-dokdo)",
+      description: "Bold and raw, used for headlines — feels like bathroom wall graffiti",
+    },
+    {
+      id: 2,
+      name: "Reenie Beanie",
+      weight: "400",
+      weightName: "Regular",
+      fontFamily: "var(--font-reenie-beanie)",
+      description: "Handwritten and casual, used for subheadings and playful notes",
+    },
+  ],
+};
+
+export const toiletColors = [
+  { id: 1, name: "White", hex: "#FFFFFF", description: "Background", textColor: "black" },
+  { id: 2, name: "Black", hex: "#000000", description: "Primary text", textColor: "white" },
+  { id: 3, name: "Tile Blue", hex: "#5B9BD5", description: "Bathroom tile accent", textColor: "white" },
+  { id: 4, name: "Flush Green", hex: "#70AD47", description: "Playful highlight", textColor: "white" },
+  { id: 5, name: "Warning Yellow", hex: "#FFC000", description: "Attention grabber", textColor: "black" },
+  { id: 6, name: "Stall Grey", hex: "#A5A5A5", description: "Neutral support", textColor: "black" },
+];
+
 export const netflixColors = [
   {
     id: 1,
