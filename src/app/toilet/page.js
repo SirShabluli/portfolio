@@ -34,6 +34,7 @@ export default function Page() {
           pin: true,
           scrub: 0.3,
           refreshPriority: 1,
+          anticipatePin: 1,
         },
       });
 
@@ -313,7 +314,7 @@ export default function Page() {
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative">
           <div
             ref={challengeRef}
-            className="z-20 col-span-3 col-start-2 opacity-0 flex items-center"
+            className="z-20 col-span-3 col-start-2 flex items-center"
           >
             <TextBlock label="The Challenge" title="Cynics Don't Click">
               When people approach embarrassing projects, there&apos;s a natural
