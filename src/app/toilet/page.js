@@ -29,7 +29,7 @@ export default function Page() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinSectionRef.current,
-          start: "center center",
+          start: "top top",
           end: "+=80%",
           pin: true,
           scrub: 0.3,
