@@ -209,7 +209,8 @@ export const toiletTypography = {
       weight: "400",
       weightName: "Regular",
       fontFamily: "var(--font-dokdo)",
-      description: "Bold and raw, used for headlines — feels like bathroom wall graffiti",
+      description:
+        "Bold and raw, used for headlines — feels like bathroom wall graffiti",
     },
     {
       id: 2,
@@ -217,18 +218,70 @@ export const toiletTypography = {
       weight: "400",
       weightName: "Regular",
       fontFamily: "var(--font-reenie-beanie)",
-      description: "Handwritten and casual, used for subheadings and playful notes",
+      description:
+        "Handwritten and casual, used for subheadings and playful notes",
     },
   ],
 };
 
 export const toiletColors = [
-  { id: 1, name: "White", hex: "#FFFFFF", description: "Background", textColor: "black" },
-  { id: 2, name: "Black", hex: "#000000", description: "Primary text", textColor: "white" },
-  { id: 3, name: "Tile Blue", hex: "#5B9BD5", description: "Bathroom tile accent", textColor: "white" },
-  { id: 4, name: "Flush Green", hex: "#70AD47", description: "Playful highlight", textColor: "white" },
-  { id: 5, name: "Warning Yellow", hex: "#FFC000", description: "Attention grabber", textColor: "black" },
-  { id: 6, name: "Stall Grey", hex: "#A5A5A5", description: "Neutral support", textColor: "black" },
+  {
+    id: 1,
+    name: "White",
+    hex: "#FFFFFF",
+    description: "Background",
+    textColor: "black",
+    border: true,
+  },
+  {
+    id: 2,
+    name: "Black",
+    hex: "#000000",
+    description: "Primary text",
+    textColor: "white",
+  },
+  {
+    id: 3,
+    name: "Flush Red",
+    hex: "#d40005",
+    description: "Bathroom tile accent",
+    textColor: "white",
+  },
+  {
+    id: 4,
+    name: "Vibrant Pink",
+    hex: "#ff0049",
+    description: "Playful detail",
+    textColor: "white",
+  },
+  {
+    id: 5,
+    name: "Sunny Yellow",
+    hex: "#ffff39",
+    description: "Attention grabber",
+    textColor: "black",
+  },
+  {
+    id: 6,
+    name: "Soft Yellow",
+    hex: "#ffe98a",
+    description: "Warm highlight",
+    textColor: "black",
+  },
+  {
+    id: 7,
+    name: "Cool Blue",
+    hex: "#3c50a2",
+    description: "Warm highlight",
+    textColor: "white",
+  },
+  {
+    id: 8,
+    name: "fucshia Pink",
+    hex: "#ff0080",
+    description: "Warm highlight",
+    textColor: "black",
+  },
 ];
 
 export const netflixColors = [

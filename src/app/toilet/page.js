@@ -310,59 +310,17 @@ export default function Page() {
           className="absolute inset-0 bg-black z-10 pointer-events-none"
           style={{ opacity: 0 }}
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
-          <div className="relative flex items-center justify-center">
-            <span
-              ref={readyRef}
-              className="absolute text-white text-7xl opacity-0"
-              style={{ fontFamily: "var(--font-dokdo)" }}
-            >
-              Ready...
-            </span>
-            <span
-              ref={setRef}
-              className="absolute text-white text-7xl opacity-0"
-              style={{ fontFamily: "var(--font-dokdo)" }}
-            >
-              Set...
-            </span>
-            <span
-              ref={goRef}
-              className="absolute text-white text-7xl opacity-0"
-              style={{ fontFamily: "var(--font-dokdo)" }}
-            >
-              Go!
-            </span>
-          </div>
-          <div ref={frameContainerRef} className="relative mt-4 opacity-0">
-            <Image
-              src="/images/toilet/frame.svg"
-              alt="Frame"
-              width={300}
-              height={300}
-              className="absolute top-0 left-1/2 -translate-x-1/2 invert"
-            />
-            <Image
-              ref={arrowRef}
-              src="/images/toilet/arrough.svg"
-              alt="Arrow"
-              width={300}
-              height={300}
-              style={{ clipPath: "inset(0 0 0 0)" }}
-            />
-          </div>
-        </div>
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative ">
+        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative">
           <div
             ref={challengeRef}
-            className="z-20 col-span-2 col-start-2 opacity-0"
+            className="z-20 col-span-2 col-start-2 opacity-0 flex items-center"
           >
             <TextBlock label="The Challenge" title="Cynics Don't Click">
               When people approach embarrassing projects, there&apos;s a natural
               distance. A protective layer of cynicism.
             </TextBlock>
           </div>
-          <div className="col-span-3 p-5 col-start-5 flex items-center z-2 justify-center">
+          <div className="col-span-3 p-5 col-start-5 row-start-1 flex items-center z-2 justify-center">
             <Image
               src="/images/toilet/Asla.svg"
               alt="Asla illustration"
@@ -370,6 +328,48 @@ export default function Page() {
               height={300}
               className="w-auto h-auto"
             />
+          </div>
+          <div className="col-span-3 col-start-5 row-start-1 z-30 flex flex-col items-center justify-center pointer-events-none">
+            <div className="relative flex items-center justify-center">
+              <span
+                ref={readyRef}
+                className="absolute text-white text-7xl opacity-0"
+                style={{ fontFamily: "var(--font-dokdo)" }}
+              >
+                Ready...
+              </span>
+              <span
+                ref={setRef}
+                className="absolute text-white text-7xl opacity-0"
+                style={{ fontFamily: "var(--font-dokdo)" }}
+              >
+                Set...
+              </span>
+              <span
+                ref={goRef}
+                className="absolute text-white text-7xl opacity-0"
+                style={{ fontFamily: "var(--font-dokdo)" }}
+              >
+                Go!
+              </span>
+            </div>
+            <div ref={frameContainerRef} className="relative mt-4 opacity-0">
+              <Image
+                src="/images/toilet/frame.svg"
+                alt="Frame"
+                width={300}
+                height={300}
+                className="absolute top-0 left-1/2 -translate-x-1/2 invert"
+              />
+              <Image
+                ref={arrowRef}
+                src="/images/toilet/arrough.svg"
+                alt="Arrow"
+                width={300}
+                height={300}
+                style={{ clipPath: "inset(0 0 0 0)" }}
+              />
+            </div>
           </div>
           <div
             ref={solutionRef}
