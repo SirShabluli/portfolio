@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +9,12 @@ import HorizontalScroll from "../components/HorizontalScroll";
 import TypographySection from "../components/TypographySection";
 import ColorPalette from "../components/ColorPalette";
 import { toiletTypography, toiletColors } from "../../data/projectData";
+
+const inspoImages = [
+  "/images/toilet/toiletinspo.jpg",
+  "/images/toilet/toiletinspo2.jpg",
+  "/images/toilet/toiletinspo3.jpg",
+];
 
 export default function Page() {
   const pinSectionRef = useRef(null);
@@ -20,6 +26,15 @@ export default function Page() {
   const goRef = useRef(null);
   const arrowRef = useRef(null);
   const frameContainerRef = useRef(null);
+  const [activeInspo, setActiveInspo] = useState(0);
+
+  // Auto-cycle inspiration images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveInspo((prev) => (prev + 1) % inspoImages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -32,7 +47,7 @@ export default function Page() {
           start: "top top",
           end: "+=80%",
           pin: true,
-          scrub: 0.3,
+          scrub: 1,
           refreshPriority: 1,
           anticipatePin: 1,
         },
@@ -250,30 +265,30 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section className="bg-white py-12 px-12">
-        <div className="grid grid-cols-12 gap-6 items-center">
-          <div className="col-span-2 col-start-2 flex flex-col gap-4 min-h-screen">
-            <span className="text-5xl font-medium tracking-tight text-black">
-              Inspiration
-            </span>
-            <TextBlock label="" title="" className="text-black">
-              I drew inspiration from the walls of public bathrooms. In clubs
-              and bathroom stalls, people leave messages - creating layers of
-              graffiti and doodles. This allowed me to communicate ideas through
-              humor and simple, playful illustrations. How do I capture the
-              feeling of drawings on bathroom walls without distracting from the
-              actual content?
-            </TextBlock>
-          </div>
-          <div className="col-span-8 col-start-5">
-            <Image
-              src="/images/toilet/toiletinspo.jpg"
-              alt="Inspiration"
-              width={1200}
-              height={800}
-              className="w-full h-auto"
-            />
-          </div>
+      <section className="relative w-full h-[120vh] overflow-hidden">
+        {inspoImages.map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt={`Inspiration ${i + 1}`}
+            fill
+            className="object-cover transition-opacity duration-1000 ease-in-out"
+            style={{ opacity: activeInspo === i ? 1 : 0 }}
+          />
+        ))}
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute bottom-32 left-12 z-10 max-w-md">
+          <span className="text-5xl font-medium tracking-tight text-white">
+            Inspiration
+          </span>
+          <p className="text-sm text-white/90 mt-4 leading-relaxed">
+            I drew inspiration from the walls of public bathrooms. In clubs and
+            bathroom stalls, people leave messages - creating layers of graffiti
+            and doodles. This allowed me to communicate ideas through humor and
+            simple, playful illustrations. How do I capture the feeling of
+            drawings on bathroom walls without distracting from the actual
+            content?
+          </p>
         </div>
       </section>
       {/* Two TextBlocks Section */}
