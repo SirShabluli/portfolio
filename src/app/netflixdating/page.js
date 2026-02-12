@@ -116,7 +116,7 @@ export default function NetflixDatingPage() {
         <section className="section-1">
           <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
+              className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
             >
               <span data-animation="fade">
                 <TextBlock label="the challenge" title="easy connections">
@@ -165,7 +165,7 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
               </span>
             </div>
             <div
-              className={`col-span-2 md:col-span-2 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-3 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
             >
               <span data-animate="2" data-animation="fade">
                 <TextBlock label="the challenge" title="Define 'missing'">
@@ -255,7 +255,7 @@ By mimicking the iconic "Who's Watching?" screen, I created a playful moment of 
         <section className="section-4">
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-3 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock label="The Challenge" title="Defusing Frustration">
@@ -277,7 +277,7 @@ It touches on pains people don't speak about - they might feel guilty, worried t
               className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
             ></div>
             <div
-              className={`pt-50 col-span-3 md:col-span-2 md:col-start-10 ${outline} items-center flex flex-col gap-4`}
+              className={`pt-50 col-span-3 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock label="My Solution" title="Empathy in frustration">
@@ -286,7 +286,7 @@ It touches on pains people don't speak about - they might feel guilty, worried t
                 </TextBlock>
               </span>
 
-              <span data-animate="4" data-animation="fade">
+              <span data-animate="4" data-animation="fade" className="mb-10">
                 <TextBlock label="" title="">
                   {`This shifts blame from user to app - transforming "Why won't you verify me?" into "How dare you think I'm fake?"
 
@@ -317,7 +317,7 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
               </span>
             </div>
             <div
-              className={`col-span-3 md:col-span-2 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-3 md:col-span-3 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
             >
               <span data-animate="2" data-animation="fade">
                 <TextBlock

@@ -14,6 +14,12 @@ export default function Page() {
   const pinSectionRef = useRef(null);
   const challengeRef = useRef(null);
   const solutionRef = useRef(null);
+  const overlayRef = useRef(null);
+  const readyRef = useRef(null);
+  const setRef = useRef(null);
+  const goRef = useRef(null);
+  const arrowRef = useRef(null);
+  const frameContainerRef = useRef(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -24,7 +30,7 @@ export default function Page() {
         scrollTrigger: {
           trigger: pinSectionRef.current,
           start: "top top",
-          end: "+=60%",
+          end: "+=80%",
           pin: true,
           scrub: 0.3,
           refreshPriority: 1,
@@ -35,16 +41,100 @@ export default function Page() {
       tl.fromTo(
         challengeRef.current,
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.4 }
+        { opacity: 1, y: 0, duration: 0.4 },
       );
 
-      // Solution appears after
+      // Overlay fades in + text turns white
+      tl.fromTo(
+        overlayRef.current,
+        { opacity: 0 },
+        { opacity: 0.6, duration: 0.15 },
+        0.2,
+      );
+      tl.to(challengeRef.current, { color: "#ffffff", duration: 0.15 }, 0.2);
+
+      // Solution appears after (already white since overlay is dark)
       tl.fromTo(
         solutionRef.current,
-        { opacity: 0, y: 30 },
+        { opacity: 0, y: 30, color: "#ffffff" },
         { opacity: 1, y: 0, duration: 0.4 },
-        0.5
+        0.5,
       );
+
+      // Arrow wipe loop (empties left-to-right, repeats)
+      const arrowLoop = gsap.timeline({ repeat: -1, paused: true });
+      arrowLoop
+        .set(arrowRef.current, { clipPath: "inset(0 0 0 0)" })
+        .to(arrowRef.current, {
+          clipPath: "inset(0 0 0 100%)",
+          duration: 3,
+          ease: "linear",
+        })
+        .set(arrowRef.current, { clipPath: "inset(0 0 0 0)" });
+
+      // Ready-Set-Go: first "Ready" slams in, then instant loop
+      const introTl = gsap.timeline({ paused: true });
+      introTl
+        .fromTo(
+          readyRef.current,
+          { scale: 0, rotation: -15, opacity: 0 },
+          {
+            scale: 1,
+            rotation: 0,
+            opacity: 1,
+            duration: 0.4,
+            ease: "linear",
+          },
+        )
+        .set(readyRef.current, { opacity: 0 }, "+=0.2")
+        .set(setRef.current, { opacity: 1 })
+        .set(setRef.current, { opacity: 0 }, "+=0.3")
+        .set(goRef.current, { opacity: 1 })
+        .set(goRef.current, { opacity: 0 }, "+=0.3")
+        .call(() => loopTl.play());
+
+      // Instant loop (repeats forever after intro)
+      const loopTl = gsap.timeline({ repeat: -1, paused: true });
+      loopTl
+        .set(readyRef.current, { opacity: 1 })
+        .set(readyRef.current, { opacity: 0 }, 0.3)
+        .set(setRef.current, { opacity: 1 }, 0.3)
+        .set(setRef.current, { opacity: 0 }, 0.6)
+        .set(goRef.current, { opacity: 1 }, 0.6)
+        .set(goRef.current, { opacity: 0 }, 0.9)
+        .set({}, {}, 1.2);
+
+      // Start/stop based on scroll position
+      let hasPlayed = false;
+      ScrollTrigger.create({
+        trigger: pinSectionRef.current,
+        start: "top top",
+        end: "+=80%",
+        onUpdate: (self) => {
+          if (self.progress > 0.5) {
+            if (!hasPlayed) {
+              hasPlayed = true;
+              gsap.set(frameContainerRef.current, { opacity: 1 });
+              introTl.play();
+              arrowLoop.play();
+            } else if (!loopTl.isActive() && !introTl.isActive()) {
+              loopTl.play();
+            }
+          } else {
+            hasPlayed = false;
+            introTl.pause(0);
+            loopTl.pause(0);
+            arrowLoop.pause(0);
+            gsap.set([readyRef.current, setRef.current, goRef.current], {
+              opacity: 0,
+              scale: 1,
+              rotation: 0,
+            });
+            gsap.set(arrowRef.current, { clipPath: "inset(0 0 0 0)" });
+            gsap.set(frameContainerRef.current, { opacity: 0 });
+          }
+        },
+      });
 
       // Refresh so HorizontalScroll below recalculates its position
       ScrollTrigger.refresh();
@@ -191,8 +281,8 @@ export default function Page() {
           <div className="col-span-3 col-start-2">
             <TextBlock label="the challenge" title="uncomfortably inviting">
               Bathrooms are a topic people avoid. When I first pitched the idea,
-              I saw the disgust on my classmates&apos; faces. That&apos;s when I knew I
-              had to take on the challenge: turn something awkward into
+              I saw the disgust on my classmates&apos; faces. That&apos;s when I
+              knew I had to take on the challenge: turn something awkward into
               something humorous and inviting. Get even the most skeptical,
               embarrassed person to engage with the project through humor and
               lightness.
@@ -202,24 +292,77 @@ export default function Page() {
             <TextBlock label="my solution" title="Humor as Permission">
               I decided on a design that felt light and effortless—not trying
               too hard. Lots of humor. Something universal that men could relate
-              to and women could use to understand the mysterious world of men&apos;s
-              bathrooms. The more I playtested, the more I discovered ways to
-              help people disconnect from their hesitation and embarrassment for
-              a moment.
+              to and women could use to understand the mysterious world of
+              men&apos;s bathrooms. The more I playtested, the more I discovered
+              ways to help people disconnect from their hesitation and
+              embarrassment for a moment.
             </TextBlock>
           </div>
         </div>
       </section>
       {/* Two TextBlocks Section 2 - Pinned */}
-      <section ref={pinSectionRef} className="bg-white px-8 min-h-screen text-black flex items-center justify-center">
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full">
-          <div ref={challengeRef} className="col-span-2 col-start-2 opacity-0">
-            <TextBlock label="The Challenge" title="Cynics Don&apos;t Click">
+      <section
+        ref={pinSectionRef}
+        className="bg-white px-8 min-h-screen text-black flex items-center justify-center relative"
+      >
+        <div
+          ref={overlayRef}
+          className="absolute inset-0 bg-black z-10 pointer-events-none"
+          style={{ opacity: 0 }}
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-30 pointer-events-none">
+          <div className="relative flex items-center justify-center">
+            <span
+              ref={readyRef}
+              className="absolute text-white text-7xl opacity-0"
+              style={{ fontFamily: "var(--font-dokdo)" }}
+            >
+              Ready...
+            </span>
+            <span
+              ref={setRef}
+              className="absolute text-white text-7xl opacity-0"
+              style={{ fontFamily: "var(--font-dokdo)" }}
+            >
+              Set...
+            </span>
+            <span
+              ref={goRef}
+              className="absolute text-white text-7xl opacity-0"
+              style={{ fontFamily: "var(--font-dokdo)" }}
+            >
+              Go!
+            </span>
+          </div>
+          <div ref={frameContainerRef} className="relative mt-4 opacity-0">
+            <Image
+              src="/images/toilet/frame.svg"
+              alt="Frame"
+              width={300}
+              height={300}
+              className="absolute top-0 left-1/2 -translate-x-1/2 invert"
+            />
+            <Image
+              ref={arrowRef}
+              src="/images/toilet/arrough.svg"
+              alt="Arrow"
+              width={300}
+              height={300}
+              style={{ clipPath: "inset(0 0 0 0)" }}
+            />
+          </div>
+        </div>
+        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative ">
+          <div
+            ref={challengeRef}
+            className="z-20 col-span-2 col-start-2 opacity-0"
+          >
+            <TextBlock label="The Challenge" title="Cynics Don't Click">
               When people approach embarrassing projects, there&apos;s a natural
-              distance. A protective layer of cynicism.{" "}
+              distance. A protective layer of cynicism.
             </TextBlock>
           </div>
-          <div className="col-span-3 p-5 col-start-5 flex items-center justify-center">
+          <div className="col-span-3 p-5 col-start-5 flex items-center z-2 justify-center">
             <Image
               src="/images/toilet/Asla.svg"
               alt="Asla illustration"
@@ -228,7 +371,10 @@ export default function Page() {
               className="w-auto h-auto"
             />
           </div>
-          <div ref={solutionRef} className="col-span-2 col-start-9 opacity-0">
+          <div
+            ref={solutionRef}
+            className="z-20 col-span-2 col-start-9 opacity-0"
+          >
             <TextBlock label="My Solution" title="Countdown to Commitment">
               I created a timed urinal selection game. The countdown creates
               urgency. The timer removes hesitation. Even the most distant,
