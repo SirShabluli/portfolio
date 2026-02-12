@@ -3,7 +3,12 @@ import { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import Button from "./Button";
 
-export default function TypographySection({ data, bgColor = "black", textColor = "white", isDark = false }) {
+export default function TypographySection({
+  data,
+  bgColor = "black",
+  textColor = "white",
+  isDark = false,
+}) {
   // Hardcoded alphabet, numbers, and symbols - same for all fonts
   const alphabet =
     "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz";
@@ -22,7 +27,7 @@ export default function TypographySection({ data, bgColor = "black", textColor =
       opacity: 0,
       filter: "blur(15px)", // הטקסט מיטשטש
       scale: 0.98, // מתכווץ טיפה
-      duration: 0.7,
+      duration: 0.4,
       ease: "power2.in",
     })
       .to(
@@ -45,7 +50,7 @@ export default function TypographySection({ data, bgColor = "black", textColor =
         filter: "blur(0px)",
         scale: 1,
         duration: 0.6,
-        ease: "back.out(1.7)", // נותן קפיצה קטנה בסוף
+        ease: "power2.out",
       })
       .fromTo(
         descriptionRef.current,
@@ -56,7 +61,10 @@ export default function TypographySection({ data, bgColor = "black", textColor =
   };
 
   return (
-    <section className="grid grid-cols-12 w-full min-h-screen py-24 px-12 gap-y-12 transition-colors duration-500" style={{ backgroundColor: bgColor, color: textColor }}>
+    <section
+      className="grid grid-cols-12 w-full min-h-screen py-24 px-12 gap-y-12 transition-colors duration-500"
+      style={{ backgroundColor: bgColor, color: textColor }}
+    >
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}
       <div className="col-span-3 col-start-1 flex flex-col gap-4">
         <span className="text-[46px] font-medium tracking-tight">
@@ -75,8 +83,17 @@ export default function TypographySection({ data, bgColor = "black", textColor =
           {data.fonts.map((font) => (
             <Button
               key={font.id}
-              variant={selectedFont.id === font.id ? "outline" : "unselected"}
-              onClick={() => changeFont(font)}
+              variant={
+                selectedFont.id === font.id
+                  ? isDark
+                    ? "white-selected"
+                    : "black-selected"
+                  : isDark
+                    ? "white-unselected"
+                    : "black-unselected"
+              }
+              onClick={() => selectedFont.id !== font.id && changeFont(font)}
+              size="small"
             >
               {font.name} {font.weightName}
             </Button>

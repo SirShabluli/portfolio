@@ -69,6 +69,7 @@ export default function ColorPalette({
           <ColorStrip
             key={color.id}
             color={color}
+            isDark={isDark}
             isActive={activeColorId === color.id}
             onClick={() =>
               setActiveColorId(activeColorId === color.id ? null : color.id)
@@ -80,7 +81,7 @@ export default function ColorPalette({
   );
 }
 
-function ColorStrip({ color, isActive, onClick }) {
+function ColorStrip({ color, isDark, isActive, onClick }) {
   const contentRef = useRef(null);
   const stripRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -131,7 +132,7 @@ function ColorStrip({ color, isActive, onClick }) {
       style={{
         backgroundColor: color.hex,
         ...(color.border
-          ? { border: `1px solid rgba(255, 255, 255, 0.5)` }
+          ? { border: `1px solid rgba(${isDark ? "255, 255, 255" : "0, 0, 0"}, 0.5)` }
           : {}),
       }}
     >

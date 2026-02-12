@@ -38,6 +38,12 @@ export default function Button({
       "bg-transparent text-white border border-white hover:bg-white hover:text-black",
     unselected:
       "bg-white/40 text-black hover:bg-white hover:text-black hover:border-white",
+    "white-selected": "bg-white text-black",
+    "white-unselected":
+      "bg-transparent text-white border border-white hover:bg-white hover:text-white",
+    "black-selected": "bg-black text-white",
+    "black-unselected":
+      "bg-transparent text-black border border-black hover:bg-black hover:text-white",
   };
 
   return (

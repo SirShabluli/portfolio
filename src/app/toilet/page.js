@@ -29,7 +29,7 @@ export default function Page() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: pinSectionRef.current,
-          start: "top top",
+          start: "center center",
           end: "+=80%",
           pin: true,
           scrub: 0.3,
@@ -40,7 +40,7 @@ export default function Page() {
       // Challenge appears at the start
       tl.fromTo(
         challengeRef.current,
-        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0 },
         { opacity: 1, y: 0, duration: 0.4 },
       );
 
@@ -53,13 +53,7 @@ export default function Page() {
       );
       tl.to(challengeRef.current, { color: "#ffffff", duration: 0.15 }, 0.2);
 
-      // Solution appears after (already white since overlay is dark)
-      tl.fromTo(
-        solutionRef.current,
-        { opacity: 0, y: 30, color: "#ffffff" },
-        { opacity: 1, y: 0, duration: 0.4 },
-        0.5,
-      );
+      // Solution will appear together with Ready-Set-Go (triggered via ScrollTrigger callback)
 
       // Arrow wipe loop (empties left-to-right, repeats)
       const arrowLoop = gsap.timeline({ repeat: -1, paused: true });
@@ -82,8 +76,8 @@ export default function Page() {
             scale: 1,
             rotation: 0,
             opacity: 1,
-            duration: 0.4,
-            ease: "linear",
+            duration: 0.15,
+            ease: "back.out(1.7)",
           },
         )
         .set(readyRef.current, { opacity: 0 }, "+=0.2")
@@ -115,6 +109,11 @@ export default function Page() {
             if (!hasPlayed) {
               hasPlayed = true;
               gsap.set(frameContainerRef.current, { opacity: 1 });
+              gsap.fromTo(
+                solutionRef.current,
+                { opacity: 0, color: "#ffffff" },
+                { opacity: 1, duration: 0.3 },
+              );
               introTl.play();
               arrowLoop.play();
             } else if (!loopTl.isActive() && !introTl.isActive()) {
@@ -132,6 +131,7 @@ export default function Page() {
             });
             gsap.set(arrowRef.current, { clipPath: "inset(0 0 0 0)" });
             gsap.set(frameContainerRef.current, { opacity: 0 });
+            gsap.set(solutionRef.current, { opacity: 0 });
           }
         },
       });
@@ -313,7 +313,7 @@ export default function Page() {
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative">
           <div
             ref={challengeRef}
-            className="z-20 col-span-2 col-start-2 opacity-0 flex items-center"
+            className="z-20 col-span-3 col-start-2 opacity-0 flex items-center"
           >
             <TextBlock label="The Challenge" title="Cynics Don't Click">
               When people approach embarrassing projects, there&apos;s a natural
@@ -373,7 +373,7 @@ export default function Page() {
           </div>
           <div
             ref={solutionRef}
-            className="z-20 col-span-2 col-start-9 opacity-0"
+            className="z-20 col-span-3 col-start-9 opacity-0 flex items-center"
           >
             <TextBlock label="My Solution" title="Countdown to Commitment">
               I created a timed urinal selection game. The countdown creates

@@ -10,7 +10,7 @@ export default function TextBlock({
   return (
     <div className={`flex flex-col ${className}`}>
       {label && <span className="text-sm italic opacity-50 ">{label}</span>}
-      {title && <span className="text-2xl font-bold  ">{title}</span>}
+      {title && <span className="text-lg font-bold  ">{title}</span>}
       {children && (
         <p
           className="mt-2 text-sm font-medium whitespace-pre-line"
