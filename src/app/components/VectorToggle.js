@@ -3,7 +3,6 @@ import Image from "next/image";
 
 export default function VectorToggle({
   isDark,
-  onToggle,
   lightSrc = "/images/vegas/light-icon.svg",
   darkSrc = "/images/vegas/dark-icon.svg",
   glowColor = "#ED174B",
@@ -12,9 +11,7 @@ export default function VectorToggle({
   delay = 0,
 }) {
   return (
-    <button
-      onClick={onToggle}
-      className="cursor-pointer"
+    <div
       style={{ position: "relative", width, height }}
     >
       {/* Light mode icon */}
@@ -50,6 +47,6 @@ export default function VectorToggle({
             : "none",
         }}
       />
-    </button>
+    </div>
   );
 }

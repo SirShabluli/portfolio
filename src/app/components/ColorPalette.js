@@ -48,16 +48,6 @@ export default function ColorPalette({
           {description ||
             "Keeping the same theme of Netflix while adding warmth and prestige"}
         </p>
-        {onToggle && (
-          <button
-            onClick={onToggle}
-            className={`px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
-              isDark ? "bg-white text-black" : "bg-black text-white"
-            }`}
-          >
-            {isDark ? "Light" : "Dark"}
-          </button>
-        )}
       </div>
 
       {/* קונטיינר הסטריפים - עמודות 4-12 */}
@@ -132,7 +122,9 @@ function ColorStrip({ color, isDark, isActive, onClick }) {
       style={{
         backgroundColor: color.hex,
         ...(color.border
-          ? { border: `1px solid rgba(${isDark ? "255, 255, 255" : "0, 0, 0"}, 0.5)` }
+          ? {
+              border: `1px solid rgba(${isDark ? "255, 255, 255" : "0, 0, 0"}, 0.5)`,
+            }
           : {}),
       }}
     >

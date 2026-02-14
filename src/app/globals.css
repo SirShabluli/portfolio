@@ -94,6 +94,15 @@ body {
    DESIGN SYSTEM - Typography Utilities
    =========================================== */
 
+@keyframes pulse-toggle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.pulse-toggle {
+  animation: pulse-toggle 1.5s ease-in-out infinite;
+}
+
 @layer utilities {
   /* Display - Hero titles */
   .display {

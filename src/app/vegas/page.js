@@ -23,7 +23,9 @@ export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
   const phoneImagesRef = useRef(null);
   const largeImagesRef = useRef(null);
-  const longPressTimer = useRef(null);
+  const dualSectionRef = useRef(null);
+  const [showToggle, setShowToggle] = useState(false);
+  const [hasToggled, setHasToggled] = useState(false);
 
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
@@ -69,19 +71,21 @@ export default function VegasPage() {
         },
       });
     }
+
+    // Show toggle when reaching Dual Visual Language section
+    if (dualSectionRef.current) {
+      ScrollTrigger.create({
+        trigger: dualSectionRef.current,
+        start: "top 80%",
+        onEnter: () => setShowToggle(true),
+        onLeaveBack: () => setShowToggle(false),
+      });
+    }
   }, []);
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
-  const longPressHandlers = {
-    onMouseDown: () => {
-      longPressTimer.current = setTimeout(() => {
-        setIsDark((prev) => !prev);
-      }, 500);
-    },
-    onMouseUp: () => clearTimeout(longPressTimer.current),
-    onMouseLeave: () => clearTimeout(longPressTimer.current),
-  };
+  const longPressHandlers = {};
 
   // Configuration for each section
   const sections = [
@@ -94,6 +98,25 @@ export default function VegasPage() {
 
   return (
     <>
+      {/* Fixed Day/Night Toggle */}
+      <div
+        className={`fixed bottom-10 left-10 z-50 transition-opacity duration-500 ${
+          showToggle
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <DayNightToggle
+          isDark={isDark}
+          scale={1.1}
+          pulse={showToggle && !hasToggled}
+          onToggle={() => {
+            setIsDark(!isDark);
+            setHasToggled(true);
+          }}
+        />
+      </div>
+
       {/* Project Intro Section */}
       <section className="bg-[#23577A] px-8 min-h-screen text-white flex items-center justify-center">
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
@@ -640,6 +663,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Dual Visual Language Section */}
       <section
+        ref={dualSectionRef}
         className="min-h-[120vh] pb-20 relative overflow-hidden flex items-center justify-center transition-colors duration-500"
         style={{ backgroundColor: isDark ? "#000000" : "#E4EBFF" }}
         {...longPressHandlers}
@@ -669,7 +693,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           >
             {isDark ? "Light" : "Dark"}
           </button> */}
-          <DayNightToggle isDark={isDark} onToggle={() => setIsDark(!isDark)} />
+          {/* Toggle moved to fixed position */}
         </div>
 
         {/* Scattered SVG pairs */}
@@ -680,7 +704,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <VectorToggle
             isDark={isDark}
-            onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/pilllight.svg"
             darkSrc="/images/vegas/toggles/pilldark.svg"
             glowColor="#ED174B"
@@ -703,7 +726,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <VectorToggle
             isDark={isDark}
-            onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/syringelight.svg"
             darkSrc="/images/vegas/toggles/syringedark.svg"
             glowColor="#ED174B"
@@ -720,7 +742,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <VectorToggle
             isDark={isDark}
-            onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/starlight.svg"
             darkSrc="/images/vegas/toggles/stardark.svg"
             glowColor="#ED174B"
@@ -743,7 +764,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <VectorToggle
             isDark={isDark}
-            onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/pilllight.svg"
             darkSrc="/images/vegas/toggles/pilldark.svg"
             glowColor="#ED174B"
@@ -760,7 +780,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <VectorToggle
             isDark={isDark}
-            onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/starlight.svg"
             darkSrc="/images/vegas/toggles/stardark-blue.svg"
             glowColor="#296CB5"
@@ -783,7 +802,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         >
           <VectorToggle
             isDark={isDark}
-            onToggle={() => setIsDark(!isDark)}
             lightSrc="/images/vegas/toggles/syringelight.svg"
             darkSrc="/images/vegas/toggles/syringedark.svg"
             glowColor="#ED174B"
