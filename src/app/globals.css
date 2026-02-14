@@ -100,7 +100,7 @@ body {
 }
 
 .pulse-toggle {
-  animation: pulse-toggle 1.5s ease-in-out infinite;
+  animation: pulse-toggle 1.5s ease-in-out infinite !important;
 }
 
 @layer utilities {
