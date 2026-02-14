@@ -8,7 +8,7 @@ export default function TextBlock({
   maxWidth = "100%", // אפשר להעביר max-w-[70%] וכו'
 }) {
   return (
-    <div className={`flex flex-col gap-0  ${className}`}>
+    <div className={`flex flex-col   ${className}`}>
       {label && (
         <span className="text-xs font-medium opacity-50 ">{label}</span>
       )}

@@ -17,6 +17,7 @@ import Lauryl from "../components/Lauryl";
 import HorizontalScroll from "../components/HorizontalScroll";
 import TextBlock from "../components/TextBlock";
 import VectorToggle from "../components/VectorToggle";
+import DayNightToggle from "../components/DayNightToggle";
 
 export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
@@ -668,6 +669,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           >
             {isDark ? "Light" : "Dark"}
           </button> */}
+          <DayNightToggle isDark={isDark} onToggle={() => setIsDark(!isDark)} />
         </div>
 
         {/* Scattered SVG pairs */}
@@ -682,8 +684,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             lightSrc="/images/vegas/toggles/pilllight.svg"
             darkSrc="/images/vegas/toggles/pilldark.svg"
             glowColor="#ED174B"
-            width={90}
-            height={90}
+            width={110}
+            height={110}
             delay={0.3}
           />
         </div>
