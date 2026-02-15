@@ -24,6 +24,7 @@ export default function VegasPage() {
   const phoneImagesRef = useRef(null);
   const largeImagesRef = useRef(null);
   const dualSectionRef = useRef(null);
+  const keyInsightsRef = useRef(null);
   const [showToggle, setShowToggle] = useState(false);
   const [hasToggled, setHasToggled] = useState(false);
 
@@ -80,9 +81,19 @@ export default function VegasPage() {
     if (dualSectionRef.current) {
       ScrollTrigger.create({
         trigger: dualSectionRef.current,
-        start: "top 80%",
+        start: "top top",
         onEnter: () => setShowToggle(true),
         onLeaveBack: () => setShowToggle(false),
+      });
+    }
+
+    // Hide toggle when Key Insights section reaches bottom of viewport
+    if (keyInsightsRef.current) {
+      ScrollTrigger.create({
+        trigger: keyInsightsRef.current,
+        start: "top bottom-=5%",
+        onEnter: () => setShowToggle(false),
+        onLeaveBack: () => setShowToggle(true),
       });
     }
   }, []);
@@ -104,7 +115,7 @@ export default function VegasPage() {
     <>
       {/* Fixed Day/Night Toggle */}
       <div
-        className={`fixed bottom-10 left-10 z-50 transition-opacity duration-500 ${
+        className={`fixed bottom-10 left-10 z-50 transition-opacity duration-300 ${
           showToggle
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
@@ -937,6 +948,29 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             />
           </div>
         </HorizontalScroll>
+      </section>
+
+      {/* Key Insights Section */}
+      <section
+        ref={keyInsightsRef}
+        className="min-h-screen bg-[#23577A] text-white py-24 "
+      >
+        <div className="grid grid-cols-12 gap-8 px-12">
+          <div className="col-span-5 md:col-span-5 md:col-start-2 mb-16">
+            <h2 className="text-9xl font-bold leading-[120%] text-white">
+              Key Insights
+            </h2>
+          </div>
+          <div className="col-span-3 md:col-span-3 md:col-start-8 mb-16 flex items-center">
+            <Image
+              src="/images/vegas/fallingstars.svg"
+              alt="Falling Stars"
+              width={300}
+              height={300}
+              className="w-full h-auto"
+            />
+          </div>
+        </div>
       </section>
 
       <section
