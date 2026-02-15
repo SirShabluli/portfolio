@@ -37,19 +37,23 @@ export default function VegasPage() {
 
     const images =
       phoneImagesRef.current.querySelectorAll(".phone-inspiration");
-    gsap.set(images, { opacity: 0, y: 40 });
-    gsap.to(images, {
-      opacity: 1,
-      y: 0,
-      duration: 0.5,
-      ease: "power2.out",
-      stagger: 0.2,
+    gsap.set(images, { opacity: 0 });
+
+    const inspoTl = gsap.timeline({
       scrollTrigger: {
         trigger: phoneImagesRef.current,
         start: "top 80%",
-        toggleActions: "play none none reset",
+        toggleActions: "play pause resume reset",
       },
     });
+
+    images.forEach((img) => {
+      inspoTl
+        .to(img, { opacity: 1, duration: 2, ease: "power2.inOut" })
+        .to(img, { opacity: 0, duration: 2, ease: "power2.inOut" }, "+=3");
+    });
+
+    inspoTl.repeat(-1);
 
     // Sticker effect for large inspiration images
     if (largeImagesRef.current) {
@@ -214,7 +218,7 @@ The copy reveals: satire.`}
               className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
             ></div>
             <div
-              className={`col-span-4 md:col-span-2 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
+              className={`col-span-4 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-4 justify-center`}
             >
               <span
                 data-animate="1"
@@ -255,7 +259,7 @@ The copy reveals: satire.`}
               className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
             ></div>
             <div
-              className={`col-span-2 md:col-span-2 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-2 md:col-span-2 md:col-start-10 ${outline} flex flex-col justify-center gap-4`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock
@@ -327,8 +331,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             </div>
           </div>
         </section>
-        <section className="section-4">
-          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+        <section className="section-4 bg-[#E4EBFF] text-[#23577A]">
+          <div className="grid grid-cols-12 gap-8 flex justify-center py-20 min-h-screen ">
             <div
               className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
             ></div>
@@ -372,8 +376,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             </div>
           </div>
         </section>
-        <section className="section-5 ">
-          <div className="bg-black grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
+        <section className="section-5 bg-black">
+          <div className="bg-black grid grid-cols-12 gap-8 flex justify-center min-h-screen">
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
@@ -418,48 +422,36 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         <section></section>
       </PhoneShowcase>
 
-      {/* Inspiration Images - Phone references */}
-      <section className="bg-[#E4EBFF] py-12 px-12" ref={phoneImagesRef}>
-        <div className="grid grid-cols-12 gap-6 items-center">
-          <div className="col-span-2 col-start-2 flex flex-col gap-4 min-h-screen">
-            <span className="text-5xl font-medium tracking-tight text-[#23577A]">
-              Inspiration
-            </span>
-            <TextBlock label="" title="" className="text-[#23577A]">
-              I studied wellness apps—Calm, Headspace, medical tracking apps.
-              Clean interfaces. Soft blues and whites. Gentle icons. Sterile
-              language. Everything designed to create trust, safety, clinical
-              authority. This became the wrapper—the medical disguise that makes
-              Vegas feel prescribed, legitimate, doctor-approved.
-            </TextBlock>
-          </div>
-          <div className="col-span-2 col-start-6 phone-inspiration">
-            <Image
-              src="/images/vegas/mfp.png"
-              alt="Inspiration 1"
-              width={600}
-              height={1066}
-              className="w-full h-auto"
-            />
-          </div>
-          <div className="col-span-2 phone-inspiration">
-            <Image
-              src="/images/vegas/oralb.jpg"
-              alt="Inspiration 2"
-              width={600}
-              height={1066}
-              className="w-full h-auto"
-            />
-          </div>
-          <div className="col-span-2 phone-inspiration">
-            <Image
-              src="/images/vegas/waterllama.png"
-              alt="Inspiration 3"
-              width={600}
-              height={1066}
-              className="w-full h-auto"
-            />
-          </div>
+      {/* Inspiration Images - Crossfade Loop */}
+      <section
+        className="relative w-full h-screen overflow-hidden bg-[#E4EBFF]"
+        ref={phoneImagesRef}
+      >
+        {[
+          "/images/vegas/doctor.png",
+          "/images/vegas/denstist.png",
+          "/images/vegas/meditate.jpg",
+          "/images/vegas/appclue.jpg",
+        ].map((src, i) => (
+          <Image
+            key={src}
+            src={src}
+            alt={`Inspiration ${i + 1}`}
+            fill
+            className="phone-inspiration object-cover absolute inset-0"
+          />
+        ))}
+        <div className="absolute bottom-16 left-12 z-20 max-w-md">
+          <span className="text-5xl font-medium tracking-tight text-[#23577A]">
+            Inspiration
+          </span>
+          <p className="text-sm text-[#23577A]/80 mt-4 leading-relaxed">
+            I studied wellness apps—Calm, Headspace, medical tracking apps.
+            Clean interfaces. Soft blues and whites. Gentle icons. Sterile
+            language. Everything designed to create trust, safety, clinical
+            authority. This became the wrapper—the medical disguise that makes
+            Vegas feel prescribed, legitimate, doctor-approved.
+          </p>
         </div>
       </section>
 
