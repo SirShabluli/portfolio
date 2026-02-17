@@ -26,6 +26,9 @@ export default function VegasPage() {
   const largeImagesRef = useRef(null);
   const dualSectionRef = useRef(null);
   const keyInsightsRef = useRef(null);
+  const emptyStateRef = useRef(null);
+  const phoneShowcaseRef = useRef(null);
+  const gamificationRef = useRef(null);
   const [showToggle, setShowToggle] = useState(false);
   const [hasToggled, setHasToggled] = useState(false);
 
@@ -97,6 +100,44 @@ export default function VegasPage() {
         onLeaveBack: () => setShowToggle(true),
       });
     }
+
+    // Fade PhoneShowcase background: dark blue → light blue → black
+    if (
+      phoneShowcaseRef.current &&
+      emptyStateRef.current &&
+      gamificationRef.current
+    ) {
+      gsap.fromTo(
+        phoneShowcaseRef.current,
+        { backgroundColor: "#23577A", color: "#ffffff" },
+        {
+          backgroundColor: "#E4EBFF",
+          color: "#23577A",
+          scrollTrigger: {
+            trigger: emptyStateRef.current,
+            start: "top 30%",
+            end: "bottom bottom",
+            scrub: true,
+          },
+        },
+      );
+
+      gsap.fromTo(
+        phoneShowcaseRef.current,
+        { backgroundColor: "#E4EBFF", color: "#23577A" },
+        {
+          backgroundColor: "#000000",
+          color: "#ffffff",
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: gamificationRef.current,
+            start: "top 50%",
+            end: "bottom 120%",
+            scrub: true,
+          },
+        },
+      );
+    }
   }, []);
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
@@ -134,18 +175,34 @@ export default function VegasPage() {
       </div>
 
       {/* Project Intro Section */}
-      <section className="bg-[#23577A] px-8 min-h-screen text-white flex items-center justify-center">
+      <section className="bg-[#23577A] px-8 min-h-screen text-white flex items-center justify-center relative overflow-hidden">
+        {/* Scattered medical icons */}
+        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={50} height={50} className="absolute" style={{ top: "20%", left: "18%", transform: "rotate(-20deg)" }} />
+        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={40} height={40} className="absolute" style={{ top: "22%", right: "20%", transform: "rotate(15deg)" }} />
+        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={45} height={45} className="absolute" style={{ bottom: "25%", left: "22%", transform: "rotate(40deg)" }} />
+        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={35} height={35} className="absolute" style={{ bottom: "32%", right: "18%", transform: "rotate(-35deg)" }} />
+        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={42} height={42} className="absolute" style={{ top: "38%", left: "15%", transform: "rotate(60deg)" }} />
+        <Image src="/images/vegas/toggles/bottle.svg" alt="" width={70} height={70} className="absolute" style={{ bottom: "22%", right: "25%", transform: "rotate(10deg)" }} />
+        <Image src="/images/vegas/toggles/starlight.svg" alt="" width={45} height={45} className="absolute" style={{ top: "18%", right: "30%", transform: "rotate(12deg)" }} />
+        <Image src="/images/vegas/toggles/starlight.svg" alt="" width={35} height={35} className="absolute" style={{ bottom: "28%", left: "20%", transform: "rotate(-10deg)" }} />
+        <Image src="/images/vegas/toggles/starlight.svg" alt="" width={38} height={38} className="absolute" style={{ top: "35%", right: "15%", transform: "rotate(25deg)" }} />
+
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
           {/* Logo */}
-          <div className="col-span-6 col-start-4 flex flex-col gap-7 justify-center items-center">
+          <div className="col-span-7 col-start-4 flex flex-col gap-7 justify-center items-center">
             <Image
-              src="/images/netflix-dating/NetflixLogo.svg"
+              src="/images/vegas/vegassign.svg"
               alt="Project preview"
               width={600}
               height={1200}
               className="w-full h-auto"
             />
-            <h2 className="text-6xl text-white -mt-5">Retreat</h2>
+            <h2 className="text-8xl text-white -mt-5 font-(family-name:--font-montserrat) font-bold">
+              Retreat
+            </h2>
+            <p className="text-lg text-white/70 font-light tracking-wide">
+              your medical vegas trip app
+            </p>
           </div>
           {/* Description + Metadata */}
           <div className="col-span-6 col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
@@ -202,6 +259,7 @@ export default function VegasPage() {
         showOutlines={true}
         showMarkers={showMarkers}
         bgColor="#23577A"
+        containerRef={phoneShowcaseRef}
       >
         <section className="section-1">
           <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
@@ -343,7 +401,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             </div>
           </div>
         </section>
-        <section className="section-4 bg-[#E4EBFF] text-[#23577A]">
+        <section ref={emptyStateRef} className="section-4 pb-20 text-[#23577A]">
           <div className="grid grid-cols-12 gap-8 flex justify-center py-20 min-h-screen ">
             <div
               className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
@@ -388,13 +446,13 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             </div>
           </div>
         </section>
-        <section className="section-5 bg-black">
-          <div className="bg-black grid grid-cols-12 gap-8 flex justify-center min-h-screen">
+        <section ref={gamificationRef} className="pb-20 section-5 ">
+          <div className="grid grid-cols-12 gap-8 flex justify-center min-h-screen">
             <div
               className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span
-                data-animate="1"
+                data-animate="2"
                 data-animation="fade"
                 className="mt-10 flex items-center quote"
               >

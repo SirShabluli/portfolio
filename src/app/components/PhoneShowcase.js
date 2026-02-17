@@ -15,8 +15,10 @@ export default function PhoneShowcase({
   showOutlines = false,
   showMarkers = true,
   bgColor,
+  containerRef,
 }) {
-  const mainRef = useRef(null);
+  const internalRef = useRef(null);
+  const mainRef = containerRef || internalRef;
   const phoneRef = useRef(null);
   const [activeScreen, setActiveScreen] = useState(0);
   const [splineApp, setSplineApp] = useState(null);
