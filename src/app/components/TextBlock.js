@@ -12,7 +12,7 @@ export default function TextBlock({
       {label && (
         <span className="text-xs font-medium opacity-50 ">{label}</span>
       )}
-      {title && <span className="text-2xl font-medium  ">{title}</span>}
+      {title && <span className="text-xl font-light italic">{title}</span>}
       {children && (
         <p
           className="mt-2 text-xs font-medium leading-[130%] whitespace-pre-line"

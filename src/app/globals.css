@@ -111,7 +111,7 @@ body {
 
   /* Quote - Large decorative text */
   .quote {
-    @apply text-[3.125rem] font-cinzel font-medium leading-tight tracking-wide;
+    @apply text-[2.125rem] font-raleway font-normal leading-[130%] tracking-wide;
   }
 
   /* Title Large - Section headers */

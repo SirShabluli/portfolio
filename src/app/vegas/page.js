@@ -18,6 +18,7 @@ import HorizontalScroll from "../components/HorizontalScroll";
 import TextBlock from "../components/TextBlock";
 import VectorToggle from "../components/VectorToggle";
 import DayNightToggle from "../components/DayNightToggle";
+import NumberedTextBlock from "../components/NumberedTextBlock";
 
 export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
@@ -955,11 +956,19 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         ref={keyInsightsRef}
         className="min-h-screen bg-[#23577A] text-white py-24 "
       >
-        <div className="grid grid-cols-12 gap-8 px-12">
-          <div className="col-span-5 md:col-span-5 md:col-start-2 mb-16">
+        <div className="grid grid-cols-12 gap-2 px-12">
+          <div className="col-span-5 md:col-span-5 md:col-start-2 flex flex-col justify-around mb-16">
             <h2 className="text-9xl font-bold leading-[120%] text-white">
               Key Insights
             </h2>
+            <div>
+              <p className="text-3xl font-light italic ">
+                &ldquo;Buy the ticket, take the ride.&rdquo;
+              </p>
+              <span className="text-[1rem] font-light italic mt-2 inline-block">
+                — Hunter S. Thompson
+              </span>
+            </div>
           </div>
           <div className="col-span-3 md:col-span-3 md:col-start-8 mb-16 flex items-center">
             <Image
@@ -969,6 +978,30 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               height={300}
               className="w-full h-auto"
             />
+          </div>
+
+          {/* Numbered Insights */}
+          <div className="col-span-4 md:col-span-3 md:col-start-2">
+            <NumberedTextBlock number="1" title="Contrast Creates Meaning">
+              Medical language only works because Vegas is its opposite. The
+              tension between sterile UI and neon chaos isn't decoration—it's
+              the concept. Remove one side, and the satire collapses.
+            </NumberedTextBlock>
+          </div>
+          <div className="col-span-4 md:col-span-3 md:col-start-5">
+            <NumberedTextBlock number="2" title="Commitment Sells the Joke">
+              Half-ironic doesn't work. The app fully commits to the medical
+              metaphor— prescription language, clinical colors, wellness
+              framing. The deeper the commitment, the sharper the contrast when
+              Vegas breaks through.
+            </NumberedTextBlock>
+          </div>
+          <div className="col-span-4 md:col-span-3 md:col-start-8">
+            <NumberedTextBlock number="3" title="Visual Language Can Lie">
+              Clean UI says "trust me." Dark illustrations say "but not really."
+              The gap between surface and core is where the message lives.
+              Design became a tool for deliberate contradiction.{" "}
+            </NumberedTextBlock>
           </div>
         </div>
       </section>
