@@ -62,22 +62,22 @@ export default function TypographySection({
 
   return (
     <section
-      className="grid grid-cols-12 w-full min-h-screen py-24 px-12 gap-y-12 transition-colors duration-500"
+      className="grid lg:grid-cols-12 w-full min-h-screen py-24 px-12 gap-y-12 transition-colors duration-500"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}
-      <div className="col-span-3 col-start-1 flex flex-col gap-4">
-        <span className="text-[46px] font-medium tracking-tight">
+      <div className="lg:col-span-3 lg:col-start-1 flex flex-col gap-4">
+        <span className="text-left lg:text-left lg:text-5xl text-5xl font-medium tracking-tight">
           Typography
         </span>
-        <p className=" font-medium tracking-tight max-w-[66%]">
+        <p className="hidden lg:mt-2 lg:flex font-medium tracking-tight max-w-[66%]">
           I decided to go with easy going vibe, i had to mix the good and feel
           while not in the exchange of readablity
         </p>
       </div>
 
       {/* תוכן הפונט (עמודות 4-12) */}
-      <div className="mt-7 col-span-5 col-start-6 space-y-6">
+      <div className="lg:mt-7 lg:col-span-5 lg:col-start-6 space-y-6">
         {/* תוויות הפונט (Badges) - דינמיות מה-data */}
         <div className="flex gap-2">
           {data.fonts.map((font) => (
@@ -102,7 +102,7 @@ export default function TypographySection({
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
         <div
-          className="space-y-2 max-w-4xl min-h-85 text-[2.875rem] justify-center leading-[1.28] overflow-hidden"
+          className="space-y-2 max-w-4xl min-h-85 mr-10 lg:mx-0 text-4xl lg:text-5xl justify-center leading-[1.28] overflow-hidden"
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,

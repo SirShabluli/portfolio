@@ -46,9 +46,9 @@ export default function NetflixDatingPage() {
               "radial-gradient(ellipse at center, transparent 30%, black 100%)",
           }}
         />
-        <div className="grid lg:grid-cols-12  gap-8 max-w-7xl mx-auto items-center relative z-10">
+        <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12  gap-8 max-w-7xl mx-auto items-center relative z-10">
           {/* Netflix Logo */}
-          <div className=" lg:col-span-6 lg:col-start-4 flex flex-col gap-7 justify-center items-center">
+          <div className="col-span-4 md:col-span-8 lg:col-span-6 lg:col-start-4 flex flex-col gap-7 justify-center items-center mx-10 mt-[50%]">
             <Image
               src="/images/netflix-dating/NetflixLogo.svg"
               alt="Project preview"
@@ -56,16 +56,16 @@ export default function NetflixDatingPage() {
               height={1200}
               className="w-full h-auto"
             />
-            <h2 className=" text-6xl text-red-500 -mt-5">Dating</h2>
+            <h2 className=" text-4xl lg:text-6xl text-red-500 -mt-5">Dating</h2>
           </div>
           {/* Center - Title, Description */}
-          <div className="lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
+          <div className="col-span-4  lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
             <h3 className="text-xl font-medium text-left"></h3>
-            <p className="text-lg font-medium text-white text-left">
+            <p className="text-sm lg:text-lg font-medium text-white text-left">
               What if Netflix made a dating app? Illustrated UI exploring
               comfort-based connection over performative attraction.
             </p>
-            <div className="flex flex-row gap-10 mt-10 text-left w-full ">
+            <div className="flex flex-col lg:flex-row gap-1 mt-10 text-left w-full ">
               <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium tracking-wider opacity-60">
                   role
@@ -104,8 +104,8 @@ export default function NetflixDatingPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className="min-h-screen bg-black flex items-center justify-center">
-        <h1 className="display text-white">The Product</h1>
+      <section className=" hidden lg:flex min-h-screen bg-black flex items-center justify-center">
+        <h1 className=" display text-white">The Product</h1>
       </section>
 
       <PhoneShowcase
@@ -114,7 +114,7 @@ export default function NetflixDatingPage() {
         showMarkers={showMarkers}
       >
         <section className="section-1">
-          <div className="grid lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+          <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
               className={`lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-9`}
             >
@@ -153,7 +153,7 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
           </div>
         </section>
         <section className="section-2">
-          <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
+          <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
             <div
               className={`col-span-4 lg:col-span-4 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             ></div>
@@ -204,7 +204,7 @@ The message isn't "you need someone." It's "some things are just easier together
           </div>
         </section>
         <section className="section-3">
-          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+          <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
               className={`col-span-3 lg:col-span-2 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             >
@@ -253,7 +253,7 @@ By mimicking the iconic "Who's Watching?" screen, I created a playful moment of 
           </div>
         </section>
         <section className="section-4">
-          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+          <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
               className={`col-span-3 lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             >
@@ -304,7 +304,7 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
           </div>
         </section>
         <section className="section-5 ">
-          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
+          <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
             <div
               className={`col-span-4 lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             >
@@ -382,7 +382,9 @@ The message: there are all kinds of people and pajamas - showing options without
       <section>
         <HorizontalScroll>
           <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
-            <h1 className="display text-white">Design System</h1>
+            <h1 className="text-8xl flex text-center lg:display text-white">
+              Design System
+            </h1>
           </div>
           <div className="min-w-screen w-screen h-screen flex-shrink-0">
             <TypographySection data={netflixTypography} />
