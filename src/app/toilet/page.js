@@ -395,7 +395,7 @@ export default function Page() {
               I created a timed urinal selection game. The countdown creates
               urgency. The timer removes hesitation. Even the most distant,
               skeptical viewer gets pulled in and forgets they&apos;re making
-              ridiculous decisions about urinal etiquette.{" "}
+              ridiculous decisions about urinal etiquette.
             </TextBlock>
           </div>
         </div>

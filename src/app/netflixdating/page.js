@@ -46,9 +46,9 @@ export default function NetflixDatingPage() {
               "radial-gradient(ellipse at center, transparent 30%, black 100%)",
           }}
         />
-        <div className="grid grid-cols-12  gap-8 max-w-7xl mx-auto items-center relative z-10">
+        <div className="grid lg:grid-cols-12  gap-8 max-w-7xl mx-auto items-center relative z-10">
           {/* Netflix Logo */}
-          <div className=" col-span-6 col-start-4 flex flex-col gap-7 justify-center items-center">
+          <div className=" lg:col-span-6 lg:col-start-4 flex flex-col gap-7 justify-center items-center">
             <Image
               src="/images/netflix-dating/NetflixLogo.svg"
               alt="Project preview"
@@ -59,7 +59,7 @@ export default function NetflixDatingPage() {
             <h2 className=" text-6xl text-red-500 -mt-5">Dating</h2>
           </div>
           {/* Center - Title, Description */}
-          <div className="col-span-6 col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
+          <div className="lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
             <h3 className="text-xl font-medium text-left"></h3>
             <p className="text-lg font-medium text-white text-left">
               What if Netflix made a dating app? Illustrated UI exploring
@@ -114,9 +114,9 @@ export default function NetflixDatingPage() {
         showMarkers={showMarkers}
       >
         <section className="section-1">
-          <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+          <div className="grid lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
+              className={`lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-9`}
             >
               <span data-animation="fade">
                 <TextBlock label="the challenge" title="easy connections">
@@ -137,10 +137,10 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
               </span>
             </div>
             <div
-              className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
+              className={`col-span-4 phone-pocket lg:col-span-4 lg:col-start-5 ${outline}`}
             ></div>
             <div
-              className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
+              className={`col-span-4 lg:col-span-3 lg:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
             >
               <span
                 data-animate="1"
@@ -155,17 +155,17 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
         <section className="section-2">
           <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-4 md:col-span-4 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-4 lg:col-span-4 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             ></div>
             <div
-              className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
+              className={`col-span-4 lg:col-span-3 lg:col-start-6 ${outline} flex flex-col justify-center`}
             >
               <span data-animate="1" data-animation="fade" className="quote">
                 "Some things shouldn&apos;t be dealt with alone..."
               </span>
             </div>
             <div
-              className={`col-span-3 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-3 lg:col-span-3 lg:col-start-9 ${outline} flex flex-col justify-center gap-4`}
             >
               <span data-animate="2" data-animation="fade">
                 <TextBlock label="the challenge" title="Define 'missing'">
@@ -206,7 +206,7 @@ The message isn't "you need someone." It's "some things are just easier together
         <section className="section-3">
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-3 lg:col-span-2 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span data-animate="2" data-animation="fade">
                 <TextBlock label="the challenge" title="immediate dismissal">
@@ -227,10 +227,10 @@ How do you make someone pause before closing the window—and maybe act differen
               </span>
             </div>
             <div
-              className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}
+              className={`col-span-4 lg:col-span-4 phone-pocket lg:col-start-5 ${outline} flex items-center justify-center`}
             ></div>
             <div
-              className={`col-span-3 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
+              className={`col-span-3 lg:col-span-2 lg:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock label="My Solution" title="Irony">
@@ -255,7 +255,7 @@ By mimicking the iconic "Who's Watching?" screen, I created a playful moment of 
         <section className="section-4">
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
             <div
-              className={`col-span-3 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-3 lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock label="The Challenge" title="Defusing Frustration">
@@ -274,10 +274,10 @@ It touches on pains people don't speak about - they might feel guilty, worried t
               </span>
             </div>
             <div
-              className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
+              className={`lg:col-span-4 lg:col-start-5 phone-pocket ${outline}`}
             ></div>
             <div
-              className={`pt-50 col-span-3 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
+              className={`pt-50 lg:col-span-3 lg:col-start-9 ${outline} items-center flex flex-col gap-4`}
             >
               <span data-animate="4" data-animation="fade">
                 <TextBlock label="My Solution" title="Empathy in frustration">
@@ -306,7 +306,7 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
         <section className="section-5 ">
           <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen">
             <div
-              className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              className={`col-span-4 lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
             >
               <span
                 data-animate="1"
@@ -317,7 +317,7 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
               </span>
             </div>
             <div
-              className={`col-span-3 md:col-span-3 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
+              className={`col-span-3 lg:col-span-3 lg:col-start-5 ${outline} flex flex-col justify-center gap-4`}
             >
               <span data-animate="2" data-animation="fade">
                 <TextBlock
@@ -346,7 +346,7 @@ If the app is about the living room experience, premium should be the ultimate p
               </span>
             </div>
             <div
-              className={`pt-50 phone-pocket col-span-4 md:col-span-4 md:col-start-8 ${outline} flex flex-col gap-4`}
+              className={`pt-50 phone-pocket lg:col-span-4 lg:col-start-8 ${outline} flex flex-col gap-4`}
             >
               <h2></h2>
             </div>
