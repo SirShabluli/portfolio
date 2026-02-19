@@ -1,3 +1,88 @@
+export const vegasSections = [
+  {
+    id: 1,
+    quote:
+      "explore scientifically proven sins, selected by top doctors in Vegas refined through years of irresponsible research.",
+    challenge: {
+      label: "the challenge",
+      title: "First Impression",
+      body: "How do I immediately signal that this is a Vegas app wrapped in medical language - without explaining it explicitly? If it looks too medical, users won't get the joke. If it's too obvious, there's no tension.",
+    },
+    solution: {
+      label: "My Solution",
+      title: "obvious connection",
+      body: `A man using an inhaler - a medical device, a health moment, routine treatment. But his thought bubble explodes with Vegas: neon dice, slot machines, martini glasses, cannabis. The contrast is instant and absurd.
+
+The image says: medical treatment.
+The thought bubble says: Vegas addiction.
+The copy reveals: satire.`,
+    },
+  },
+  {
+    id: 2,
+    quote:
+      "organize favorite destinations, tips, and itineraries into customizable collections, making it easy to plan future trips",
+    challenge: {
+      label: "the challenge",
+      title: "Making Organization Feel Clinical",
+      body: "In this app's universe, everything is medical. If users organize their Vegas trips into collections, what's the medical equivalent? Where do you store your \"prescriptions\"?",
+    },
+    solution: {
+      label: "My Solution",
+      title: "Medicine Cabinet as Collection System",
+      body: `A hand placing a new bottle on a medicine shelf. Clean, organized, like a pharmacy cabinet. The bottles look clinical - clean labels, medical colors, orderly arrangement. But inside each bottle: dark backgrounds with neon Vegas sins glowing. Dice, cards, cocktails trapped in prescription containers.
+
+The duality: medical organization on the surface, Vegas chaos contained within.`,
+    },
+  },
+  {
+    id: 3,
+    quote:
+      "Share what worked, what stung a little, and where the side effects were totally worth it.",
+    challenge: {
+      label: "the challenge",
+      title: "Ratings, But Make It Vegas",
+      body: `In the Vegas-as-medicine metaphor, what are "ratings"? What do users leave behind after trying their "prescription"?`,
+    },
+    solution: {
+      label: "My Solution",
+      title: "floating through side effects",
+      body: `A man leaping forward in the clean medical interface. Behind him: a glowing trail of neon stars - Vegas memories, past experiences, side effects documented.
+
+Reviews become your Vegas constellation - a trail others can follow.`,
+    },
+  },
+  {
+    id: 4,
+    quote:
+      "An empty cabinet might not seem urgent, until it is. Small actions today can prevent bigger issues tomorrow.",
+    challenge: {
+      label: "The Challenge",
+      title: "empty state",
+      body: `In a medical app about Vegas sins, emptiness isn't cute—it's unsettling. How do I make the absence of "treatments" feel like something's missing from your life?`,
+    },
+    solution: {
+      label: "My Solution",
+      title: "Stripping Away the Life",
+      body: "I removed the vibrant color palette that fills the rest of the app. What's left: muted tones, sterile shelves, absence. Three simple lines form a sad face on the empty shelf - minimal, but enough to give the scene life and convey the feeling.",
+    },
+  },
+  {
+    id: 5,
+    quote: "The upgrade that makes everything fall into place",
+    challenge: {
+      label: "the challenge",
+      title: "Gamification in the Medical Metaphor",
+      body: "Travel apps use badges to encourage exploration—miles traveled, countries visited, generic achievements. In a Vegas-as-medicine app, what does \"progression\" mean? How do I turn gamification into something that fits the metaphor?",
+    },
+    solution: {
+      label: "My Solution",
+      title: "From Patient to Expert Junkie",
+      body: `The more destinations you explore, the more "experienced" you become— not with travel, but with substances.`,
+    },
+  },
+];
+
 export const catProjectSteps = [
   {
     id: 1,

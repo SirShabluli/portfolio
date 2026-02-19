@@ -12,7 +12,9 @@ import {
   vegasTypography,
   vegasLightColors,
   vegasDarkColors,
+  vegasSections,
 } from "../../data/projectData";
+import MobilePhoneShowcase from "../components/MobilePhoneShowcase";
 import Lauryl from "../components/Lauryl";
 import HorizontalScroll from "../components/HorizontalScroll";
 import TextBlock from "../components/TextBlock";
@@ -254,6 +256,20 @@ export default function VegasPage() {
         <h1 className="display text-white">The Product</h1>
       </section>
 
+      {/* Mobile alternative - visible only below lg */}
+      <div className="lg:hidden">
+        {vegasSections.map((section) => (
+          <MobilePhoneShowcase
+            key={section.id}
+            section={section}
+            bgColor="#23577A"
+            textColor="#ffffff"
+          />
+        ))}
+      </div>
+
+      {/* Desktop PhoneShowcase - hidden on mobile */}
+      <div className="hidden lg:block">
       <PhoneShowcase
         sections={sections}
         showOutlines={true}
@@ -491,6 +507,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         </section>
         <section></section>
       </PhoneShowcase>
+      </div>
 
       {/* Inspiration Images - Crossfade Loop */}
       <section

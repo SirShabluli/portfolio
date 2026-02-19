@@ -77,7 +77,7 @@ export default function TypographySection({
       </div>
 
       {/* תוכן הפונט (עמודות 4-12) */}
-      <div className="lg:mt-7 lg:col-span-5 lg:col-start-6 space-y-6">
+      <div className=" lg:mt-7 lg:col-span-5 lg:col-start-6 space-y-6">
         {/* תוויות הפונט (Badges) - דינמיות מה-data */}
         <div className="flex gap-2">
           {data.fonts.map((font) => (
