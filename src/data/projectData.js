@@ -1,6 +1,7 @@
 export const vegasSections = [
   {
     id: 1,
+    screenSrc: "/images/vegas/screens/discover.png",
     quote:
       "explore scientifically proven sins, selected by top doctors in Vegas refined through years of irresponsible research.",
     challenge: {
@@ -20,6 +21,7 @@ The copy reveals: satire.`,
   },
   {
     id: 2,
+    screenSrc: "/images/vegas/screens/favorites.png",
     quote:
       "organize favorite destinations, tips, and itineraries into customizable collections, making it easy to plan future trips",
     challenge: {
@@ -37,6 +39,7 @@ The duality: medical organization on the surface, Vegas chaos contained within.`
   },
   {
     id: 3,
+    screenSrc: "/images/vegas/screens/mark.png",
     quote:
       "Share what worked, what stung a little, and where the side effects were totally worth it.",
     challenge: {
@@ -54,6 +57,7 @@ Reviews become your Vegas constellation - a trail others can follow.`,
   },
   {
     id: 4,
+    screenSrc: "/images/vegas/screens/empty.png",
     quote:
       "An empty cabinet might not seem urgent, until it is. Small actions today can prevent bigger issues tomorrow.",
     challenge: {
@@ -69,6 +73,7 @@ Reviews become your Vegas constellation - a trail others can follow.`,
   },
   {
     id: 5,
+    screenSrc: "/images/vegas/screens/awards.png",
     quote: "The upgrade that makes everything fall into place",
     challenge: {
       label: "the challenge",

@@ -72,36 +72,16 @@ export default function MobilePhoneShowcase({
 
         {/* Page 2 - Phone */}
         <div className="w-full flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16">
-          <div className="col-span-4 flex items-center justify-center">
-            <div className="relative w-full">
+          <div className="p-5 col-span-4 flex items-center justify-center">
+            {section.screenSrc && (
               <Image
-                src="/images/shared/iphoneMockup.png"
-                alt="Phone mockup"
+                src={section.screenSrc}
+                alt={`Screen ${section.id}`}
                 width={400}
                 height={800}
                 className="w-full h-auto"
               />
-              {section.screenSrc && (
-                <div
-                  className="absolute inset-0 z-0"
-                  style={{
-                    top: "2.5%",
-                    left: "6%",
-                    right: "6%",
-                    bottom: "2.5%",
-                    borderRadius: "10%",
-                    overflow: "hidden",
-                  }}
-                >
-                  <Image
-                    src={section.screenSrc}
-                    alt={`Screen ${section.id}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              )}
-            </div>
+            )}
           </div>
         </div>
 
@@ -126,8 +106,7 @@ export default function MobilePhoneShowcase({
             onClick={() => goTo(i)}
             className="w-2 h-2 rounded-full transition-all duration-300"
             style={{
-              backgroundColor:
-                i === current ? textColor : `${textColor}50`,
+              backgroundColor: i === current ? textColor : `${textColor}50`,
               transform: i === current ? "scale(1.4)" : "scale(1)",
             }}
             aria-label={`Go to page ${i + 1}`}
