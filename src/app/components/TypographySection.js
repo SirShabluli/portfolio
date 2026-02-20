@@ -62,22 +62,20 @@ export default function TypographySection({
 
   return (
     <section
-      className="grid lg:grid-cols-12 w-full min-h-screen py-24 px-12 gap-y-12 transition-colors duration-500"
+      className="grid grid-cols-4 lg:grid-cols-12 w-full min-h-screen py-16 lg:py-24 px-6 lg:px-12 gap-x-4 gap-y-8 lg:gap-y-12 transition-colors duration-500"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}
-      <div className="lg:col-span-3 lg:col-start-1 flex flex-col gap-4">
-        <span className="text-left lg:text-left lg:text-5xl text-5xl font-medium tracking-tight">
-          Typography
-        </span>
-        <p className="hidden lg:mt-2 lg:flex font-medium tracking-tight max-w-[66%]">
+      <div className="col-span-4 lg:col-span-3 lg:col-start-1 flex flex-col gap-4">
+        <span className="text-5xl font-medium tracking-tight">Typography</span>
+        <p className="hidden lg:flex lg:mt-2 font-medium tracking-tight max-w-[66%]">
           I decided to go with easy going vibe, i had to mix the good and feel
           while not in the exchange of readablity
         </p>
       </div>
 
       {/* תוכן הפונט (עמודות 4-12) */}
-      <div className=" lg:mt-7 lg:col-span-5 lg:col-start-6 space-y-6">
+      <div className="col-span-4 lg:col-span-5 lg:col-start-6 lg:mt-7 space-y-6">
         {/* תוויות הפונט (Badges) - דינמיות מה-data */}
         <div className="flex gap-2">
           {data.fonts.map((font) => (
@@ -102,7 +100,7 @@ export default function TypographySection({
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
         <div
-          className="space-y-2 max-w-4xl min-h-85 mr-10 lg:mx-0 text-4xl lg:text-5xl justify-center leading-[1.28] overflow-hidden"
+          className="space-y-2 max-w-4xl min-h-85 text-4xl lg:text-5xl justify-center leading-[1.28] overflow-hidden"
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,
@@ -115,13 +113,10 @@ export default function TypographySection({
         </div>
 
         {/* תיאור הפונט בתחתית */}
-        <div className="space-y-1 mt-2 max-w-[40%]">
+        <div className=" space-y-1 mt-2 lg:max-w-[40%]">
           <div ref={descriptionRef}>
-            {/* <h4 className="text-lg font-bold">
-              {selectedFont.name} - {selectedFont.weightName}
-            </h4> */}
-            <span className="text-[1.2rem]">{selectedFont.name}</span>
-            <p className="text-xs leading-relaxed font-light">
+            <span className="text-xl lg:text-lg">{selectedFont.name}</span>
+            <p className=" text-sm lg:text-xs leading-relaxed font-light">
               {selectedFont.description}
             </p>
           </div>
