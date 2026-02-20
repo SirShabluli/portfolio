@@ -1,117 +1,83 @@
 "use client";
-import { useRef, useState } from "react";
 import Image from "next/image";
 import TextBlock from "./TextBlock";
+import { useEffect, useRef } from "react";
 
-/**
- * MobilePhoneShowcase
- * Touch-friendly horizontal swipe carousel for small screens.
- * Each "unit" = 3 virtual pages: left (challenge) | center (phone) | right (solution)
- *
- * Props:
- *   section: { id, quote, challenge: { label, title, body }, solution: { label, title, body } }
- *   bgColor: string
- *   textColor: string
- */
 export default function MobilePhoneShowcase({
   section,
   bgColor = "#23577A",
   textColor = "#ffffff",
 }) {
-  const [current, setCurrent] = useState(1); // start on center (phone)
-  const startXRef = useRef(null);
+  const scrollRef = useRef(null);
 
-  const pages = ["left", "center", "right"];
-
-  const goTo = (index) => {
-    if (index < 0 || index >= pages.length) return;
-    setCurrent(index);
-  };
-
-  const handleTouchStart = (e) => {
-    startXRef.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e) => {
-    if (startXRef.current === null) return;
-    const delta = startXRef.current - e.changedTouches[0].clientX;
-    if (Math.abs(delta) > 40) {
-      goTo(delta > 0 ? current + 1 : current - 1);
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = window.innerWidth;
     }
-    startXRef.current = null;
-  };
+  }, []);
 
   return (
     <div
-      className="relative w-full overflow-hidden"
-      style={{ backgroundColor: bgColor, color: textColor }}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
+      ref={scrollRef}
+      className="w-full overflow-x-scroll flex"
+      style={{
+        backgroundColor: bgColor,
+        color: textColor,
+        WebkitOverflowScrolling: "touch",
+        scrollbarWidth: "none",
+      }}
     >
-      {/* Track */}
+      {/* Page 1 - Challenge */}
       <div
-        className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${current * 100}%)` }}
+        className="w-screen flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16"
+        style={{ backgroundColor: bgColor }}
       >
-        {/* Page 1 - Challenge */}
-        <div className="w-full flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16">
-          <div className="col-span-4 flex flex-col justify-center gap-6">
-            {section.quote && (
-              <p className="quote" style={{ color: textColor }}>
-                &ldquo;{section.quote}&rdquo;
-              </p>
-            )}
-            <TextBlock
-              label={section.challenge.label}
-              title={section.challenge.title}
-            >
-              {section.challenge.body}
-            </TextBlock>
-          </div>
-        </div>
-
-        {/* Page 2 - Phone */}
-        <div className="w-full flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16">
-          <div className="p-5 col-span-4 flex items-center justify-center">
-            {section.screenSrc && (
-              <Image
-                src={section.screenSrc}
-                alt={`Screen ${section.id}`}
-                width={400}
-                height={800}
-                className="w-full h-auto"
-              />
-            )}
-          </div>
-        </div>
-
-        {/* Page 3 - Solution */}
-        <div className="w-full flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16">
-          <div className="col-span-4 flex flex-col justify-center gap-6">
-            <TextBlock
-              label={section.solution.label}
-              title={section.solution.title}
-            >
-              {section.solution.body}
-            </TextBlock>
-          </div>
+        <div className="col-span-4 flex flex-col justify-center gap-6">
+          {section.quote && (
+            <p className="quote" style={{ color: textColor }}>
+              &ldquo;{section.quote}&rdquo;
+            </p>
+          )}
+          <TextBlock
+            label={section.challenge.label}
+            title={section.challenge.title}
+          >
+            {section.challenge.body}
+          </TextBlock>
         </div>
       </div>
 
-      {/* Dot nav */}
-      <div className="flex justify-center gap-3 pb-8">
-        {pages.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            className="w-2 h-2 rounded-full transition-all duration-300"
-            style={{
-              backgroundColor: i === current ? textColor : `${textColor}50`,
-              transform: i === current ? "scale(1.4)" : "scale(1)",
-            }}
-            aria-label={`Go to page ${i + 1}`}
-          />
-        ))}
+      {/* Page 2 - Phone */}
+      <div
+        className="w-screen flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16"
+        style={{ backgroundColor: bgColor }}
+      >
+        <div className="p-5 col-span-4 flex items-center justify-center">
+          {section.screenSrc && (
+            <Image
+              src={section.screenSrc}
+              alt={`Screen ${section.id}`}
+              width={400}
+              height={800}
+              className="w-full h-auto"
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Page 3 - Solution */}
+      <div
+        className="w-screen flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16"
+        style={{ backgroundColor: bgColor }}
+      >
+        <div className="col-span-4 flex flex-col justify-center gap-6">
+          <TextBlock
+            label={section.solution.label}
+            title={section.solution.title}
+          >
+            {section.solution.body}
+          </TextBlock>
+        </div>
       </div>
     </div>
   );

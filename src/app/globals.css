@@ -78,7 +78,7 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   overflow-y: visible;
 }
 
@@ -148,9 +148,9 @@ body {
   .body-sm {
     @apply text-sm font-raleway font-medium leading-relaxed tracking-wider;
   }
-  /* * {
-    outline: 1px solid red !important;
-  } */
+  * {
+    /* outline: 1px solid red !important; */
+  }
   /* Label - Metadata, tags */
   .label {
     @apply text-sm font-raleway font-medium tracking-wider opacity-60;
