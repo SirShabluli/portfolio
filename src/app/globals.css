@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 @font-face {
   font-family: "Netflix Sans";
   src: url("/fonts/Netflix Sans Light.otf") format("opentype");
@@ -95,8 +100,13 @@ body {
    =========================================== */
 
 @keyframes pulse-toggle {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
 }
 
 .pulse-toggle {
@@ -138,7 +148,9 @@ body {
   .body-sm {
     @apply text-sm font-raleway font-medium leading-relaxed tracking-wider;
   }
-
+  /* * {
+    outline: 1px solid red !important;
+  } */
   /* Label - Metadata, tags */
   .label {
     @apply text-sm font-raleway font-medium tracking-wider opacity-60;

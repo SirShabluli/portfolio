@@ -179,15 +179,78 @@ export default function VegasPage() {
       {/* Project Intro Section */}
       <section className="bg-[#23577A] px-8 min-h-screen text-white flex items-center justify-center relative overflow-hidden">
         {/* Scattered medical icons */}
-        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={50} height={50} className="absolute" style={{ top: "20%", left: "18%", transform: "rotate(-20deg)" }} />
-        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={40} height={40} className="absolute" style={{ top: "22%", right: "20%", transform: "rotate(15deg)" }} />
-        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={45} height={45} className="absolute" style={{ bottom: "25%", left: "22%", transform: "rotate(40deg)" }} />
-        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={35} height={35} className="absolute" style={{ bottom: "32%", right: "18%", transform: "rotate(-35deg)" }} />
-        <Image src="/images/vegas/toggles/whitepill.svg" alt="" width={42} height={42} className="absolute" style={{ top: "38%", left: "15%", transform: "rotate(60deg)" }} />
-        <Image src="/images/vegas/toggles/bottle.svg" alt="" width={70} height={70} className="absolute" style={{ bottom: "22%", right: "25%", transform: "rotate(10deg)" }} />
-        <Image src="/images/vegas/toggles/starlight.svg" alt="" width={45} height={45} className="absolute" style={{ top: "18%", right: "30%", transform: "rotate(12deg)" }} />
-        <Image src="/images/vegas/toggles/starlight.svg" alt="" width={35} height={35} className="absolute" style={{ bottom: "28%", left: "20%", transform: "rotate(-10deg)" }} />
-        <Image src="/images/vegas/toggles/starlight.svg" alt="" width={38} height={38} className="absolute" style={{ top: "35%", right: "15%", transform: "rotate(25deg)" }} />
+        <Image
+          src="/images/vegas/toggles/whitepill.svg"
+          alt=""
+          width={50}
+          height={50}
+          className="absolute"
+          style={{ top: "20%", left: "18%", transform: "rotate(-20deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/whitepill.svg"
+          alt=""
+          width={40}
+          height={40}
+          className="absolute"
+          style={{ top: "22%", right: "20%", transform: "rotate(15deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/whitepill.svg"
+          alt=""
+          width={45}
+          height={45}
+          className="absolute"
+          style={{ bottom: "25%", left: "22%", transform: "rotate(40deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/whitepill.svg"
+          alt=""
+          width={35}
+          height={35}
+          className="absolute"
+          style={{ bottom: "32%", right: "18%", transform: "rotate(-35deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/whitepill.svg"
+          alt=""
+          width={42}
+          height={42}
+          className="absolute"
+          style={{ top: "38%", left: "15%", transform: "rotate(60deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/bottle.svg"
+          alt=""
+          width={70}
+          height={70}
+          className="absolute"
+          style={{ bottom: "22%", right: "25%", transform: "rotate(10deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/starlight.svg"
+          alt=""
+          width={45}
+          height={45}
+          className="absolute"
+          style={{ top: "18%", right: "30%", transform: "rotate(12deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/starlight.svg"
+          alt=""
+          width={35}
+          height={35}
+          className="absolute"
+          style={{ bottom: "28%", left: "20%", transform: "rotate(-10deg)" }}
+        />
+        <Image
+          src="/images/vegas/toggles/starlight.svg"
+          alt=""
+          width={38}
+          height={38}
+          className="absolute"
+          style={{ top: "35%", right: "15%", transform: "rotate(25deg)" }}
+        />
 
         <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
           {/* Logo */}
@@ -253,7 +316,7 @@ export default function VegasPage() {
 
       {/* Title Section before PhoneShowcase */}
       <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
-        <h1 className="display text-white">The Product</h1>
+        <h1 className="text-8xl text-white">The Product</h1>
       </section>
 
       {/* Mobile alternative - visible only below lg */}
@@ -270,94 +333,94 @@ export default function VegasPage() {
 
       {/* Desktop PhoneShowcase - hidden on mobile */}
       <div className="hidden lg:block">
-      <PhoneShowcase
-        sections={sections}
-        showOutlines={true}
-        showMarkers={showMarkers}
-        bgColor="#23577A"
-        containerRef={phoneShowcaseRef}
-      >
-        <section className="section-1">
-          <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
-            <div
-              className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
-            >
-              <span data-animate="2" data-animation="fade">
-                <TextBlock label="the challenge" title="First Impression">
-                  How do I immediately signal that this is a Vegas app wrapped
-                  in medical language - without explaining it explicitly? If it
-                  looks too medical, users won't get the joke. If it's too
-                  obvious, there's no tension.
-                </TextBlock>
-              </span>
-              <span data-animate="3" data-animation="fade">
-                <TextBlock label="My Solution" title="obvious connection">
-                  {`A man using an inhaler - a medical device, a health moment, routine treatment. But his thought bubble explodes with Vegas: neon dice, slot machines,  martini glasses, cannabis. The contrast is instant and absurd.
+        <PhoneShowcase
+          sections={sections}
+          showOutlines={true}
+          showMarkers={showMarkers}
+          bgColor="#23577A"
+          containerRef={phoneShowcaseRef}
+        >
+          <section className="section-1">
+            <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+              <div
+                className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
+              >
+                <span data-animate="2" data-animation="fade">
+                  <TextBlock label="the challenge" title="First Impression">
+                    How do I immediately signal that this is a Vegas app wrapped
+                    in medical language - without explaining it explicitly? If
+                    it looks too medical, users won't get the joke. If it's too
+                    obvious, there's no tension.
+                  </TextBlock>
+                </span>
+                <span data-animate="3" data-animation="fade">
+                  <TextBlock label="My Solution" title="obvious connection">
+                    {`A man using an inhaler - a medical device, a health moment, routine treatment. But his thought bubble explodes with Vegas: neon dice, slot machines,  martini glasses, cannabis. The contrast is instant and absurd.
 
 The image says: medical treatment.
  The thought bubble says: Vegas addiction. 
 The copy reveals: satire.`}
-                </TextBlock>
-              </span>
-            </div>
-            <div
-              className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
-            ></div>
-            <div
-              className={`col-span-4 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-4 justify-center`}
-            >
-              <span
-                data-animate="1"
-                data-animation="fade"
-                className="mt-10 flex items-center text-2xl line-height-1.4"
+                  </TextBlock>
+                </span>
+              </div>
+              <div
+                className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
+              ></div>
+              <div
+                className={`col-span-4 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-4 justify-center`}
               >
-                explore scientifically proven sins, selected by top doctors in
-                Vegas refined through years of irresponsible research.
-              </span>
-            </div>
-          </div>
-        </section>
-        <section className="section-2">
-          <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
-            <div
-              className={`col-span-2 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
-            >
-              <span data-animate="2" data-animation="fade">
-                <TextBlock
-                  label="the challenge"
-                  title="Making Organization Feel Clinical"
+                <span
+                  data-animate="1"
+                  data-animation="fade"
+                  className="mt-10 flex items-center text-2xl line-height-1.4"
                 >
-                  In this app's universe, everything is medical. If users
-                  organize their Vegas trips into collections, what's the
-                  medical equivalent? Where do you store your "prescriptions"?
-                </TextBlock>
-              </span>
-              <span
-                data-animate="1"
-                data-animation="fade"
-                className="mt-1 flex items-center text-2xl line-height-1.4"
+                  explore scientifically proven sins, selected by top doctors in
+                  Vegas refined through years of irresponsible research.
+                </span>
+              </div>
+            </div>
+          </section>
+          <section className="section-2">
+            <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
+              <div
+                className={`col-span-2 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
               >
-                organize favorite destinations, tips, and itineraries into
-                customizable collections, making it easy to plan future trips
-              </span>
-            </div>
-            <div
-              className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
-            ></div>
-            <div
-              className={`col-span-2 md:col-span-2 md:col-start-10 ${outline} flex flex-col justify-center gap-4`}
-            >
-              <span data-animate="4" data-animation="fade">
-                <TextBlock
-                  label="My Solution"
-                  title="Medicine Cabinet as Collection System"
+                <span data-animate="2" data-animation="fade">
+                  <TextBlock
+                    label="the challenge"
+                    title="Making Organization Feel Clinical"
+                  >
+                    In this app's universe, everything is medical. If users
+                    organize their Vegas trips into collections, what's the
+                    medical equivalent? Where do you store your "prescriptions"?
+                  </TextBlock>
+                </span>
+                <span
+                  data-animate="1"
+                  data-animation="fade"
+                  className="mt-1 flex items-center text-2xl line-height-1.4"
                 >
-                  {`A hand placing a new bottle on a medicine shelf. Clean, organized,  like a pharmacy cabinet. The bottles look clinical - clean labels,  medical colors, orderly arrangement. But inside each bottle: dark backgrounds with neon Vegas sins glowing.  Dice, cards, cocktails trapped in prescription containers.
+                  organize favorite destinations, tips, and itineraries into
+                  customizable collections, making it easy to plan future trips
+                </span>
+              </div>
+              <div
+                className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
+              ></div>
+              <div
+                className={`col-span-2 md:col-span-2 md:col-start-10 ${outline} flex flex-col justify-center gap-4`}
+              >
+                <span data-animate="4" data-animation="fade">
+                  <TextBlock
+                    label="My Solution"
+                    title="Medicine Cabinet as Collection System"
+                  >
+                    {`A hand placing a new bottle on a medicine shelf. Clean, organized,  like a pharmacy cabinet. The bottles look clinical - clean labels,  medical colors, orderly arrangement. But inside each bottle: dark backgrounds with neon Vegas sins glowing.  Dice, cards, cocktails trapped in prescription containers.
 
 The duality: medical organization on the surface, Vegas chaos contained within."`}
-                </TextBlock>
-              </span>
-              {/* <Image
+                  </TextBlock>
+                </span>
+                {/* <Image
                 data-animate="3"
                 src="/images/tableafternight.png"
                 alt="Empty State Screen"
@@ -365,148 +428,156 @@ The duality: medical organization on the surface, Vegas chaos contained within."
                 height={600}
                 className="w-full h-auto my-5"
               /> */}
-              {/* <p data-animate="2">
+                {/* <p data-animate="2">
                 I used humor to validate the user&apos;s experience. It tells
                 the user that the app "gets" the messiness of being single and
                 positions the platform as a partner in finding someone to share
                 those raw, uncurated moments with.
               </p> */}
+              </div>
             </div>
-          </div>
-        </section>
-        <section className="section-3">
-          <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
-            <div
-              className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
-            >
-              <span data-animate="2" data-animation="fade">
-                <TextBlock
-                  label="the challenge"
-                  title="Ratings, But Make It Vegas"
-                >
-                  {`In the Vegas-as-medicine metaphor, what are "ratings"?  What do users leave behind after trying their "prescription"?`}
-                </TextBlock>
+          </section>
+          <section className="section-3">
+            <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
+              <div
+                className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+              >
+                <span data-animate="2" data-animation="fade">
+                  <TextBlock
+                    label="the challenge"
+                    title="Ratings, But Make It Vegas"
+                  >
+                    {`In the Vegas-as-medicine metaphor, what are "ratings"?  What do users leave behind after trying their "prescription"?`}
+                  </TextBlock>
+                  <span
+                    data-animate="1"
+                    data-animation="fade"
+                    className="mt-5 flex items-center text-lg"
+                  >
+                    "Share what worked, what stung a little, and where the side
+                    effects were totally worth it. From miracle cures to
+                    questionable detours— your notes might just save someone a
+                    headache."
+                  </span>
+                </span>
+              </div>
+              <div
+                className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}
+              ></div>
+              <div
+                className={`col-span-3 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
+              >
+                <span data-animate="4" data-animation="fade">
+                  <TextBlock
+                    label="My Solution"
+                    title="floating through side effects"
+                  >
+                    {`A man leaping forward in the clean medical interface. Behind him: a glowing trail of neon stars - Vegas memories, past experiences, side effects documented.
+
+Reviews become your Vegas constellation - a trail others can follow.`}
+                  </TextBlock>
+                </span>
+              </div>
+            </div>
+          </section>
+          <section
+            ref={emptyStateRef}
+            className="section-4 pb-20 text-[#23577A]"
+          >
+            <div className="grid grid-cols-12 gap-8 flex justify-center py-20 min-h-screen ">
+              <div
+                className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
+              ></div>
+              <div
+                className={`col-span-3 md:col-span-2 md:col-start-6 ${outline} flex flex-col justify-center gap-5`}
+              >
+                <span data-animate="4" data-animation="fade">
+                  <TextBlock label="The Challenge" title="empty state">
+                    {`in a medical app about Vegas sins, emptiness isn't cute—it's
+                  unsettling. How do I make the absence of "treatments" feel
+                  like something's missing from your life?`}
+                  </TextBlock>
+                </span>
                 <span
                   data-animate="1"
                   data-animation="fade"
                   className="mt-5 flex items-center text-lg"
                 >
-                  "Share what worked, what stung a little, and where the side
-                  effects were totally worth it. From miracle cures to
-                  questionable detours— your notes might just save someone a
-                  headache."
+                  An empty cabinet might not seem urgent, until it is. Small
+                  actions today can prevent bigger issues tomorrow.
                 </span>
-              </span>
-            </div>
-            <div
-              className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}
-            ></div>
-            <div
-              className={`col-span-3 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
-            >
-              <span data-animate="4" data-animation="fade">
-                <TextBlock
-                  label="My Solution"
-                  title="floating through side effects"
-                >
-                  {`A man leaping forward in the clean medical interface. Behind him: a glowing trail of neon stars - Vegas memories, past experiences, side effects documented.
-
-Reviews become your Vegas constellation - a trail others can follow.`}
-                </TextBlock>
-              </span>
-            </div>
-          </div>
-        </section>
-        <section ref={emptyStateRef} className="section-4 pb-20 text-[#23577A]">
-          <div className="grid grid-cols-12 gap-8 flex justify-center py-20 min-h-screen ">
-            <div
-              className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
-            ></div>
-            <div
-              className={`col-span-3 md:col-span-2 md:col-start-6 ${outline} flex flex-col justify-center gap-5`}
-            >
-              <span data-animate="4" data-animation="fade">
-                <TextBlock label="The Challenge" title="empty state">
-                  {`in a medical app about Vegas sins, emptiness isn't cute—it's
-                  unsettling. How do I make the absence of "treatments" feel
-                  like something's missing from your life?`}
-                </TextBlock>
-              </span>
-              <span
-                data-animate="1"
-                data-animation="fade"
-                className="mt-5 flex items-center text-lg"
+              </div>
+              <div
+                className={`pt-50 col-span-3 md:col-span-2 md:col-start-10 ${outline} items-center flex flex-col gap-4`}
               >
-                An empty cabinet might not seem urgent, until it is. Small
-                actions today can prevent bigger issues tomorrow.
-              </span>
-            </div>
-            <div
-              className={`pt-50 col-span-3 md:col-span-2 md:col-start-10 ${outline} items-center flex flex-col gap-4`}
-            >
-              <span data-animate="4" data-animation="fade">
-                <TextBlock label="My Solution" title="Stripping Away the Life">
-                  I removed the vibrant color palette that fills the rest of the
-                  app. What's left: muted tones, sterile shelves, absence. Three
-                  simple lines form a sad face on the empty shelf -minimal, but
-                  enough to give the scene life and convey the feeling.
-                </TextBlock>
-              </span>
+                <span data-animate="4" data-animation="fade">
+                  <TextBlock
+                    label="My Solution"
+                    title="Stripping Away the Life"
+                  >
+                    I removed the vibrant color palette that fills the rest of
+                    the app. What's left: muted tones, sterile shelves, absence.
+                    Three simple lines form a sad face on the empty shelf
+                    -minimal, but enough to give the scene life and convey the
+                    feeling.
+                  </TextBlock>
+                </span>
 
-              <Lauryl
-                data-animate="4"
-                data-animation="sticker"
-                topText="Intended"
-                bottomText="PUN"
-              />
+                <Lauryl
+                  data-animate="4"
+                  data-animation="sticker"
+                  topText="Intended"
+                  bottomText="PUN"
+                />
+              </div>
             </div>
-          </div>
-        </section>
-        <section ref={gamificationRef} className="pb-20 section-5 ">
-          <div className="grid grid-cols-12 gap-8 flex justify-center min-h-screen">
-            <div
-              className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
-            >
-              <span
-                data-animate="2"
-                data-animation="fade"
-                className="mt-10 flex items-center quote"
+          </section>
+          <section ref={gamificationRef} className="pb-20 section-5 ">
+            <div className="grid grid-cols-12 gap-8 flex justify-center min-h-screen">
+              <div
+                className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
               >
-                &ldquo;The upgrade that makes everything fall into place&ldquo;
-              </span>
-            </div>
-            <div
-              className={`col-span-3 md:col-span-2 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
-            >
-              <span data-animate="2" data-animation="fade">
-                <TextBlock
-                  label="the challenge"
-                  title="Gamification in the Medical Metaphor"
+                <span
+                  data-animate="2"
+                  data-animation="fade"
+                  className="mt-10 flex items-center quote"
                 >
-                  Travel apps use badges to encourage exploration—miles
-                  traveled, countries visited, generic achievements. In a
-                  Vegas-as-medicine app, what does "progression" mean? How do I
-                  turn gamification into something that fits the metaphor?
-                </TextBlock>
-              </span>
-              <span data-animate="4" data-animation="fade">
-                <TextBlock
-                  label="My Solution"
-                  title="From Patient to Expert Junkie"
-                >
-                  {`The more destinations you explore, the more "experienced" you become— not with travel, but with substances.`}
-                </TextBlock>
-              </span>
+                  &ldquo;The upgrade that makes everything fall into
+                  place&ldquo;
+                </span>
+              </div>
+              <div
+                className={`col-span-3 md:col-span-2 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
+              >
+                <span data-animate="2" data-animation="fade">
+                  <TextBlock
+                    label="the challenge"
+                    title="Gamification in the Medical Metaphor"
+                  >
+                    Travel apps use badges to encourage exploration—miles
+                    traveled, countries visited, generic achievements. In a
+                    Vegas-as-medicine app, what does "progression" mean? How do
+                    I turn gamification into something that fits the metaphor?
+                  </TextBlock>
+                </span>
+                <span data-animate="4" data-animation="fade">
+                  <TextBlock
+                    label="My Solution"
+                    title="From Patient to Expert Junkie"
+                  >
+                    {`The more destinations you explore, the more "experienced" you become— not with travel, but with substances.`}
+                  </TextBlock>
+                </span>
+              </div>
+              <div
+                className={`pt-50 phone-pocket col-span-4 md:col-span-4 md:col-start-8 ${outline} flex flex-col gap-4`}
+              >
+                <h2></h2>
+              </div>
             </div>
-            <div
-              className={`pt-50 phone-pocket col-span-4 md:col-span-4 md:col-start-8 ${outline} flex flex-col gap-4`}
-            >
-              <h2></h2>
-            </div>
-          </div>
-        </section>
-        <section></section>
-      </PhoneShowcase>
+          </section>
+          <section></section>
+        </PhoneShowcase>
       </div>
 
       {/* Inspiration Images - Crossfade Loop */}
