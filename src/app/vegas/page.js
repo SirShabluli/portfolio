@@ -821,7 +821,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         {/* Center: Title + Toggle */}
         <div className="flex flex-col items-center gap-6 z-10">
           <h1
-            className="text-7xl font-medium transition-colors duration-500"
+            className="text-center text-7xl font-medium transition-colors duration-500"
             style={
               isDark
                 ? {
@@ -969,7 +969,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             style={{ backgroundColor: isDark ? "#000000" : "#23577A" }}
           >
             <h1
-              className="display transition-all duration-500 z-10"
+              className="text-8xl text-center lg:display transition-all duration-500 z-10"
               style={
                 isDark
                   ? {
@@ -1102,7 +1102,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         ref={keyInsightsRef}
         className="min-h-screen bg-[#23577A] text-white py-12 lg:py-24"
       >
-        <div className="grid grid-cols-12 gap-x-4 gap-y-2 px-6 lg:px-12">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-x-4 gap-y-8 px-6 lg:px-12">
           <div className="col-span-12 lg:col-span-5 lg:col-start-2 flex flex-col justify-around mb-10 lg:mb-16">
             <h2 className="text-8xl text-center lg:text-left lg:text-9xl font-bold leading-[120%] text-white">
               Key Insights
@@ -1127,14 +1127,14 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           </div>
 
           {/* Numbered Insights */}
-          <div className="col-span-4 lg:col-span-3 lg:col-start-2">
+          <div className="col-span-12 lg:col-span-3 lg:col-start-2">
             <NumberedTextBlock number="1" title="Contrast Creates Meaning">
               Medical language only works because Vegas is its opposite. The
               tension between sterile UI and neon chaos isn't decoration—it's
               the concept. Remove one side, and the satire collapses.
             </NumberedTextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-3 lg:col-start-5">
+          <div className="col-span-12 lg:col-span-3 lg:col-start-5">
             <NumberedTextBlock number="2" title="Commitment Sells the Joke">
               Half-ironic doesn't work. The app fully commits to the medical
               metaphor— prescription language, clinical colors, wellness
@@ -1142,7 +1142,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               Vegas breaks through.
             </NumberedTextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-3 lg:col-start-8">
+          <div className="col-span-12 lg:col-span-3 lg:col-start-8">
             <NumberedTextBlock number="3" title="Visual Language Can Lie">
               Clean UI says "trust me." Dark illustrations say "but not really."
               The gap between surface and core is where the message lives.

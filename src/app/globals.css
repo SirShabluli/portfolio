@@ -116,9 +116,8 @@ body {
 @layer utilities {
   /* Display - Hero titles */
   .display {
-    @apply text-[9.25rem] font-cinzel font-medium leading-none tracking-tight;
+    @apply text-display font-cinzel font-medium leading-none tracking-tight;
   }
-
   /* Quote - Large decorative text */
   .quote {
     @apply text-[2.125rem] font-raleway font-normal leading-[130%] tracking-wide;
