@@ -29,7 +29,7 @@ export default function MobilePhoneShowcase({
     >
       {/* Page 1 - Challenge */}
       <div
-        className="w-screen flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16"
+        className="w-screen flex-shrink-0 grid grid-cols-4 gap-3 min-h-screen px-3 py-16"
         style={{ backgroundColor: bgColor }}
       >
         <div className="col-span-4 flex flex-col justify-center gap-6">
@@ -49,7 +49,7 @@ export default function MobilePhoneShowcase({
 
       {/* Page 2 - Phone */}
       <div
-        className="w-screen flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16"
+        className="w-screen flex-shrink-0 grid grid-cols-4 gap-3 min-h-screen px-3 py-16"
         style={{ backgroundColor: bgColor }}
       >
         <div className="p-5 col-span-4 flex items-center justify-center">
@@ -67,7 +67,7 @@ export default function MobilePhoneShowcase({
 
       {/* Page 3 - Solution */}
       <div
-        className="w-screen flex-shrink-0 grid grid-cols-4 gap-4 min-h-screen px-6 py-16"
+        className="w-screen flex-shrink-0 grid grid-cols-4 gap-3 min-h-screen px-3 py-16"
         style={{ backgroundColor: bgColor }}
       >
         <div className="col-span-4 flex flex-col justify-center gap-6">

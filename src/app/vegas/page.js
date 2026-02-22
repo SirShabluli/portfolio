@@ -1101,7 +1101,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         ref={keyInsightsRef}
         className="min-h-screen bg-[#23577A] text-white py-12 lg:py-24"
       >
-        <div className="grid grid-cols-4 lg:grid-cols-12 gap-x-4 gap-y-8 px-6 lg:px-12">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-x-3 gap-y-8 px-3 lg:px-12">
           <div className="col-span-12 lg:col-span-5 lg:col-start-2 flex flex-col justify-around mb-10 lg:mb-16">
             <h2 className="text-8xl text-center lg:text-left lg:text-9xl font-bold leading-[120%] text-white">
               Key Insights
