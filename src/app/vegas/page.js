@@ -252,9 +252,9 @@ export default function VegasPage() {
           style={{ top: "35%", right: "15%", transform: "rotate(25deg)" }}
         />
 
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
           {/* Logo */}
-          <div className="col-span-7 col-start-4 flex flex-col gap-7 justify-center items-center">
+          <div className="col-span-4 lg:col-span-7 lg:col-start-4 flex flex-col gap-7 justify-center items-center">
             <Image
               src="/images/vegas/vegassign.svg"
               alt="Project preview"
@@ -262,21 +262,21 @@ export default function VegasPage() {
               height={1200}
               className="w-full h-auto"
             />
-            <h2 className="text-8xl text-white -mt-5 font-(family-name:--font-montserrat) font-bold">
+            <h2 className="text-5xl lg:text-8xl text-white -mt-5 font-(family-name:--font-montserrat) font-bold">
               Retreat
             </h2>
-            <p className="text-lg text-white/70 font-light tracking-wide">
+            <p className="text-base lg:text-lg text-white/70 font-light tracking-wide">
               your medical vegas trip app
             </p>
           </div>
           {/* Description + Metadata */}
-          <div className="col-span-6 col-start-4 flex flex-col text-left gap-1 mt-20 opacity-90">
-            <p className="text-lg font-medium text-white text-left">
+          <div className="col-span-4 lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 mt-10 lg:mt-20 opacity-90">
+            <p className="text-sm lg:text-lg font-medium text-white text-left">
               A travel app for Vegas—disguised as a medical wellness platform.
               Complete with prescription language, clinical UI, and neon sins
               glowing beneath the sterile surface.
             </p>
-            <div className="flex flex-row gap-10 mt-10 text-left w-full">
+            <div className="flex flex-col lg:flex-row gap-4 lg:gap-10 mt-6 lg:mt-10 text-left w-full">
               <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium tracking-wider opacity-60">
                   role
@@ -865,9 +865,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
         {/* Syringe - top right */}
         <div
-          className="absolute"
+          className="absolute top-[30%] lg:top-[40%]"
           style={{
-            top: "40%",
             right: "10%",
             width: 100,
             height: 100,
