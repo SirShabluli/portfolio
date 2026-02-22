@@ -628,11 +628,10 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Inspiration Images - Scattered */}
       <section
-        className="bg-black relative overflow-hidden grid grid-cols-12 items-center"
-        style={{ height: "110vh" }}
+        className="grid grid-cols-4 lg:grid-cols-12 bg-black relative overflow-hidden items-center h-[120vh] lg:h-[110vh]"
         ref={largeImagesRef}
       >
-        <div className="col-span-2 col-start-2 z-20">
+        <div className="col-span-4 lg:col-span-2 lg:col-start-2 z-20 px-3 lg:px-0 py-16 lg:py-0">
           <TextBlock label="" title="" className="text-white">
             The visual world of Vegas at night—neon signs, slot machines, casino
             floors, fountain shows. Raw energy captured in light and color.

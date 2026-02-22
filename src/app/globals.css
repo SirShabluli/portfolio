@@ -95,6 +95,17 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+/* Inspiration scattered images - larger on mobile */
+.large-inspiration {
+  width: 110% !important;
+}
+
+@media (min-width: 1024px) {
+  .large-inspiration {
+    width: revert !important;
+  }
+}
+
 /* ===========================================
    DESIGN SYSTEM - Typography Utilities
    =========================================== */
