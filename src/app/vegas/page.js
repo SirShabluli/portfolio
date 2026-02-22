@@ -177,91 +177,104 @@ export default function VegasPage() {
       </div>
 
       {/* Project Intro Section */}
-      <section className="bg-[#23577A] px-8 min-h-screen text-white flex items-center justify-center relative overflow-hidden">
-        {/* Scattered medical icons */}
-        <Image
-          src="/images/vegas/toggles/whitepill.svg"
-          alt=""
-          width={50}
-          height={50}
-          className="absolute"
-          style={{ top: "20%", left: "18%", transform: "rotate(-20deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/whitepill.svg"
-          alt=""
-          width={40}
-          height={40}
-          className="absolute"
-          style={{ top: "22%", right: "20%", transform: "rotate(15deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/whitepill.svg"
-          alt=""
-          width={45}
-          height={45}
-          className="absolute"
-          style={{ bottom: "25%", left: "22%", transform: "rotate(40deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/whitepill.svg"
-          alt=""
-          width={35}
-          height={35}
-          className="absolute"
-          style={{ bottom: "32%", right: "18%", transform: "rotate(-35deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/whitepill.svg"
-          alt=""
-          width={42}
-          height={42}
-          className="absolute"
-          style={{ top: "38%", left: "15%", transform: "rotate(60deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/bottle.svg"
-          alt=""
-          width={70}
-          height={70}
-          className="absolute"
-          style={{ bottom: "22%", right: "25%", transform: "rotate(10deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/starlight.svg"
-          alt=""
-          width={45}
-          height={45}
-          className="absolute"
-          style={{ top: "18%", right: "30%", transform: "rotate(12deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/starlight.svg"
-          alt=""
-          width={35}
-          height={35}
-          className="absolute"
-          style={{ bottom: "28%", left: "20%", transform: "rotate(-10deg)" }}
-        />
-        <Image
-          src="/images/vegas/toggles/starlight.svg"
-          alt=""
-          width={38}
-          height={38}
-          className="absolute"
-          style={{ top: "35%", right: "15%", transform: "rotate(25deg)" }}
-        />
-
-        <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10">
+      <section className="bg-[#23577A] px-3 lg:px-8 text-white flex items-center justify-center relative overflow-hidden">
+        <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10 w-full">
           {/* Logo */}
-          <div className="col-span-4 lg:col-span-7 lg:col-start-4 flex flex-col gap-7 justify-center items-center">
-            <Image
-              src="/images/vegas/vegassign.svg"
-              alt="Project preview"
-              width={600}
-              height={1200}
-              className="w-full h-auto"
-            />
+          <div className="col-span-4 lg:col-span-7 lg:col-start-4 flex flex-col gap-7 justify-center items-center min-h-screen lg:min-h-0">
+            {/* Vegas sign + scattered icons relative to it */}
+            <div className="relative w-[130%] lg:w-full">
+              <Image
+                src="/images/vegas/vegassign.svg"
+                alt="Project preview"
+                width={600}
+                height={1200}
+                className="w-full h-auto relative z-0"
+              />
+              {/* Icons — top/left % are from top-left of this wrapper.
+                  Center of wrapper ≈ top:50% left:50%.
+                  Positive left% = rightward, negative translate = toward center */}
+              {/* Pill — top left */}
+              <Image
+                src="/images/vegas/toggles/whitepill.svg"
+                alt=""
+                width={50}
+                height={50}
+                className="absolute pointer-events-none w-[10%] lg:w-[8%] h-auto top-[-5%] left-[14%] lg:top-[5%] lg:left-[-8%]"
+                style={{ transform: "rotate(-20deg)" }}
+              />
+              {/* Pill — upper right */}
+              <Image
+                src="/images/vegas/toggles/whitepill.svg"
+                alt=""
+                width={40}
+                height={40}
+                className="absolute pointer-events-none w-[8%] lg:w-[7%] h-auto top-[20%] right-[14%] lg:top-[10%] lg:right-[-10%]"
+                style={{ transform: "rotate(15deg)" }}
+              />
+              {/* Pill — mid left */}
+              <Image
+                src="/images/vegas/toggles/whitepill.svg"
+                alt=""
+                width={42}
+                height={42}
+                className="absolute pointer-events-none w-[7%] lg:w-[7%] h-auto top-[16%] left-[12%] lg:top-[35%] lg:left-[-12%]"
+                style={{ transform: "rotate(60deg)" }}
+              />
+              {/* Pill — lower left */}
+              <Image
+                src="/images/vegas/toggles/whitepill.svg"
+                alt=""
+                width={45}
+                height={45}
+                className="absolute pointer-events-none w-[5%] lg:w-[8%] h-auto top-[90%] left-[16%] lg:top-[60%] lg:left-[-8%]"
+                style={{ transform: "rotate(40deg)" }}
+              />
+              {/* Pill — bottom right */}
+              <Image
+                src="/images/vegas/toggles/whitepill.svg"
+                alt=""
+                width={35}
+                height={35}
+                className="absolute pointer-events-none w-[5%] lg:w-[6%] h-auto bottom-[8%] right-[20%] lg:bottom-[12%] lg:right-[-8%]"
+                style={{ transform: "rotate(-35deg)" }}
+              />
+              {/* Bottle — bottom right */}
+              <Image
+                src="/images/vegas/toggles/bottle.svg"
+                alt=""
+                width={70}
+                height={70}
+                className="absolute pointer-events-none w-[8%] lg:w-[12%] h-auto top-[90%] right-[13%] lg:top-[55%] lg:right-[-14%]"
+                style={{ transform: "rotate(10deg)" }}
+              />
+              {/* Star — top right */}
+              <Image
+                src="/images/vegas/toggles/starlight.svg"
+                alt=""
+                width={45}
+                height={45}
+                className="absolute pointer-events-none w-[10%] lg:w-[8%] h-auto top-[-6%] right-[18%] lg:top-[-5%] lg:right-[-6%]"
+                style={{ transform: "rotate(12deg)" }}
+              />
+              {/* Star — bottom left */}
+              <Image
+                src="/images/vegas/toggles/starlight.svg"
+                alt=""
+                width={35}
+                height={35}
+                className="absolute pointer-events-none w-[8%] lg:w-[6%] h-auto bottom-[15%] left-[13%] lg:bottom-[20%] lg:left-[-10%]"
+                style={{ transform: "rotate(-10deg)" }}
+              />
+              {/* Star — mid right */}
+              <Image
+                src="/images/vegas/toggles/starlight.svg"
+                alt=""
+                width={38}
+                height={38}
+                className="absolute pointer-events-none w-[5%] lg:w-[7%] h-auto top-[75%] right-[12%] lg:top-[78%] lg:right-[-6%]"
+                style={{ transform: "rotate(25deg)" }}
+              />
+            </div>
             <h2 className="text-5xl lg:text-8xl text-white -mt-5 font-(family-name:--font-montserrat) font-bold">
               Retreat
             </h2>
@@ -270,7 +283,7 @@ export default function VegasPage() {
             </p>
           </div>
           {/* Description + Metadata */}
-          <div className="col-span-4 lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 mt-10 lg:mt-20 opacity-90">
+          <div className="col-span-4 lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 pb-16 lg:pb-0 mt-0 lg:mt-20 opacity-90">
             <p className="text-sm lg:text-lg font-medium text-white text-left">
               A travel app for Vegas—disguised as a medical wellness platform.
               Complete with prescription language, clinical UI, and neon sins
