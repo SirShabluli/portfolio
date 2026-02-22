@@ -1155,7 +1155,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         className="min-h-screen bg-[#23577A] flex items-center justify-center"
         {...longPressHandlers}
       >
-        <h1 className="display text-white">Reception</h1>
+        <h1 className="display overflow-hidden text-white">Reception</h1>
       </section>
       <section></section>
       {/* Phone showcase with all sections */}
