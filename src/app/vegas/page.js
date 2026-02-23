@@ -21,6 +21,7 @@ import TextBlock from "../components/TextBlock";
 import VectorToggle from "../components/VectorToggle";
 import DayNightToggle from "../components/DayNightToggle";
 import NumberedTextBlock from "../components/NumberedTextBlock";
+import PageGrid from "../components/PageGrid";
 
 export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
@@ -178,7 +179,7 @@ export default function VegasPage() {
 
       {/* Project Intro Section */}
       <section className="bg-[#23577A] px-3 lg:px-8 text-white flex items-center justify-center relative overflow-hidden">
-        <div className="grid grid-cols-4 lg:grid-cols-12 gap-8 max-w-7xl mx-auto items-center relative z-10 w-full">
+        <PageGrid className="gap-8 max-w-7xl mx-auto items-center relative z-10 w-full">
           {/* Logo */}
           <div className="col-span-4 lg:col-span-7 lg:col-start-4 flex flex-col gap-7 justify-center items-center min-h-screen lg:min-h-0">
             {/* Vegas sign + scattered icons relative to it */}
@@ -324,7 +325,7 @@ export default function VegasPage() {
               </div>
             </div>
           </div>
-        </div>
+        </PageGrid>
       </section>
 
       {/* Title Section before PhoneShowcase */}
@@ -1113,7 +1114,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         ref={keyInsightsRef}
         className="min-h-screen bg-[#23577A] text-white py-12 lg:py-24"
       >
-        <div className="grid grid-cols-4 lg:grid-cols-12 gap-x-3 gap-y-8 px-3 lg:px-12">
+        <PageGrid className="gap-y-8">
           <div className="col-span-12 lg:col-span-5 lg:col-start-2 flex flex-col justify-around mb-10 lg:mb-16">
             <h2 className="text-8xl text-center lg:text-left lg:text-9xl font-bold leading-[120%] text-white">
               Key Insights
@@ -1160,7 +1161,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               Design became a tool for deliberate contradiction.{" "}
             </NumberedTextBlock>
           </div>
-        </div>
+        </PageGrid>
       </section>
 
       <section
