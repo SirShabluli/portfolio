@@ -1,54 +1,40 @@
 export default function Button({
   children,
   size = "medium",
-  variant = "primary",
-  font = "raleway", // ברירת מחדל: raleway
+  variant = "filled",
+  color = "#000000",
   onClick,
   className = "",
+  style = {},
   ...props
 }) {
-  // Base styles שחלים על כל הכפתורים
   const baseStyles =
-    "inline-flex items-center justify-center transition-all duration-200 ";
+    "inline-flex items-center justify-center transition-all hover:opacity-80 duration-200 cursor-pointer";
 
-  // Size variants
   const sizeStyles = {
-    small: "px-4 py-2 text-sm  font-bold",
+    small: "px-4 py-2 text-sm font-bold",
     medium: "px-6 py-3 text-base font-bold",
-    large: "px-8 py-4 text-lg",
+    large: "px-8 py-4 text-lg font-bold",
   };
 
-  // Font variants
-  const fontStyles = {
-    raleway: "font-raleway",
-    netflix: "font-netflix",
-    netflixBold: "font-netflix font-bold",
-    cinzel: "font-cinzel",
-    sans: "font-sans",
-    mono: "font-mono",
-  };
-
-  // Color/Style variants
-  const variantStyles = {
-    primary:
-      "bg-black text-lg text-white font-bold hover:bg-black hover:scale-105",
-    secondary:
-      "bg-black text-white border border-white hover:bg-white hover:text-black",
-    outline:
-      "bg-transparent text-white border border-white hover:bg-white hover:text-black",
-    unselected:
-      "bg-white/40 text-black hover:bg-white hover:text-black hover:border-white",
-    "white-selected": "bg-white text-black",
-    "white-unselected":
-      "bg-transparent text-white border border-white hover:bg-white hover:text-white",
-    "black-selected": "bg-black text-white",
-    "black-unselected":
-      "bg-transparent text-black border border-black hover:bg-black hover:text-white",
+  const variantColor = {
+    filled: {
+      backgroundColor: color,
+      color: "var(--bg, #fff)",
+      borderColor: color,
+    },
+    outline: {
+      backgroundColor: "transparent",
+      color: color,
+      borderColor: color,
+    },
+    ghost: { backgroundColor: "transparent", color: color },
   };
 
   return (
     <button
-      className={`${baseStyles} ${sizeStyles[size]} ${fontStyles[font]} ${variantStyles[variant]} ${className}`}
+      className={`${baseStyles} ${sizeStyles[size]} ${variant !== "ghost" ? "border" : ""} ${className}`}
+      style={{ ...variantColor[variant], ...style }}
       onClick={onClick}
       {...props}
     >

@@ -7,7 +7,6 @@ export default function TypographySection({
   data,
   bgColor = "black",
   textColor = "white",
-  isDark = false,
 }) {
   // Hardcoded alphabet, numbers, and symbols - same for all fonts
   const alphabet =
@@ -78,24 +77,27 @@ export default function TypographySection({
       <div className="col-span-4 lg:col-span-5 lg:col-start-6 lg:mt-7 space-y-6">
         {/* תוויות הפונט (Badges) - דינמיות מה-data */}
         <div className="flex gap-2">
-          {data.fonts.map((font) => (
-            <Button
-              key={font.id}
-              variant={
-                selectedFont.id === font.id
-                  ? isDark
-                    ? "white-selected"
-                    : "black-selected"
-                  : isDark
-                    ? "white-unselected"
-                    : "black-unselected"
-              }
-              onClick={() => selectedFont.id !== font.id && changeFont(font)}
-              size="small"
-            >
-              {font.name} {font.weightName}
-            </Button>
-          ))}
+          {data.fonts.map((font) => {
+            const isSelected = selectedFont.id === font.id;
+            return (
+              <Button
+                key={font.id}
+                variant={isSelected ? "filled" : "outline"}
+                color={textColor}
+                style={isSelected ? { color: bgColor } : {}}
+                onClick={() => !isSelected && changeFont(font)}
+                size="small"
+                onMouseEnter={(e) => {
+                  if (!isSelected) e.currentTarget.style.backgroundColor = textColor + "33";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
+                }}
+              >
+                {font.name} {font.weightName}
+              </Button>
+            );
+          })}
         </div>
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}

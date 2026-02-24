@@ -19,7 +19,7 @@ export default function TextBlock({
       )}
       {children && (
         <p
-          className="mt-2 leading-[150%] text-sm font-medium lg:leading-[130%] whitespace-pre-line lg:text-xs"
+          className="mt-2 leading-[150%] text-sm font-medium lg:leading-[180%] whitespace-pre-line lg:text-xs"
           style={{ maxWidth }}
         >
           {children}
