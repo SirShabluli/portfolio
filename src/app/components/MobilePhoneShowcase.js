@@ -1,7 +1,23 @@
 "use client";
 import Image from "next/image";
 import TextBlock from "./TextBlock";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+function Indicator({ steps, activeStep, textColor }) {
+  return (
+    <div className="flex items-center justify-center gap-6 py-4">
+      {steps.map((label, i) => (
+        <span
+          key={i}
+          className="text-xs font-bold tracking-widest uppercase transition-all duration-300"
+          style={{ color: textColor, opacity: activeStep === i ? 1 : 0.3 }}
+        >
+          {label}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export default function MobilePhoneShowcase({
   section,
@@ -9,30 +25,37 @@ export default function MobilePhoneShowcase({
   textColor = "#ffffff",
 }) {
   const scrollRef = useRef(null);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const steps = [section.challenge.label, "screen", section.solution.label];
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = window.innerWidth;
-    }
+    const el = scrollRef.current;
+    const handleScroll = () => {
+      const step = Math.round(el.scrollLeft / window.innerWidth);
+      setActiveStep(step);
+    };
+    el.addEventListener("scroll", handleScroll);
+    return () => el.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div
-      ref={scrollRef}
-      className="w-full overflow-x-scroll flex"
-      style={{
-        backgroundColor: bgColor,
-        color: textColor,
-        WebkitOverflowScrolling: "touch",
-        scrollbarWidth: "none",
-      }}
-    >
-      {/* Page 1 - Challenge */}
+    <div className="flex flex-col" style={{ backgroundColor: bgColor }}>
       <div
-        className="w-screen flex-shrink-0 grid grid-cols-4 gap-3 min-h-screen px-3 py-16"
-        style={{ backgroundColor: bgColor }}
+        ref={scrollRef}
+        className="w-full overflow-x-scroll flex"
+        style={{
+          color: textColor,
+          WebkitOverflowScrolling: "touch",
+          scrollbarWidth: "none",
+          scrollSnapType: "x mandatory",
+        }}
       >
-        <div className="col-span-4 flex flex-col justify-center gap-6">
+        {/* Page 1 - Challenge */}
+        <div
+          className="w-screen shrink-0 flex flex-col justify-center h-screen px-3 pt-16 gap-6"
+          style={{ scrollSnapAlign: "start" }}
+        >
           {section.quote && (
             <p className="quote" style={{ color: textColor }}>
               &ldquo;{section.quote}&rdquo;
@@ -45,32 +68,28 @@ export default function MobilePhoneShowcase({
             {section.challenge.body}
           </TextBlock>
         </div>
-      </div>
 
-      {/* Page 2 - Phone */}
-      <div
-        className="w-screen flex-shrink-0 grid grid-cols-4 gap-3 min-h-screen px-3 py-16"
-        style={{ backgroundColor: bgColor }}
-      >
-        <div className="p-5 col-span-4 flex items-center justify-center">
+        {/* Page 2 - Phone */}
+        <div
+          className="w-screen shrink-0 flex items-end justify-center h-screen"
+          style={{ scrollSnapAlign: "start" }}
+        >
           {section.screenSrc && (
             <Image
               src={section.screenSrc}
               alt={`Screen ${section.id}`}
               width={400}
               height={800}
-              className="w-full h-auto"
+              className="w-[90vw] h-auto"
             />
           )}
         </div>
-      </div>
 
-      {/* Page 3 - Solution */}
-      <div
-        className="w-screen flex-shrink-0 grid grid-cols-4 gap-3 min-h-screen px-3 py-16"
-        style={{ backgroundColor: bgColor }}
-      >
-        <div className="col-span-4 flex flex-col justify-center gap-6">
+        {/* Page 3 - Solution */}
+        <div
+          className="w-screen shrink-0 flex flex-col justify-center h-screen px-3 pt-16 gap-6"
+          style={{ scrollSnapAlign: "start" }}
+        >
           <TextBlock
             label={section.solution.label}
             title={section.solution.title}
@@ -79,6 +98,8 @@ export default function MobilePhoneShowcase({
           </TextBlock>
         </div>
       </div>
+
+      <Indicator steps={steps} activeStep={activeStep} textColor={textColor} />
     </div>
   );
 }
