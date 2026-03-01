@@ -61,7 +61,7 @@ export default function TypographySection({
 
   return (
     <section
-      className="grid grid-cols-4 lg:grid-cols-12 w-full min-h-screen py-16 lg:py-24 px-3 lg:px-12 gap-x-3 gap-y-8 lg:gap-y-12 transition-colors duration-500"
+      className="grid grid-cols-4 lg:grid-cols-12 w-full min-h-screen py-16 lg:py-24 px-6 lg:px-12 gap-x-3 gap-y-8 lg:gap-y-12 transition-colors duration-500"
       style={{ backgroundColor: bgColor, color: textColor }}
     >
       {/* כותרת הסקשן בצד שמאל (עמודות 1-3) */}

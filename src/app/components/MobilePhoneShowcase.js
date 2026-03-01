@@ -31,6 +31,11 @@ export default function MobilePhoneShowcase({
 
   useEffect(() => {
     const el = scrollRef.current;
+
+    // Start at the screen (index 1 = middle)
+    el.scrollLeft = window.innerWidth;
+    setActiveStep(1);
+
     const handleScroll = () => {
       const step = Math.round(el.scrollLeft / window.innerWidth);
       setActiveStep(step);

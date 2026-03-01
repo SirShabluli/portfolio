@@ -613,7 +613,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="phone-inspiration object-cover absolute inset-0"
           />
         ))}
-        <div className="absolute bottom-16 left-12 z-20 max-w-md">
+        <div className="absolute bottom-16 left-6 lg:left-12 z-20 max-w-md">
           <span className="text-5xl font-medium tracking-tight text-[#23577A]">
             Inspiration
           </span>
@@ -632,7 +632,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         className="grid grid-cols-4 lg:grid-cols-12 bg-black relative overflow-hidden items-center h-[120vh] lg:h-[110vh]"
         ref={largeImagesRef}
       >
-        <div className="col-span-4 lg:col-span-2 lg:col-start-2 z-20 px-3 lg:px-0 py-16 lg:py-0">
+        <div className="col-span-4 lg:col-span-2 lg:col-start-2 z-20 px-6 lg:px-0 py-16 lg:py-0">
           <TextBlock label="" title="" className="text-white">
             The visual world of Vegas at night—neon signs, slot machines, casino
             floors, fountain shows. Raw energy captured in light and color.
