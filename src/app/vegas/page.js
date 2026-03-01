@@ -1047,7 +1047,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               />
             </div>
           </div>
-          <div className="min-w-screen w-screen h-screen shrink-0 relative overflow-hidden">
+          <div className="min-w-screen w-screen md:h-screen shrink-0 relative overflow-hidden">
             <TypographySection
               data={vegasTypography}
               bgColor={isDark ? "#000000" : "#E4EBFF"}
@@ -1095,7 +1095,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               />
             </div>
           </div>
-          <div className="min-w-screen w-screen h-screen shrink-0">
+          <div className="min-w-screen w-screen md:h-screen shrink-0">
             <ColorPalette
               colors={isDark ? vegasDarkColors : vegasLightColors}
               isDark={isDark}
@@ -1134,7 +1134,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               alt="Falling Stars"
               width={300}
               height={300}
-              className="w-full lg:w-full h-auto"
+              className="w-full px-10 lg:p-0 lg:w-full h-auto"
             />
           </div>
 

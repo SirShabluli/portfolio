@@ -37,7 +37,7 @@ export default function HorizontalScroll({ children }) {
   );
 
   return (
-    <div ref={containerRef} className="overflow-hidden">
+    <div ref={containerRef} className="md:overflow-hidden">
       <div ref={scrollRef} className="flex flex-col md:flex-row md:h-screen">
         {children}
       </div>
