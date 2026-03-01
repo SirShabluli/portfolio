@@ -14,6 +14,8 @@ export default function HorizontalScroll({ children }) {
 
   useGSAP(
     () => {
+      if (window.innerWidth < 768) return;
+
       const scrollElement = scrollRef.current;
       const totalWidth = scrollElement.scrollWidth - window.innerWidth;
 
@@ -36,7 +38,7 @@ export default function HorizontalScroll({ children }) {
 
   return (
     <div ref={containerRef} className="overflow-hidden">
-      <div ref={scrollRef} className="flex h-screen">
+      <div ref={scrollRef} className="flex flex-col md:flex-row md:h-screen">
         {children}
       </div>
     </div>

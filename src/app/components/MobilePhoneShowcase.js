@@ -53,7 +53,7 @@ export default function MobilePhoneShowcase({
       >
         {/* Page 1 - Challenge */}
         <div
-          className="w-screen shrink-0 flex flex-col justify-center h-screen px-3 pt-16 gap-6"
+          className="w-screen shrink-0 flex flex-col justify-center h-screen px-8 pt-16 gap-6"
           style={{ scrollSnapAlign: "start" }}
         >
           {section.quote && (
@@ -80,14 +80,14 @@ export default function MobilePhoneShowcase({
               alt={`Screen ${section.id}`}
               width={400}
               height={800}
-              className="w-[90vw] h-auto"
+              className="w-[80vw] h-auto"
             />
           )}
         </div>
 
         {/* Page 3 - Solution */}
         <div
-          className="w-screen shrink-0 flex flex-col justify-center h-screen px-3 pt-16 gap-6"
+          className="w-screen shrink-0 flex flex-col justify-center h-screen px-8 pt-16 gap-6"
           style={{ scrollSnapAlign: "start" }}
         >
           <TextBlock
