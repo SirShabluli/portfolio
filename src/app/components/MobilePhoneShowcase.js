@@ -8,10 +8,10 @@ function Indicator({ steps, activeStep, textColor, bgColor, scrollRef }) {
   const canGoRight = activeStep < steps.length - 1;
 
   const scrollTo = (index) => {
-    scrollRef.current?.scrollTo({
-      left: index * window.innerWidth,
-      behavior: "smooth",
-    });
+    const el = scrollRef.current;
+    if (!el) return;
+    const pageWidth = el.offsetWidth;
+    el.scrollTo({ left: index * pageWidth, behavior: "smooth" });
   };
 
   return (
@@ -67,12 +67,13 @@ export default function MobilePhoneShowcase({
 
   useEffect(() => {
     const el = scrollRef.current;
+    const pageWidth = el.offsetWidth;
 
     // Start at the screen (index 1 = middle)
-    el.scrollLeft = window.innerWidth;
+    el.scrollLeft = pageWidth;
 
     const handleScroll = () => {
-      const step = Math.round(el.scrollLeft / window.innerWidth);
+      const step = Math.round(el.scrollLeft / el.offsetWidth);
       setActiveStep(step);
     };
     el.addEventListener("scroll", handleScroll);
