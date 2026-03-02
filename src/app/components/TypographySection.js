@@ -84,7 +84,11 @@ export default function TypographySection({
                 key={font.id}
                 variant={isSelected ? "filled" : "outline"}
                 color={textColor}
-                style={isSelected ? { color: bgColor } : {}}
+                style={{
+                  fontFamily: font.fontFamily,
+                  fontWeight: font.weight,
+                  ...(isSelected ? { color: bgColor } : {}),
+                }}
                 onClick={() => !isSelected && changeFont(font)}
                 size="small"
                 onMouseEnter={(e) => {

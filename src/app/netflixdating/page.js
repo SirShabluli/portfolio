@@ -7,7 +7,9 @@ import {
   catProjectSteps,
   netflixTypography,
   netflixColors,
+  netflixSections,
 } from "../../data/projectData";
+import MobilePhoneShowcase from "../components/MobilePhoneShowcase";
 import Lauryl from "../components/Lauryl";
 import ScreenZoomSection from "../components/ScreenZoomSection";
 import HorizontalScroll from "../components/HorizontalScroll";
@@ -104,10 +106,24 @@ export default function NetflixDatingPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className=" hidden lg:flex min-h-screen bg-black flex items-center justify-center">
+      <section className="hidden lg:flex min-h-screen bg-black items-center justify-center">
         <h1 className=" display text-white">The Product</h1>
       </section>
 
+      {/* Mobile Phone Showcase - visible only on mobile */}
+      <div className="md:hidden">
+        {netflixSections.map((section) => (
+          <MobilePhoneShowcase
+            key={section.id}
+            section={section}
+            bgColor="#1a1a1a"
+            textColor="#ffffff"
+          />
+        ))}
+      </div>
+
+      {/* Desktop Phone Showcase - hidden on mobile */}
+      <div className="hidden md:block">
       <PhoneShowcase
         sections={sections}
         showOutlines={true}
@@ -354,6 +370,7 @@ If the app is about the living room experience, premium should be the ultimate p
         </section>
         <section></section>
       </PhoneShowcase>
+      </div>
 
       {/* Screen Section with Zoom */}
       <ScreenZoomSection imageSrc="/images/netflix-dating/screen.png">

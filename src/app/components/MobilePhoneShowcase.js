@@ -63,7 +63,7 @@ export default function MobilePhoneShowcase({
   const scrollRef = useRef(null);
   const [activeStep, setActiveStep] = useState(1);
 
-  const steps = [section.challenge.label, "screen", section.solution.label];
+  const steps = [section.challenge.label, section.screenName || "screen", section.solution.label];
 
   useEffect(() => {
     const el = scrollRef.current;

@@ -2,6 +2,7 @@ export const vegasSections = [
   {
     id: 1,
     screenSrc: "/images/vegas/screens/discover.png",
+    screenName: "Discover Screen",
     quote:
       "explore scientifically proven sins, selected by top doctors in Vegas refined through years of irresponsible research.",
     challenge: {
@@ -22,6 +23,7 @@ The copy reveals: satire.`,
   {
     id: 2,
     screenSrc: "/images/vegas/screens/favorites.png",
+    screenName: "Favorites Screen",
     quote:
       "organize favorite destinations, tips, and itineraries into customizable collections, making it easy to plan future trips",
     challenge: {
@@ -40,6 +42,7 @@ The duality: medical organization on the surface, Vegas chaos contained within.`
   {
     id: 3,
     screenSrc: "/images/vegas/screens/mark.png",
+    screenName: "Reviews Screen",
     quote:
       "Share what worked, what stung a little, and where the side effects were totally worth it.",
     challenge: {
@@ -58,6 +61,7 @@ Reviews become your Vegas constellation - a trail others can follow.`,
   {
     id: 4,
     screenSrc: "/images/vegas/screens/empty.png",
+    screenName: "Empty State",
     quote:
       "An empty cabinet might not seem urgent, until it is. Small actions today can prevent bigger issues tomorrow.",
     challenge: {
@@ -74,11 +78,12 @@ Reviews become your Vegas constellation - a trail others can follow.`,
   {
     id: 5,
     screenSrc: "/images/vegas/screens/awards.png",
+    screenName: "Awards",
     quote: "The upgrade that makes everything fall into place",
     challenge: {
       label: "the challenge",
       title: "Gamification in the Medical Metaphor",
-      body: "Travel apps use badges to encourage exploration—miles traveled, countries visited, generic achievements. In a Vegas-as-medicine app, what does \"progression\" mean? How do I turn gamification into something that fits the metaphor?",
+      body: 'Travel apps use badges to encourage exploration—miles traveled, countries visited, generic achievements. In a Vegas-as-medicine app, what does "progression" mean? How do I turn gamification into something that fits the metaphor?',
     },
     solution: {
       label: "My Solution",
@@ -142,7 +147,7 @@ export const netflixTypography = {
       name: "Netflix Sans",
       weight: "300",
       weightName: "Light",
-      fontFamily: "var(--font-netflix)",
+      fontFamily: '"Netflix Sans", sans-serif',
       description: "Official Netflix font, light weight for subtle elegance",
     },
     {
@@ -150,7 +155,7 @@ export const netflixTypography = {
       name: "Netflix Sans",
       weight: "500",
       weightName: "Medium",
-      fontFamily: "var(--font-netflix)",
+      fontFamily: '"Netflix Sans", sans-serif',
       description:
         "Official Netflix font, medium weight for balanced readability",
     },
@@ -164,7 +169,7 @@ export const vegasTypography = {
       name: "Montserrat",
       weight: "700",
       weightName: "Bold",
-      fontFamily: "var(--font-montserrat)",
+      fontFamily: "Montserrat, sans-serif",
       description: "Strong and confident, used for headlines and key moments",
     },
     {
@@ -172,7 +177,7 @@ export const vegasTypography = {
       name: "Montserrat",
       weight: "500",
       weightName: "Medium",
-      fontFamily: "var(--font-montserrat)",
+      fontFamily: "Montserrat, sans-serif",
       description: "Clean and readable, used for body text and UI elements",
     },
   ],
@@ -298,7 +303,7 @@ export const toiletTypography = {
       name: "Dokdo",
       weight: "400",
       weightName: "Regular",
-      fontFamily: "var(--font-dokdo)",
+      fontFamily: "Dokdo, sans-serif",
       description:
         "Bold and raw, used for headlines — feels like bathroom wall graffiti",
     },
@@ -307,7 +312,7 @@ export const toiletTypography = {
       name: "Reenie Beanie",
       weight: "400",
       weightName: "Regular",
-      fontFamily: "var(--font-reenie-beanie)",
+      fontFamily: '"Reenie Beanie", cursive',
       description:
         "Handwritten and casual, used for subheadings and playful notes",
     },
@@ -371,6 +376,89 @@ export const toiletColors = [
     hex: "#ff0080",
     description: "Warm highlight",
     textColor: "black",
+  },
+];
+
+export const netflixSections = [
+  {
+    id: 1,
+    screenName: "Match",
+    screenSrc: "/images/netflix-dating/screens/match.png",
+    quote: "might be your first step towards a new couch",
+    challenge: {
+      label: "The Challenge",
+      title: "Easy Connections",
+      body: "In the Netflix world, there are many types of connections. The challenge was to find something that conveys the idea of two different things coming together - staying simple and universal, without relying on niche concepts.",
+    },
+    solution: {
+      label: "My Solution",
+      title: "Obvious Connection",
+      body: "Your couch is perfectly adjusted - the angles, the cushions, the softness.\n\nBut when someone new enters the picture, maybe it's worth investing in something that works for both of you.\n\nTwo couches side by side: one beige, one red velvet. Different styles, same vibe.",
+    },
+  },
+  {
+    id: 2,
+    screenName: "Empty State",
+    screenSrc: "/images/netflix-dating/screens/empty.png",
+    quote: "Some things shouldn't be dealt with alone...",
+    challenge: {
+      label: "The Challenge",
+      title: "Define 'Missing'",
+      body: "The Empty State needed to tell the user: 'You're missing something that could make your life easier' — and position the app as the solution.",
+    },
+    solution: {
+      label: "My Solution",
+      title: "A Trivial Pain",
+      body: "I identified the trivial pains of solo Netflix nights and illustrated them honestly.\n\nBy showing an empty pizza box and a half-finished glass of wine, I validated the messy reality of watching alone.\n\nThe message isn't 'you need someone.' It's 'some things are just easier together.'",
+    },
+  },
+  {
+    id: 3,
+    screenName: "Share",
+    screenSrc: "/images/netflix-dating/screens/share.png",
+    quote: "Something smells fishy, but it might just be our mistake",
+    challenge: {
+      label: "The Challenge",
+      title: "Immediate Dismissal",
+      body: "The 'Share the App' screen often feels like a burden. Users feel the app is forcing them to do something they don't want to.\n\nHow do you make someone pause before closing the window — and maybe act differently?",
+    },
+    solution: {
+      label: "My Solution",
+      title: "Irony",
+      body: "According to Netflix's rules, account sharing isn't allowed. Yet we all know the profile selection screen — filled with family members, friends, and 'definitely not your ex.'\n\nI took that familiar restriction and flipped it. This time, Netflix wants you to share.",
+    },
+  },
+  {
+    id: 4,
+    screenName: "Catfish",
+    screenSrc: "/images/netflix-dating/screens/catfish.png",
+    quote: "Something smells fishy, but it might just be our mistake",
+    challenge: {
+      label: "The Challenge",
+      title: "Defusing Frustration",
+      body: "The 'Verification Failed' screen is all about frustration.\n\nIt touches on pains people don't speak about — they might feel guilty, worried that their photos don't represent them, or concerned that someone else is using their image.",
+    },
+    solution: {
+      label: "My Solution",
+      title: "Empathy in Frustration",
+      body: "I turned the colloquial term 'Catfish' into the illustration itself: a grumpy cat wearing a fish hat, clearly unimpressed.\n\nThis shifts blame from user to app — transforming 'Why won't you verify me?' into 'How dare you think I'm fake?'\n\nBy humanizing the error with humor, users are more likely to try again.",
+    },
+  },
+  {
+    id: 5,
+    screenName: "Premium",
+    screenSrc: "/images/netflix-dating/screens/premium.png",
+    quote: "The upgrade that makes everything fall into place",
+    challenge: {
+      label: "The Challenge",
+      title: "Same Same but Different",
+      body: "The premium screen offers users an elevated experience — something they don't have yet. It's about adding what's missing. Premium usually gets a distinct color while staying true to the original brand.",
+    },
+    solution: {
+      label: "My Solution",
+      title: "A Golden Addition",
+      body: "Literally an addition: a chaise lounge. An extra piece that upgrades the entire couch.\n\nFor the color, I introduced a golden yellow — still warm and inviting, but distinctly premium.\n\nIf the app is about the living room experience, premium should be the ultimate piece of furniture.",
+    },
   },
 ];
 
