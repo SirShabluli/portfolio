@@ -3,18 +3,54 @@ import Image from "next/image";
 import TextBlock from "./TextBlock";
 import { useEffect, useRef, useState } from "react";
 
-function Indicator({ steps, activeStep, textColor }) {
+function Indicator({ steps, activeStep, textColor, bgColor, scrollRef }) {
+  const canGoLeft = activeStep > 0;
+  const canGoRight = activeStep < steps.length - 1;
+
+  const scrollTo = (index) => {
+    scrollRef.current?.scrollTo({
+      left: index * window.innerWidth,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="flex items-center justify-center gap-6 py-4">
-      {steps.map((label, i) => (
-        <span
-          key={i}
-          className="text-xs font-bold tracking-widest uppercase transition-all duration-300"
-          style={{ color: textColor, opacity: activeStep === i ? 1 : 0.3 }}
-        >
-          {label}
-        </span>
-      ))}
+    <div className="flex items-center justify-center gap-3 py-4">
+      <button
+        onClick={() => canGoLeft && scrollTo(activeStep - 1)}
+        className="w-8 h-8 flex items-center justify-center  border transition-opacity duration-300"
+        style={{
+          color: textColor,
+          opacity: canGoLeft ? 1 : 0,
+          borderColor: textColor,
+          background: "none",
+          cursor: canGoLeft ? "pointer" : "default",
+        }}
+      >
+        ←
+      </button>
+      <span
+        className="text-xs font-bold tracking-widest uppercase px-4 py-2"
+        style={{
+          backgroundColor: textColor,
+          color: bgColor,
+        }}
+      >
+        {steps[activeStep]}
+      </span>
+      <button
+        onClick={() => canGoRight && scrollTo(activeStep + 1)}
+        className="w-8 h-8 flex items-center justify-center border transition-opacity duration-300"
+        style={{
+          color: textColor,
+          opacity: canGoRight ? 1 : 0,
+          borderColor: textColor,
+          background: "none",
+          cursor: canGoRight ? "pointer" : "default",
+        }}
+      >
+        →
+      </button>
     </div>
   );
 }
@@ -25,7 +61,7 @@ export default function MobilePhoneShowcase({
   textColor = "#ffffff",
 }) {
   const scrollRef = useRef(null);
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
 
   const steps = [section.challenge.label, "screen", section.solution.label];
 
@@ -34,7 +70,6 @@ export default function MobilePhoneShowcase({
 
     // Start at the screen (index 1 = middle)
     el.scrollLeft = window.innerWidth;
-    setActiveStep(1);
 
     const handleScroll = () => {
       const step = Math.round(el.scrollLeft / window.innerWidth);
@@ -104,7 +139,13 @@ export default function MobilePhoneShowcase({
         </div>
       </div>
 
-      <Indicator steps={steps} activeStep={activeStep} textColor={textColor} />
+      <Indicator
+        steps={steps}
+        activeStep={activeStep}
+        textColor={textColor}
+        bgColor={bgColor}
+        scrollRef={scrollRef}
+      />
     </div>
   );
 }
