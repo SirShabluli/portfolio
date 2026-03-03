@@ -41,37 +41,14 @@ export default function VegasPage() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    if (!phoneImagesRef.current) return;
-
-    const images =
-      phoneImagesRef.current.querySelectorAll(".phone-inspiration");
-    gsap.set(images, { opacity: 0 });
-
-    const inspoTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: phoneImagesRef.current,
-        start: "top 80%",
-        toggleActions: "play pause resume reset",
-      },
-    });
-
-    images.forEach((img) => {
-      inspoTl
-        .to(img, { opacity: 1, duration: 2, ease: "power2.inOut" })
-        .to(img, { opacity: 0, duration: 2, ease: "power2.inOut" }, "+=3");
-    });
-
-    inspoTl.repeat(-1);
-
     // Sticker effect for large inspiration images
     if (largeImagesRef.current) {
       const largeImages =
         largeImagesRef.current.querySelectorAll(".large-inspiration");
-      gsap.set(largeImages, { opacity: 0, scale: 0, rotation: -15 });
+      gsap.set(largeImages, { opacity: 0, scale: 0 });
       gsap.to(largeImages, {
         opacity: 1,
         scale: 1,
-        rotation: 0,
         duration: 0.4,
         ease: "back.out(2.5)",
         stagger: 0.23,
@@ -79,7 +56,7 @@ export default function VegasPage() {
         scrollTrigger: {
           trigger: largeImagesRef.current,
           start: "top center",
-          toggleActions: "play none none reset",
+          toggleActions: "play none none none",
         },
       });
     }
@@ -594,231 +571,311 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         </PhoneShowcase>
       </div>
 
-      {/* Inspiration Images - Crossfade Loop */}
+      {/* Inspiration Images - Collage */}
       <section
-        className="relative w-full h-screen overflow-hidden bg-[#E4EBFF]"
+        className="grid grid-cols-4 lg:grid-cols-12 bg-[#E4EBFF] items-center py-24 lg:py-0 lg:h-[110vh] overflow-hidden"
         ref={phoneImagesRef}
       >
-        {[
-          "/images/vegas/doctor.png",
-          "/images/vegas/denstist.png",
-          "/images/vegas/meditate.jpg",
-          "/images/vegas/appclue.jpg",
-        ].map((src, i) => (
-          <Image
-            key={src}
-            src={src}
-            alt={`Inspiration ${i + 1}`}
-            fill
-            className="phone-inspiration object-cover absolute inset-0"
-          />
-        ))}
-        <div className="absolute bottom-16 left-6 lg:left-12 z-20 max-w-md">
-          <span className="text-5xl font-medium tracking-tight text-[#23577A]">
-            Inspiration
-          </span>
-          <p className="text-sm text-[#23577A]/80 mt-4 leading-relaxed">
+        <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12">
+          <TextBlock label="Inspiration" title="" className="text-[#23577A]">
             I studied wellness apps—Calm, Headspace, medical tracking apps.
             Clean interfaces. Soft blues and whites. Gentle icons. Sterile
             language. Everything designed to create trust, safety, clinical
             authority. This became the wrapper—the medical disguise that makes
             Vegas feel prescribed, legitimate, doctor-approved.
-          </p>
+          </TextBlock>
+        </div>
+        <div className="hidden lg:block col-span-9 relative h-full w-full">
+          <div
+            className="absolute overflow-hidden transition-transform duration-300 hover:scale-105 hover:z-200 cursor-pointer"
+            style={{
+              width: "35%",
+              rotate: "-0deg",
+              top: "15%",
+              left: "5%",
+              zIndex: 6,
+            }}
+          >
+            <Image
+              src="/images/vegas/doctor.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="absolute overflow-hidden transition-transform duration-300 hover:scale-105 hover:z-50 cursor-pointer"
+            style={{
+              width: "28%",
+              rotate: "4deg",
+              top: "15%",
+              right: "20%",
+              zIndex: 2,
+            }}
+          >
+            <Image
+              src="/images/vegas/denstist.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+
+          <div
+            className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
+            style={{
+              width: "20%",
+              rotate: "-4deg",
+              top: "10%",
+              left: "50%",
+              zIndex: 5,
+            }}
+          >
+            <Image
+              src="/images/vegas/mfp.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
+            style={{
+              width: "22%",
+              rotate: "5deg",
+              bottom: "10%",
+              left: "5%",
+              zIndex: 6,
+            }}
+          >
+            <Image
+              src="/images/vegas/oralb.jpg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
+            style={{
+              width: "20%",
+              rotate: "-2deg",
+              top: "35%",
+              left: "30%",
+              zIndex: 7,
+            }}
+          >
+            <Image
+              src="/images/vegas/waterllama.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
         </div>
       </section>
 
       {/* Inspiration Images - Scattered */}
       <section
-        className="grid grid-cols-4 lg:grid-cols-12 bg-black relative overflow-hidden items-center h-[120vh] lg:h-[110vh]"
+        className="grid grid-cols-4 lg:grid-cols-12 bg-black items-center py-24 lg:py-0 lg:h-[110vh] overflow-hidden"
         ref={largeImagesRef}
       >
-        <div className="col-span-4 lg:col-span-2 lg:col-start-2 z-20 px-6 lg:px-0 py-16 lg:py-0">
-          <TextBlock label="" title="" className="text-white">
+        {/* Text: full width on mobile, 3 cols on desktop */}
+        <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12">
+          <TextBlock label="Inspiration" title="" className="text-white">
             The visual world of Vegas at night—neon signs, slot machines, casino
             floors, fountain shows. Raw energy captured in light and color.
             These references shaped the dark mode palette and the sense of
             excess that lives beneath the clinical surface.
           </TextBlock>
         </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "55%",
-            rotate: "-4deg",
-            top: "-5%",
-            left: "-3%",
-            zIndex: 1,
-          }}
-        >
-          <Image
-            src="/images/vegas/casinonight.jpg"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "50%",
-            rotate: "3deg",
-            top: "-2%",
-            right: "-5%",
-            zIndex: 2,
-          }}
-        >
-          <Image
-            src="/images/vegas/neoncasino.webp"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "48%",
-            rotate: "6deg",
-            bottom: "-5%",
-            left: "-2%",
-            zIndex: 3,
-          }}
-        >
-          <Image
-            src="/images/vegas/saussy.jpg"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "52%",
-            rotate: "-2deg",
-            top: "15%",
-            left: "22%",
-            zIndex: 4,
-          }}
-        >
-          <Image
-            src="/images/vegas/slot.jpg"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "50%",
-            rotate: "4deg",
-            bottom: "-3%",
-            right: "-4%",
-            zIndex: 5,
-          }}
-        >
-          <Image
-            src="/images/vegas/mc-casino.jpeg"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "45%",
-            rotate: "-5deg",
-            top: "2%",
-            left: "25%",
-            zIndex: 6,
-          }}
-        >
-          <Image
-            src="/images/vegas/seahouse.jpg"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "53%",
-            rotate: "2deg",
-            bottom: "5%",
-            left: "20%",
-            zIndex: 7,
-          }}
-        >
-          <Image
-            src="/images/vegas/vegasnight1.jpg"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "48%",
-            rotate: "-3deg",
-            top: "10%",
-            right: "0%",
-            zIndex: 8,
-          }}
-        >
-          <Image
-            src="/images/vegas/vegassign.png"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "46%",
-            rotate: "5deg",
-            top: "40%",
-            right: "18%",
-            zIndex: 9,
-          }}
-        >
-          <Image
-            src="/images/vegas/casino leds.png"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
-        </div>
-        <div
-          className="large-inspiration absolute rounded-lg overflow-hidden"
-          style={{
-            width: "42%",
-            rotate: "-4deg",
-            bottom: "8%",
-            left: "5%",
-            zIndex: 10,
-          }}
-        >
-          <Image
-            src="/images/vegas/fountain.png"
-            alt="Inspiration"
-            width={1920}
-            height={1080}
-            className="w-full h-auto"
-          />
+        {/* Collage: 9 cols, desktop only */}
+        <div className="hidden lg:block col-span-9 relative h-full w-full">
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "100%",
+              rotate: "4deg",
+              top: "-5%",
+              left: "20%",
+              zIndex: 1,
+            }}
+          >
+            <Image
+              src="/images/vegas/casinonight.jpg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "50%",
+              rotate: "3deg",
+              top: "-2%",
+              right: "-5%",
+              zIndex: 2,
+            }}
+          >
+            <Image
+              src="/images/vegas/neoncasino.webp"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "48%",
+              rotate: "6deg",
+              bottom: "-5%",
+              left: "10%",
+              zIndex: 3,
+            }}
+          >
+            <Image
+              src="/images/vegas/saussy.jpg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "22%",
+              rotate: "-2deg",
+              top: "15%",
+              left: "0%",
+              zIndex: 4,
+            }}
+          >
+            <Image
+              src="/images/vegas/slot.jpg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "10%",
+              rotate: "4deg",
+              bottom: "-3%",
+              right: "4%",
+              zIndex: 5,
+            }}
+          >
+            <Image
+              src="/images/vegas/mc-casino.jpeg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "45%",
+              rotate: "-5deg",
+              top: "2%",
+              left: "5%",
+              zIndex: 6,
+            }}
+          >
+            <Image
+              src="/images/vegas/seahouse.jpg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "100%",
+              rotate: "2deg",
+              bottom: "5%",
+              left: "20%",
+              zIndex: 7,
+            }}
+          >
+            <Image
+              src="/images/vegas/vegasnight1.jpg"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "48%",
+              rotate: "-3deg",
+              top: "10%",
+              right: "0%",
+              zIndex: 8,
+            }}
+          >
+            <Image
+              src="/images/vegas/vegassign.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "46%",
+              rotate: "5deg",
+              top: "40%",
+              right: "18%",
+              zIndex: 9,
+            }}
+          >
+            <Image
+              src="/images/vegas/casino leds.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
+          <div
+            className="large-inspiration absolute overflow-hidden"
+            style={{
+              width: "60%",
+              rotate: "-4deg",
+              top: "10%",
+              left: "0%",
+              zIndex: 10,
+            }}
+          >
+            <Image
+              src="/images/vegas/fountain.png"
+              alt="Inspiration"
+              width={1920}
+              height={1080}
+              style={{ width: "100%", height: "auto" }}
+            />
+          </div>
         </div>
       </section>
 
