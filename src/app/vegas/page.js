@@ -34,6 +34,7 @@ export default function VegasPage() {
   const gamificationRef = useRef(null);
   const [showToggle, setShowToggle] = useState(false);
   const [hasToggled, setHasToggled] = useState(false);
+  const toggleRef = useRef(null);
 
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
@@ -61,13 +62,39 @@ export default function VegasPage() {
       });
     }
 
-    // Show toggle when reaching Dual Visual Language section
-    if (dualSectionRef.current) {
+    // Show toggle when reaching Dual Visual Language section, animate from center to corner
+    if (dualSectionRef.current && toggleRef.current) {
+      // Start centered
+      gsap.set(toggleRef.current, {
+        scale: 1.3,
+        left: "50%",
+        bottom: "30%",
+        xPercent: -50,
+        yPercent: 50,
+      });
+
       ScrollTrigger.create({
         trigger: dualSectionRef.current,
         start: "top top",
         onEnter: () => setShowToggle(true),
         onLeaveBack: () => setShowToggle(false),
+      });
+
+      // Animate from center to bottom-left corner when section bottom hits viewport top
+      gsap.to(toggleRef.current, {
+        left: "40px",
+        bottom: "40px",
+        scale: 1,
+        xPercent: 0,
+        yPercent: 0,
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: dualSectionRef.current,
+          start: "bottom bottom",
+          end: "bottom top",
+          scrub: true,
+          markers: showMarkers,
+        },
       });
     }
 
@@ -137,7 +164,8 @@ export default function VegasPage() {
     <>
       {/* Fixed Day/Night Toggle */}
       <div
-        className={`fixed bottom-10 left-10 z-50 transition-opacity duration-300 ${
+        ref={toggleRef}
+        className={`fixed z-50 transition-opacity duration-300 ${
           showToggle
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
