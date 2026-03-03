@@ -592,7 +592,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               width: "35%",
               rotate: "-0deg",
               top: "15%",
-              left: "5%",
+              left: "15%",
               zIndex: 6,
             }}
           >
@@ -610,7 +610,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               width: "28%",
               rotate: "4deg",
               top: "15%",
-              right: "20%",
+              left: "60%",
               zIndex: 2,
             }}
           >
@@ -627,8 +627,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
             style={{
               width: "20%",
-              rotate: "-4deg",
-              top: "10%",
+              rotate: "4deg",
+              top: "18%",
               left: "50%",
               zIndex: 5,
             }}
