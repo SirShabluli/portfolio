@@ -335,7 +335,7 @@ export default function VegasPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className="min-h-screen pb-20 bg-[#23577A] flex items-end justify-center">
+      <section className="min-h-screen pb-20 overflow-x-hidden bg-[#23577A] flex items-end justify-center">
         <h1 className="display text-white">The Product</h1>
       </section>
 
@@ -613,11 +613,51 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         </div>
         <div className="hidden lg:block col-span-9 relative h-full w-full">
           {[
-            { src: "/images/vegas/doctor.png", id: "doctor", width: "35%", rotate: "0deg", top: "15%", left: "15%", zIndex: 6 },
-            { src: "/images/vegas/denstist.png", id: "dentist", width: "28%", rotate: "4deg", top: "15%", left: "60%", zIndex: 2 },
-            { src: "/images/vegas/mfp.png", id: "mfp", width: "20%", rotate: "4deg", top: "18%", left: "50%", zIndex: 5 },
-            { src: "/images/vegas/oralb.jpg", id: "oralb", width: "22%", rotate: "5deg", bottom: "10%", left: "5%", zIndex: 6 },
-            { src: "/images/vegas/waterllama.png", id: "waterllama", width: "20%", rotate: "-2deg", top: "35%", left: "30%", zIndex: 7 },
+            {
+              src: "/images/vegas/doctor.png",
+              id: "doctor",
+              width: "35%",
+              rotate: "0deg",
+              top: "15%",
+              left: "15%",
+              zIndex: 6,
+            },
+            {
+              src: "/images/vegas/denstist.png",
+              id: "dentist",
+              width: "28%",
+              rotate: "4deg",
+              top: "15%",
+              left: "60%",
+              zIndex: 2,
+            },
+            {
+              src: "/images/vegas/mfp.png",
+              id: "mfp",
+              width: "20%",
+              rotate: "4deg",
+              top: "18%",
+              left: "50%",
+              zIndex: 5,
+            },
+            {
+              src: "/images/vegas/oralb.jpg",
+              id: "oralb",
+              width: "22%",
+              rotate: "5deg",
+              bottom: "10%",
+              left: "5%",
+              zIndex: 6,
+            },
+            {
+              src: "/images/vegas/waterllama.png",
+              id: "waterllama",
+              width: "20%",
+              rotate: "-2deg",
+              top: "35%",
+              left: "30%",
+              zIndex: 7,
+            },
           ].map(({ src, id, width, rotate, top, bottom, left, zIndex }) => (
             <div
               key={id}
@@ -631,7 +671,9 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                 zIndex: activeInspirationId === id ? 100 : zIndex,
                 scale: activeInspirationId === id ? "1.08" : undefined,
               }}
-              onClick={() => setActiveInspirationId(activeInspirationId === id ? null : id)}
+              onClick={() =>
+                setActiveInspirationId(activeInspirationId === id ? null : id)
+              }
             >
               <Image
                 src={src}

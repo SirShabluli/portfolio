@@ -222,7 +222,7 @@ The message isn't "you need someone." It's "some things are just easier together
           <section className="section-3">
             <div className="grid grid-cols-4 md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
               <div
-                className={`col-span-3 lg:col-span-2 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
+                className={`col-span-3 lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
               >
                 <span data-animate="2" data-animation="fade">
                   <TextBlock label="the challenge" title="immediate dismissal">
@@ -246,7 +246,7 @@ How do you make someone pause before closing the window—and maybe act differen
                 className={`col-span-4 lg:col-span-4 phone-pocket lg:col-start-5 ${outline} flex items-center justify-center`}
               ></div>
               <div
-                className={`col-span-3 lg:col-span-2 lg:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
+                className={`col-span-3 lg:col-span-3 lg:col-start-9 ${outline} flex flex-col gap-8 justify-center`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="My Solution" title="Irony">
