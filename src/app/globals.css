@@ -95,7 +95,6 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-
 .collage-item:hover {
   z-index: 50 !important;
 }
@@ -121,7 +120,7 @@ body {
 @layer utilities {
   /* Display - Hero titles */
   .display {
-    @apply text-display font-cinzel font-medium leading-none tracking-tight;
+    @apply text-display font-raleway font-bold leading-none tracking-normal;
   }
   /* Quote - Large decorative text */
   .quote {

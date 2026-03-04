@@ -35,6 +35,7 @@ export default function VegasPage() {
   const [showToggle, setShowToggle] = useState(false);
   const [hasToggled, setHasToggled] = useState(false);
   const toggleRef = useRef(null);
+  const [activeInspirationId, setActiveInspirationId] = useState(null);
 
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
@@ -66,7 +67,7 @@ export default function VegasPage() {
     if (dualSectionRef.current && toggleRef.current) {
       // Start centered
       gsap.set(toggleRef.current, {
-        scale: 1.3,
+        scale: 1.1,
         left: "50%",
         bottom: "30%",
         xPercent: -50,
@@ -186,7 +187,7 @@ export default function VegasPage() {
       <section className="bg-[#23577A] px-3 lg:px-8 text-white flex items-center justify-center relative overflow-hidden">
         <PageGrid className="gap-8 max-w-7xl mx-auto items-center relative z-10 w-full">
           {/* Logo */}
-          <div className="col-span-4 lg:col-span-7 lg:col-start-4 flex flex-col gap-7 justify-center items-center min-h-screen lg:min-h-0">
+          <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col gap-7 justify-center items-center min-h-screen lg:min-h-0">
             {/* Vegas sign + scattered icons relative to it */}
             <div className="relative w-[130%] lg:w-full">
               <Image
@@ -281,10 +282,10 @@ export default function VegasPage() {
                 style={{ transform: "rotate(25deg)" }}
               />
             </div>
-            <h2 className="text-5xl lg:text-8xl text-white -mt-5 font-(family-name:--font-montserrat) font-bold">
+            <h2 className="text-5xl lg:text-8xl text-white -mt-5 font-(family-name:--font-montserrat) font-bold leading-[130%] justify-center flex">
               Retreat
             </h2>
-            <p className="text-base lg:text-lg text-white/70 font-light tracking-wide">
+            <p className="text-base font-(family-name:--font-montserrat) lg:text-3xl text-white/70 font-light tracking-wide">
               your medical vegas trip app
             </p>
           </div>
@@ -334,8 +335,8 @@ export default function VegasPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className="min-h-screen bg-[#23577A] flex items-center justify-center">
-        <h1 className="text-8xl text-white">The Product</h1>
+      <section className="min-h-screen pb-20 bg-[#23577A] flex items-end justify-center">
+        <h1 className="display text-white">The Product</h1>
       </section>
 
       {/* Mobile alternative - visible only below lg */}
@@ -362,9 +363,9 @@ export default function VegasPage() {
           <section className="section-1">
             <div className="grid md:grid-cols-8 lg:grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
               <div
-                className={`col-span-4 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
+                className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
               >
-                <span data-animate="2" data-animation="fade">
+                <span>
                   <TextBlock label="the challenge" title="First Impression">
                     How do I immediately signal that this is a Vegas app wrapped
                     in medical language - without explaining it explicitly? If
@@ -372,7 +373,7 @@ export default function VegasPage() {
                     obvious, there's no tension.
                   </TextBlock>
                 </span>
-                <span data-animate="3" data-animation="fade">
+                <span>
                   <TextBlock label="My Solution" title="obvious connection">
                     {`A man using an inhaler - a medical device, a health moment, routine treatment. But his thought bubble explodes with Vegas: neon dice, slot machines,  martini glasses, cannabis. The contrast is instant and absurd.
 
@@ -386,7 +387,7 @@ The copy reveals: satire.`}
                 className={`col-span-4 phone-pocket md:col-span-4 md:col-start-5 ${outline}`}
               ></div>
               <div
-                className={`col-span-4 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-4 justify-center`}
+                className={`col-span-4 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-4 justify-center`}
               >
                 <span
                   data-animate="1"
@@ -402,7 +403,7 @@ The copy reveals: satire.`}
           <section className="section-2">
             <div className="grid grid-cols-12 gap-10 flex justify-center my-20 min-h-screen ">
               <div
-                className={`col-span-2 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+                className={`col-span-3 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
               >
                 <span data-animate="2" data-animation="fade">
                   <TextBlock
@@ -427,7 +428,7 @@ The copy reveals: satire.`}
                 className={`col-span-4 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center`}
               ></div>
               <div
-                className={`col-span-2 md:col-span-2 md:col-start-10 ${outline} flex flex-col justify-center gap-4`}
+                className={`col-span-3 md:col-span-3 md:col-start-9 ${outline} flex flex-col justify-center gap-4`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock
@@ -459,7 +460,7 @@ The duality: medical organization on the surface, Vegas chaos contained within."
           <section className="section-3">
             <div className="grid grid-cols-12 gap-8 flex justify-center my-20 min-h-screen ">
               <div
-                className={`col-span-3 md:col-span-2 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
+                className={`col-span-3 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-5`}
               >
                 <span data-animate="2" data-animation="fade">
                   <TextBlock
@@ -484,7 +485,7 @@ The duality: medical organization on the surface, Vegas chaos contained within."
                 className={`col-span-4 md:col-span-4 phone-pocket md:col-start-5 ${outline} flex items-center justify-center`}
               ></div>
               <div
-                className={`col-span-3 md:col-span-2 md:col-start-10 ${outline} flex flex-col gap-8 justify-center`}
+                className={`col-span-3 md:col-span-3 md:col-start-9 ${outline} flex flex-col gap-8 justify-center`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock
@@ -508,7 +509,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                 className={`col-span-4 md:col-span-4 md:col-start-5 phone-pocket ${outline}`}
               ></div>
               <div
-                className={`col-span-3 md:col-span-2 md:col-start-6 ${outline} flex flex-col justify-center gap-5`}
+                className={`col-span-3 md:col-span-3 md:col-start-6 ${outline} flex flex-col justify-center gap-5`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="The Challenge" title="empty state">
@@ -527,7 +528,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                 </span>
               </div>
               <div
-                className={`pt-50 col-span-3 md:col-span-2 md:col-start-10 ${outline} items-center flex flex-col gap-4`}
+                className={`pt-50 col-span-3 md:col-span-3 md:col-start-9 ${outline} items-center flex flex-col gap-4`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock
@@ -560,13 +561,10 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                   data-animate="2"
                   data-animation="fade"
                   className="mt-10 flex items-center quote"
-                >
-                  &ldquo;The upgrade that makes everything fall into
-                  place&ldquo;
-                </span>
+                ></span>
               </div>
               <div
-                className={`col-span-3 md:col-span-2 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
+                className={`col-span-3 md:col-span-3 md:col-start-5 ${outline} flex flex-col justify-center gap-4`}
               >
                 <span data-animate="2" data-animation="fade">
                   <TextBlock
@@ -614,97 +612,36 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           </TextBlock>
         </div>
         <div className="hidden lg:block col-span-9 relative h-full w-full">
-          <div
-            className="absolute overflow-hidden transition-transform duration-300 hover:scale-105 hover:z-200 cursor-pointer"
-            style={{
-              width: "35%",
-              rotate: "-0deg",
-              top: "15%",
-              left: "15%",
-              zIndex: 6,
-            }}
-          >
-            <Image
-              src="/images/vegas/doctor.png"
-              alt="Inspiration"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
-          <div
-            className="absolute overflow-hidden transition-transform duration-300 hover:scale-105 hover:z-50 cursor-pointer"
-            style={{
-              width: "28%",
-              rotate: "4deg",
-              top: "15%",
-              left: "60%",
-              zIndex: 2,
-            }}
-          >
-            <Image
-              src="/images/vegas/denstist.png"
-              alt="Inspiration"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
-
-          <div
-            className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
-            style={{
-              width: "20%",
-              rotate: "4deg",
-              top: "18%",
-              left: "50%",
-              zIndex: 5,
-            }}
-          >
-            <Image
-              src="/images/vegas/mfp.png"
-              alt="Inspiration"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
-          <div
-            className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
-            style={{
-              width: "22%",
-              rotate: "5deg",
-              bottom: "10%",
-              left: "5%",
-              zIndex: 6,
-            }}
-          >
-            <Image
-              src="/images/vegas/oralb.jpg"
-              alt="Inspiration"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
-          <div
-            className="collage-item absolute overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
-            style={{
-              width: "20%",
-              rotate: "-2deg",
-              top: "35%",
-              left: "30%",
-              zIndex: 7,
-            }}
-          >
-            <Image
-              src="/images/vegas/waterllama.png"
-              alt="Inspiration"
-              width={1920}
-              height={1080}
-              style={{ width: "100%", height: "auto" }}
-            />
-          </div>
+          {[
+            { src: "/images/vegas/doctor.png", id: "doctor", width: "35%", rotate: "0deg", top: "15%", left: "15%", zIndex: 6 },
+            { src: "/images/vegas/denstist.png", id: "dentist", width: "28%", rotate: "4deg", top: "15%", left: "60%", zIndex: 2 },
+            { src: "/images/vegas/mfp.png", id: "mfp", width: "20%", rotate: "4deg", top: "18%", left: "50%", zIndex: 5 },
+            { src: "/images/vegas/oralb.jpg", id: "oralb", width: "22%", rotate: "5deg", bottom: "10%", left: "5%", zIndex: 6 },
+            { src: "/images/vegas/waterllama.png", id: "waterllama", width: "20%", rotate: "-2deg", top: "35%", left: "30%", zIndex: 7 },
+          ].map(({ src, id, width, rotate, top, bottom, left, zIndex }) => (
+            <div
+              key={id}
+              className="absolute overflow-hidden transition-all duration-300 hover:scale-105 cursor-pointer"
+              style={{
+                width,
+                rotate,
+                top,
+                bottom,
+                left,
+                zIndex: activeInspirationId === id ? 100 : zIndex,
+                scale: activeInspirationId === id ? "1.08" : undefined,
+              }}
+              onClick={() => setActiveInspirationId(activeInspirationId === id ? null : id)}
+            >
+              <Image
+                src={src}
+                alt="Inspiration"
+                width={1920}
+                height={1080}
+                style={{ width: "100%", height: "auto" }}
+              />
+            </div>
+          ))}
         </div>
       </section>
 
@@ -1066,7 +1003,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             style={{ backgroundColor: isDark ? "#000000" : "#23577A" }}
           >
             <h1
-              className="text-8xl text-center lg:display transition-all duration-500 z-10"
+              className="display text-center lg:display transition-all duration-500 z-10"
               style={
                 isDark
                   ? {

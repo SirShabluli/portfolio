@@ -8,9 +8,9 @@ export default function TextBlock({
   maxWidth = "100%", // אפשר להעביר max-w-[70%] וכו'
 }) {
   return (
-    <div className={`flex flex-col   ${className}`}>
+    <div className={`flex flex-col ${className}`}>
       {label && (
-        <span className="text-sm font-medium opacity-50 lg:text-xs">
+        <span className="text-sm font-medium opacity-50 lg:mb-2 lg:text-sm">
           {label}
         </span>
       )}
@@ -19,7 +19,7 @@ export default function TextBlock({
       )}
       {children && (
         <p
-          className="mt-2 leading-[150%] text-sm font-medium lg:leading-[180%] whitespace-pre-line lg:text-xs"
+          className="mt-2 leading-[150%] text-sm font-medium lg:leading-[180%] whitespace-pre-line lg:text-sm"
           style={{ maxWidth }}
         >
           {children}
