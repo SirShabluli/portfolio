@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -11,6 +12,8 @@ if (typeof window !== "undefined") {
 
 export default function AIProcess({ data }) {
   const mainRef = useRef(null);
+  const mobileRef = useRef(null);
+  const lineRef = useRef(null);
 
   useGSAP(
     () => {
@@ -134,14 +137,106 @@ export default function AIProcess({ data }) {
     { scope: mainRef, dependencies: [data] },
   );
 
+  // Mobile: draw the SVG line + reveal each step when line reaches it
+  useGSAP(
+    () => {
+      if (!lineRef.current || !mobileRef.current) return;
+
+      const line = lineRef.current;
+      const length = line.getTotalLength();
+
+      // Start fully invisible
+      gsap.set(line, { strokeDasharray: length, strokeDashoffset: length });
+
+      // Draw line scrubbed to scroll (once: true = no reverse)
+      gsap.to(line, {
+        strokeDashoffset: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: mobileRef.current,
+          start: "top center",
+          end: "bottom center",
+          scrub: true,
+          once: true,
+        },
+      });
+
+      // Each step fades in when it hits the center of the viewport
+      const steps = mobileRef.current.querySelectorAll(".mobile-step");
+      gsap.set(steps, { opacity: 0, y: 20 });
+      steps.forEach((step) => {
+        gsap.to(step, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: step,
+            start: "top center",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    },
+    { scope: mobileRef, dependencies: [data] },
+  );
+
   return (
-    <section
-      ref={mainRef}
-      className="relative flex justify- h-screen overflow-hidden bg-black"
-    >
-      {data.map((step, index) => (
-        <StepSection key={step.id} step={step} index={index} />
-      ))}
-    </section>
+    <>
+      {/* Mobile timeline — vertical scroll, no pin */}
+      <section ref={mobileRef} className="md:hidden bg-black text-white relative py-24 px-4">
+        {/* SVG line — drawn by GSAP as you scroll */}
+        <svg
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          preserveAspectRatio="none"
+        >
+          <line
+            ref={lineRef}
+            x1="50%"
+            y1="0"
+            x2="50%"
+            y2="100%"
+            stroke="white"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </svg>
+
+        {/* Steps */}
+        {data.map((step, index) => {
+          const isLeft = index % 2 === 0;
+          return (
+            <div key={step.id} className="mobile-step relative flex items-center mb-32 last:mb-0">
+              {/* Dot on the line */}
+              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white z-10" />
+
+              {/* Content — alternates left/right */}
+              <div className={`w-[45%] ${isLeft ? "mr-auto pr-4 text-right" : "ml-auto pl-4 text-left"}`}>
+                <Image
+                  src={step.image}
+                  alt={step.title}
+                  width={400}
+                  height={400}
+                  className="w-full h-auto rounded-sm mb-3"
+                />
+                <span className="text-xs opacity-50 uppercase tracking-widest">Step {step.id}</span>
+                <h3 className="text-base font-bold mt-1">{step.title}</h3>
+                <p className="text-xs opacity-70 mt-1 leading-relaxed">{step.description}</p>
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      {/* Desktop — existing pinned version */}
+      <section
+        ref={mainRef}
+        className="hidden md:flex relative justify- h-screen overflow-hidden bg-black"
+      >
+        {data.map((step, index) => (
+          <StepSection key={step.id} step={step} index={index} />
+        ))}
+      </section>
+    </>
   );
 }
