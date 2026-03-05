@@ -163,13 +163,13 @@ export default function AIProcess({ data }) {
 
       // Each step fades in when it hits the center of the viewport
       const steps = mobileRef.current.querySelectorAll(".mobile-step");
-      gsap.set(steps, { opacity: 0, y: 20 });
+      gsap.set(steps, { opacity: 0, scale: 0 });
       steps.forEach((step) => {
         gsap.to(step, {
           opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power2.out",
+          scale: 1,
+          duration: 0.3,
+          ease: "back.out(2.5)",
           scrollTrigger: {
             trigger: step,
             start: "top center",
@@ -184,7 +184,10 @@ export default function AIProcess({ data }) {
   return (
     <>
       {/* Mobile timeline — vertical scroll, no pin */}
-      <section ref={mobileRef} className="md:hidden bg-black text-white relative py-24 px-4">
+      <section
+        ref={mobileRef}
+        className="md:hidden bg-black text-white relative py-24 px-4"
+      >
         {/* SVG line — drawn by GSAP as you scroll */}
         <svg
           className="absolute inset-0 w-full h-full pointer-events-none"
@@ -206,23 +209,32 @@ export default function AIProcess({ data }) {
         {data.map((step, index) => {
           const isLeft = index % 2 === 0;
           return (
-            <div key={step.id} className="mobile-step relative flex items-center mb-32 last:mb-0">
-              {/* Dot on the line */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-white z-10" />
-
-              {/* Content — alternates left/right */}
-              <div className={`w-[45%] ${isLeft ? "mr-auto pr-4 text-right" : "ml-auto pl-4 text-left"}`}>
+            <div
+              key={step.id}
+              className="mobile-step relative mb-32 last:mb-0 grid grid-cols-4 gap-x-3 px-6"
+            >
+              {/* Photo full width */}
+              <div className="col-span-4 relative z-10 bg-black p-2 mb-4">
                 <Image
                   src={step.image}
                   alt={step.title}
                   width={400}
                   height={400}
-                  className="w-full h-auto rounded-sm mb-3"
+                  className="w-full h-auto rounded-sm"
                 />
-                <span className="text-xs opacity-50 uppercase tracking-widest">Step {step.id}</span>
-                <h3 className="text-base font-bold mt-1">{step.title}</h3>
-                <p className="text-xs opacity-70 mt-1 leading-relaxed">{step.description}</p>
               </div>
+              {/* Text below, alternates alignment */}
+                <div
+                  className={`col-span-2 text-left ${isLeft ? "col-start-1" : "col-start-3"}`}
+                >
+                  <span className="text-xs opacity-50 uppercase tracking-widest">
+                    Step {step.id}
+                  </span>
+                  <h3 className="text-base font-bold mt-1">{step.title}</h3>
+                  <p className="text-xs opacity-70 mt-1 leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
             </div>
           );
         })}

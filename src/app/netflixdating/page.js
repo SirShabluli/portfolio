@@ -400,29 +400,27 @@ The message: there are all kinds of people and pajamas - showing options without
       </ScreenZoomSection>
       <section>
         <HorizontalScroll>
-          <div className="min-w-screen w-screen h-screen bg-black flex items-center justify-center flex-shrink-0">
+          <div className="min-w-screen w-screen overflow-x-hidden h-screen bg-black flex items-center justify-center shrink-0">
             <h1 className="text-8xl flex text-center lg:display text-white">
               Design System
             </h1>
           </div>
-          <div className="min-w-screen w-screen h-screen flex-shrink-0">
+          <div className="min-w-screen w-screen h-screen shrink-0">
             <TypographySection data={netflixTypography} />
           </div>
-          <div className="min-w-screen w-screen h-screen flex-shrink-0">
+          <div className="min-w-screen w-screen h-screen shrink-0">
             <ColorPalette colors={netflixColors} />
           </div>
         </HorizontalScroll>
       </section>
 
-      <section className="min-h-screen bg-black flex items-center justify-center">
-        <h1 className="overflow-y-hidden display text-white">
-          AI as a Blueprint
-        </h1>
+      <section className="overflow-x-hidden min-h-screen bg-black flex items-center justify-center">
+        <h1 className=" display text-white">AI as a Blueprint</h1>
       </section>
 
       <AIProcess data={catProjectSteps} />
       <section className="min-h-screen bg-black flex items-center justify-center">
-        <h1 className="display overflow-y-hidden text-white">Reception</h1>
+        <h1 className="display overflow-x-hidden text-white">Reception</h1>
       </section>
       <section></section>
       {/* Phone showcase with all sections */}
