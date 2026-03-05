@@ -414,8 +414,8 @@ The message: there are all kinds of people and pajamas - showing options without
         </HorizontalScroll>
       </section>
 
-      <section className="overflow-x-hidden min-h-screen bg-black flex items-center justify-center">
-        <h1 className=" display text-white">AI as a Blueprint</h1>
+      <section className="overflow-x-hidden min-h-screen bg-black flex items-end pb-20 justify-center">
+        <h1 className=" text-center display text-white">AI as a Blueprint</h1>
       </section>
 
       <AIProcess data={catProjectSteps} />

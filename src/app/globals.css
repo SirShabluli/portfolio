@@ -119,7 +119,7 @@ body {
 @layer utilities {
   /* Display - Hero titles */
   .display {
-    @apply text-display font-raleway font-bold leading-none tracking-normal;
+    @apply text-[5rem] md:text-[5rem] lg:text-display font-raleway font-bold leading-[1.2] tracking-normal;
   }
   /* Quote - Large decorative text */
   .quote {

@@ -224,17 +224,17 @@ export default function AIProcess({ data }) {
                 />
               </div>
               {/* Text below, alternates alignment */}
-                <div
-                  className={`col-span-2 text-left ${isLeft ? "col-start-1" : "col-start-3"}`}
-                >
-                  <span className="text-xs opacity-50 uppercase tracking-widest">
-                    Step {step.id}
-                  </span>
-                  <h3 className="text-base font-bold mt-1">{step.title}</h3>
-                  <p className="text-xs opacity-70 mt-1 leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
+              <div
+                className={`col-span-2 px-2 text-left ${isLeft ? "col-start-1" : "col-start-3"}`}
+              >
+                <span className=" text-sm font-medium opacity-50 uppercase tracking-widest">
+                  Step {step.id}
+                </span>
+                <h3 className="text-base font-bold mt-1">{step.title}</h3>
+                <p className="text-sm font-medium opacity-70 mt-1 leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
             </div>
           );
         })}
