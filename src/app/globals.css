@@ -151,7 +151,7 @@ body {
     @apply text-sm font-raleway font-medium leading-relaxed tracking-wider;
   }
   * {
-    outline: 1px solid blue !important;
+    /* outline: 1px solid blue !important; */
   }
   /* Label - Metadata, tags */
   .label {
