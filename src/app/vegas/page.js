@@ -604,10 +604,26 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       >
         {/* Mobile marquee top */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
-            {["/images/vegas/doctor.png", "/images/vegas/mfp.png", "/images/vegas/meditate.jpg",
-              "/images/vegas/doctor.png", "/images/vegas/mfp.png", "/images/vegas/meditate.jpg"].map((src, i) => (
-              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+          <div
+            className="flex gap-4 marquee-ltr"
+            style={{ width: "max-content" }}
+          >
+            {[
+              "/images/vegas/doctor.png",
+              "/images/vegas/mfp.png",
+              "/images/vegas/meditate.jpg",
+              "/images/vegas/doctor.png",
+              "/images/vegas/mfp.png",
+              "/images/vegas/meditate.jpg",
+            ].map((src, i) => (
+              <Image
+                key={i}
+                src={src}
+                alt=""
+                width={200}
+                height={200}
+                className="h-32 w-auto rounded-sm object-cover shrink-0"
+              />
             ))}
           </div>
         </div>
@@ -624,10 +640,28 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
         {/* Mobile marquee bottom */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
-            {["/images/vegas/denstist.png", "/images/vegas/oralb.jpg", "/images/vegas/waterllama.png", "/images/vegas/appclue.jpg",
-              "/images/vegas/denstist.png", "/images/vegas/oralb.jpg", "/images/vegas/waterllama.png", "/images/vegas/appclue.jpg"].map((src, i) => (
-              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+          <div
+            className="flex gap-4 marquee-rtl"
+            style={{ width: "max-content" }}
+          >
+            {[
+              "/images/vegas/denstist.png",
+              "/images/vegas/oralb.jpg",
+              "/images/vegas/waterllama.png",
+              "/images/vegas/appclue.jpg",
+              "/images/vegas/denstist.png",
+              "/images/vegas/oralb.jpg",
+              "/images/vegas/waterllama.png",
+              "/images/vegas/appclue.jpg",
+            ].map((src, i) => (
+              <Image
+                key={i}
+                src={src}
+                alt=""
+                width={200}
+                height={200}
+                className="h-32 w-auto rounded-sm object-cover shrink-0"
+              />
             ))}
           </div>
         </div>
@@ -714,10 +748,28 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       >
         {/* Mobile marquee top */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
-            {["/images/vegas/casinonight.jpg", "/images/vegas/slot.jpg", "/images/vegas/fountain.png", "/images/vegas/mc-casino.jpeg",
-              "/images/vegas/casinonight.jpg", "/images/vegas/slot.jpg", "/images/vegas/fountain.png", "/images/vegas/mc-casino.jpeg"].map((src, i) => (
-              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+          <div
+            className="flex gap-4 marquee-ltr"
+            style={{ width: "max-content" }}
+          >
+            {[
+              "/images/vegas/casinonight.jpg",
+              "/images/vegas/slot.jpg",
+              "/images/vegas/fountain.png",
+              "/images/vegas/mc-casino.jpeg",
+              "/images/vegas/casinonight.jpg",
+              "/images/vegas/slot.jpg",
+              "/images/vegas/fountain.png",
+              "/images/vegas/mc-casino.jpeg",
+            ].map((src, i) => (
+              <Image
+                key={i}
+                src={src}
+                alt=""
+                width={200}
+                height={200}
+                className="h-32 w-auto rounded-sm object-cover shrink-0"
+              />
             ))}
           </div>
         </div>
@@ -734,10 +786,30 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
         {/* Mobile marquee bottom */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
-            {["/images/vegas/neoncasino.webp", "/images/vegas/vegassign.png", "/images/vegas/saussy.jpg", "/images/vegas/vegasnight1.jpg", "/images/vegas/seahouse.jpg",
-              "/images/vegas/neoncasino.webp", "/images/vegas/vegassign.png", "/images/vegas/saussy.jpg", "/images/vegas/vegasnight1.jpg", "/images/vegas/seahouse.jpg"].map((src, i) => (
-              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+          <div
+            className="flex gap-4 marquee-rtl"
+            style={{ width: "max-content" }}
+          >
+            {[
+              "/images/vegas/neoncasino.webp",
+              "/images/vegas/vegassign.png",
+              "/images/vegas/saussy.jpg",
+              "/images/vegas/vegasnight1.jpg",
+              "/images/vegas/seahouse.jpg",
+              "/images/vegas/neoncasino.webp",
+              "/images/vegas/vegassign.png",
+              "/images/vegas/saussy.jpg",
+              "/images/vegas/vegasnight1.jpg",
+              "/images/vegas/seahouse.jpg",
+            ].map((src, i) => (
+              <Image
+                key={i}
+                src={src}
+                alt=""
+                width={200}
+                height={200}
+                className="h-32 w-auto rounded-sm object-cover shrink-0"
+              />
             ))}
           </div>
         </div>
@@ -1159,7 +1231,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               isDark={isDark}
             />
             <div
-              className="absolute transition-opacity duration-700 z-20"
+              className="hidden lg:block absolute transition-opacity duration-700 z-20"
               style={{
                 top: "52%",
                 left: "8%",
