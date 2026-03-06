@@ -120,7 +120,7 @@ body {
 }
 
 .pulse-toggle {
-  animation: pulse-toggle 1.5s ease-in-out infinite !important;
+  animation: pulse-toggle 1s ease-in-out infinite !important;
 }
 
 @layer utilities {
@@ -130,7 +130,7 @@ body {
   }
   /* Quote - Large decorative text */
   .quote {
-    @apply text-[2.125rem] font-raleway font-normal leading-[130%] tracking-wide;
+    @apply text-[3rem] font-raleway font-medium opacity-50 leading-[130%] tracking-wide;
   }
 
   /* Title Large - Section headers */
