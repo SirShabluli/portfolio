@@ -23,7 +23,7 @@ export default function AIProcess({ data }) {
         scrollTrigger: {
           trigger: mainRef.current,
           start: "top top",
-          end: `+=${data.length * 30}%`,
+          end: `+=${data.length * 100}%`,
           pin: true,
           scrub: 2,
         },
@@ -68,7 +68,11 @@ export default function AIProcess({ data }) {
           // טקסט חדש נכנס
           if (i === 1) {
             // מעבר 2→3: טקסט ותמונה ביחד
-            tl.fromTo(nextText, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.1 });
+            tl.fromTo(
+              nextText,
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 0.1 },
+            );
             tl.to(imageSide, { opacity: 0, duration: 0.8 }, "<");
             tl.fromTo(
               nextImage,
@@ -79,7 +83,11 @@ export default function AIProcess({ data }) {
           } else if (i === 2) {
             // מעבר 3→4: טקסט ותמונה (wipe) ביחד
             const nextImageWrapper = nextImage.querySelector(".image-wrapper");
-            tl.fromTo(nextText, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.1 });
+            tl.fromTo(
+              nextText,
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 0.1 },
+            );
             tl.to(imageSide, { opacity: 0, duration: 0.8 }, "<");
             tl.fromTo(
               nextImageWrapper,
@@ -93,7 +101,11 @@ export default function AIProcess({ data }) {
             );
           } else {
             // מעבר 1→2: טקסט ותמונה ביחד
-            tl.fromTo(nextText, { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5 });
+            tl.fromTo(
+              nextText,
+              { opacity: 0, y: 50 },
+              { opacity: 1, y: 0, duration: 0.5 },
+            );
             tl.to(imageSide, { opacity: 0, duration: 0.5 }, "<");
             tl.fromTo(
               nextImage,
@@ -123,7 +135,7 @@ export default function AIProcess({ data }) {
                   scale: 1,
                   rotation: 0,
                   opacity: 1,
-                  duration: 0.8,
+                  duration: 0.3,
                   ease: "back.out(1.7)",
                   stagger: 0.15,
                 },

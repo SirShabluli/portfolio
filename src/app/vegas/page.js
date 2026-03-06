@@ -599,10 +599,20 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Inspiration Images - Collage */}
       <section
-        className="grid grid-cols-4 lg:grid-cols-12 bg-[#E4EBFF] items-center py-24 lg:py-0 lg:h-[110vh] overflow-hidden"
+        className="grid grid-cols-4 lg:grid-cols-12 bg-[#E4EBFF] items-center lg:py-0 lg:h-[110vh] overflow-hidden"
         ref={phoneImagesRef}
       >
-        <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12">
+        {/* Mobile marquee top */}
+        <div className="lg:hidden col-span-4 overflow-hidden py-3">
+          <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
+            {["/images/vegas/doctor.png", "/images/vegas/mfp.png", "/images/vegas/meditate.jpg",
+              "/images/vegas/doctor.png", "/images/vegas/mfp.png", "/images/vegas/meditate.jpg"].map((src, i) => (
+              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+            ))}
+          </div>
+        </div>
+
+        <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12 py-10 lg:py-0">
           <TextBlock label="Inspiration" title="" className="text-[#23577A]">
             I studied wellness apps—Calm, Headspace, medical tracking apps.
             Clean interfaces. Soft blues and whites. Gentle icons. Sterile
@@ -610,6 +620,16 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             authority. This became the wrapper—the medical disguise that makes
             Vegas feel prescribed, legitimate, doctor-approved.
           </TextBlock>
+        </div>
+
+        {/* Mobile marquee bottom */}
+        <div className="lg:hidden col-span-4 overflow-hidden py-3">
+          <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
+            {["/images/vegas/denstist.png", "/images/vegas/oralb.jpg", "/images/vegas/waterllama.png", "/images/vegas/appclue.jpg",
+              "/images/vegas/denstist.png", "/images/vegas/oralb.jpg", "/images/vegas/waterllama.png", "/images/vegas/appclue.jpg"].map((src, i) => (
+              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+            ))}
+          </div>
         </div>
         <div className="hidden lg:block col-span-9 relative h-full w-full">
           {[
@@ -689,17 +709,37 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
       {/* Inspiration Images - Scattered */}
       <section
-        className="grid grid-cols-4 lg:grid-cols-12 bg-black items-center py-24 lg:py-0 lg:h-[110vh] overflow-hidden"
+        className="grid grid-cols-4 lg:grid-cols-12 bg-black items-center lg:py-0 lg:h-[110vh] overflow-hidden"
         ref={largeImagesRef}
       >
+        {/* Mobile marquee top */}
+        <div className="lg:hidden col-span-4 overflow-hidden py-3">
+          <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
+            {["/images/vegas/casinonight.jpg", "/images/vegas/slot.jpg", "/images/vegas/fountain.png", "/images/vegas/mc-casino.jpeg",
+              "/images/vegas/casinonight.jpg", "/images/vegas/slot.jpg", "/images/vegas/fountain.png", "/images/vegas/mc-casino.jpeg"].map((src, i) => (
+              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+            ))}
+          </div>
+        </div>
+
         {/* Text: full width on mobile, 3 cols on desktop */}
-        <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12">
+        <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12 py-10 lg:py-0">
           <TextBlock label="Inspiration" title="" className="text-white">
             The visual world of Vegas at night—neon signs, slot machines, casino
             floors, fountain shows. Raw energy captured in light and color.
             These references shaped the dark mode palette and the sense of
             excess that lives beneath the clinical surface.
           </TextBlock>
+        </div>
+
+        {/* Mobile marquee bottom */}
+        <div className="lg:hidden col-span-4 overflow-hidden py-3">
+          <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
+            {["/images/vegas/neoncasino.webp", "/images/vegas/vegassign.png", "/images/vegas/saussy.jpg", "/images/vegas/vegasnight1.jpg", "/images/vegas/seahouse.jpg",
+              "/images/vegas/neoncasino.webp", "/images/vegas/vegassign.png", "/images/vegas/saussy.jpg", "/images/vegas/vegasnight1.jpg", "/images/vegas/seahouse.jpg"].map((src, i) => (
+              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+            ))}
+          </div>
         </div>
         {/* Collage: 9 cols, desktop only */}
         <div className="hidden lg:block col-span-9 relative h-full w-full">
