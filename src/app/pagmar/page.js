@@ -82,6 +82,18 @@ export default function PagmarPage() {
       <section className="w-screen h-screen flex items-center justify-center bg-black">
         <h2 className="display text-center text-white">Research &amp; Discovery</h2>
       </section>
+
+      {/* The Challenge */}
+      <section className="bg-black py-16 lg:py-24 px-6 lg:px-12">
+        <PageGrid className="gap-8">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
+            <h3 className="text-xl font-bold text-white">The Challenge</h3>
+            <p className="text-sm font-medium opacity-70 leading-relaxed text-white">
+              Traditional journaling treats thoughts like a document: chronological, linear, one entry after another. But thinking isn't like that. You lose your thread, want to branch off, need to add context to something earlier—and the format fights you. It's hard to start, harder to sustain.
+            </p>
+          </div>
+        </PageGrid>
+      </section>
     </main>
   );
 }
