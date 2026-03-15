@@ -64,6 +64,24 @@ export default function PagmarPage() {
           </div>
         </PageGrid>
       </section>
+
+      {/* The Full Experience */}
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-8 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-2 text-xs lg:text-5xl">
+            The Full Experience
+          </p>
+          {/* Video placeholder — replace src when ready */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* <video src="/images/pagmar/demo.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          </div>
+        </PageGrid>
+      </section>
+
+      {/* Research and Discovery */}
+      <section className="w-screen h-screen flex items-center justify-center bg-black">
+        <h2 className="display text-center text-white">Research &amp; Discovery</h2>
+      </section>
     </main>
   );
 }
