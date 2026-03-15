@@ -22,6 +22,7 @@ export default function PhoneShowcase({
   const phoneRef = useRef(null);
   const [activeScreen, setActiveScreen] = useState(0);
   const [splineApp, setSplineApp] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
@@ -180,13 +181,21 @@ export default function PhoneShowcase({
         className="sticky top-0 left-0 w-full h-screen flex items-center justify-center pointer-events-none z-50 overflow-visible"
       >
         <div ref={phoneRef} className="flex items-center justify-center">
-          <Mobile onSplineLoad={setSplineApp} screenIndex={activeScreen} />
+          <Mobile onSplineLoad={(app) => { setSplineApp(app); setLoaded(true); }} screenIndex={activeScreen} />
         </div>
       </div>
 
       {/* Children sections */}
       <div className="relative" style={{ marginTop: "-100vh" }}>
         {children}
+      </div>
+
+      {/* Preloader — covers everything until Spline is ready */}
+      <div
+        className="fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-opacity duration-700 pointer-events-none"
+        style={{ opacity: loaded ? 0 : 1 }}
+      >
+        <p className="text-white text-sm tracking-widest uppercase opacity-60 animate-pulse">Loading...</p>
       </div>
     </main>
   );

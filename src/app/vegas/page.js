@@ -99,11 +99,11 @@ export default function VegasPage() {
       });
     }
 
-    // Hide toggle when Key Insights section reaches bottom of viewport
+    // Hide toggle when Key Insights section reaches top of viewport
     if (keyInsightsRef.current) {
       ScrollTrigger.create({
         trigger: keyInsightsRef.current,
-        start: "top bottom-=5%",
+        start: "top top-=10",
         onEnter: () => setShowToggle(false),
         onLeaveBack: () => setShowToggle(true),
       });
