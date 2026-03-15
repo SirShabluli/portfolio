@@ -2,6 +2,7 @@
 import Image from "next/image";
 import PageGrid from "../components/PageGrid";
 import TextBlock from "../components/TextBlock";
+import ImageCarousel from "../components/ImageCarousel";
 
 export default function PagmarPage() {
   return (
@@ -176,6 +177,66 @@ export default function PagmarPage() {
       </section>
       <section className="w-screen h-screen flex items-center justify-center bg-black">
         <h2 className="display text-center text-white">Key Features</h2>
+      </section>
+      {/* Feature #1 - The Writing Experience */}
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-8 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Feature #1 — The Writing Experience
+          </p>
+          {/* Video placeholder — replace src when ready */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* <video src="/images/pagmar/writing.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          </div>
+          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+            Write freely. When you're stuck, press <strong>Tab</strong>. Words from your writing appear. Type the word you want to select, get a question, keep flowing. The question disappears after you answer, leaving only your thoughts.
+          </p>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="The Challenge"
+              title="Losing Your Thread"
+              className="text-white"
+            >
+              Writing intuitively means sometimes losing your thread. You get stuck or circle without clarity.
+            </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-6">
+            <TextBlock
+              label="My Solution"
+              title="Real-Time Guidance"
+              className="text-white"
+            >
+              Words from your writing float faintly in the background. When you're stuck, press Tab — they come forward. Choose one, receive a question that helps you go deeper.
+            </TextBlock>
+          </div>
+        </PageGrid>
+      </section>
+      {/* The Composition */}
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-8 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            The Composition
+          </p>
+          <div className="col-span-4 lg:col-span-12">
+            <ImageCarousel images={[
+              "/images/pagmar/carousel1.png",
+              "/images/pagmar/carousel2.png",
+              "/images/pagmar/carousel3.png",
+              "/images/pagmar/carousel4.png",
+              "/images/pagmar/carousel5.png",
+            ]} />
+          </div>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="The Challenge"
+              title="UI that Distracts"
+              className="text-white"
+            >
+              I experimented with how questions should appear — pulsing, shaking, bold. Every variation pulled focus. The animations distracted from writing itself.
+            </TextBlock>
+          </div>
+          {/* My Solution — to be added */}
+        </PageGrid>
       </section>
     </main>
   );
