@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import PageGrid from "../components/PageGrid";
+import TextBlock from "../components/TextBlock";
 
 export default function PagmarPage() {
   return (
@@ -68,7 +69,7 @@ export default function PagmarPage() {
       {/* The Full Experience */}
       <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-2 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             The Full Experience
           </p>
           {/* Video placeholder — replace src when ready */}
@@ -80,19 +81,101 @@ export default function PagmarPage() {
 
       {/* Research and Discovery */}
       <section className="w-screen h-screen flex items-center justify-center bg-black">
-        <h2 className="display text-center text-white">Research &amp; Discovery</h2>
+        <h2 className="display text-center text-white">
+          Research &amp; Discovery
+        </h2>
       </section>
 
       {/* The Challenge */}
-      <section className="bg-black py-16 lg:py-24 px-6 lg:px-12">
-        <PageGrid className="gap-8">
+      <section className="bg-black py-16 lg:py-24 px-6 lg:px-12 justify-center">
+        <PageGrid className="gap-8 items-center">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
-            <h3 className="text-xl font-bold text-white">The Challenge</h3>
-            <p className="text-sm font-medium opacity-70 leading-relaxed text-white">
-              Traditional journaling treats thoughts like a document: chronological, linear, one entry after another. But thinking isn't like that. You lose your thread, want to branch off, need to add context to something earlier—and the format fights you. It's hard to start, harder to sustain.
+            <h3 className="text-4xl font-semibold">The Challenge</h3>
+            <p className="text-sm font-medium opacity-100 leading-relaxed">
+              Traditional journaling treats thoughts like a document:
+              chronological, linear, one entry after another. But thinking isn't
+              like that. You lose your thread, want to branch off, need to add
+              context to something earlier—and the format fights you. It's hard
+              to start, harder to sustain.
+            </p>
+          </div>
+          <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex flex-col gap-4">
+            <Image
+              src="/images/pagmar/dayone.webp"
+              alt="Day One"
+              width={800}
+              height={800}
+              className="w-full h-auto rounded-sm"
+            />
+            <Image
+              src="/images/pagmar/journal.png"
+              alt="Journal"
+              width={800}
+              height={800}
+              className="w-3/4 h-auto rounded-sm self-end"
+            />
+          </div>
+        </PageGrid>
+      </section>
+
+      {/* Anecdotes */}
+      <section className="bg-black py-16 lg:py-24 px-6 lg:px-12">
+        <PageGrid className="gap-y-12 gap-x-8 items-start">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
+            <h3 className="text-4xl font-semibold">Understanding the Space</h3>
+          </div>
+          {/* Anecdotes stacked left */}
+          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-10">
+            <TextBlock
+              label="Anecdote #1"
+              title="Thoughts are spatial, not linear"
+              className="text-white"
+            >
+              Thoughts branch and loop back. Linear writing forces you to pick
+              one thread and abandon the rest. Memory clusters in space, not on
+              a timeline.
+            </TextBlock>
+            <TextBlock
+              label="Anecdote #2"
+              title="Navigation should feel like wandering, not searching"
+              className="text-white"
+            >
+              Chronological order can't capture branching thoughts. There's a
+              magic to wandering.
+            </TextBlock>
+            <TextBlock
+              label="Anecdote #3"
+              title="Emotion shapes memory more than words do"
+              className="text-white"
+            >
+              Atmosphere unlocks emotion. The system senses mood—night, fire,
+              rain, calm—or you choose. Memory is feeling, not text.
+            </TextBlock>
+          </div>
+
+          {/* Closing paragraph right */}
+          <div className="col-span-4 lg:col-span-4 lg:col-start-8 flex items-center h-full">
+            <p className="text-base lg:text-2xl font-regular opacity-60 leading-relaxed ">
+              This led to the question: what if journaling wasn't about
+              capturing thoughts in order, but creating a space where they could
+              exist, connect, and reveal themselves over time?
+            </p>
+          </div>
+          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-4 mt-10">
+            <h3 className="text-4xl font-semibold">The Solution</h3>
+            <p className="text-sm font-medium opacity-100 leading-relaxed">
+              The system turns journaling into a spatial, AI-guided experience.
+              You write. The atmosphere responds. The question vanishes after
+              you answer, leaving only your thoughts. You can continue the flow,
+              branch into new questions, or revisit earlier threads. Over time,
+              a 3D world emerges - a spatial map of your inner landscape, where
+              every composition is a place you can explore.
             </p>
           </div>
         </PageGrid>
+      </section>
+      <section className="w-screen h-screen flex items-center justify-center bg-black">
+        <h2 className="display text-center text-white">Key Features</h2>
       </section>
     </main>
   );
