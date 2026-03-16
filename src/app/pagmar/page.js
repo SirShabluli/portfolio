@@ -3,6 +3,7 @@ import Image from "next/image";
 import PageGrid from "../components/PageGrid";
 import TextBlock from "../components/TextBlock";
 import ImageCarousel from "../components/ImageCarousel";
+import MindMapSVG from "../components/MindMapSVG";
 
 export default function PagmarPage() {
   return (
@@ -189,7 +190,10 @@ export default function PagmarPage() {
             {/* <video src="/images/pagmar/writing.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
           </div>
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
-            Write freely. When you're stuck, press <strong>Tab</strong>. Words from your writing appear. Type the word you want to select, get a question, keep flowing. The question disappears after you answer, leaving only your thoughts.
+            Write freely. When you're stuck, press <strong>Tab</strong>. Words
+            from your writing appear. Type the word you want to select, get a
+            question, keep flowing. The question disappears after you answer,
+            leaving only your thoughts.
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
@@ -197,45 +201,132 @@ export default function PagmarPage() {
               title="Losing Your Thread"
               className="text-white"
             >
-              Writing intuitively means sometimes losing your thread. You get stuck or circle without clarity.
+              Writing intuitively means sometimes losing your thread. You get
+              stuck or circle without clarity.
             </TextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-3 lg:col-start-6">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-7">
             <TextBlock
               label="My Solution"
               title="Real-Time Guidance"
               className="text-white"
             >
-              Words from your writing float faintly in the background. When you're stuck, press Tab — they come forward. Choose one, receive a question that helps you go deeper.
+              Words from your writing float faintly in the background. When
+              you're stuck, press Tab — they come forward. Choose one, receive a
+              question that helps you go deeper.
             </TextBlock>
           </div>
         </PageGrid>
       </section>
       {/* The Composition */}
       <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
-        <PageGrid className="gap-8 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             The Composition
           </p>
           <div className="col-span-4 lg:col-span-12">
-            <ImageCarousel images={[
-              "/images/pagmar/carousel1.png",
-              "/images/pagmar/carousel2.png",
-              "/images/pagmar/carousel3.png",
-              "/images/pagmar/carousel4.png",
-              "/images/pagmar/carousel5.png",
-            ]} />
+            <ImageCarousel
+              imgHeight="50vh"
+              images={[
+                "/images/pagmar/carousel1.png",
+                "/images/pagmar/carousel2.png",
+                "/images/pagmar/carousel3.png",
+                "/images/pagmar/carousel4.png",
+                "/images/pagmar/carousel5.png",
+              ]}
+            />
           </div>
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-12">
             <TextBlock
               label="The Challenge"
               title="UI that Distracts"
               className="text-white"
             >
-              I experimented with how questions should appear — pulsing, shaking, bold. Every variation pulled focus. The animations distracted from writing itself.
+              I experimented with how questions should appear — pulsing,
+              shaking, bold. Every variation pulled focus. The animations
+              distracted from writing itself.
+            </TextBlock>
+            <TextBlock
+              label="My Solution"
+              title="Minimal Composition"
+              className="text-white"
+            >
+              I stripped it down to something familiar: a journal page. Date,
+              time, a small question at the top — then space. Just text and a
+              blinking cursor that says "just write."
             </TextBlock>
           </div>
-          {/* My Solution — to be added */}
+          {/* Toggle component placeholder */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* toggle component goes here */}
+          </div>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="New Challenge Arised"
+              title="Long Entries Need Room"
+              className="text-white"
+            >
+              The initial layout worked for short entries. But what happens when
+              users write longer reflections requiring scroll? Words floating on
+              top and bottom would obstruct vertical movement, breaking the flow.
+            </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2">
+            <Image
+              src="/images/pagmar/overlap.png"
+              alt="Overlap"
+              width={1600}
+              height={900}
+              className="w-full h-auto rounded-sm"
+            />
+          </div>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-12">
+            <TextBlock
+              label="New Solution"
+              title="Keep Vertical Space Clear"
+              className="text-white"
+            >
+              I moved all floating words to the sides only, keeping the top and
+              bottom clear. Vertical space stays unobstructed for seamless
+              scrolling.
+            </TextBlock>
+          </div>
+          {/* Placeholder */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* placeholder */}
+          </div>
+        </PageGrid>
+      </section>
+      {/* Feature #2 - Navigating the Mind Map */}
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Feature #2 — Navigating the Mind Map
+          </p>
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* <video src="/images/pagmar/mindmap.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          </div>
+          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+            Navigation happens entirely in space. Move with arrow keys (up, down, left, right), zoom with <strong>W/S</strong>, approach compositions, press <strong>Enter</strong> to step inside. When you're in, the rest disappears. Press <strong>Esc</strong> to return. No mouse, no clicking — just wandering.
+          </p>
+        </PageGrid>
+      </section>
+      {/* Mapping Non-Linear Thought */}
+      <section className="w-full bg-black py-16 lg:py-24">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="The Challenge"
+              title="Mapping Non-Linear Thought"
+              className="text-white"
+            >
+              Thoughts are messy — they branch, scatter, reconnect. Traditional
+              navigation (breadcrumbs, trees, nodes) can't handle that.
+            </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-12">
+            <MindMapSVG />
+          </div>
         </PageGrid>
       </section>
     </main>

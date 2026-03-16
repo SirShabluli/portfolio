@@ -1,0 +1,251 @@
+"use client";
+import { useEffect, useRef } from "react";
+
+const CX = 1400;
+const CY = 700;
+
+// Radial helper — angle in degrees, radius
+const polar = (cx, cy, angle, r, jitterX = 0, jitterY = 0) => ({
+  x: Math.round(cx + r * Math.cos((angle * Math.PI) / 180) + jitterX),
+  y: Math.round(cy + r * Math.sin((angle * Math.PI) / 180) + jitterY),
+});
+
+// Root
+const root = { id: "e0", label: "Entry", x: CX, y: CY, type: "entry" };
+
+// L1 — 5 questions spread around root
+const l1angles = [310, 30, 100, 175, 240];
+const l1r = 180;
+const l1q = l1angles.map((a, i) => ({
+  id: `q${i + 1}`,
+  label: "Question",
+  type: "question",
+  ...polar(CX, CY, a, l1r, (i % 3) * 10 - 10, (i % 2) * 15 - 8),
+}));
+
+// L2 — 2-3 entries per L1 question, spread outward
+const l2config = [
+  { parent: "q1", angles: [290, 340, 20],   r: 240 },
+  { parent: "q2", angles: [10,  55,  90],   r: 250 },
+  { parent: "q3", angles: [75,  120, 155],  r: 240 },
+  { parent: "q4", angles: [155, 200, 240],  r: 250 },
+  { parent: "q5", angles: [220, 265, 300],  r: 240 },
+];
+
+let eCount = 1;
+const l2entries = [];
+const l2map = {}; // parentId -> [child ids]
+
+l2config.forEach(({ parent, angles, r }) => {
+  const parentNode = l1q.find((n) => n.id === parent);
+  l2map[parent] = [];
+  angles.forEach((a, i) => {
+    const id = `e${eCount++}`;
+    l2entries.push({
+      id,
+      label: "Entry",
+      type: "entry",
+      ...polar(parentNode.x, parentNode.y, a, r, (i - 1) * 12, (i % 2) * 20 - 10),
+    });
+    l2map[parent].push(id);
+  });
+});
+
+// L3 — 1-2 questions per L2 entry, spread outward
+let qCount = l1q.length + 1;
+const l3questions = [];
+const l3map = {};
+
+l2entries.forEach((entry, idx) => {
+  const count = idx % 3 === 0 ? 2 : 1;
+  const baseAngle = Math.atan2(entry.y - CY, entry.x - CX) * (180 / Math.PI);
+  l3map[entry.id] = [];
+  for (let i = 0; i < count; i++) {
+    const spread = count === 1 ? 0 : (i === 0 ? -28 : 28);
+    const id = `q${qCount++}`;
+    l3questions.push({
+      id,
+      label: "Question",
+      type: "question",
+      ...polar(entry.x, entry.y, baseAngle + spread, 200, (i * 8) - 5, (i * 10) - 8),
+    });
+    l3map[entry.id].push(id);
+  }
+});
+
+// L4 — 1-2 entries per L3 question
+const l4entries = [];
+const l4map = {};
+
+l3questions.forEach((q, idx) => {
+  const count = idx % 4 === 0 ? 2 : 1;
+  const baseAngle = Math.atan2(q.y - CY, q.x - CX) * (180 / Math.PI);
+  l4map[q.id] = [];
+  for (let i = 0; i < count; i++) {
+    const spread = count === 1 ? 0 : (i === 0 ? -22 : 22);
+    const id = `e${eCount++}`;
+    l4entries.push({
+      id,
+      label: "Entry",
+      type: "entry",
+      ...polar(q.x, q.y, baseAngle + spread, 180, (i * 6) - 4, (i * 8) - 5),
+    });
+    l4map[q.id].push(id);
+  }
+});
+
+const NODES = [root, ...l1q, ...l2entries, ...l3questions, ...l4entries];
+
+const EDGES = [
+  ...l1q.map((q) => [root.id, q.id]),
+  ...l2config.flatMap(({ parent }) =>
+    l2map[parent].map((child) => [parent, child])
+  ),
+  ...l2entries.flatMap((e) =>
+    (l3map[e.id] || []).map((child) => [e.id, child])
+  ),
+  ...l3questions.flatMap((q) =>
+    (l4map[q.id] || []).map((child) => [q.id, child])
+  ),
+];
+
+// Build adjacency map for outward traversal
+const childrenOf = {};
+EDGES.forEach(([from, to]) => {
+  if (!childrenOf[from]) childrenOf[from] = [];
+  childrenOf[from].push(to);
+});
+
+// Build independent linear chains: root → q → e → q → e ...
+// Each leaf path from root is one sequence
+const BRANCH_SEQUENCES = [];
+
+function buildChains(nodeId, chain) {
+  const children = childrenOf[nodeId] || [];
+  if (children.length === 0) {
+    BRANCH_SEQUENCES.push([...chain]);
+    return;
+  }
+  children.forEach((child) => {
+    buildChains(child, [...chain, child]);
+  });
+}
+buildChains(root.id, [root.id]);
+
+export default function MindMapSVG() {
+  const svgRef = useRef(null);
+  const triggered = useRef(false);
+  const nodeMap = Object.fromEntries(NODES.map((n) => [n.id, n]));
+
+  useEffect(() => {
+    const svg = svgRef.current;
+    if (!svg) return;
+
+    const lines = svg.querySelectorAll("line[data-edge]");
+    const nodes = svg.querySelectorAll("[data-node]");
+
+    lines.forEach((l) => {
+      const len = l.getTotalLength?.() ?? 120;
+      l.style.strokeDasharray = len;
+      l.style.strokeDashoffset = len;
+    });
+    nodes.forEach((n) => { n.style.opacity = 0; });
+
+    const animate = () => {
+      if (triggered.current) return;
+      triggered.current = true;
+
+      const lineDur = 600;
+      const nodeDur = 250;
+      const shownNodes = new Set();
+      const shownEdges = new Set();
+
+      const showNode = (id, at) => {
+        if (shownNodes.has(id)) return;
+        shownNodes.add(id);
+        setTimeout(() => {
+          const el = svg.querySelector(`[data-node="${id}"]`);
+          if (el) { el.style.transition = `opacity ${nodeDur}ms ease`; el.style.opacity = 1; }
+        }, at);
+      };
+
+      const drawEdge = (from, to, at) => {
+        const key = `${from}-${to}`;
+        if (shownEdges.has(key)) return;
+        shownEdges.add(key);
+        setTimeout(() => {
+          const el = svg.querySelector(`line[data-edge="${key}"]`);
+          if (el) { el.style.transition = `stroke-dashoffset ${lineDur}ms ease`; el.style.strokeDashoffset = 0; }
+        }, at);
+      };
+
+      // Show root immediately
+      showNode(root.id, 0);
+
+      // Each leaf-path is a fully independent stream with its own staggered start
+      BRANCH_SEQUENCES.forEach((chain, bi) => {
+        const streamStart = bi * 120; // each stream starts slightly later
+        let t = streamStart + nodeDur; // root already visible by nodeDur
+
+        for (let i = 1; i < chain.length; i++) {
+          const from = chain[i - 1];
+          const to = chain[i];
+          drawEdge(from, to, t);
+          t += lineDur;
+          showNode(to, t);
+          t += nodeDur;
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) animate(); },
+      { threshold: 0.1 }
+    );
+    observer.observe(svg);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <svg
+      ref={svgRef}
+      viewBox="0 0 2800 1400"
+      className="w-full h-auto"
+      style={{ overflow: "visible" }}
+    >
+      {EDGES.map(([from, to]) => {
+        const a = nodeMap[from];
+        const b = nodeMap[to];
+        if (!a || !b) return null;
+        return (
+          <line
+            key={`${from}-${to}`}
+            data-edge={`${from}-${to}`}
+            x1={a.x} y1={a.y}
+            x2={b.x} y2={b.y}
+            stroke="rgba(255,255,255,0.25)"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+          />
+        );
+      })}
+      {NODES.map((node) => (
+        <g key={node.id} data-node={node.id}>
+          <text
+            x={node.x}
+            y={node.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill={node.type === "entry" ? "white" : "rgba(255,255,255,0.45)"}
+            fontSize={node.type === "entry" ? 52 : 44}
+            fontFamily="'Reenie Beanie', cursive"
+            fontWeight={node.type === "entry" ? 600 : 400}
+            letterSpacing="0.05em"
+          >
+            {node.label}
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
