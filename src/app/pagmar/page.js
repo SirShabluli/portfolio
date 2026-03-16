@@ -268,7 +268,8 @@ export default function PagmarPage() {
             >
               The initial layout worked for short entries. But what happens when
               users write longer reflections requiring scroll? Words floating on
-              top and bottom would obstruct vertical movement, breaking the flow.
+              top and bottom would obstruct vertical movement, breaking the
+              flow.
             </TextBlock>
           </div>
           <div className="col-span-4 lg:col-span-10 lg:col-start-2">
@@ -307,7 +308,11 @@ export default function PagmarPage() {
             {/* <video src="/images/pagmar/mindmap.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
           </div>
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
-            Navigation happens entirely in space. Move with arrow keys (up, down, left, right), zoom with <strong>W/S</strong>, approach compositions, press <strong>Enter</strong> to step inside. When you're in, the rest disappears. Press <strong>Esc</strong> to return. No mouse, no clicking — just wandering.
+            Navigation happens entirely in space. Move with arrow keys (up,
+            down, left, right), zoom with <strong>W/S</strong>, approach
+            compositions, press <strong>Enter</strong> to step inside. When
+            you're in, the rest disappears. Press <strong>Esc</strong> to
+            return. No mouse, no clicking — just wandering.
           </p>
         </PageGrid>
       </section>

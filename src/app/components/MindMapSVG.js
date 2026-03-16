@@ -25,11 +25,11 @@ const l1q = l1angles.map((a, i) => ({
 
 // L2 — 2-3 entries per L1 question, spread outward
 const l2config = [
-  { parent: "q1", angles: [290, 340, 20],   r: 240 },
-  { parent: "q2", angles: [10,  55,  90],   r: 250 },
-  { parent: "q3", angles: [75,  120, 155],  r: 240 },
-  { parent: "q4", angles: [155, 200, 240],  r: 250 },
-  { parent: "q5", angles: [220, 265, 300],  r: 240 },
+  { parent: "q1", angles: [290, 340, 20], r: 240 },
+  { parent: "q2", angles: [10, 55, 90], r: 250 },
+  { parent: "q3", angles: [75, 120, 155], r: 240 },
+  { parent: "q4", angles: [155, 200, 240], r: 250 },
+  { parent: "q5", angles: [220, 265, 300], r: 240 },
 ];
 
 let eCount = 1;
@@ -45,7 +45,14 @@ l2config.forEach(({ parent, angles, r }) => {
       id,
       label: "Entry",
       type: "entry",
-      ...polar(parentNode.x, parentNode.y, a, r, (i - 1) * 12, (i % 2) * 20 - 10),
+      ...polar(
+        parentNode.x,
+        parentNode.y,
+        a,
+        r,
+        (i - 1) * 12,
+        (i % 2) * 20 - 10,
+      ),
     });
     l2map[parent].push(id);
   });
@@ -61,13 +68,20 @@ l2entries.forEach((entry, idx) => {
   const baseAngle = Math.atan2(entry.y - CY, entry.x - CX) * (180 / Math.PI);
   l3map[entry.id] = [];
   for (let i = 0; i < count; i++) {
-    const spread = count === 1 ? 0 : (i === 0 ? -28 : 28);
+    const spread = count === 1 ? 0 : i === 0 ? -28 : 28;
     const id = `q${qCount++}`;
     l3questions.push({
       id,
       label: "Question",
       type: "question",
-      ...polar(entry.x, entry.y, baseAngle + spread, 200, (i * 8) - 5, (i * 10) - 8),
+      ...polar(
+        entry.x,
+        entry.y,
+        baseAngle + spread,
+        200,
+        i * 8 - 5,
+        i * 10 - 8,
+      ),
     });
     l3map[entry.id].push(id);
   }
@@ -82,13 +96,13 @@ l3questions.forEach((q, idx) => {
   const baseAngle = Math.atan2(q.y - CY, q.x - CX) * (180 / Math.PI);
   l4map[q.id] = [];
   for (let i = 0; i < count; i++) {
-    const spread = count === 1 ? 0 : (i === 0 ? -22 : 22);
+    const spread = count === 1 ? 0 : i === 0 ? -22 : 22;
     const id = `e${eCount++}`;
     l4entries.push({
       id,
       label: "Entry",
       type: "entry",
-      ...polar(q.x, q.y, baseAngle + spread, 180, (i * 6) - 4, (i * 8) - 5),
+      ...polar(q.x, q.y, baseAngle + spread, 180, i * 6 - 4, i * 8 - 5),
     });
     l4map[q.id].push(id);
   }
@@ -99,13 +113,13 @@ const NODES = [root, ...l1q, ...l2entries, ...l3questions, ...l4entries];
 const EDGES = [
   ...l1q.map((q) => [root.id, q.id]),
   ...l2config.flatMap(({ parent }) =>
-    l2map[parent].map((child) => [parent, child])
+    l2map[parent].map((child) => [parent, child]),
   ),
   ...l2entries.flatMap((e) =>
-    (l3map[e.id] || []).map((child) => [e.id, child])
+    (l3map[e.id] || []).map((child) => [e.id, child]),
   ),
   ...l3questions.flatMap((q) =>
-    (l4map[q.id] || []).map((child) => [q.id, child])
+    (l4map[q.id] || []).map((child) => [q.id, child]),
   ),
 ];
 
@@ -134,12 +148,14 @@ buildChains(root.id, [root.id]);
 
 export default function MindMapSVG() {
   const svgRef = useRef(null);
+  const sentinelRef = useRef(null);
   const triggered = useRef(false);
   const nodeMap = Object.fromEntries(NODES.map((n) => [n.id, n]));
 
   useEffect(() => {
     const svg = svgRef.current;
-    if (!svg) return;
+    const sentinel = sentinelRef.current;
+    if (!svg || !sentinel) return;
 
     const lines = svg.querySelectorAll("line[data-edge]");
     const nodes = svg.querySelectorAll("[data-node]");
@@ -149,7 +165,9 @@ export default function MindMapSVG() {
       l.style.strokeDasharray = len;
       l.style.strokeDashoffset = len;
     });
-    nodes.forEach((n) => { n.style.opacity = 0; });
+    nodes.forEach((n) => {
+      n.style.opacity = 0;
+    });
 
     const animate = () => {
       if (triggered.current) return;
@@ -165,7 +183,10 @@ export default function MindMapSVG() {
         shownNodes.add(id);
         setTimeout(() => {
           const el = svg.querySelector(`[data-node="${id}"]`);
-          if (el) { el.style.transition = `opacity ${nodeDur}ms ease`; el.style.opacity = 1; }
+          if (el) {
+            el.style.transition = `opacity ${nodeDur}ms ease`;
+            el.style.opacity = 1;
+          }
         }, at);
       };
 
@@ -175,7 +196,10 @@ export default function MindMapSVG() {
         shownEdges.add(key);
         setTimeout(() => {
           const el = svg.querySelector(`line[data-edge="${key}"]`);
-          if (el) { el.style.transition = `stroke-dashoffset ${lineDur}ms ease`; el.style.strokeDashoffset = 0; }
+          if (el) {
+            el.style.transition = `stroke-dashoffset ${lineDur}ms ease`;
+            el.style.strokeDashoffset = 0;
+          }
         }, at);
       };
 
@@ -199,20 +223,24 @@ export default function MindMapSVG() {
     };
 
     const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) animate(); },
-      { threshold: 0.1 }
+      ([entry]) => {
+        if (entry.isIntersecting) animate();
+      },
+      { threshold: 0, rootMargin: "0px 0px -30% 0px" },
     );
-    observer.observe(svg);
+    observer.observe(sentinel);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <svg
-      ref={svgRef}
-      viewBox="0 0 2800 1400"
-      className="w-full h-auto"
-      style={{ overflow: "visible" }}
-    >
+    <>
+      <div ref={sentinelRef} style={{ height: 1, width: "100%" }} />
+      <svg
+        ref={svgRef}
+        viewBox="0 0 2800 1400"
+        className="w-full h-auto"
+        style={{ overflow: "visible" }}
+      >
       {EDGES.map(([from, to]) => {
         const a = nodeMap[from];
         const b = nodeMap[to];
@@ -221,9 +249,11 @@ export default function MindMapSVG() {
           <line
             key={`${from}-${to}`}
             data-edge={`${from}-${to}`}
-            x1={a.x} y1={a.y}
-            x2={b.x} y2={b.y}
-            stroke="rgba(255,255,255,0.25)"
+            x1={a.x}
+            y1={a.y}
+            x2={b.x}
+            y2={b.y}
+            stroke="rgba(255,255,255,0.60)"
             strokeWidth={1.5}
             strokeLinecap="round"
           />
@@ -236,8 +266,12 @@ export default function MindMapSVG() {
             y={node.y}
             textAnchor="middle"
             dominantBaseline="middle"
-            fill={node.type === "entry" ? "white" : "rgba(255,255,255,0.45)"}
-            fontSize={node.type === "entry" ? 52 : 44}
+            stroke="black"
+            strokeWidth={16}
+            strokeLinejoin="round"
+            paintOrder="stroke"
+            fill={node.type === "entry" ? "white" : "rgba(255,255,255,0.90)"}
+            fontSize={node.id === "e0" ? 72 : node.type === "entry" ? 44 : 44}
             fontFamily="'Reenie Beanie', cursive"
             fontWeight={node.type === "entry" ? 600 : 400}
             letterSpacing="0.05em"
@@ -246,6 +280,7 @@ export default function MindMapSVG() {
           </text>
         </g>
       ))}
-    </svg>
+      </svg>
+    </>
   );
 }
