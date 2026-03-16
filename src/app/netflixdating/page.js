@@ -18,7 +18,7 @@ import TextBlock from "../components/TextBlock";
 export default function NetflixDatingPage() {
   // Debug flags - set to true/false to toggle
   const showOutlines = false;
-  const showMarkers = true;
+  const showMarkers = false;
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 

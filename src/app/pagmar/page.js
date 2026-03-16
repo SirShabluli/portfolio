@@ -307,7 +307,7 @@ export default function PagmarPage() {
           <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
             {/* <video src="/images/pagmar/mindmap.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
           </div>
-          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
             Navigation happens entirely in space. Move with arrow keys (up,
             down, left, right), zoom with <strong>W/S</strong>, approach
             compositions, press <strong>Enter</strong> to step inside. When
@@ -332,7 +332,7 @@ export default function PagmarPage() {
           <div className="col-span-4 lg:col-span-12">
             <MindMapSVG />
           </div>
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 lg:mt-12 text-sm">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 lg:mt-12 text-xs">
             Rigid structure couldn't capture how thoughts actually connect
           </p>
         </PageGrid>
@@ -347,9 +347,9 @@ export default function PagmarPage() {
               title="Free Movement in 3D Space"
               className="text-white"
             >
-              Navigation is spatial. Move with arrows/W/S, Enter to step
-              inside, Esc to explore. Compositions arrange
-              organically—a new way to navigate.
+              Navigation is spatial. Move with arrows/W/S, Enter to step inside,
+              Esc to explore. Compositions arrange organically—a new way to
+              navigate.
             </TextBlock>
           </div>
           <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">

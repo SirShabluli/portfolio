@@ -173,8 +173,8 @@ export default function MindMapSVG() {
       if (triggered.current) return;
       triggered.current = true;
 
-      const lineDur = 600;
-      const nodeDur = 250;
+      const lineDur = 250;
+      const nodeDur = 100;
       const shownNodes = new Set();
       const shownEdges = new Set();
 
@@ -241,45 +241,45 @@ export default function MindMapSVG() {
         className="w-full h-auto"
         style={{ overflow: "visible" }}
       >
-      {EDGES.map(([from, to]) => {
-        const a = nodeMap[from];
-        const b = nodeMap[to];
-        if (!a || !b) return null;
-        return (
-          <line
-            key={`${from}-${to}`}
-            data-edge={`${from}-${to}`}
-            x1={a.x}
-            y1={a.y}
-            x2={b.x}
-            y2={b.y}
-            stroke="rgba(255,255,255,0.60)"
-            strokeWidth={1.5}
-            strokeLinecap="round"
-          />
-        );
-      })}
-      {NODES.map((node) => (
-        <g key={node.id} data-node={node.id}>
-          <text
-            x={node.x}
-            y={node.y}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            stroke="black"
-            strokeWidth={16}
-            strokeLinejoin="round"
-            paintOrder="stroke"
-            fill={node.type === "entry" ? "white" : "rgba(255,255,255,0.90)"}
-            fontSize={node.id === "e0" ? 72 : node.type === "entry" ? 44 : 44}
-            fontFamily="'Reenie Beanie', cursive"
-            fontWeight={node.type === "entry" ? 600 : 400}
-            letterSpacing="0.05em"
-          >
-            {node.label}
-          </text>
-        </g>
-      ))}
+        {EDGES.map(([from, to]) => {
+          const a = nodeMap[from];
+          const b = nodeMap[to];
+          if (!a || !b) return null;
+          return (
+            <line
+              key={`${from}-${to}`}
+              data-edge={`${from}-${to}`}
+              x1={a.x}
+              y1={a.y}
+              x2={b.x}
+              y2={b.y}
+              stroke="rgba(255,255,255,0.60)"
+              strokeWidth={1.5}
+              strokeLinecap="round"
+            />
+          );
+        })}
+        {NODES.map((node) => (
+          <g key={node.id} data-node={node.id}>
+            <text
+              x={node.x}
+              y={node.y}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              stroke="black"
+              strokeWidth={16}
+              strokeLinejoin="round"
+              paintOrder="stroke"
+              fill={node.type === "entry" ? "white" : "rgba(255,255,255,0.90)"}
+              fontSize={node.id === "e0" ? 72 : node.type === "entry" ? 44 : 44}
+              fontFamily="'Reenie Beanie', cursive"
+              fontWeight={node.type === "entry" ? 600 : 400}
+              letterSpacing="0.05em"
+            >
+              {node.label}
+            </text>
+          </g>
+        ))}
       </svg>
     </>
   );
