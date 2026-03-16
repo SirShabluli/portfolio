@@ -332,6 +332,32 @@ export default function PagmarPage() {
           <div className="col-span-4 lg:col-span-12">
             <MindMapSVG />
           </div>
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 lg:mt-12 text-sm">
+            Rigid structure couldn't capture how thoughts actually connect
+          </p>
+        </PageGrid>
+      </section>
+
+      {/* My Solution — Free Movement in 3D Space */}
+      <section className="w-full bg-black py-16 lg:py-24">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="My Solution"
+              title="Free Movement in 3D Space"
+              className="text-white"
+            >
+              Navigation is spatial. Move with arrows/W/S, Enter to step
+              inside, Esc to explore. Compositions arrange
+              organically—a new way to navigate.
+            </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* <video src="/images/pagmar/mindmap-nav.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          </div>
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40">
+            Move freely, enter compositions, explore without constraints
+          </p>
         </PageGrid>
       </section>
     </main>
