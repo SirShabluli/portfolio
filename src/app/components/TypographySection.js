@@ -68,8 +68,11 @@ export default function TypographySection({
       <div className="col-span-4 lg:col-span-3 lg:col-start-1 flex flex-col gap-4">
         <span className="text-5xl font-medium tracking-tight">Typography</span>
         <p className="hidden lg:flex lg:mt-2 font-medium tracking-tight max-w-[66%]">
-          I decided to go with easy going vibe, i had to mix the good and feel
-          while not in the exchange of readablity
+          Two typefaces create a clear distinction between system and content.
+          <br />
+          <br />
+          The contrast signals what's yours and what's the interface, keeping
+          the boundary clear without words.
         </p>
       </div>
 
@@ -92,10 +95,12 @@ export default function TypographySection({
                 onClick={() => !isSelected && changeFont(font)}
                 size="small"
                 onMouseEnter={(e) => {
-                  if (!isSelected) e.currentTarget.style.backgroundColor = textColor + "33";
+                  if (!isSelected)
+                    e.currentTarget.style.backgroundColor = textColor + "33";
                 }}
                 onMouseLeave={(e) => {
-                  if (!isSelected) e.currentTarget.style.backgroundColor = "transparent";
+                  if (!isSelected)
+                    e.currentTarget.style.backgroundColor = "transparent";
                 }}
               >
                 {font.name} {font.weightName}

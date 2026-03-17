@@ -22,6 +22,27 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Masada";
+  src: url("/fonts/Masada-Book.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Masada";
+  src: url("/fonts/Masada-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NarkissYairMono";
+  src: url("/fonts/NarkissYairMono-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;

@@ -8,6 +8,9 @@ import ImageCarousel from "../components/ImageCarousel";
 import MindMapSVG from "../components/MindMapSVG";
 import { LAYOUTS } from "../components/simulation/ConstellationCanvas";
 import Button from "../components/Button";
+import ConfigBackground from "../components/ConfigBackground";
+import TypographySection from "../components/TypographySection";
+import HorizontalScroll from "../components/HorizontalScroll";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -92,6 +95,19 @@ function KeyCap({ label, topText, bottomText, size = "medium" }) {
 export default function PagmarPage() {
   const [activeLayoutId, setActiveLayoutId] = useState("tunnel");
   const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
+
+  const MOODS = [
+    { id: "night", label: "Night", video: "/videos/mood-night.mp4" },
+    { id: "fire", label: "Fire", video: "/videos/mood-fire.mp4" },
+    { id: "rain", label: "Rain", video: "/videos/mood-rain.mp4" },
+    { id: "calm", label: "Calm", video: "/videos/mood-calm.mp4" },
+    {
+      id: "underwater",
+      label: "Underwater",
+      video: "/videos/mood-underwater.mp4",
+    },
+  ];
+  const [activeMood, setActiveMood] = useState("night");
 
   return (
     <main className="bg-black text-white">
@@ -571,6 +587,146 @@ export default function PagmarPage() {
           </div>
         </PageGrid>
       </section>
+
+      {/* Feature #4 - Emotional Atmosphere */}
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Feature #4 — Emotional Atmosphere
+          </p>
+
+          {/* Two text blocks stacked */}
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-8">
+            <TextBlock
+              label="The Challenge"
+              title="Creating Presence Without Distraction"
+              className="text-white"
+            >
+              In a 3D world, atmosphere matters. But music would be too much — I
+              needed ambient sounds from nature, particles that move gently
+              without pulling focus. The challenge: dozens of parameters, every
+              tweak requires refresh. How do you iterate efficiently?
+            </TextBlock>
+            <TextBlock
+              label="My Solution"
+              title="Adaptive Soundscapes and Live Particle Design"
+              className="text-white"
+            >
+              The AI analyzes your writing for emotional tone — anger, love,
+              sadness — and adapts the atmosphere accordingly. Five moods
+              emerge: Night, Fire, Rain, Calm, and Underwater.
+            </TextBlock>
+          </div>
+
+          {/* Video + mood buttons */}
+          <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex flex-col gap-4">
+            <div className="w-full aspect-video bg-white/5 rounded-sm overflow-hidden">
+              <video
+                key={activeMood}
+                src={MOODS.find((m) => m.id === activeMood)?.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {MOODS.map((m) => (
+                <Button
+                  key={m.id}
+                  variant={activeMood === m.id ? "filled" : "outline"}
+                  color="#ffffff"
+                  size="small"
+                  onClick={() => setActiveMood(m.id)}
+                  style={activeMood === m.id ? { color: "#000000" } : {}}
+                >
+                  {m.label}
+                </Button>
+              ))}
+            </div>
+          </div>
+        </PageGrid>
+      </section>
+      <section className="relative w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <ConfigBackground />
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Design for modularity
+          </p>
+          {/* Text blocks — left */}
+          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-8 justify-center">
+            <TextBlock
+              label="The Challenge"
+              title="Iterating on Complex JSON"
+              className="text-white"
+            >
+              Particles have dozens of parameters. Tweaking JSON directly meant:
+              change value, refresh, check, repeat. Painfully slow.
+            </TextBlock>
+            <TextBlock
+              label="My Solution"
+              title="Live Design Tool"
+              className="text-white"
+            >
+              Live sliders, instant feedback. Found the feel, exported to JSON.
+              Hours became minutes.
+            </TextBlock>
+          </div>
+
+          {/* Video placeholder — right */}
+          <div className="col-span-4 lg:col-span-7 lg:col-start-7 aspect-video bg-white/5 rounded-sm" />
+        </PageGrid>
+      </section>
+
+      {/* Design System — horizontal scroll */}
+      <HorizontalScroll>
+        {/* Slide 1: big title */}
+        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex justify-center items-center px-6 lg:px-12">
+          <p className="text-[clamp(3rem,10vw,9rem)] font-light  leading-none tracking-tight text-white">
+            Design system
+          </p>
+        </div>
+
+        {/* Slide 2: Typography */}
+        <div className="min-w-screen w-screen h-screen shrink-0">
+          <TypographySection
+            bgColor="black"
+            textColor="white"
+            data={{
+              fonts: [
+                {
+                  id: "masada-book",
+                  name: "Masada",
+                  weightName: "Book",
+                  fontFamily: "'Masada', serif",
+                  weight: 400,
+                  description:
+                    "Used for user-generated content — journal entries, insights, emotional words. Its serif warmth marks what belongs to the person.",
+                },
+                {
+                  id: "masada-bold",
+                  name: "Masada",
+                  weightName: "Bold",
+                  fontFamily: "'Masada', serif",
+                  weight: 700,
+                  description:
+                    "The bold weight is used sparingly for emphasis within content — key insights, selected words, emotional peaks.",
+                },
+                {
+                  id: "narkiss-mono",
+                  name: "Narkiss Yair Mono",
+                  weightName: "Regular",
+                  fontFamily: "'NarkissYairMono', monospace",
+                  weight: 400,
+                  description:
+                    "Used for all interface elements — labels, buttons, navigation, metadata. Its monospaced neutrality signals utility, not authorship.",
+                },
+              ],
+            }}
+          />
+        </div>
+      </HorizontalScroll>
     </main>
   );
 }
