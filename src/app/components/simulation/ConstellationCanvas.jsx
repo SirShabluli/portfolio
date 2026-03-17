@@ -60,14 +60,6 @@ const CLOUD_DATA = [
     centerEntity: "anxiety",
     emotionWords: ["tension", "pressure", "rush", "freeze", "loop"],
   },
-  {
-    centerEntity: "calm",
-    emotionWords: ["breath", "open", "slow", "ground", "quiet"],
-  },
-  {
-    centerEntity: "memory",
-    emotionWords: ["return", "fragment", "blur", "before", "lost"],
-  },
 ];
 const INSIGHTS = [
   "the pattern repeats itself",

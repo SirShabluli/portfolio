@@ -7,6 +7,7 @@ import TextBlock from "../components/TextBlock";
 import ImageCarousel from "../components/ImageCarousel";
 import MindMapSVG from "../components/MindMapSVG";
 import { LAYOUTS } from "../components/simulation/ConstellationCanvas";
+import Button from "../components/Button";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -538,14 +539,14 @@ export default function PagmarPage() {
 
           {/* Canvas — left 8 cols */}
           <div
-            className="col-span-4 lg:col-span-8 lg:col-start-3"
+            className="col-span-4 lg:col-span-7 lg:col-start-3"
             style={{ height: "560px" }}
           >
             <ConstellationCanvas activeId={activeLayoutId} />
           </div>
 
           {/* Description + buttons — right 3 cols */}
-          <div className="col-span-4 lg:col-span-3 lg:col-start-11 flex flex-col justify-between gap-8 py-4">
+          <div className="col-span-4 lg:col-span-2 lg:col-start-10 flex flex-col justify-between gap-8 py-4">
             <TextBlock
               label={activeLayout.label}
               title={activeLayout.title}
@@ -555,28 +556,16 @@ export default function PagmarPage() {
             </TextBlock>
             <div className="flex flex-col gap-3">
               {LAYOUTS.map((l) => (
-                <button
+                <Button
                   key={l.id}
+                  variant={activeLayoutId === l.id ? "filled" : "outline"}
+                  color="#ffffff"
+                  size="small"
                   onClick={() => setActiveLayoutId(l.id)}
-                  style={{
-                    padding: "8px 16px",
-                    fontFamily:
-                      "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
-                    fontSize: "13px",
-                    background:
-                      activeLayoutId === l.id
-                        ? "#ffffff"
-                        : "rgba(255,255,255,0.08)",
-                    color: activeLayoutId === l.id ? "#000000" : "#ffffff",
-                    border: "1px solid rgba(255,255,255,0.3)",
-                    borderRadius: "6px",
-                    cursor: "pointer",
-                    textAlign: "left",
-                    transition: "background 0.2s, color 0.2s",
-                  }}
+                  style={activeLayoutId === l.id ? { color: "#000000" } : {}}
                 >
                   {l.label}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
