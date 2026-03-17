@@ -240,7 +240,7 @@ export default function BiDiMockup() {
             style={{
               fontFamily: "'NarkissYairMono', monospace",
               fontSize: "0.45rem",
-              color: "rgba(255,255,255,0.25)",
+              color: "rgba(255,255,255,1)",
               letterSpacing: "0.1em",
             }}
           >
@@ -250,7 +250,7 @@ export default function BiDiMockup() {
             style={{
               fontFamily: "'NarkissYairMono', monospace",
               fontSize: "0.8rem",
-              color: "rgba(255,255,255,0.15)",
+              color: "rgba(255,255,255,1)",
               letterSpacing: "0.08em",
             }}
           >
@@ -284,33 +284,6 @@ export default function BiDiMockup() {
           >
             {data.body}
           </p>
-
-          {/* Cursor */}
-          <div
-            className="flex items-center gap-1 mt-2 transition-all duration-500"
-            style={{
-              justifyContent: isRTL ? "flex-end" : "flex-start",
-              outline: "0.5px solid blue ",
-            }}
-          >
-            <span
-              className="inline-block bg-white animate-pulse"
-              style={{
-                width: "1px",
-                height: "0.7rem",
-                animationDuration: "1s",
-              }}
-            />
-            <span
-              style={{
-                fontFamily: "'NarkissYairMono', monospace",
-                fontSize: "0.42rem",
-                color: "rgba(255,255,255,0.12)",
-              }}
-            >
-              {data.cursor}
-            </span>
-          </div>
         </div>
 
         {/* ── Direction badge — pinned to col 12 edge ── */}
