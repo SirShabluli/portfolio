@@ -1,54 +1,42 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
 import ScatteredLayout from "./ScatteredLayout";
 import CloudsLayout from "./CloudsLayout";
 import TunnelLayout from "./TunnelLayout";
-import { animateToPosition } from "./cameraAnimations";
 
+// Each layout: position = where the content lives
+// cameraPos = where the camera sits to look at it
+// lookAt = what the camera points at
 const LAYOUTS = [
   {
     id: "scattered",
     label: "Scattered",
-    position: [-20, 0, 0],
+    position: [0, 0, 0],
+    cameraPos: [0, 0, 12],
+    lookAt: [0, 0, 0],
     description:
       "Words extracted from the user's text scatter across 3D space. Each word pulses with its own sine-wave opacity rhythm, representing raw unprocessed emotional content before AI analysis.",
-    background: {
-      topColor: "#0b1d3a",
-      middleColor: "#102e4a",
-      bottomColor: "#071829",
-      intensity: 0.1,
-      speed: 0.03,
-    },
   },
   {
     id: "clouds",
     label: "Entity Clouds",
-    position: [0, 0, 0],
+    position: [0, 20, 0],
+    cameraPos: [0, 8, 0],
+    lookAt: [0, 20, 0],
     description:
       "After AI analysis, semantically related words cluster into floating clouds. Each cloud has a central concept with satellite words orbiting it — showing emotional themes side by side.",
-    background: {
-      topColor: "#2a1440",
-      middleColor: "#522a78",
-      bottomColor: "#8162a8",
-      intensity: 0.65,
-      speed: 0.03,
-    },
   },
   {
     id: "tunnel",
     label: "Tunnel",
-    position: [20, 0, 0],
+    position: [0, -20, 0],
+    cameraPos: [0, -8, 0],
+    lookAt: [0, -20, 0],
     description:
       "Key insights are placed on rotating circular rings receding into depth. Longer texts get larger rings. Looking through the tunnel gives a sense of accumulated layered thought.",
-    background: {
-      topColor: "#c31432",
-      middleColor: "#660000",
-      bottomColor: "#000000",
-      intensity: 0.3,
-      speed: 0.03,
-    },
   },
 ];
 
@@ -86,48 +74,126 @@ const INSIGHTS = [
   "the body remembers what the mind forgets",
 ];
 
+// Waypoint queue: when going clouds↔tunnel, route via scattered first
+function getWaypoints(fromId, toId) {
+  const needsViaScattered =
+    (fromId === "clouds" && toId === "tunnel") ||
+    (fromId === "tunnel" && toId === "clouds");
+
+  const dest = LAYOUTS.find((l) => l.id === toId);
+  if (needsViaScattered) {
+    const mid = LAYOUTS.find((l) => l.id === "scattered");
+    return [
+      {
+        camPos: new THREE.Vector3(...mid.cameraPos),
+        lookAt: new THREE.Vector3(...mid.lookAt),
+      },
+      {
+        camPos: new THREE.Vector3(...dest.cameraPos),
+        lookAt: new THREE.Vector3(...dest.lookAt),
+      },
+    ];
+  }
+  return [
+    {
+      camPos: new THREE.Vector3(...dest.cameraPos),
+      lookAt: new THREE.Vector3(...dest.lookAt),
+    },
+  ];
+}
+
 function Scene({ activeId, orbitRef }) {
   const { camera } = useThree();
   const isFirstMount = useRef(true);
+  const prevId = useRef("scattered");
+  const waypointQueue = useRef([]);
+  const currentTarget = useRef({
+    camPos: new THREE.Vector3(0, 0, 12),
+    lookAt: new THREE.Vector3(0, 0, 0),
+  });
 
   useEffect(() => {
-    const target = LAYOUTS.find((l) => l.id === activeId);
-    if (!target) return;
-    const [tx, ty, tz] = target.position;
+    const layout = LAYOUTS.find((l) => l.id === activeId);
+    if (!layout) return;
 
     if (isFirstMount.current) {
-      camera.position.set(tx, ty, tz + 12);
-      camera.lookAt(tx, ty, tz);
+      camera.position.set(...layout.cameraPos);
       if (orbitRef.current) {
-        orbitRef.current.target.set(tx, ty, tz);
+        orbitRef.current.target.set(...layout.lookAt);
         orbitRef.current.update();
       }
+      currentTarget.current = {
+        camPos: new THREE.Vector3(...layout.cameraPos),
+        lookAt: new THREE.Vector3(...layout.lookAt),
+      };
       isFirstMount.current = false;
+      prevId.current = activeId;
       return;
     }
 
-    animateToPosition(
-      camera,
-      orbitRef,
-      [tx, ty, tz + 12],
-      [tx, ty, tz],
-      () => {},
-    );
+    waypointQueue.current = getWaypoints(prevId.current, activeId);
+    prevId.current = activeId;
   }, [activeId]);
+
+  useFrame((_, delta) => {
+    const speed = 20; // units per second
+
+    // Advance to next waypoint when close enough
+    if (waypointQueue.current.length > 0) {
+      const next = waypointQueue.current[0];
+      const distCam = camera.position.distanceTo(next.camPos);
+      if (distCam < 0.05) {
+        waypointQueue.current.shift();
+        currentTarget.current = waypointQueue.current[0] ?? next;
+      } else {
+        currentTarget.current = next;
+      }
+    }
+
+    const step = speed * delta;
+    const { camPos, lookAt } = currentTarget.current;
+
+    // Move fixed distance per frame (linear)
+    if (camera.position.distanceTo(camPos) > 0.01) {
+      camera.position.lerp(
+        camPos,
+        Math.min(step / camera.position.distanceTo(camPos), 1),
+      );
+    }
+    if (orbitRef.current) {
+      const tgt = orbitRef.current.target;
+      if (tgt.distanceTo(lookAt) > 0.01) {
+        tgt.lerp(lookAt, Math.min(step / tgt.distanceTo(lookAt), 1));
+      }
+      orbitRef.current.update();
+    }
+  });
 
   return (
     <>
       <color attach="background" args={["#000000"]} />
       <ambientLight intensity={0.5} />
-      {activeId === "scattered" && (
-        <ScatteredLayout scatteredWords={SCATTERED_WORDS} wordCount={35} opacity={0.75} spreadRadiusX={22} spreadRadiusY={18} spreadRadiusZ={8} />
-      )}
-      {activeId === "clouds" && (
+      <group position={LAYOUTS[0].position}>
+        <ScatteredLayout
+          scatteredWords={SCATTERED_WORDS}
+          wordCount={35}
+          opacity={0.75}
+          spreadRadiusX={22}
+          spreadRadiusY={18}
+          spreadRadiusZ={8}
+        />
+      </group>
+      <group position={LAYOUTS[1].position} rotation={[Math.PI / 2, 0, 0]}>
         <CloudsLayout cloudData={CLOUD_DATA} opacity={0.85} />
-      )}
-      {activeId === "tunnel" && (
-        <TunnelLayout frozenInsights={INSIGHTS} opacity={0.9} spacing={4.5} baseRadius={6.5} />
-      )}
+      </group>
+      <group position={LAYOUTS[2].position} rotation={[-Math.PI / 2, 0, 0]}>
+        <TunnelLayout
+          frozenInsights={INSIGHTS}
+          opacity={0.9}
+          spacing={4.5}
+          baseRadius={6.5}
+        />
+      </group>
     </>
   );
 }
