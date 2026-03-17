@@ -14,15 +14,17 @@ const LAYOUTS = [
   {
     id: "scattered",
     label: "Scattered",
-    position: [0, 0, 0],
-    cameraPos: [0, 0, 12],
-    lookAt: [0, 0, 0],
+    title: "Raw Input",
+    position: [0, -20, 0],
+    cameraPos: [0, -8, 0],
+    lookAt: [0, -20, 0],
     description:
       "Words extracted from the user's text scatter across 3D space. Each word pulses with its own sine-wave opacity rhythm, representing raw unprocessed emotional content before AI analysis.",
   },
   {
     id: "clouds",
     label: "Entity Clouds",
+    title: "Semantic Clusters",
     position: [0, 20, 0],
     cameraPos: [0, 8, 0],
     lookAt: [0, 20, 0],
@@ -32,9 +34,10 @@ const LAYOUTS = [
   {
     id: "tunnel",
     label: "Tunnel",
-    position: [0, -20, 0],
-    cameraPos: [0, -8, 0],
-    lookAt: [0, -20, 0],
+    title: "Key Insights",
+    position: [0, 0, 0],
+    cameraPos: [0, 0, 12],
+    lookAt: [0, 0, 0],
     description:
       "Key insights are placed on rotating circular rings receding into depth. Longer texts get larger rings. Looking through the tunnel gives a sense of accumulated layered thought.",
   },
@@ -74,15 +77,15 @@ const INSIGHTS = [
   "the body remembers what the mind forgets",
 ];
 
-// Waypoint queue: when going clouds↔tunnel, route via scattered first
+// Waypoint queue: when going clouds↔scattered, route via tunnel (center) first
 function getWaypoints(fromId, toId) {
-  const needsViaScattered =
-    (fromId === "clouds" && toId === "tunnel") ||
-    (fromId === "tunnel" && toId === "clouds");
+  const needsViaTunnel =
+    (fromId === "clouds" && toId === "scattered") ||
+    (fromId === "scattered" && toId === "clouds");
 
   const dest = LAYOUTS.find((l) => l.id === toId);
-  if (needsViaScattered) {
-    const mid = LAYOUTS.find((l) => l.id === "scattered");
+  if (needsViaTunnel) {
+    const mid = LAYOUTS.find((l) => l.id === "tunnel");
     return [
       {
         camPos: new THREE.Vector3(...mid.cameraPos),
@@ -105,7 +108,7 @@ function getWaypoints(fromId, toId) {
 function Scene({ activeId, orbitRef }) {
   const { camera } = useThree();
   const isFirstMount = useRef(true);
-  const prevId = useRef("scattered");
+  const prevId = useRef("tunnel");
   const waypointQueue = useRef([]);
   const currentTarget = useRef({
     camPos: new THREE.Vector3(0, 0, 12),
@@ -173,7 +176,8 @@ function Scene({ activeId, orbitRef }) {
     <>
       <color attach="background" args={["#000000"]} />
       <ambientLight intensity={0.5} />
-      <group position={LAYOUTS[0].position}>
+      {/* scattered — below, rotated to face camera looking down */}
+      <group position={LAYOUTS[0].position} rotation={[-Math.PI / 2, 0, 0]}>
         <ScatteredLayout
           scatteredWords={SCATTERED_WORDS}
           wordCount={35}
@@ -183,10 +187,12 @@ function Scene({ activeId, orbitRef }) {
           spreadRadiusZ={8}
         />
       </group>
+      {/* clouds — above, rotated to face camera looking up */}
       <group position={LAYOUTS[1].position} rotation={[Math.PI / 2, 0, 0]}>
         <CloudsLayout cloudData={CLOUD_DATA} opacity={0.85} />
       </group>
-      <group position={LAYOUTS[2].position} rotation={[-Math.PI / 2, 0, 0]}>
+      {/* tunnel — center, no rotation */}
+      <group position={LAYOUTS[2].position}>
         <TunnelLayout
           frozenInsights={INSIGHTS}
           opacity={0.9}

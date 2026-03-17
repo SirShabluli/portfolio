@@ -10,7 +10,7 @@ import { LAYOUTS } from "../components/simulation/ConstellationCanvas";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
-  { ssr: false }
+  { ssr: false },
 );
 
 function KeyCap({ label, topText, bottomText, size = "medium" }) {
@@ -488,10 +488,12 @@ export default function PagmarPage() {
             {/* <video src="/images/pagmar/focus-richness.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
           </div>
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
-            Inside composition<br />
-            - Esc → world appears<br />
-            - Enter → world disappears<br />
-            - Back and forth
+            Inside composition
+            <br />
+            - Esc → world appears
+            <br />
+            - Enter → world disappears
+            <br />- Back and forth
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
@@ -518,9 +520,9 @@ export default function PagmarPage() {
               title="Making Sense of Volume"
               className="text-white"
             >
-              Not everything you write carries equal weight. Some moments
-              matter more. Some words hold emotional charge. But in the flow,
-              it's hard to see which ones.
+              Not everything you write carries equal weight. Some moments matter
+              more. Some words hold emotional charge. But in the flow, it's hard
+              to see which ones.
             </TextBlock>
           </div>
           <div className="col-span-4 lg:col-span-4 lg:col-start-8">
@@ -535,20 +537,22 @@ export default function PagmarPage() {
           </div>
 
           {/* Canvas — left 8 cols */}
-          <div className="col-span-4 lg:col-span-8 lg:col-start-3" style={{ height: "560px" }}>
+          <div
+            className="col-span-4 lg:col-span-8 lg:col-start-3"
+            style={{ height: "560px" }}
+          >
             <ConstellationCanvas activeId={activeLayoutId} />
           </div>
 
           {/* Description + buttons — right 3 cols */}
           <div className="col-span-4 lg:col-span-3 lg:col-start-11 flex flex-col justify-between gap-8 py-4">
-            <p style={{
-              fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
-              fontSize: "14px",
-              lineHeight: 1.7,
-              color: "rgba(255,255,255,0.8)",
-            }}>
+            <TextBlock
+              label={activeLayout.label}
+              title={activeLayout.title}
+              className="text-white"
+            >
               {activeLayout.description}
-            </p>
+            </TextBlock>
             <div className="flex flex-col gap-3">
               {LAYOUTS.map((l) => (
                 <button
@@ -556,9 +560,13 @@ export default function PagmarPage() {
                   onClick={() => setActiveLayoutId(l.id)}
                   style={{
                     padding: "8px 16px",
-                    fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
+                    fontFamily:
+                      "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
                     fontSize: "13px",
-                    background: activeLayoutId === l.id ? "#ffffff" : "rgba(255,255,255,0.08)",
+                    background:
+                      activeLayoutId === l.id
+                        ? "#ffffff"
+                        : "rgba(255,255,255,0.08)",
                     color: activeLayoutId === l.id ? "#000000" : "#ffffff",
                     border: "1px solid rgba(255,255,255,0.3)",
                     borderRadius: "6px",
