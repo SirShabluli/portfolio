@@ -1,10 +1,12 @@
 "use client";
+import { useState } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import PageGrid from "../components/PageGrid";
 import TextBlock from "../components/TextBlock";
 import ImageCarousel from "../components/ImageCarousel";
 import MindMapSVG from "../components/MindMapSVG";
+import { LAYOUTS } from "../components/simulation/ConstellationCanvas";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -87,6 +89,9 @@ function KeyCap({ label, topText, bottomText, size = "medium" }) {
 }
 
 export default function PagmarPage() {
+  const [activeLayoutId, setActiveLayoutId] = useState("tunnel");
+  const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
+
   return (
     <main className="bg-black text-white">
       {/* Hero */}
@@ -528,8 +533,44 @@ export default function PagmarPage() {
               space.
             </TextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-12">
-            <ConstellationCanvas />
+
+          {/* Canvas — left 8 cols */}
+          <div className="col-span-4 lg:col-span-8 lg:col-start-3" style={{ height: "560px" }}>
+            <ConstellationCanvas activeId={activeLayoutId} />
+          </div>
+
+          {/* Description + buttons — right 3 cols */}
+          <div className="col-span-4 lg:col-span-3 lg:col-start-11 flex flex-col justify-between gap-8 py-4">
+            <p style={{
+              fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
+              fontSize: "14px",
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.8)",
+            }}>
+              {activeLayout.description}
+            </p>
+            <div className="flex flex-col gap-3">
+              {LAYOUTS.map((l) => (
+                <button
+                  key={l.id}
+                  onClick={() => setActiveLayoutId(l.id)}
+                  style={{
+                    padding: "8px 16px",
+                    fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
+                    fontSize: "13px",
+                    background: activeLayoutId === l.id ? "#ffffff" : "rgba(255,255,255,0.08)",
+                    color: activeLayoutId === l.id ? "#000000" : "#ffffff",
+                    border: "1px solid rgba(255,255,255,0.3)",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    transition: "background 0.2s, color 0.2s",
+                  }}
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
           </div>
         </PageGrid>
       </section>

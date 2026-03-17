@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { Canvas, useThree, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import * as THREE from "three";
@@ -198,16 +198,17 @@ function Scene({ activeId, orbitRef }) {
   );
 }
 
-export default function ConstellationCanvas() {
-  const [activeId, setActiveId] = useState("scattered");
+export { LAYOUTS };
+
+export default function ConstellationCanvas({ activeId }) {
   const orbitRef = useRef();
-  const activeLayout = LAYOUTS.find((l) => l.id === activeId);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "600px" }}>
+    <div style={{ width: "100%", height: "100%" }}>
       <Canvas
         camera={{ position: [0, 0, 12], fov: 75 }}
         gl={{ clearColor: "#000000" }}
+        style={{ display: "block" }}
       >
         <OrbitControls
           ref={orbitRef}
@@ -217,65 +218,6 @@ export default function ConstellationCanvas() {
         />
         <Scene activeId={activeId} orbitRef={orbitRef} />
       </Canvas>
-
-      {/* Description — top left */}
-      <div
-        style={{
-          position: "absolute",
-          top: 32,
-          left: 32,
-          color: "#fff",
-          maxWidth: 280,
-          pointerEvents: "none",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
-            fontSize: "14px",
-            fontWeight: 400,
-            lineHeight: 1.6,
-            opacity: 0.85,
-            margin: 0,
-            transition: "opacity 0.4s",
-          }}
-        >
-          {activeLayout.description}
-        </p>
-      </div>
-
-      {/* Nav buttons — bottom center */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 32,
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          gap: "12px",
-        }}
-      >
-        {LAYOUTS.map((l) => (
-          <button
-            key={l.id}
-            onClick={() => setActiveId(l.id)}
-            style={{
-              padding: "8px 20px",
-              fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
-              fontSize: "14px",
-              background:
-                activeId === l.id ? "#ffffff" : "rgba(255,255,255,0.12)",
-              color: activeId === l.id ? "#000000" : "#ffffff",
-              border: "2px solid rgba(255,255,255,0.6)",
-              borderRadius: "8px",
-              cursor: "pointer",
-              transition: "background 0.2s, color 0.2s",
-            }}
-          >
-            {l.label}
-          </button>
-        ))}
-      </div>
     </div>
   );
 }
