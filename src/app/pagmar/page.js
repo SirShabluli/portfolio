@@ -5,6 +5,71 @@ import TextBlock from "../components/TextBlock";
 import ImageCarousel from "../components/ImageCarousel";
 import MindMapSVG from "../components/MindMapSVG";
 
+function KeyCap({ label, topText, bottomText, size = "medium" }) {
+  const sizes = {
+    small: {
+      width: "3rem",
+      height: "1.6rem",
+      fontSize: "11px",
+      padding: "3px",
+    },
+    medium: {
+      width: "3.8rem",
+      height: "2.2rem",
+      fontSize: "14px",
+      padding: "7px",
+    },
+    square: { width: "3.5rem", height: "3.5rem", fontSize: "14px", padding: "7px" },
+    large: { width: "7rem", height: "3.5rem", fontSize: "18px", padding: "6px" },
+  };
+  const s = sizes[size];
+  const labelStyle = {
+    fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
+    fontWeight: 400,
+    fontSize: s.fontSize,
+    color: "#ffffff",
+    textAlign: "center",
+    whiteSpace: "nowrap",
+    lineHeight: 1.1,
+  };
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        opacity: 0.5,
+      }}
+    >
+      {topText && (
+        <div style={{ ...labelStyle, marginBottom: "5px" }}>{topText}</div>
+      )}
+      <div
+        style={{
+          width: s.width,
+          height: s.height,
+          padding: s.padding,
+          background: "rgba(0,0,0,0.2)",
+          border: "2px solid #ffffff",
+          borderRadius: "8px",
+          color: "#ffffff",
+          fontFamily: "'NarkissYairMono-Regular', 'Segoe UI', sans-serif",
+          fontSize: s.fontSize,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          userSelect: "none",
+        }}
+      >
+        {label}
+      </div>
+      {bottomText && (
+        <div style={{ ...labelStyle, marginTop: "5px" }}>{bottomText}</div>
+      )}
+    </div>
+  );
+}
+
 export default function PagmarPage() {
   return (
     <main className="bg-black text-white">
@@ -351,6 +416,29 @@ export default function PagmarPage() {
               Esc to explore. Compositions arrange organically—a new way to
               navigate.
             </TextBlock>
+          </div>
+          {/* Keyboard controls diagram */}
+          <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex items-center">
+            <div className="flex items-end gap-6">
+              {/* Esc */}
+              <KeyCap label="Esc" size="large" bottomText="explore mode" />
+              {/* Enter */}
+              <KeyCap label="Return" size="large" bottomText="enter note" />
+              {/* W / S column */}
+              <div className="flex flex-col items-center gap-1">
+                <KeyCap label="W" size="medium" topText="zoom in" />
+                <KeyCap label="S" size="medium" bottomText="zoom out" />
+              </div>
+              {/* Arrow cluster */}
+              <div className="flex flex-col items-center gap-1">
+                <KeyCap label="↑" size="medium" />
+                <div className="flex gap-1">
+                  <KeyCap label="←" size="medium" />
+                  <KeyCap label="↓" size="medium" bottomText="move" />
+                  <KeyCap label="→" size="medium" />
+                </div>
+              </div>
+            </div>
           </div>
           <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
             {/* <video src="/images/pagmar/mindmap-nav.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
