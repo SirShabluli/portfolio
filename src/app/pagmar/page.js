@@ -11,6 +11,7 @@ import Button from "../components/Button";
 import ConfigBackground from "../components/ConfigBackground";
 import TypographySection from "../components/TypographySection";
 import HorizontalScroll from "../components/HorizontalScroll";
+import BiDiMockup from "../components/BiDiMockup";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -88,138 +89,6 @@ function KeyCap({ label, topText, bottomText, size = "medium" }) {
       {bottomText && (
         <div style={{ ...labelStyle, marginTop: "5px" }}>{bottomText}</div>
       )}
-    </div>
-  );
-}
-
-function BiDiMockup() {
-  const [isRTL, setIsRTL] = useState(false);
-
-  const floatingWords = isRTL
-    ? ["זיכרון", "רגש", "מחשבה", "כאב", "שמחה"]
-    : ["memory", "emotion", "thought", "pain", "joy"];
-
-  const dateStr = isRTL ? "יום שני, 17 במרץ" : "Monday, March 17";
-  const questionStr = isRTL ? "על מה אתה חושב?" : "What's on your mind?";
-  const bodyText = isRTL
-    ? "הדברים שאני כותב כאן הם שלי בלבד. אני מרגיש..."
-    : "The things I write here are mine alone. I feel...";
-  const cursorLabel = isRTL ? "המשך לכתוב..." : "keep writing...";
-
-  return (
-    <div className="flex flex-col gap-4">
-      {/* Toggle */}
-      <div className="flex items-center gap-3">
-        <button
-          onClick={() => setIsRTL(false)}
-          className="cursor-pointer transition-opacity"
-          style={{ opacity: isRTL ? 0.35 : 1 }}
-        >
-          <span className="text-white text-xs font-medium tracking-widest uppercase">LTR</span>
-        </button>
-        <button
-          onClick={() => setIsRTL((v) => !v)}
-          className="relative w-10 h-5 rounded-full border border-white/30 cursor-pointer transition-colors duration-300"
-          style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
-        >
-          <span
-            className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300"
-            style={{ left: isRTL ? "calc(100% - 1.1rem)" : "0.1rem" }}
-          />
-        </button>
-        <button
-          onClick={() => setIsRTL(true)}
-          className="cursor-pointer transition-opacity"
-          style={{ opacity: isRTL ? 1 : 0.35 }}
-        >
-          <span className="text-white text-xs font-medium tracking-widest uppercase">RTL</span>
-        </button>
-      </div>
-
-      {/* Mockup frame */}
-      <div
-        className="relative w-full rounded-sm overflow-hidden border border-white/10"
-        style={{
-          aspectRatio: "16/9",
-          backgroundColor: "#0a0a0a",
-          direction: isRTL ? "rtl" : "ltr",
-          fontFamily: isRTL ? "'Masada', serif" : "'Masada', serif",
-          transition: "direction 0s",
-        }}
-      >
-        {/* Floating words — sides only */}
-        {floatingWords.map((word, i) => (
-          <span
-            key={word}
-            className="absolute text-white/10 text-sm pointer-events-none select-none"
-            style={{
-              top: `${18 + i * 14}%`,
-              [i % 2 === 0 ? (isRTL ? "right" : "left") : (isRTL ? "left" : "right")]: `${3 + (i % 3) * 1.5}%`,
-              fontFamily: "'Masada', serif",
-              transition: "all 0.5s ease",
-            }}
-          >
-            {word}
-          </span>
-        ))}
-
-        {/* Composition content */}
-        <div
-          className="absolute inset-0 flex flex-col justify-center px-[12%]"
-          style={{ textAlign: isRTL ? "right" : "left", transition: "text-align 0.3s ease" }}
-        >
-          {/* Date */}
-          <p
-            className="text-white/30 mb-3 transition-all duration-500"
-            style={{ fontFamily: "'NarkissYairMono', monospace", fontSize: "0.6rem", letterSpacing: "0.08em" }}
-          >
-            {dateStr}
-          </p>
-
-          {/* Question (faded) */}
-          <p
-            className="text-white/20 mb-5 transition-all duration-500"
-            style={{ fontFamily: "'NarkissYairMono', monospace", fontSize: "0.55rem" }}
-          >
-            {questionStr}
-          </p>
-
-          {/* Body text */}
-          <p
-            className="text-white/70 leading-relaxed transition-all duration-500"
-            style={{ fontFamily: "'Masada', serif", fontWeight: 400, fontSize: "0.85rem" }}
-          >
-            {bodyText}
-          </p>
-
-          {/* Blinking cursor line */}
-          <div
-            className="flex items-center gap-1 mt-3"
-            style={{ justifyContent: isRTL ? "flex-end" : "flex-start" }}
-          >
-            <span
-              className="inline-block w-px h-3 bg-white animate-pulse"
-              style={{ animationDuration: "1s" }}
-            />
-            <span className="text-white/15" style={{ fontFamily: "'NarkissYairMono', monospace", fontSize: "0.5rem" }}>
-              {cursorLabel}
-            </span>
-          </div>
-        </div>
-
-        {/* Direction indicator */}
-        <div
-          className="absolute bottom-3 text-white/20 transition-all duration-500"
-          style={{
-            [isRTL ? "left" : "right"]: "5%",
-            fontFamily: "'NarkissYairMono', monospace",
-            fontSize: "0.5rem",
-            letterSpacing: "0.1em",
-          }}
-        >
-          {isRTL ? "→ RTL" : "LTR ←"}
-        </div>
-      </div>
     </div>
   );
 }
