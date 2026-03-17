@@ -1,9 +1,15 @@
 "use client";
 import Image from "next/image";
+import dynamic from "next/dynamic";
 import PageGrid from "../components/PageGrid";
 import TextBlock from "../components/TextBlock";
 import ImageCarousel from "../components/ImageCarousel";
 import MindMapSVG from "../components/MindMapSVG";
+
+const ConstellationCanvas = dynamic(
+  () => import("../components/simulation/ConstellationCanvas"),
+  { ssr: false }
+);
 
 function KeyCap({ label, topText, bottomText, size = "medium" }) {
   const sizes = {
@@ -521,6 +527,9 @@ export default function PagmarPage() {
               As you write, AI extracts insights and arranges them in the 3D
               space.
             </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-12">
+            <ConstellationCanvas />
           </div>
         </PageGrid>
       </section>
