@@ -19,8 +19,18 @@ function KeyCap({ label, topText, bottomText, size = "medium" }) {
       fontSize: "14px",
       padding: "7px",
     },
-    square: { width: "3.5rem", height: "3.5rem", fontSize: "14px", padding: "7px" },
-    large: { width: "7rem", height: "3.5rem", fontSize: "18px", padding: "6px" },
+    square: {
+      width: "3.5rem",
+      height: "3.5rem",
+      fontSize: "14px",
+      padding: "7px",
+    },
+    large: {
+      width: "7rem",
+      height: "3.5rem",
+      fontSize: "18px",
+      padding: "6px",
+    },
   };
   const s = sizes[size];
   const labelStyle = {
@@ -446,6 +456,72 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40">
             Move freely, enter compositions, explore without constraints
           </p>
+        </PageGrid>
+      </section>
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Composition Focus
+          </p>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="The Challenge"
+              title="Focus vs Richness"
+              className="text-white"
+            >
+              A rich 3D world is great for exploring. But when writing, it
+              becomes distracting noise.
+            </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+            {/* <video src="/images/pagmar/focus-richness.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          </div>
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
+            Inside composition<br />
+            - Esc → world appears<br />
+            - Enter → world disappears<br />
+            - Back and forth
+          </p>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="My Solution"
+              title="Context-Aware Visibility"
+              className="text-white"
+            >
+              Enter: everything disappears, only writing remains. Esc: world
+              returns. Richness for exploring, clarity for writing.
+            </TextBlock>
+          </div>
+        </PageGrid>
+      </section>
+
+      {/* Feature #3 - AI-Generated Insights */}
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Feature #3 — AI-Generated Insights
+          </p>
+          <div className="col-span-4 lg:col-span-4 lg:col-start-3">
+            <TextBlock
+              label="The Challenge"
+              title="Making Sense of Volume"
+              className="text-white"
+            >
+              Not everything you write carries equal weight. Some moments
+              matter more. Some words hold emotional charge. But in the flow,
+              it's hard to see which ones.
+            </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-4 lg:col-start-8">
+            <TextBlock
+              label="My Solution"
+              title="AI as Your Second Voice"
+              className="text-white"
+            >
+              As you write, AI extracts insights and arranges them in the 3D
+              space.
+            </TextBlock>
+          </div>
         </PageGrid>
       </section>
     </main>
