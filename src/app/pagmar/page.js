@@ -92,6 +92,138 @@ function KeyCap({ label, topText, bottomText, size = "medium" }) {
   );
 }
 
+function BiDiMockup() {
+  const [isRTL, setIsRTL] = useState(false);
+
+  const floatingWords = isRTL
+    ? ["זיכרון", "רגש", "מחשבה", "כאב", "שמחה"]
+    : ["memory", "emotion", "thought", "pain", "joy"];
+
+  const dateStr = isRTL ? "יום שני, 17 במרץ" : "Monday, March 17";
+  const questionStr = isRTL ? "על מה אתה חושב?" : "What's on your mind?";
+  const bodyText = isRTL
+    ? "הדברים שאני כותב כאן הם שלי בלבד. אני מרגיש..."
+    : "The things I write here are mine alone. I feel...";
+  const cursorLabel = isRTL ? "המשך לכתוב..." : "keep writing...";
+
+  return (
+    <div className="flex flex-col gap-4">
+      {/* Toggle */}
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => setIsRTL(false)}
+          className="cursor-pointer transition-opacity"
+          style={{ opacity: isRTL ? 0.35 : 1 }}
+        >
+          <span className="text-white text-xs font-medium tracking-widest uppercase">LTR</span>
+        </button>
+        <button
+          onClick={() => setIsRTL((v) => !v)}
+          className="relative w-10 h-5 rounded-full border border-white/30 cursor-pointer transition-colors duration-300"
+          style={{ backgroundColor: "rgba(255,255,255,0.08)" }}
+        >
+          <span
+            className="absolute top-0.5 w-4 h-4 rounded-full bg-white transition-all duration-300"
+            style={{ left: isRTL ? "calc(100% - 1.1rem)" : "0.1rem" }}
+          />
+        </button>
+        <button
+          onClick={() => setIsRTL(true)}
+          className="cursor-pointer transition-opacity"
+          style={{ opacity: isRTL ? 1 : 0.35 }}
+        >
+          <span className="text-white text-xs font-medium tracking-widest uppercase">RTL</span>
+        </button>
+      </div>
+
+      {/* Mockup frame */}
+      <div
+        className="relative w-full rounded-sm overflow-hidden border border-white/10"
+        style={{
+          aspectRatio: "16/9",
+          backgroundColor: "#0a0a0a",
+          direction: isRTL ? "rtl" : "ltr",
+          fontFamily: isRTL ? "'Masada', serif" : "'Masada', serif",
+          transition: "direction 0s",
+        }}
+      >
+        {/* Floating words — sides only */}
+        {floatingWords.map((word, i) => (
+          <span
+            key={word}
+            className="absolute text-white/10 text-sm pointer-events-none select-none"
+            style={{
+              top: `${18 + i * 14}%`,
+              [i % 2 === 0 ? (isRTL ? "right" : "left") : (isRTL ? "left" : "right")]: `${3 + (i % 3) * 1.5}%`,
+              fontFamily: "'Masada', serif",
+              transition: "all 0.5s ease",
+            }}
+          >
+            {word}
+          </span>
+        ))}
+
+        {/* Composition content */}
+        <div
+          className="absolute inset-0 flex flex-col justify-center px-[12%]"
+          style={{ textAlign: isRTL ? "right" : "left", transition: "text-align 0.3s ease" }}
+        >
+          {/* Date */}
+          <p
+            className="text-white/30 mb-3 transition-all duration-500"
+            style={{ fontFamily: "'NarkissYairMono', monospace", fontSize: "0.6rem", letterSpacing: "0.08em" }}
+          >
+            {dateStr}
+          </p>
+
+          {/* Question (faded) */}
+          <p
+            className="text-white/20 mb-5 transition-all duration-500"
+            style={{ fontFamily: "'NarkissYairMono', monospace", fontSize: "0.55rem" }}
+          >
+            {questionStr}
+          </p>
+
+          {/* Body text */}
+          <p
+            className="text-white/70 leading-relaxed transition-all duration-500"
+            style={{ fontFamily: "'Masada', serif", fontWeight: 400, fontSize: "0.85rem" }}
+          >
+            {bodyText}
+          </p>
+
+          {/* Blinking cursor line */}
+          <div
+            className="flex items-center gap-1 mt-3"
+            style={{ justifyContent: isRTL ? "flex-end" : "flex-start" }}
+          >
+            <span
+              className="inline-block w-px h-3 bg-white animate-pulse"
+              style={{ animationDuration: "1s" }}
+            />
+            <span className="text-white/15" style={{ fontFamily: "'NarkissYairMono', monospace", fontSize: "0.5rem" }}>
+              {cursorLabel}
+            </span>
+          </div>
+        </div>
+
+        {/* Direction indicator */}
+        <div
+          className="absolute bottom-3 text-white/20 transition-all duration-500"
+          style={{
+            [isRTL ? "left" : "right"]: "5%",
+            fontFamily: "'NarkissYairMono', monospace",
+            fontSize: "0.5rem",
+            letterSpacing: "0.1em",
+          }}
+        >
+          {isRTL ? "→ RTL" : "LTR ←"}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function PagmarPage() {
   const [activeLayoutId, setActiveLayoutId] = useState("tunnel");
   const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
@@ -725,6 +857,53 @@ export default function PagmarPage() {
               ],
             }}
           />
+        </div>
+        {/* Slide 3: Pixel Perfect */}
+        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
+          <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
+            {/* Title */}
+            <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+              <p className="text-xs lg:text-5xl text-white">Pixel Perfect in a 3D Space</p>
+            </div>
+
+            {/* Text blocks */}
+            <div className="col-span-4 lg:col-span-3 lg:col-start-2 flex flex-col gap-8">
+              <TextBlock label="The Challenge" title="Pixel-Perfect in 3D Space" className="text-white">
+                I designed compositions in Figma — layouts, typography, spacing. But translating that into 3D was a challenge. How do you maintain pixel-perfect precision when coordinates are X, Y, Z instead of fixed pixels?
+              </TextBlock>
+              <TextBlock label="My Solution" title="Grid-Based Positioning" className="text-white">
+                I built a 3D grid system that maps Figma layouts directly to Three.js coordinates. Each composition sits on an invisible grid — ensuring consistent spacing, alignment, and scale. The grid is the skeleton that keeps infinite space structured.
+              </TextBlock>
+            </div>
+
+            {/* Two photo placeholders */}
+            <div className="col-span-4 lg:col-span-3 lg:col-start-6 aspect-4/3 bg-white/5 rounded-sm" />
+            <div className="col-span-4 lg:col-span-3 lg:col-start-10 aspect-4/3 bg-white/5 rounded-sm" />
+          </div>
+        </div>
+        {/* Slide 4: Bidirectional Design */}
+        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
+          <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
+            {/* Title */}
+            <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+              <p className="text-xs lg:text-5xl text-white">Bidirectional Design</p>
+            </div>
+
+            {/* Text blocks */}
+            <div className="col-span-4 lg:col-span-3 lg:col-start-2 flex flex-col gap-8">
+              <TextBlock label="The Challenge" title="Hebrew reads right, English reads left" className="text-white">
+                Hebrew (RTL) and English (LTR) required mirrored layouts. Elements needed to flip horizontally while maintaining visual hierarchy and readability in both directions.
+              </TextBlock>
+              <TextBlock label="My Solution" title="One grid, two directions" className="text-white">
+                I designed both versions in Figma, ensuring the grid system worked bidirectionally. Text alignment, navigation indicators, and floating words mirror naturally without breaking composition or flow.
+              </TextBlock>
+            </div>
+
+            {/* Composition mockup + toggle */}
+            <div className="col-span-4 lg:col-span-6 lg:col-start-6 flex flex-col gap-4">
+              <BiDiMockup />
+            </div>
+          </div>
         </div>
       </HorizontalScroll>
     </main>

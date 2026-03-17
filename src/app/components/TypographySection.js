@@ -111,7 +111,7 @@ export default function TypographySection({
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
         <div
-          className="space-y-2 max-w-4xl min-h-85 text-4xl lg:text-5xl justify-center leading-[1.28] overflow-hidden"
+          className="space-y-2 max-w-4xl min-h-85 text-4xl lg:text-5xl justify-start leading-[1.28] overflow-hidden"
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,
