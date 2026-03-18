@@ -732,16 +732,32 @@ export default function PagmarPage() {
           <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
             {/* Title */}
             <div className="col-span-12 lg:col-span-10 lg:col-start-2">
-              <p className="text-xs lg:text-5xl text-white">Pixel Perfect in a 3D Space</p>
+              <p className="text-xs lg:text-5xl text-white">
+                Pixel Perfect in a 3D Space
+              </p>
             </div>
 
             {/* Text blocks */}
             <div className="col-span-4 lg:col-span-3 lg:col-start-2 flex flex-col gap-8">
-              <TextBlock label="The Challenge" title="Pixel-Perfect in 3D Space" className="text-white">
-                I designed compositions in Figma — layouts, typography, spacing. But translating that into 3D was a challenge. How do you maintain pixel-perfect precision when coordinates are X, Y, Z instead of fixed pixels?
+              <TextBlock
+                label="The Challenge"
+                title="Pixel-Perfect in 3D Space"
+                className="text-white"
+              >
+                I designed compositions in Figma — layouts, typography, spacing.
+                But translating that into 3D was a challenge. How do you
+                maintain pixel-perfect precision when coordinates are X, Y, Z
+                instead of fixed pixels?
               </TextBlock>
-              <TextBlock label="My Solution" title="Grid-Based Positioning" className="text-white">
-                I built a 3D grid system that maps Figma layouts directly to Three.js coordinates. Each composition sits on an invisible grid — ensuring consistent spacing, alignment, and scale. The grid is the skeleton that keeps infinite space structured.
+              <TextBlock
+                label="My Solution"
+                title="Grid-Based Positioning"
+                className="text-white"
+              >
+                I built a 3D grid system that maps Figma layouts directly to
+                Three.js coordinates. Each composition sits on an invisible grid
+                — ensuring consistent spacing, alignment, and scale. The grid is
+                the skeleton that keeps infinite space structured.
               </TextBlock>
             </div>
 
@@ -755,16 +771,31 @@ export default function PagmarPage() {
           <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
             {/* Title */}
             <div className="col-span-12 lg:col-span-10 lg:col-start-2">
-              <p className="text-xs lg:text-5xl text-white">Bidirectional Design</p>
+              <p className="text-xs lg:text-5xl text-white">
+                Bidirectional Design
+              </p>
             </div>
 
             {/* Text blocks */}
             <div className="col-span-4 lg:col-span-3 lg:col-start-2 flex flex-col gap-8">
-              <TextBlock label="The Challenge" title="Hebrew reads right, English reads left" className="text-white">
-                Hebrew (RTL) and English (LTR) required mirrored layouts. Elements needed to flip horizontally while maintaining visual hierarchy and readability in both directions.
+              <TextBlock
+                label="The Challenge"
+                title="Hebrew reads right, English reads left"
+                className="text-white"
+              >
+                Hebrew (RTL) and English (LTR) required mirrored layouts.
+                Elements needed to flip horizontally while maintaining visual
+                hierarchy and readability in both directions.
               </TextBlock>
-              <TextBlock label="My Solution" title="One grid, two directions" className="text-white">
-                I designed both versions in Figma, ensuring the grid system worked bidirectionally. Text alignment, navigation indicators, and floating words mirror naturally without breaking composition or flow.
+              <TextBlock
+                label="My Solution"
+                title="One grid, two directions"
+                className="text-white"
+              >
+                I designed both versions in Figma, ensuring the grid system
+                worked bidirectionally. Text alignment, navigation indicators,
+                and floating words mirror naturally without breaking composition
+                or flow.
               </TextBlock>
             </div>
 
@@ -775,6 +806,122 @@ export default function PagmarPage() {
           </div>
         </div>
       </HorizontalScroll>
+
+      {/* Reception and Impact */}
+      <section className="w-screen h-screen flex items-center justify-center bg-black">
+        <h2 className="display text-center text-white">Reception and Impact</h2>
+      </section>
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Presentation
+          </p>
+          <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+            I presented Social Simulation as my graduation project at Bezalel —
+            my first React project after months of intensive learning. The
+            system was complex, so I ran extensive playtests to understand how
+            it was perceived externally.
+          </p>
+          <div className="col-span-4 lg:col-span-7 lg:col-start-4 aspect-video bg-white/5 rounded-sm" />
+        </PageGrid>
+      </section>
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            What I Learned
+          </p>{" "}
+          <TextBlock
+            label="Insight #1"
+            title="Building Under Pressure"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            Pressure reveals what matters. When time is scarce, you stop
+            second-guessing and start deciding. I learned to trust intuition,
+            cut features ruthlessly, and ship quick solutions that worked.
+          </TextBlock>
+          <TextBlock
+            label="Insight #2"
+            title="Technical Challenges"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            No Claude Code meant I had to understand my own architecture deeply
+            - tracking every component manually forced clarity. Some concepts,
+            like 3D movement, can't be explained - only shown. I learned to
+            prototype rough, iterate fast, and read tiny reactions.
+          </TextBlock>
+          <TextBlock
+            label="Insight #3"
+            title="Complex systems need explicit guides"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            No-mouse navigation (from gaming) confused older users but younger
+            ones adapted quickly. Complex systems need explicit guides—you can't
+            expect people to figure it out. Playtesting taught me: stop and
+            explain directly.
+          </TextBlock>
+          <div className="col-span-4 lg:col-span-5 lg:col-start-7 aspect-video bg-white/5 rounded-sm" />
+          <TextBlock
+            label="Insight #4"
+            title="About Myself"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            I'm stubborn. Hours debugging bring immense satisfaction when
+            solved. I realized I could build complex things alone; research,
+            design, code in parallel under pressure.
+          </TextBlock>
+          <TextBlock
+            label="Insight #5"
+            title="About AI"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            GPT opened infinite possibilities. Learned: precise prompts, manage
+            tokens, watch costs. People differ—some want flow, others structure.
+            AI always surprises.
+          </TextBlock>
+        </PageGrid>
+      </section>
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            What I Would do differently
+          </p>{" "}
+          <TextBlock
+            label=" #1"
+            title="Code Architecture"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            Delete unused components sooner. Avoid "god components" through
+            better separation of concerns. Under pressure, I jumped between
+            tasks—prompts evolved inconsistently. I should have researched them
+            upfront instead of iterating blindly.
+          </TextBlock>
+          <TextBlock
+            label="#2"
+            title="Focus Over Options"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            Less is more. With infinite AI possibilities, it's easy to get lost.
+            I'd stay more focused on the overarching goal, prioritize
+            ruthlessly, and eliminate features earlier.
+          </TextBlock>
+          <TextBlock
+            label="Insight #3"
+            title="Testing & Onboarding"
+            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+          >
+            I'd run more playtests across different demographics to optimize
+            clarity. Maybe add an on-demand help button—contextual guidance at
+            every stage, so if you're stuck, help appears without breaking flow.
+          </TextBlock>
+        </PageGrid>
+      </section>
+      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+            Future Potential
+          </p>
+        </PageGrid>
+      </section>
     </main>
   );
 }
