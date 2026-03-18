@@ -114,7 +114,7 @@ export default function PagmarPage() {
   return (
     <main className="bg-black text-white">
       {/* Hero */}
-      <section className="relative min-h-screen flex items-end overflow-hidden">
+      <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
         {/* Background photo — swap src when ready */}
         <div className="absolute inset-0 z-0">
           {/* <Image src="/images/pagmar/hero-bg.jpg" alt="" fill className="object-cover" /> */}
@@ -174,7 +174,7 @@ export default function PagmarPage() {
       </section>
 
       {/* The Full Experience */}
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="full-experience" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             The Full Experience
@@ -187,14 +187,14 @@ export default function PagmarPage() {
       </section>
 
       {/* Research and Discovery */}
-      <section className="w-screen h-screen flex items-center justify-center bg-black">
+      <section id="research" className="w-screen h-screen flex items-center justify-center bg-black">
         <h2 className="display text-center text-white">
           Research &amp; Discovery
         </h2>
       </section>
 
       {/* The Challenge */}
-      <section className="bg-black py-16 lg:py-24 px-6 lg:px-12 justify-center">
+      <section id="the-challenge" className="bg-black py-16 lg:py-24 px-6 lg:px-12 justify-center">
         <PageGrid className="gap-8 items-center">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl font-semibold">The Challenge</h3>
@@ -226,7 +226,7 @@ export default function PagmarPage() {
       </section>
 
       {/* Anecdotes */}
-      <section className="bg-black py-16 lg:py-24 px-6 lg:px-12">
+      <section id="understanding" className="bg-black py-16 lg:py-24 px-6 lg:px-12">
         <PageGrid className="gap-y-12 gap-x-8 items-start">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl font-semibold">Understanding the Space</h3>
@@ -281,11 +281,11 @@ export default function PagmarPage() {
           </div>
         </PageGrid>
       </section>
-      <section className="w-screen h-screen flex items-center justify-center bg-black">
+      <section id="key-features" className="w-screen h-screen flex items-center justify-center bg-black">
         <h2 className="display text-center text-white">Key Features</h2>
       </section>
       {/* Feature #1 - The Writing Experience */}
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="writing-experience" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #1 — The Writing Experience
@@ -324,7 +324,7 @@ export default function PagmarPage() {
         </PageGrid>
       </section>
       {/* The Composition */}
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="composition" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             The Composition
@@ -404,7 +404,7 @@ export default function PagmarPage() {
         </PageGrid>
       </section>
       {/* Feature #2 - Navigating the Mind Map */}
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="mind-map" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #2 — Navigating the Mind Map
@@ -488,7 +488,7 @@ export default function PagmarPage() {
           </p>
         </PageGrid>
       </section>
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="composition-focus" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Composition Focus
@@ -528,7 +528,7 @@ export default function PagmarPage() {
       </section>
 
       {/* Feature #3 - AI-Generated Insights */}
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="ai-insights" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #3 — AI-Generated Insights
@@ -591,7 +591,7 @@ export default function PagmarPage() {
       </section>
 
       {/* Feature #4 - Emotional Atmosphere */}
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="atmosphere" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #4 — Emotional Atmosphere
@@ -650,7 +650,7 @@ export default function PagmarPage() {
           </div>
         </PageGrid>
       </section>
-      <section className="relative w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="design-modularity" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <ConfigBackground />
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
@@ -682,7 +682,7 @@ export default function PagmarPage() {
       </section>
 
       {/* Design System — horizontal scroll */}
-      <HorizontalScroll>
+      <HorizontalScroll id="design-system">
         {/* Slide 1: big title */}
         <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex justify-center items-center px-6 lg:px-12">
           <p className="text-[clamp(3rem,10vw,9rem)] font-light  leading-none tracking-tight text-white">
@@ -809,10 +809,10 @@ export default function PagmarPage() {
       </HorizontalScroll>
 
       {/* Reception and Impact */}
-      <section className="w-screen h-screen flex items-center justify-center bg-black">
+      <section id="reception" className="w-screen h-screen flex items-center justify-center bg-black">
         <h2 className="display text-center text-white">Reception and Impact</h2>
       </section>
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="presentation" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Presentation
@@ -826,7 +826,7 @@ export default function PagmarPage() {
           <div className="col-span-4 lg:col-span-7 lg:col-start-4 aspect-video bg-white/5 rounded-sm" />
         </PageGrid>
       </section>
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="what-i-learned" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             What I Learned
@@ -881,7 +881,7 @@ export default function PagmarPage() {
           </TextBlock>
         </PageGrid>
       </section>
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="do-differently" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             What I Would do differently
@@ -916,7 +916,7 @@ export default function PagmarPage() {
           </TextBlock>
         </PageGrid>
       </section>
-      <section className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section id="future" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Future Potential

@@ -8,7 +8,7 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-export default function HorizontalScroll({ children }) {
+export default function HorizontalScroll({ children, id }) {
   const containerRef = useRef(null);
   const scrollRef = useRef(null);
 
@@ -37,7 +37,7 @@ export default function HorizontalScroll({ children }) {
   );
 
   return (
-    <div ref={containerRef} className="md:overflow-hidden">
+    <div ref={containerRef} id={id} className="md:overflow-hidden">
       <div ref={scrollRef} className="flex flex-col md:flex-row md:h-screen">
         {children}
       </div>
