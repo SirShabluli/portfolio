@@ -290,9 +290,8 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #1 — The Writing Experience
           </p>
-          {/* Video placeholder — replace src when ready */}
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
-            {/* <video src="/images/pagmar/writing.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden">
+            <video src="/videos/pagmar/select word.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-auto" />
           </div>
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
             Write freely. When you're stuck, press <strong>Tab</strong>. Words
@@ -409,8 +408,8 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #2 — Navigating the Mind Map
           </p>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
-            {/* <video src="/images/pagmar/mindmap.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden">
+            <video src="/videos/pagmar/Navigation.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-auto" />
           </div>
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
             Navigation happens entirely in space. Move with arrow keys (up,
@@ -503,8 +502,8 @@ export default function PagmarPage() {
               becomes distracting noise.
             </TextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
-            {/* <video src="/images/pagmar/focus-richness.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden">
+            <video src="/videos/pagmar/toggleshort.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-auto" />
           </div>
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
             Inside composition
