@@ -12,6 +12,7 @@ import ConfigBackground from "../components/ConfigBackground";
 import TypographySection from "../components/TypographySection";
 import HorizontalScroll from "../components/HorizontalScroll";
 import BiDiMockup from "../components/BiDiMockup";
+import TabPages from "../components/TabPages";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -920,6 +921,15 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Future Potential
           </p>
+          <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+            This is just the beginning. Social Simulation proves the concept —
+            non-linear journaling in 3D space, AI as a guide not a replacement,
+            spatial navigation that feels natural. But the real potential lies in
+            what comes next.
+          </p>
+          <div className="col-span-4 lg:col-span-10 lg:col-start-3">
+            <TabPages />
+          </div>
         </PageGrid>
       </section>
     </main>
