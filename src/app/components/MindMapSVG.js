@@ -149,7 +149,7 @@ buildChains(root.id, [root.id]);
 export default function MindMapSVG() {
   const svgRef = useRef(null);
   const sentinelRef = useRef(null);
-  const triggered = useRef(false);
+  const timeoutsRef = useRef([]);
   const nodeMap = Object.fromEntries(NODES.map((n) => [n.id, n]));
 
   useEffect(() => {
@@ -157,31 +157,43 @@ export default function MindMapSVG() {
     const sentinel = sentinelRef.current;
     if (!svg || !sentinel) return;
 
-    const lines = svg.querySelectorAll("line[data-edge]");
-    const nodes = svg.querySelectorAll("[data-node]");
+    const reset = () => {
+      // Clear any in-flight timeouts
+      timeoutsRef.current.forEach(clearTimeout);
+      timeoutsRef.current = [];
 
-    lines.forEach((l) => {
-      const len = l.getTotalLength?.() ?? 120;
-      l.style.strokeDasharray = len;
-      l.style.strokeDashoffset = len;
-    });
-    nodes.forEach((n) => {
-      n.style.opacity = 0;
-    });
+      const lines = svg.querySelectorAll("line[data-edge]");
+      const nodes = svg.querySelectorAll("[data-node]");
+
+      lines.forEach((l) => {
+        l.style.transition = "none";
+        const len = l.getTotalLength?.() ?? 120;
+        l.style.strokeDasharray = len;
+        l.style.strokeDashoffset = len;
+      });
+      nodes.forEach((n) => {
+        n.style.transition = "none";
+        n.style.opacity = 0;
+      });
+    };
 
     const animate = () => {
-      if (triggered.current) return;
-      triggered.current = true;
+      reset();
 
       const lineDur = 250;
       const nodeDur = 100;
       const shownNodes = new Set();
       const shownEdges = new Set();
 
+      const after = (fn, delay) => {
+        const id = setTimeout(fn, delay);
+        timeoutsRef.current.push(id);
+      };
+
       const showNode = (id, at) => {
         if (shownNodes.has(id)) return;
         shownNodes.add(id);
-        setTimeout(() => {
+        after(() => {
           const el = svg.querySelector(`[data-node="${id}"]`);
           if (el) {
             el.style.transition = `opacity ${nodeDur}ms ease`;
@@ -194,7 +206,7 @@ export default function MindMapSVG() {
         const key = `${from}-${to}`;
         if (shownEdges.has(key)) return;
         shownEdges.add(key);
-        setTimeout(() => {
+        after(() => {
           const el = svg.querySelector(`line[data-edge="${key}"]`);
           if (el) {
             el.style.transition = `stroke-dashoffset ${lineDur}ms ease`;
@@ -203,13 +215,11 @@ export default function MindMapSVG() {
         }, at);
       };
 
-      // Show root immediately
       showNode(root.id, 0);
 
-      // Each leaf-path is a fully independent stream with its own staggered start
       BRANCH_SEQUENCES.forEach((chain, bi) => {
-        const streamStart = bi * 120; // each stream starts slightly later
-        let t = streamStart + nodeDur; // root already visible by nodeDur
+        const streamStart = bi * 120;
+        let t = streamStart + nodeDur;
 
         for (let i = 1; i < chain.length; i++) {
           const from = chain[i - 1];
@@ -222,14 +232,33 @@ export default function MindMapSVG() {
       });
     };
 
-    const observer = new IntersectionObserver(
+    // Initial hidden state
+    reset();
+
+    // Trigger animation when sentinel enters from bottom
+    const enterObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) animate();
       },
-      { threshold: 0, rootMargin: "0px 0px -30% 0px" },
+      { threshold: 0, rootMargin: "0px 0px -20% 0px" },
     );
-    observer.observe(sentinel);
-    return () => observer.disconnect();
+    enterObserver.observe(sentinel);
+
+    // Reset when the SVG itself scrolls past the top of the screen
+    const exitObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+          reset();
+        }
+      },
+      { threshold: 0 },
+    );
+    exitObserver.observe(svg);
+    return () => {
+      enterObserver.disconnect();
+      exitObserver.disconnect();
+      timeoutsRef.current.forEach(clearTimeout);
+    };
   }, []);
 
   return (

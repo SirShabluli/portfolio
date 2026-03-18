@@ -78,7 +78,7 @@ function SubList({ subs, activeId, scrollTo, isOpen }) {
         transition: "height 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <div ref={ref} className="flex flex-col gap-0.5 pt-0.5">
+      <div ref={ref} className="flex flex-col gap-0.5 pt-0.5" style={{ paddingLeft: "0.625rem" }}>
         {subs.map((sub) => (
           <button
             key={sub.id}
