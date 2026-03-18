@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Button from "./Button";
 
 const LTR = {
   date: "Monday, March 17",
@@ -38,6 +39,7 @@ const WORD_POSITIONS = [
 
 export default function BiDiMockup() {
   const [isRTL, setIsRTL] = useState(false);
+  const [showGrid, setShowGrid] = useState(true);
   const data = isRTL ? RTL : LTR;
 
   return (
@@ -52,7 +54,7 @@ export default function BiDiMockup() {
           <span
             className="text-white font-medium tracking-widest uppercase"
             style={{
-              fontFamily: "'NarkissYairMono', monospace",
+              fontFamily: "var(--font-raleway)",
               fontSize: "0.65rem",
             }}
           >
@@ -89,13 +91,29 @@ export default function BiDiMockup() {
           <span
             className="text-white font-medium tracking-widest uppercase"
             style={{
-              fontFamily: "'NarkissYairMono', monospace",
+              fontFamily: "var(--font-raleway)",
               fontSize: "0.65rem",
             }}
           >
             RTL
           </span>
         </button>
+
+        {/* Grid toggle */}
+        <Button
+          variant={showGrid ? "filled" : "outline"}
+          color="white"
+          size="small"
+          onClick={() => setShowGrid((v) => !v)}
+          className="ml-4"
+          style={{
+            fontFamily: "var(--font-raleway)",
+            fontSize: "0.65rem",
+            ...(showGrid ? { color: "black" } : {}),
+          }}
+        >
+          {showGrid ? "Hide Grid" : "Show Grid"}
+        </Button>
       </div>
 
       {/* Mockup frame */}
@@ -132,7 +150,8 @@ export default function BiDiMockup() {
 
         {/* ── 12×9 grid skeleton — columns + rows as lines ── */}
         <svg
-          className="absolute inset-0 pointer-events-none"
+          className="absolute inset-0 pointer-events-none transition-opacity duration-300"
+          style={{ opacity: showGrid ? 1 : 0 }}
           width="100%"
           height="100%"
           xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +207,8 @@ export default function BiDiMockup() {
             [isRTL ? "right" : "left"]: "0%",
             width: `${100 / 12}%`,
             alignItems: "center",
-            outline: "0.5px solid blue",
+            padding: "0 0.25rem",
+            outline: showGrid ? "0.5px solid blue" : "none",
           }}
         >
           {data.nav.map((item, i) => (
@@ -202,7 +222,7 @@ export default function BiDiMockup() {
                   i === 1 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.2)",
                 letterSpacing: "0.06em",
                 writingMode: "horizontal-tb",
-                outline: "0.5px solid blue ",
+                outline: showGrid ? "0.5px solid blue" : "none",
               }}
             >
               {item}
@@ -233,7 +253,8 @@ export default function BiDiMockup() {
             top: `${(100 / 9) * 1}%`,
             gap: "0.2rem",
             textAlign: data.align,
-            outline: "0.5px solid blue",
+            margin: "0 0.3rem",
+            outline: showGrid ? "0.5px solid blue" : "none",
           }}
         >
           <p
@@ -258,15 +279,17 @@ export default function BiDiMockup() {
           </p>
         </div>
 
-        {/* ── Body text — cols 2–8 LTR / cols 5–11 RTL, vertically centered ── */}
+        {/* ── Body text — cols 4–11 LTR / cols 2–9 RTL, vertically centered ── */}
         <div
-          className="absolute top-0 bottom-0 flex flex-col justify-center transition-all duration-500"
+          className="absolute top-0 bottom-0 flex flex-col justify-center"
           style={{
             direction: data.dir,
             textAlign: data.align,
             left: isRTL ? `${(100 / 12) * 1}%` : `${(100 / 12) * 3}%`,
             right: isRTL ? `${(100 / 12) * 3}%` : `${(100 / 12) * 1}%`,
-            outline: "0.5px solid blue",
+            padding: "0 0.3rem",
+            outline: showGrid ? "0.5px solid blue" : "none",
+            transition: "left 0.5s ease, right 0.5s ease",
           }}
         >
           {/* Body text — content font */}
@@ -279,7 +302,7 @@ export default function BiDiMockup() {
               color: "rgba(255,255,255,0.75)",
               lineHeight: 1.7,
               whiteSpace: "pre-line",
-              outline: "0.5px solid blue",
+              outline: showGrid ? "0.5px solid blue" : "none",
             }}
           >
             {data.body}
@@ -295,7 +318,7 @@ export default function BiDiMockup() {
             fontSize: "0.42rem",
             color: "rgba(255,255,255,0.18)",
             letterSpacing: "0.12em",
-            outline: "1px solid red",
+            outline: showGrid ? "1px solid red" : "none",
           }}
         >
           {isRTL ? "← RTL" : "LTR →"}
