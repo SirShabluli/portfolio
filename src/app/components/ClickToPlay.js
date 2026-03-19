@@ -17,6 +17,13 @@ export default function ClickToPlay({ src, style, className }) {
     }
   }
 
+  function handleEnded() {
+    const v = videoRef.current;
+    if (!v) return;
+    v.currentTime = 0;
+    setPlaying(false);
+  }
+
   return (
     <div className={`relative cursor-pointer ${className ?? ""}`} style={style} onClick={toggle}>
       <video
@@ -25,6 +32,7 @@ export default function ClickToPlay({ src, style, className }) {
         muted
         playsInline
         preload="metadata"
+        onEnded={handleEnded}
         className="w-full h-full object-cover"
       />
       {!playing && (
