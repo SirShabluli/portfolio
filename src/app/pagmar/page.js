@@ -403,20 +403,10 @@ export default function PagmarPage() {
         </PageGrid>
       </section>
       {/* Feature #2 - Navigating the Mind Map */}
-      <section id="mind-map" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+      <section id="mind-map" className="w-full bg-black pt-16 lg:pt-24">
+        <PageGrid className="w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #2 — Navigating the Mind Map
-          </p>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden" style={{ aspectRatio: "1722/1080" }}>
-            <video src="/videos/pagmar/Navigation.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
-          </div>
-          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
-            Navigation happens entirely in space. Move with arrow keys (up,
-            down, left, right), zoom with <strong>W/S</strong>, approach
-            compositions, press <strong>Enter</strong> to step inside. When
-            you're in, the rest disappears. Press <strong>Esc</strong> to
-            return. No mouse, no clicking — just wandering.
           </p>
         </PageGrid>
       </section>
@@ -479,11 +469,15 @@ export default function PagmarPage() {
               </div>
             </div>
           </div>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
-            {/* <video src="/images/pagmar/mindmap-nav.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
+          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden" style={{ aspectRatio: "1722/1080" }}>
+            <video src="/videos/pagmar/Navigation.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
           </div>
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40">
-            Move freely, enter compositions, explore without constraints
+          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
+            Navigation happens entirely in space. Move with arrow keys (up,
+            down, left, right), zoom with <strong>W/S</strong>, approach
+            compositions, press <strong>Enter</strong> to step inside. When
+            you're in, the rest disappears. Press <strong>Esc</strong> to
+            return. No mouse, no clicking — just wandering.
           </p>
         </PageGrid>
       </section>
@@ -762,9 +756,15 @@ export default function PagmarPage() {
               </TextBlock>
             </div>
 
-            {/* Two photo placeholders */}
-            <div className="col-span-4 lg:col-span-3 lg:col-start-6 aspect-4/3 bg-white/5 rounded-sm" />
-            <div className="col-span-4 lg:col-span-3 lg:col-start-10 aspect-4/3 bg-white/5 rounded-sm" />
+            {/* Two photos stacked */}
+            <div className="col-span-4 lg:col-span-4 lg:col-start-6 flex flex-col gap-4">
+              <div className="rounded-sm overflow-hidden" style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}>
+                <Image src="/images/pagmar/3dgrid.jpg" alt="3D grid system" width={800} height={600} className="w-full h-auto" />
+              </div>
+              <div className="rounded-sm overflow-hidden" style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}>
+                <Image src="/images/pagmar/3dgridInSpace.jpg" alt="3D grid in space" width={800} height={600} className="w-full h-auto" />
+              </div>
+            </div>
           </div>
         </div>
         {/* Slide 4: Bidirectional Design */}
