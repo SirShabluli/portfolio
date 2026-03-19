@@ -98,31 +98,32 @@ const MOODS = [
   {
     id: "night",
     label: "Night",
-    description:
-      "Stars drift slowly above, deep silence broken only by distant wind",
+    description: "Stars drift slowly above, deep silence broken only by distant wind",
+    video: "/videos/pagmar/starsBackground.mp4",
   },
   {
     id: "fire",
     label: "Fire",
     description: "Sparks rise upward, warm crackling sounds",
+    video: "/videos/pagmar/fireBackground.mp4",
   },
   {
     id: "rain",
     label: "Rain",
-    description:
-      "Droplets fall steadily, soft patter filling the space around you",
+    description: "Droplets fall steadily, soft patter filling the space around you",
+    video: "/videos/pagmar/rainBackground.mp4",
   },
   {
-    id: "calm",
-    label: "Calm",
-    description:
-      "Gentle waves of light, slow breathing rhythm, weightless stillness",
+    id: "dream",
+    label: "Dream",
+    description: "Gentle waves of light, slow breathing rhythm, weightless stillness",
+    video: "/videos/pagmar/dreamBackground.mp4",
   },
   {
     id: "underwater",
     label: "Underwater",
-    description:
-      "Particles drift like bubbles, muffled low tones, suspended in depth",
+    description: "Particles drift like bubbles, muffled low tones, suspended in depth",
+    video: "/videos/pagmar/underwaterBackground.mp4",
   },
 ];
 
@@ -130,6 +131,16 @@ export default function PagmarPage() {
   const [activeLayoutId, setActiveLayoutId] = useState("tunnel");
   const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
   const [activeMood, setActiveMood] = useState("night");
+  const [moodVisible, setMoodVisible] = useState(true);
+
+  function switchMood(id) {
+    if (id === activeMood) return;
+    setMoodVisible(false);
+    setTimeout(() => {
+      setActiveMood(id);
+      setMoodVisible(true);
+    }, 400);
+  }
 
   return (
     <main className="bg-black text-white">
@@ -671,9 +682,25 @@ export default function PagmarPage() {
       {/* Feature #4 - Emotional Atmosphere */}
       <section
         id="atmosphere"
-        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+        className="relative w-full min-h-screen flex flex-col justify-center py-16 lg:py-24 gap-8 overflow-hidden"
       >
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+        {/* Background video */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{ opacity: moodVisible ? 1 : 0, transition: "opacity 0.4s ease" }}
+        >
+          <video
+            key={activeMood}
+            src={MOODS.find((m) => m.id === activeMood)?.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+        <PageGrid className="relative z-10 gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #4 — Emotional Atmosphere
           </p>
@@ -710,7 +737,7 @@ export default function PagmarPage() {
                   variant={activeMood === m.id ? "filled" : "outline"}
                   color="#ffffff"
                   size="small"
-                  onClick={() => setActiveMood(m.id)}
+                  onClick={() => switchMood(m.id)}
                   style={activeMood === m.id ? { color: "#000000" } : {}}
                 >
                   {m.label}
