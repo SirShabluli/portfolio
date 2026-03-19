@@ -572,7 +572,7 @@ export default function PagmarPage() {
               {activeLayout.description}
             </TextBlock>
             <div className="flex flex-col gap-3">
-              {LAYOUTS.map((l) => (
+              {["clouds", "tunnel", "scattered"].map((id) => LAYOUTS.find((l) => l.id === id)).map((l) => (
                 <Button
                   key={l.id}
                   variant={activeLayoutId === l.id ? "filled" : "outline"}
