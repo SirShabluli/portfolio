@@ -94,27 +94,50 @@ function KeyCap({ label, topText, bottomText, size = "medium" }) {
   );
 }
 
+const MOODS = [
+  {
+    id: "night",
+    label: "Night",
+    description:
+      "Stars drift slowly above, deep silence broken only by distant wind",
+  },
+  {
+    id: "fire",
+    label: "Fire",
+    description: "Sparks rise upward, warm crackling sounds",
+  },
+  {
+    id: "rain",
+    label: "Rain",
+    description:
+      "Droplets fall steadily, soft patter filling the space around you",
+  },
+  {
+    id: "calm",
+    label: "Calm",
+    description:
+      "Gentle waves of light, slow breathing rhythm, weightless stillness",
+  },
+  {
+    id: "underwater",
+    label: "Underwater",
+    description:
+      "Particles drift like bubbles, muffled low tones, suspended in depth",
+  },
+];
+
 export default function PagmarPage() {
   const [activeLayoutId, setActiveLayoutId] = useState("tunnel");
   const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
-
-  const MOODS = [
-    { id: "night", label: "Night", video: "/videos/mood-night.mp4" },
-    { id: "fire", label: "Fire", video: "/videos/mood-fire.mp4" },
-    { id: "rain", label: "Rain", video: "/videos/mood-rain.mp4" },
-    { id: "calm", label: "Calm", video: "/videos/mood-calm.mp4" },
-    {
-      id: "underwater",
-      label: "Underwater",
-      video: "/videos/mood-underwater.mp4",
-    },
-  ];
   const [activeMood, setActiveMood] = useState("night");
 
   return (
     <main className="bg-black text-white">
       {/* Hero */}
-      <section id="hero" className="relative min-h-screen flex items-end overflow-hidden">
+      <section
+        id="hero"
+        className="relative min-h-screen flex items-end overflow-hidden"
+      >
         {/* Background photo — swap src when ready */}
         <div className="absolute inset-0 z-0">
           {/* <Image src="/images/pagmar/hero-bg.jpg" alt="" fill className="object-cover" /> */}
@@ -174,7 +197,10 @@ export default function PagmarPage() {
       </section>
 
       {/* The Full Experience */}
-      <section id="full-experience" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="full-experience"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             The Full Experience
@@ -187,14 +213,20 @@ export default function PagmarPage() {
       </section>
 
       {/* Research and Discovery */}
-      <section id="research" className="w-screen h-screen flex items-center justify-center bg-black">
+      <section
+        id="research"
+        className="w-screen h-screen flex items-center justify-center bg-black"
+      >
         <h2 className="display text-center text-white">
           Research &amp; Discovery
         </h2>
       </section>
 
       {/* The Challenge */}
-      <section id="the-challenge" className="bg-black py-16 lg:py-24 px-6 lg:px-12 justify-center">
+      <section
+        id="the-challenge"
+        className="bg-black py-16 lg:py-24 px-6 lg:px-12 justify-center"
+      >
         <PageGrid className="gap-8 items-center">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl font-semibold">The Challenge</h3>
@@ -226,7 +258,10 @@ export default function PagmarPage() {
       </section>
 
       {/* Anecdotes */}
-      <section id="understanding" className="bg-black py-16 lg:py-24 px-6 lg:px-12">
+      <section
+        id="understanding"
+        className="bg-black py-16 lg:py-24 px-6 lg:px-12"
+      >
         <PageGrid className="gap-y-12 gap-x-8 items-start">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl font-semibold">Understanding the Space</h3>
@@ -281,17 +316,34 @@ export default function PagmarPage() {
           </div>
         </PageGrid>
       </section>
-      <section id="key-features" className="w-screen h-screen flex items-center justify-center bg-black">
+      <section
+        id="key-features"
+        className="w-screen h-screen flex items-center justify-center bg-black"
+      >
         <h2 className="display text-center text-white">Key Features</h2>
       </section>
       {/* Feature #1 - The Writing Experience */}
-      <section id="writing-experience" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="writing-experience"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #1 — The Writing Experience
           </p>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden" style={{ aspectRatio: "1755/1080" }}>
-            <video src="/videos/pagmar/select word.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
+            style={{ aspectRatio: "1755/1080" }}
+          >
+            <video
+              src="/videos/pagmar/select word.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover"
+            />
           </div>
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
             Write freely. When you're stuck, press <strong>Tab</strong>. Words
@@ -323,7 +375,10 @@ export default function PagmarPage() {
         </PageGrid>
       </section>
       {/* The Composition */}
-      <section id="composition" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="composition"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             The Composition
@@ -469,8 +524,19 @@ export default function PagmarPage() {
               </div>
             </div>
           </div>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden" style={{ aspectRatio: "1722/1080" }}>
-            <video src="/videos/pagmar/Navigation.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
+            style={{ aspectRatio: "1722/1080" }}
+          >
+            <video
+              src="/videos/pagmar/Navigation.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover"
+            />
           </div>
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
             Navigation happens entirely in space. Move with arrow keys (up,
@@ -481,7 +547,10 @@ export default function PagmarPage() {
           </p>
         </PageGrid>
       </section>
-      <section id="composition-focus" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="composition-focus"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Composition Focus
@@ -496,8 +565,19 @@ export default function PagmarPage() {
               becomes distracting noise.
             </TextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden" style={{ aspectRatio: "1722/1080" }}>
-            <video src="/videos/pagmar/toggleshort.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
+            style={{ aspectRatio: "1722/1080" }}
+          >
+            <video
+              src="/videos/pagmar/toggleshort.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover"
+            />
           </div>
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
             Inside composition
@@ -521,7 +601,10 @@ export default function PagmarPage() {
       </section>
 
       {/* Feature #3 - AI-Generated Insights */}
-      <section id="ai-insights" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="ai-insights"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #3 — AI-Generated Insights
@@ -566,25 +649,30 @@ export default function PagmarPage() {
               {activeLayout.description}
             </TextBlock>
             <div className="flex flex-col gap-3">
-              {["clouds", "tunnel", "scattered"].map((id) => LAYOUTS.find((l) => l.id === id)).map((l) => (
-                <Button
-                  key={l.id}
-                  variant={activeLayoutId === l.id ? "filled" : "outline"}
-                  color="#ffffff"
-                  size="small"
-                  onClick={() => setActiveLayoutId(l.id)}
-                  style={activeLayoutId === l.id ? { color: "#000000" } : {}}
-                >
-                  {l.label}
-                </Button>
-              ))}
+              {["clouds", "tunnel", "scattered"]
+                .map((id) => LAYOUTS.find((l) => l.id === id))
+                .map((l) => (
+                  <Button
+                    key={l.id}
+                    variant={activeLayoutId === l.id ? "filled" : "outline"}
+                    color="#ffffff"
+                    size="small"
+                    onClick={() => setActiveLayoutId(l.id)}
+                    style={activeLayoutId === l.id ? { color: "#000000" } : {}}
+                  >
+                    {l.label}
+                  </Button>
+                ))}
             </div>
           </div>
         </PageGrid>
       </section>
 
       {/* Feature #4 - Emotional Atmosphere */}
-      <section id="atmosphere" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="atmosphere"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #4 — Emotional Atmosphere
@@ -613,19 +701,8 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
 
-          {/* Video + mood buttons */}
-          <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex flex-col gap-4">
-            <div className="w-full aspect-video bg-white/5 rounded-sm overflow-hidden">
-              <video
-                key={activeMood}
-                src={MOODS.find((m) => m.id === activeMood)?.video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full h-full object-cover"
-              />
-            </div>
+          {/* Mood switcher */}
+          <div className="col-span-4 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch">
             <div className="flex flex-wrap gap-2">
               {MOODS.map((m) => (
                 <Button
@@ -640,10 +717,26 @@ export default function PagmarPage() {
                 </Button>
               ))}
             </div>
+            <div className="flex-1 flex items-center">
+              <p
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  fontSize: "34px",
+                  fontWeight: 400,
+                  color: "white",
+                  lineHeight: 1.3,
+                }}
+              >
+                {MOODS.find((m) => m.id === activeMood)?.description}
+              </p>
+            </div>
           </div>
         </PageGrid>
       </section>
-      <section id="design-modularity" className="relative w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="design-modularity"
+        className="relative w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <ConfigBackground />
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
@@ -669,8 +762,19 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
 
-          <div className="col-span-4 lg:col-span-7 lg:col-start-7 bg-white/5 rounded-sm overflow-hidden" style={{ aspectRatio: "2277/1080" }}>
-            <video src="/videos/pagmar/workshop.mp4" autoPlay loop muted playsInline preload="none" className="w-full h-full object-cover" />
+          <div
+            className="col-span-4 lg:col-span-7 lg:col-start-7 bg-white/5 rounded-sm overflow-hidden"
+            style={{ aspectRatio: "2277/1080", border: "0.5px solid rgba(255,255,255,0.2)" }}
+          >
+            <video
+              src="/videos/pagmar/workshop.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="w-full h-full object-cover"
+            />
           </div>
         </PageGrid>
       </section>
@@ -758,11 +862,29 @@ export default function PagmarPage() {
 
             {/* Two photos stacked */}
             <div className="col-span-4 lg:col-span-4 lg:col-start-6 flex flex-col gap-4">
-              <div className="rounded-sm overflow-hidden" style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}>
-                <Image src="/images/pagmar/3dgrid.jpg" alt="3D grid system" width={800} height={600} className="w-full h-auto" />
+              <div
+                className="rounded-sm overflow-hidden"
+                style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
+              >
+                <Image
+                  src="/images/pagmar/3dgrid.jpg"
+                  alt="3D grid system"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
-              <div className="rounded-sm overflow-hidden" style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}>
-                <Image src="/images/pagmar/3dgridInSpace.jpg" alt="3D grid in space" width={800} height={600} className="w-full h-auto" />
+              <div
+                className="rounded-sm overflow-hidden"
+                style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
+              >
+                <Image
+                  src="/images/pagmar/3dgridInSpace.jpg"
+                  alt="3D grid in space"
+                  width={800}
+                  height={600}
+                  className="w-full h-auto"
+                />
               </div>
             </div>
           </div>
@@ -809,10 +931,16 @@ export default function PagmarPage() {
       </HorizontalScroll>
 
       {/* Reception and Impact */}
-      <section id="reception" className="w-screen h-screen flex items-center justify-center bg-black">
+      <section
+        id="reception"
+        className="w-screen h-screen flex items-center justify-center bg-black"
+      >
         <h2 className="display text-center text-white">Reception and Impact</h2>
       </section>
-      <section id="presentation" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="presentation"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Presentation
@@ -826,7 +954,10 @@ export default function PagmarPage() {
           <div className="col-span-4 lg:col-span-7 lg:col-start-4 aspect-video bg-white/5 rounded-sm" />
         </PageGrid>
       </section>
-      <section id="what-i-learned" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="what-i-learned"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             What I Learned
@@ -881,7 +1012,10 @@ export default function PagmarPage() {
           </TextBlock>
         </PageGrid>
       </section>
-      <section id="do-differently" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="do-differently"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             What I Would do differently
@@ -916,7 +1050,10 @@ export default function PagmarPage() {
           </TextBlock>
         </PageGrid>
       </section>
-      <section id="future" className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8">
+      <section
+        id="future"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+      >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Future Potential
@@ -924,8 +1061,8 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
             This is just the beginning. Social Simulation proves the concept —
             non-linear journaling in 3D space, AI as a guide not a replacement,
-            spatial navigation that feels natural. But the real potential lies in
-            what comes next.
+            spatial navigation that feels natural. But the real potential lies
+            in what comes next.
           </p>
           <div className="col-span-4 lg:col-span-10 lg:col-start-3">
             <TabPages />
