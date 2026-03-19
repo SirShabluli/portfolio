@@ -217,7 +217,7 @@ export default function MindMapSVG() {
       if (!hasAnimated.current && rect.top < window.innerHeight * 0.8) {
         animate();
       }
-      if (hasAnimated.current && rect.bottom < 0) {
+      if (hasAnimated.current && (rect.bottom < 0 || rect.top > window.innerHeight)) {
         hasAnimated.current = false;
         reset();
       }

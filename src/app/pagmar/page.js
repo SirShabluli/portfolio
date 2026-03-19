@@ -13,6 +13,7 @@ import TypographySection from "../components/TypographySection";
 import HorizontalScroll from "../components/HorizontalScroll";
 import BiDiMockup from "../components/BiDiMockup";
 import TabPages from "../components/TabPages";
+import ClickToPlay from "../components/ClickToPlay";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -342,20 +343,11 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #1 — The Writing Experience
           </p>
-          <div
+          <ClickToPlay
+            src="/videos/pagmar/select word.mp4"
             className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
             style={{ aspectRatio: "1755/1080" }}
-          >
-            <video
-              src="/videos/pagmar/select word.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          />
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
             Write freely. When you're stuck, press <strong>Tab</strong>. Words
             from your writing appear. Type the word you want to select, get a
@@ -535,20 +527,11 @@ export default function PagmarPage() {
               </div>
             </div>
           </div>
-          <div
+          <ClickToPlay
+            src="/videos/pagmar/Navigation.mp4"
             className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
             style={{ aspectRatio: "1722/1080" }}
-          >
-            <video
-              src="/videos/pagmar/Navigation.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          />
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
             Navigation happens entirely in space. Move with arrow keys (up,
             down, left, right), zoom with <strong>W/S</strong>, approach
@@ -576,20 +559,11 @@ export default function PagmarPage() {
               becomes distracting noise.
             </TextBlock>
           </div>
-          <div
+          <ClickToPlay
+            src="/videos/pagmar/toggleshort.mp4"
             className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
             style={{ aspectRatio: "1722/1080" }}
-          >
-            <video
-              src="/videos/pagmar/toggleshort.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          />
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
             Inside composition
             <br />
@@ -789,20 +763,11 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
 
-          <div
+          <ClickToPlay
+            src="/videos/pagmar/workshop.mp4"
             className="col-span-4 lg:col-span-7 lg:col-start-7 bg-white/5 rounded-sm overflow-hidden"
             style={{ aspectRatio: "2277/1080", border: "0.5px solid rgba(255,255,255,0.2)" }}
-          >
-            <video
-              src="/videos/pagmar/workshop.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          />
         </PageGrid>
       </section>
 
