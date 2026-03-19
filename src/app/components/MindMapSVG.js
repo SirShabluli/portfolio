@@ -13,9 +13,9 @@ const polar = (cx, cy, angle, r, jitterX = 0, jitterY = 0) => ({
 // Root
 const root = { id: "e0", label: "Entry", x: CX, y: CY, type: "entry" };
 
-// L1 — 5 questions spread around root
-const l1angles = [310, 30, 100, 175, 240];
-const l1r = 180;
+// L1 — 7 questions spread around root
+const l1angles = [0, 50, 105, 155, 210, 265, 315];
+const l1r = 190;
 const l1q = l1angles.map((a, i) => ({
   id: `q${i + 1}`,
   label: "Question",
@@ -23,52 +23,35 @@ const l1q = l1angles.map((a, i) => ({
   ...polar(CX, CY, a, l1r, (i % 3) * 10 - 10, (i % 2) * 15 - 8),
 }));
 
-// L2 — 2-3 entries per L1 question, spread outward
-const l2config = [
-  { parent: "q1", angles: [290, 340, 20], r: 240 },
-  { parent: "q2", angles: [10, 55, 90], r: 250 },
-  { parent: "q3", angles: [75, 120, 155], r: 240 },
-  { parent: "q4", angles: [155, 200, 240], r: 250 },
-  { parent: "q5", angles: [220, 265, 300], r: 240 },
-];
-
+// L2 — exactly 1 entry per L1 question
 let eCount = 1;
 const l2entries = [];
-const l2map = {}; // parentId -> [child ids]
+const l2map = {};
 
-l2config.forEach(({ parent, angles, r }) => {
-  const parentNode = l1q.find((n) => n.id === parent);
-  l2map[parent] = [];
-  angles.forEach((a, i) => {
-    const id = `e${eCount++}`;
-    l2entries.push({
-      id,
-      label: "Entry",
-      type: "entry",
-      ...polar(
-        parentNode.x,
-        parentNode.y,
-        a,
-        r,
-        (i - 1) * 12,
-        (i % 2) * 20 - 10,
-      ),
-    });
-    l2map[parent].push(id);
+l1q.forEach((q, i) => {
+  const baseAngle = Math.atan2(q.y - CY, q.x - CX) * (180 / Math.PI);
+  const id = `e${eCount++}`;
+  l2map[q.id] = [id];
+  l2entries.push({
+    id,
+    label: "Entry",
+    type: "entry",
+    ...polar(q.x, q.y, baseAngle, 140, (i % 3) * 8 - 8, (i % 2) * 12 - 6),
   });
 });
 
-// L3 — 1-2 questions per L2 entry, spread outward
+// L3 — 2-3 questions per L2 entry
 let qCount = l1q.length + 1;
 const l3questions = [];
 const l3map = {};
 
 l2entries.forEach((entry, idx) => {
-  const count = idx % 3 === 0 ? 2 : 1;
+  const count = idx % 3 === 1 ? 3 : 2;
   const baseAngle = Math.atan2(entry.y - CY, entry.x - CX) * (180 / Math.PI);
   l3map[entry.id] = [];
   for (let i = 0; i < count; i++) {
-    const spread = count === 1 ? 0 : i === 0 ? -28 : 28;
+    const spread =
+      count === 2 ? (i === 0 ? -28 : 28) : i === 0 ? -42 : i === 1 ? 0 : 42;
     const id = `q${qCount++}`;
     l3questions.push({
       id,
@@ -78,7 +61,7 @@ l2entries.forEach((entry, idx) => {
         entry.x,
         entry.y,
         baseAngle + spread,
-        200,
+        195,
         i * 8 - 5,
         i * 10 - 8,
       ),
@@ -87,34 +70,27 @@ l2entries.forEach((entry, idx) => {
   }
 });
 
-// L4 — 1-2 entries per L3 question
+// L4 — exactly 1 entry per L3 question
 const l4entries = [];
 const l4map = {};
 
 l3questions.forEach((q, idx) => {
-  const count = idx % 4 === 0 ? 2 : 1;
   const baseAngle = Math.atan2(q.y - CY, q.x - CX) * (180 / Math.PI);
-  l4map[q.id] = [];
-  for (let i = 0; i < count; i++) {
-    const spread = count === 1 ? 0 : i === 0 ? -22 : 22;
-    const id = `e${eCount++}`;
-    l4entries.push({
-      id,
-      label: "Entry",
-      type: "entry",
-      ...polar(q.x, q.y, baseAngle + spread, 180, i * 6 - 4, i * 8 - 5),
-    });
-    l4map[q.id].push(id);
-  }
+  const id = `e${eCount++}`;
+  l4map[q.id] = [id];
+  l4entries.push({
+    id,
+    label: "Entry",
+    type: "entry",
+    ...polar(q.x, q.y, baseAngle, 175, (idx % 3) * 6 - 6, (idx % 2) * 8 - 4),
+  });
 });
 
 const NODES = [root, ...l1q, ...l2entries, ...l3questions, ...l4entries];
 
 const EDGES = [
   ...l1q.map((q) => [root.id, q.id]),
-  ...l2config.flatMap(({ parent }) =>
-    l2map[parent].map((child) => [parent, child]),
-  ),
+  ...l1q.flatMap((q) => l2map[q.id].map((child) => [q.id, child])),
   ...l2entries.flatMap((e) =>
     (l3map[e.id] || []).map((child) => [e.id, child]),
   ),
@@ -148,14 +124,13 @@ buildChains(root.id, [root.id]);
 
 export default function MindMapSVG() {
   const svgRef = useRef(null);
-  const sentinelRef = useRef(null);
   const timeoutsRef = useRef([]);
+  const hasAnimated = useRef(false);
   const nodeMap = Object.fromEntries(NODES.map((n) => [n.id, n]));
 
   useEffect(() => {
     const svg = svgRef.current;
-    const sentinel = sentinelRef.current;
-    if (!svg || !sentinel) return;
+    if (!svg) return;
 
     const reset = () => {
       // Clear any in-flight timeouts
@@ -178,6 +153,8 @@ export default function MindMapSVG() {
     };
 
     const animate = () => {
+      if (hasAnimated.current) return;
+      hasAnimated.current = true;
       reset();
 
       const lineDur = 250;
@@ -235,35 +212,28 @@ export default function MindMapSVG() {
     // Initial hidden state
     reset();
 
-    // Trigger animation when sentinel enters from bottom
-    const enterObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) animate();
-      },
-      { threshold: 0, rootMargin: "0px 0px -20% 0px" },
-    );
-    enterObserver.observe(sentinel);
+    const onScroll = () => {
+      const rect = svg.getBoundingClientRect();
+      if (!hasAnimated.current && rect.top < window.innerHeight * 0.8) {
+        animate();
+      }
+      if (hasAnimated.current && rect.bottom < 0) {
+        hasAnimated.current = false;
+        reset();
+      }
+    };
 
-    // Reset when the SVG itself scrolls past the top of the screen
-    const exitObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
-          reset();
-        }
-      },
-      { threshold: 0 },
-    );
-    exitObserver.observe(svg);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
     return () => {
-      enterObserver.disconnect();
-      exitObserver.disconnect();
+      window.removeEventListener("scroll", onScroll);
       timeoutsRef.current.forEach(clearTimeout);
     };
   }, []);
 
   return (
     <>
-      <div ref={sentinelRef} style={{ height: 1, width: "100%" }} />
       <svg
         ref={svgRef}
         viewBox="0 0 2800 1400"

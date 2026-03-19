@@ -97,16 +97,17 @@ export default function ConfigBackground() {
         inset: 0,
         margin: 0,
         padding: "2rem",
-        color: "rgba(255,255,255,0.07)",
+        color: "rgba(255,255,255,0.15)",
         fontFamily: "'NarkissYairMono-Regular', monospace",
-        fontSize: "1.25rem",
-        lineHeight: 1.8,
+        fontSize: "0.875rem",
+        lineHeight: 1.2,
         whiteSpace: "pre",
         columnWidth: "220px",
         columnGap: "2rem",
         overflow: "hidden",
         pointerEvents: "none",
         userSelect: "none",
+        zIndex: -1,
       }}
     >
       {CONFIG_TEXT.repeat(4)}
