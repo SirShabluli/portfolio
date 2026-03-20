@@ -348,15 +348,20 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #1 — The Writing Experience
           </p>
-          <ClickToPlay
-            src="/videos/pagmar/select word.mp4"
-            className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
-            style={{ aspectRatio: "1755/1080" }}
-          />
-          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
-            Write freely. Stuck? Tab → choose word → get question. Question
-            vanishes, thoughts remain.
-          </p>
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
+            style={{ gap: 15 }}
+          >
+            <ClickToPlay
+              src="/videos/pagmar/select word.mp4"
+              className="bg-white/5 rounded-sm overflow-hidden"
+              style={{ aspectRatio: "1755/1080" }}
+            />
+            <p className="text-sm font-medium leading-relaxed opacity-40 lg:pl-[10%]">
+              Write freely. Stuck? Tab → choose word → get question. Question
+              vanishes, thoughts remain.
+            </p>
+          </div>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="The Challenge"
@@ -536,15 +541,20 @@ export default function PagmarPage() {
               </div>
             </div>
           </div>
-          <ClickToPlay
-            src="/videos/pagmar/Navigation.mp4"
-            className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
-            style={{ aspectRatio: "1722/1080" }}
-          />
-          <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
-            Move with arrows, zoom with W/S, Enter to step inside, Esc to
-            explore. No mouse—just spatial wandering.
-          </p>
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
+            style={{ gap: 10 }}
+          >
+            <ClickToPlay
+              src="/videos/pagmar/Navigation.mp4"
+              className="bg-white/5 rounded-sm overflow-hidden"
+              style={{ aspectRatio: "1722/1080" }}
+            />
+            <p className="text-xs font-medium leading-relaxed opacity-80 lg:pl-[10%]">
+              Move with arrows, zoom with W/S, Enter to step inside, Esc to
+              explore. No mouse—just spatial wandering.
+            </p>
+          </div>
         </PageGrid>
       </section>
       <section
@@ -565,14 +575,19 @@ export default function PagmarPage() {
               becomes distracting noise.
             </TextBlock>
           </div>
-          <ClickToPlay
-            src="/videos/pagmar/toggleshort.mp4"
-            className="col-span-4 lg:col-span-10 lg:col-start-2 bg-white/5 rounded-sm overflow-hidden"
-            style={{ aspectRatio: "1722/1080" }}
-          />
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
-            Enter: world disappears. Esc: world returns. Focus ↔ exploration.
-          </p>
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
+            style={{ gap: 10 }}
+          >
+            <ClickToPlay
+              src="/videos/pagmar/toggleshort.mp4"
+              className="bg-white/5 rounded-sm overflow-hidden"
+              style={{ aspectRatio: "1722/1080" }}
+            />
+            <p className="text-sm opacity-40 font-mono lg:pl-[10%]">
+              Enter: world disappears. Esc: world returns. Focus ↔ exploration.
+            </p>
+          </div>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="My Solution"
@@ -678,13 +693,13 @@ export default function PagmarPage() {
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
-        <PageGrid className="relative z-10 gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+        <PageGrid className="relative z-10 gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
             Feature #4 — Emotional Atmosphere
           </p>
 
           {/* Two text blocks stacked */}
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-8">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-12">
             <TextBlock
               label="The Challenge"
               title="Creating Presence Without Distraction"

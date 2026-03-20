@@ -25,7 +25,7 @@ export default function ClickToPlay({ src, style, className }) {
   }
 
   return (
-    <div className={`relative cursor-pointer ${className ?? ""}`} style={style} onClick={toggle}>
+    <div className={`relative cursor-pointer ${className ?? ""}`} style={{ border: "0.5px solid rgba(255,255,255,0.2)", ...style }} onClick={toggle}>
       <video
         ref={videoRef}
         src={src}
