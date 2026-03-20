@@ -14,6 +14,7 @@ import HorizontalScroll from "../components/HorizontalScroll";
 import BiDiMockup from "../components/BiDiMockup";
 import TabPages from "../components/TabPages";
 import ClickToPlay from "../components/ClickToPlay";
+import ScrollDissolve from "../components/ScrollDissolve";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -99,7 +100,8 @@ const MOODS = [
   {
     id: "night",
     label: "Night",
-    description: "Stars drift slowly above, deep silence broken only by distant wind",
+    description:
+      "Stars drift slowly above, deep silence broken only by distant wind",
     video: "/videos/pagmar/starsBackground.mp4",
   },
   {
@@ -111,19 +113,22 @@ const MOODS = [
   {
     id: "rain",
     label: "Rain",
-    description: "Droplets fall steadily, soft patter filling the space around you",
+    description:
+      "Droplets fall steadily, soft patter filling the space around you",
     video: "/videos/pagmar/rainBackground.mp4",
   },
   {
     id: "dream",
     label: "Dream",
-    description: "Gentle waves of light, slow breathing rhythm, weightless stillness",
+    description:
+      "Gentle waves of light, slow breathing rhythm, weightless stillness",
     video: "/videos/pagmar/dreamBackground.mp4",
   },
   {
     id: "underwater",
     label: "Underwater",
-    description: "Particles drift like bubbles, muffled low tones, suspended in depth",
+    description:
+      "Particles drift like bubbles, muffled low tones, suspended in depth",
     video: "/videos/pagmar/underwaterBackground.mp4",
   },
 ];
@@ -349,10 +354,8 @@ export default function PagmarPage() {
             style={{ aspectRatio: "1755/1080" }}
           />
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
-            Write freely. When you're stuck, press <strong>Tab</strong>. Words
-            from your writing appear. Type the word you want to select, get a
-            question, keep flowing. The question disappears after you answer,
-            leaving only your thoughts.
+            Write freely. Stuck? Tab → choose word → get question. Question
+            vanishes, thoughts remain.
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
@@ -418,10 +421,13 @@ export default function PagmarPage() {
               blinking cursor that says "just write."
             </TextBlock>
           </div>
-          {/* Toggle component placeholder */}
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
-            {/* toggle component goes here */}
-          </div>
+          <ScrollDissolve
+            before="/images/pagmar/noScroll.png"
+            after="/images/pagmar/noScrollActual.png"
+            alt="Minimal composition"
+            className="col-span-4 lg:col-span-10 lg:col-start-2 rounded-sm overflow-hidden"
+            style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
+          />
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="New Challenge Arised"
@@ -454,10 +460,13 @@ export default function PagmarPage() {
               scrolling.
             </TextBlock>
           </div>
-          {/* Placeholder */}
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
-            {/* placeholder */}
-          </div>
+          <ScrollDissolve
+            before="/images/pagmar/withScroll.png"
+            after="/images/pagmar/withScrollActual.png"
+            alt="Keeping vertical space clean"
+            className="col-span-4 lg:col-span-10 lg:col-start-2 rounded-sm overflow-hidden"
+            style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
+          />
         </PageGrid>
       </section>
       {/* Feature #2 - Navigating the Mind Map */}
@@ -484,9 +493,9 @@ export default function PagmarPage() {
           <div className="col-span-4 lg:col-span-12">
             <MindMapSVG />
           </div>
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 lg:mt-12 text-xs">
+          {/* <p className="col-span-4 lg:col-span-10 lg:col-start-3 lg:mt-12 text-xs">
             Rigid structure couldn't capture how thoughts actually connect
-          </p>
+          </p> */}
         </PageGrid>
       </section>
 
@@ -533,11 +542,8 @@ export default function PagmarPage() {
             style={{ aspectRatio: "1722/1080" }}
           />
           <p className="col-span-4 lg:col-span-4 lg:col-start-3 text-xs font-medium leading-relaxed opacity-80">
-            Navigation happens entirely in space. Move with arrow keys (up,
-            down, left, right), zoom with <strong>W/S</strong>, approach
-            compositions, press <strong>Enter</strong> to step inside. When
-            you're in, the rest disappears. Press <strong>Esc</strong> to
-            return. No mouse, no clicking — just wandering.
+            Move with arrows, zoom with W/S, Enter to step inside, Esc to
+            explore. No mouse—just spatial wandering.
           </p>
         </PageGrid>
       </section>
@@ -565,12 +571,7 @@ export default function PagmarPage() {
             style={{ aspectRatio: "1722/1080" }}
           />
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-sm opacity-40 font-mono">
-            Inside composition
-            <br />
-            - Esc → world appears
-            <br />
-            - Enter → world disappears
-            <br />- Back and forth
+            Enter: world disappears. Esc: world returns. Focus ↔ exploration.
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
@@ -661,7 +662,10 @@ export default function PagmarPage() {
         {/* Background video */}
         <div
           className="absolute inset-0 z-0"
-          style={{ opacity: moodVisible ? 1 : 0, transition: "opacity 0.4s ease" }}
+          style={{
+            opacity: moodVisible ? 1 : 0,
+            transition: "opacity 0.4s ease",
+          }}
         >
           <video
             key={activeMood}
@@ -686,10 +690,9 @@ export default function PagmarPage() {
               title="Creating Presence Without Distraction"
               className="text-white"
             >
-              In a 3D world, atmosphere matters. But music would be too much — I
-              needed ambient sounds from nature, particles that move gently
-              without pulling focus. The challenge: dozens of parameters, every
-              tweak requires refresh. How do you iterate efficiently?
+              Sound and particles can unlock emotion in ways text can't. The
+              challenge: creating atmospheres that adapt to your
+              writing—comforting, energizing, reflective—without overwhelming.
             </TextBlock>
             <TextBlock
               label="My Solution"
@@ -741,10 +744,10 @@ export default function PagmarPage() {
         <ConfigBackground />
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
-            Design for modularity
+            Building Tools to Build Faster
           </p>
           {/* Text blocks — left */}
-          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-8 justify-center">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-8 justify-center">
             <TextBlock
               label="The Challenge"
               title="Iterating on Complex JSON"
@@ -766,7 +769,10 @@ export default function PagmarPage() {
           <ClickToPlay
             src="/videos/pagmar/workshop.mp4"
             className="col-span-4 lg:col-span-7 lg:col-start-7 bg-white/5 rounded-sm overflow-hidden"
-            style={{ aspectRatio: "2277/1080", border: "0.5px solid rgba(255,255,255,0.2)" }}
+            style={{
+              aspectRatio: "2277/1080",
+              border: "0.5px solid rgba(255,255,255,0.2)",
+            }}
           />
         </PageGrid>
       </section>
@@ -835,20 +841,16 @@ export default function PagmarPage() {
                 title="Pixel-Perfect in 3D Space"
                 className="text-white"
               >
-                I designed compositions in Figma — layouts, typography, spacing.
-                But translating that into 3D was a challenge. How do you
-                maintain pixel-perfect precision when coordinates are X, Y, Z
-                instead of fixed pixels?
+                Figma designs worked in 2D. 3D was different. How to maintain
+                precision with X, Y, Z coordinates?
               </TextBlock>
               <TextBlock
                 label="My Solution"
                 title="Grid-Based Positioning"
                 className="text-white"
               >
-                I built a 3D grid system that maps Figma layouts directly to
-                Three.js coordinates. Each composition sits on an invisible grid
-                — ensuring consistent spacing, alignment, and scale. The grid is
-                the skeleton that keeps infinite space structured.
+                3D grid system: Figma layouts → Three.js coordinates. Invisible
+                structure keeps infinite space organized.
               </TextBlock>
             </div>
 
@@ -898,19 +900,18 @@ export default function PagmarPage() {
                 title="Hebrew reads right, English reads left"
                 className="text-white"
               >
-                Hebrew (RTL) and English (LTR) required mirrored layouts.
-                Elements needed to flip horizontally while maintaining visual
-                hierarchy and readability in both directions.
+                Hebrew reads right-to-left. English reads left-to-right. Layouts
+                needed to work naturally in both directions without compromising
+                readability or hierarchy.
               </TextBlock>
               <TextBlock
                 label="My Solution"
                 title="One grid, two directions"
                 className="text-white"
               >
-                I designed both versions in Figma, ensuring the grid system
-                worked bidirectionally. Text alignment, navigation indicators,
-                and floating words mirror naturally without breaking composition
-                or flow.
+                Designed both versions in Figma. The grid system mirrors
+                bidirectionally—text, navigation, floating words all flip
+                naturally.
               </TextBlock>
             </div>
 

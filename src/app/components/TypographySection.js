@@ -8,15 +8,15 @@ export default function TypographySection({
   bgColor = "black",
   textColor = "white",
 }) {
-  // Hardcoded alphabet, numbers, and symbols - same for all fonts
   const alphabet =
     "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz";
   const numbers = "0123456789";
   const symbols = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+  const hebrewAlphabet = "א ב ג ד ה ו ז ח ט י כ ך ל מ ם נ ן ס ע פ ף צ ץ ק ר ש ת";
   const contentRef = useRef(null);
   const descriptionRef = useRef(null);
-  // State לניהול הפונט הנבחר
   const [selectedFont, setSelectedFont] = useState(data.fonts[0]);
+  const [hebrew, setHebrew] = useState(false);
 
   // פונקציה לשינוי הפונט
   const changeFont = (font) => {
@@ -79,7 +79,7 @@ export default function TypographySection({
       {/* תוכן הפונט (עמודות 4-12) */}
       <div className="col-span-4 lg:col-span-5 lg:col-start-6 lg:mt-7 space-y-6">
         {/* תוויות הפונט (Badges) - דינמיות מה-data */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 flex-wrap items-center">
           {data.fonts.map((font) => {
             const isSelected = selectedFont.id === font.id;
             return (
@@ -107,6 +107,33 @@ export default function TypographySection({
               </Button>
             );
           })}
+          {/* Hebrew / Latin toggle */}
+          <div className="flex items-center gap-2 ml-auto">
+            <button
+              onClick={() => setHebrew(false)}
+              className="cursor-pointer transition-opacity duration-200"
+              style={{ opacity: hebrew ? 0.3 : 1 }}
+            >
+              <span style={{ fontFamily: "var(--font-raleway)", fontSize: "0.65rem", color: textColor, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" }}>EN</span>
+            </button>
+            <button
+              onClick={() => setHebrew((h) => !h)}
+              className="relative rounded-full shrink-0 cursor-pointer"
+              style={{ width: "2.4rem", height: "1.2rem", backgroundColor: "rgba(255,255,255,0.06)", border: `1px solid rgba(255,255,255,0.25)` }}
+            >
+              <span
+                className="absolute rounded-full transition-all duration-300"
+                style={{ width: "0.85rem", height: "0.85rem", top: "50%", transform: "translateY(-50%)", backgroundColor: textColor, left: hebrew ? "calc(100% - 1rem)" : "0.15rem" }}
+              />
+            </button>
+            <button
+              onClick={() => setHebrew(true)}
+              className="cursor-pointer transition-opacity duration-200"
+              style={{ opacity: hebrew ? 1 : 0.3 }}
+            >
+              <span style={{ fontFamily: "var(--font-raleway)", fontSize: "0.65rem", color: textColor, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" }}>HE</span>
+            </button>
+          </div>
         </div>
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}
@@ -115,12 +142,23 @@ export default function TypographySection({
           style={{
             fontFamily: selectedFont.fontFamily,
             fontWeight: selectedFont.weight,
+            direction: hebrew ? "rtl" : "ltr",
           }}
           ref={contentRef}
         >
-          <div className="tracking-tight wrap-break-word">{alphabet}</div>
-          <div className="tracking-tighter">{numbers}</div>
-          <div className="opacity-80 break-all">{symbols}</div>
+          {hebrew ? (
+            <>
+              <div className="tracking-tight wrap-break-word">{hebrewAlphabet}</div>
+              <div className="tracking-tighter">{numbers}</div>
+              <div className="opacity-80 break-all">{symbols}</div>
+            </>
+          ) : (
+            <>
+              <div className="tracking-tight wrap-break-word">{alphabet}</div>
+              <div className="tracking-tighter">{numbers}</div>
+              <div className="opacity-80 break-all">{symbols}</div>
+            </>
+          )}
         </div>
 
         {/* תיאור הפונט בתחתית */}
