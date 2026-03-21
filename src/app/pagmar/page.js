@@ -15,6 +15,7 @@ import BiDiMockup from "../components/BiDiMockup";
 import TabPages from "../components/TabPages";
 import ClickToPlay from "../components/ClickToPlay";
 import ScrollDissolve from "../components/ScrollDissolve";
+import RevealText from "../components/RevealText";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -319,11 +320,11 @@ export default function PagmarPage() {
 
           {/* Closing paragraph right */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
-            <p className="text-base lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%] ">
+            <RevealText className="text-base lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%]">
               what if journaling wasn't about capturing thoughts in order, but
               creating a space where they could exist, connect, and reveal
               themselves over time?
-            </p>
+            </RevealText>
           </div>
           <div className="col-span-4 lg:col-span-6 lg:col-start-3 flex flex-col gap-4 mt-10">
             <h3 className="text-4xl font-semibold">The Solution</h3>
@@ -856,14 +857,14 @@ export default function PagmarPage() {
         <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
           <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
             {/* Title */}
-            <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+            <div className="col-span-12 lg:col-span-10 lg:col-start-2">
               <p className="text-xs lg:text-5xl text-white">
                 Pixel Perfect in a 3D Space
               </p>
             </div>
 
             {/* Text blocks */}
-            <div className="col-span-4 lg:col-span-3 lg:col-start-4">
+            <div className="col-span-4 lg:col-span-3 lg:col-start-3">
               <TextBlock
                 label="The Challenge"
                 title="Pixel-Perfect in 3D Space"
@@ -873,7 +874,7 @@ export default function PagmarPage() {
                 precision with X, Y, Z coordinates?
               </TextBlock>
             </div>
-            <div className="col-span-4 lg:col-span-3 lg:col-start-8">
+            <div className="col-span-4 lg:col-span-3 lg:col-start-7">
               <TextBlock
                 label="My Solution"
                 title="Grid-Based Positioning"
@@ -885,7 +886,7 @@ export default function PagmarPage() {
             </div>
 
             {/* Two photos stacked */}
-            <div className="col-span-4 lg:col-span-10 lg:col-start-3 flex flex-row gap-4">
+            <div className="col-span-4 lg:col-span-4 lg:col-start-6  gap-4">
               <div
                 className="rounded-sm overflow-hidden"
                 style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
