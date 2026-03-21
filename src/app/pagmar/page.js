@@ -177,7 +177,7 @@ export default function PagmarPage() {
 
           {/* Description + Metadata stacked */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-4 mt-4 lg:mt-8 flex flex-col gap-6">
-            <p className="text-sm lg:text-base  font-medium opacity-80 leading-relaxed max-w-lg">
+            <p className="text-sm lg:text-base  font-medium opacity-80 leading-[160%] max-w-lg">
               A system that transforms how you write — spatially, emotionally,
               guided by questions that help you go deeper. Your thoughts become
               an explorable 3D world, revealing patterns and connections you
@@ -219,7 +219,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             The Full Experience
           </p>
           {/* Video placeholder — replace src when ready */}
@@ -244,10 +244,10 @@ export default function PagmarPage() {
         id="the-challenge"
         className="bg-black py-16 lg:py-24 px-6 lg:px-12 justify-center"
       >
-        <PageGrid className="gap-8 items-center">
+        <PageGrid className="gap-12 items-center">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl font-semibold">The Challenge</h3>
-            <p className="text-sm font-medium opacity-100 leading-relaxed">
+            <p className="text-sm font-medium opacity-100 leading-[160%]">
               Traditional journaling treats thoughts like a document:
               chronological, linear, one entry after another. But thinking isn't
               like that. You lose your thread, want to branch off, need to add
@@ -280,20 +280,23 @@ export default function PagmarPage() {
         className="bg-black py-16 lg:py-24 px-6 lg:px-12"
       >
         <PageGrid className="gap-y-12 gap-x-8 items-start">
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
-            <h3 className="text-4xl font-semibold">Understanding the Space</h3>
+          <div className="col-span-4 lg:col-span-5 lg:col-start-3 flex flex-col gap-4">
+            <h3 className="text-4xl lg:py-24 font-semibold">
+              Understanding the Space
+            </h3>
           </div>
-          {/* Anecdotes stacked left */}
-          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-10">
+          {/* Anecdotes in a row */}
+          <div className="col-span-4 lg:col-span-2 lg:col-start-3">
             <TextBlock
               label="Anecdote #1"
               title="Thoughts are spatial, not linear"
               className="text-white"
             >
-              Thoughts branch and loop back. Linear writing forces you to pick
-              one thread and abandon the rest. Memory clusters in space, not on
-              a timeline.
+              Thoughts branch and loop back. Linear writing forces one thread,
+              abandons others. Memory clusters in space, not time.
             </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-2 lg:col-start-6">
             <TextBlock
               label="Anecdote #2"
               title="Navigation should feel like wandering, not searching"
@@ -302,6 +305,8 @@ export default function PagmarPage() {
               Chronological order can't capture branching thoughts. There's a
               magic to wandering.
             </TextBlock>
+          </div>
+          <div className="col-span-4 lg:col-span-2 lg:col-start-9">
             <TextBlock
               label="Anecdote #3"
               title="Emotion shapes memory more than words do"
@@ -313,22 +318,23 @@ export default function PagmarPage() {
           </div>
 
           {/* Closing paragraph right */}
-          <div className="col-span-4 lg:col-span-4 lg:col-start-8 flex items-center h-full">
-            <p className="text-base lg:text-2xl font-regular opacity-60 leading-relaxed ">
-              This led to the question: what if journaling wasn't about
-              capturing thoughts in order, but creating a space where they could
-              exist, connect, and reveal themselves over time?
+          <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
+            <p className="text-base lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%] ">
+              what if journaling wasn't about capturing thoughts in order, but
+              creating a space where they could exist, connect, and reveal
+              themselves over time?
             </p>
           </div>
-          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-4 mt-10">
+          <div className="col-span-4 lg:col-span-6 lg:col-start-3 flex flex-col gap-4 mt-10">
             <h3 className="text-4xl font-semibold">The Solution</h3>
-            <p className="text-sm font-medium opacity-100 leading-relaxed">
-              The system turns journaling into a spatial, AI-guided experience.
-              You write. The atmosphere responds. The question vanishes after
-              you answer, leaving only your thoughts. You can continue the flow,
-              branch into new questions, or revisit earlier threads. Over time,
-              a 3D world emerges - a spatial map of your inner landscape, where
-              every composition is a place you can explore.
+            <p className="text-sm font-medium opacity-100 leading-[160%]">
+              A system that turns journaling into a spatial, AI-guided
+              experience. You write. The atmosphere responds. The question
+              vanishes after you answer, leaving only your thoughts. You can
+              continue the flow, branch into new questions, or revisit earlier
+              threads. Over time, a 3D world emerges - a spatial map of your
+              inner landscape, where every composition is a place you can
+              explore.
             </p>
           </div>
         </PageGrid>
@@ -342,26 +348,12 @@ export default function PagmarPage() {
       {/* Feature #1 - The Writing Experience */}
       <section
         id="writing-experience"
-        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-30"
       >
-        <PageGrid className="gap-8 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+        <PageGrid className="gap-10 w-full px-6 lg:px-12">
+          <p className="col-span-4 font-medium lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl lg:my-20">
             Feature #1 — The Writing Experience
           </p>
-          <div
-            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
-            style={{ gap: 15 }}
-          >
-            <ClickToPlay
-              src="/videos/pagmar/select word.mp4"
-              className="bg-white/5 rounded-sm overflow-hidden"
-              style={{ aspectRatio: "1755/1080" }}
-            />
-            <p className="text-sm font-medium leading-relaxed opacity-40 lg:pl-[10%]">
-              Write freely. Stuck? Tab → choose word → get question. Question
-              vanishes, thoughts remain.
-            </p>
-          </div>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="The Challenge"
@@ -383,17 +375,42 @@ export default function PagmarPage() {
               question that helps you go deeper.
             </TextBlock>
           </div>
+          <div
+            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col lg:mt-20"
+            style={{ gap: 15 }}
+          >
+            <ClickToPlay
+              src="/videos/pagmar/select word.mp4"
+              className="bg-white/5 rounded-sm overflow-hidden"
+              style={{ aspectRatio: "1755/1080" }}
+            />
+            <p className="text-sm font-medium leading-[160%] opacity-40 lg:pl-[10%]">
+              Write freely. Stuck? Tab → choose word → get question. Question
+              vanishes, thoughts remain.
+            </p>
+          </div>
         </PageGrid>
       </section>
       {/* The Composition */}
       <section
         id="composition"
-        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+        className="w-full min-h-screen font-medium bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+        <PageGrid className="gap-y-8 lg:gap-y-30 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             The Composition
           </p>
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+            <TextBlock
+              label="The Challenge"
+              title="UI that Distracts"
+              className="text-white"
+            >
+              I experimented with how questions should appear — pulsing,
+              shaking, bold. Every variation pulled focus. The animations
+              distracted from writing itself.
+            </TextBlock>
+          </div>
           <div className="col-span-4 lg:col-span-12">
             <ImageCarousel
               imgHeight="50vh"
@@ -406,16 +423,8 @@ export default function PagmarPage() {
               ]}
             />
           </div>
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-12">
-            <TextBlock
-              label="The Challenge"
-              title="UI that Distracts"
-              className="text-white"
-            >
-              I experimented with how questions should appear — pulsing,
-              shaking, bold. Every variation pulled focus. The animations
-              distracted from writing itself.
-            </TextBlock>
+
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="My Solution"
               title="Minimal Composition"
@@ -430,10 +439,10 @@ export default function PagmarPage() {
             before="/images/pagmar/noScroll.png"
             after="/images/pagmar/noScrollActual.png"
             alt="Minimal composition"
-            className="col-span-4 lg:col-span-10 lg:col-start-2 rounded-sm overflow-hidden"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 rounded-sm overflow-hidden"
             style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
           />
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex items-center">
             <TextBlock
               label="New Challenge Arised"
               title="Long Entries Need Room"
@@ -445,13 +454,16 @@ export default function PagmarPage() {
               flow.
             </TextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2">
+          <div
+            className="col-span-4 lg:col-span-5 lg:col-start-7 rounded-sm overflow-hidden"
+            style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
+          >
             <Image
               src="/images/pagmar/overlap.png"
               alt="Overlap"
               width={1600}
               height={900}
-              className="w-full h-auto rounded-sm"
+              className="w-full h-auto"
             />
           </div>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-12">
@@ -469,7 +481,7 @@ export default function PagmarPage() {
             before="/images/pagmar/withScroll.png"
             after="/images/pagmar/withScrollActual.png"
             alt="Keeping vertical space clean"
-            className="col-span-4 lg:col-span-10 lg:col-start-2 rounded-sm overflow-hidden"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 rounded-sm overflow-hidden"
             style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
           />
         </PageGrid>
@@ -477,7 +489,7 @@ export default function PagmarPage() {
       {/* Feature #2 - Navigating the Mind Map */}
       <section id="mind-map" className="w-full bg-black pt-16 lg:pt-24">
         <PageGrid className="w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             Feature #2 — Navigating the Mind Map
           </p>
         </PageGrid>
@@ -506,7 +518,7 @@ export default function PagmarPage() {
 
       {/* My Solution — Free Movement in 3D Space */}
       <section className="w-full bg-black py-16 lg:py-24">
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="My Solution"
@@ -543,14 +555,14 @@ export default function PagmarPage() {
           </div>
           <div
             className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
-            style={{ gap: 10 }}
+            style={{ gap: 20 }}
           >
             <ClickToPlay
               src="/videos/pagmar/Navigation.mp4"
               className="bg-white/5 rounded-sm overflow-hidden"
               style={{ aspectRatio: "1722/1080" }}
             />
-            <p className="text-xs font-medium leading-relaxed opacity-80 lg:pl-[10%]">
+            <p className="text-xs font-medium leading-[160%] opacity-50 lg:pl-[10%]">
               Move with arrows, zoom with W/S, Enter to step inside, Esc to
               explore. No mouse—just spatial wandering.
             </p>
@@ -561,8 +573,8 @@ export default function PagmarPage() {
         id="composition-focus"
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+        <PageGrid className="gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             Composition Focus
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
@@ -577,14 +589,14 @@ export default function PagmarPage() {
           </div>
           <div
             className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
-            style={{ gap: 10 }}
+            style={{ gap: 20 }}
           >
             <ClickToPlay
               src="/videos/pagmar/toggleshort.mp4"
               className="bg-white/5 rounded-sm overflow-hidden"
               style={{ aspectRatio: "1722/1080" }}
             />
-            <p className="text-sm opacity-40 font-mono lg:pl-[10%]">
+            <p className="text-xs opacity-50 font-mono lg:pl-[10%]">
               Enter: world disappears. Esc: world returns. Focus ↔ exploration.
             </p>
           </div>
@@ -607,10 +619,10 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl lg:py-24  font-medium">
             Feature #3 — AI-Generated Insights
           </p>
-          <div className="col-span-4 lg:col-span-4 lg:col-start-3">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="The Challenge"
               title="Making Sense of Volume"
@@ -621,7 +633,7 @@ export default function PagmarPage() {
               to see which ones.
             </TextBlock>
           </div>
-          <div className="col-span-4 lg:col-span-4 lg:col-start-8">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-7">
             <TextBlock
               label="My Solution"
               title="AI as Your Second Voice"
@@ -672,7 +684,7 @@ export default function PagmarPage() {
       {/* Feature #4 - Emotional Atmosphere */}
       <section
         id="atmosphere"
-        className="relative w-full min-h-screen flex flex-col justify-center py-16 lg:py-24 gap-8 overflow-hidden"
+        className="relative w-full min-h-screen flex flex-col justify-center py-16 lg:pb-40 gap-8 overflow-hidden"
       >
         {/* Background video */}
         <div
@@ -694,7 +706,7 @@ export default function PagmarPage() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <PageGrid className="relative z-10 gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:py-14 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             Feature #4 — Emotional Atmosphere
           </p>
 
@@ -744,6 +756,7 @@ export default function PagmarPage() {
                   fontWeight: 400,
                   color: "white",
                   lineHeight: 1.3,
+                  opacity: 0.5,
                 }}
               >
                 {MOODS.find((m) => m.id === activeMood)?.description}
@@ -758,11 +771,11 @@ export default function PagmarPage() {
       >
         <ConfigBackground />
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:py-24  lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             Building Tools to Build Faster
           </p>
           {/* Text blocks — left */}
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-8 justify-center">
+          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-20 justify-center">
             <TextBlock
               label="The Challenge"
               title="Iterating on Complex JSON"
@@ -843,14 +856,14 @@ export default function PagmarPage() {
         <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
           <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
             {/* Title */}
-            <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+            <div className="col-span-12 lg:col-span-10 lg:col-start-3">
               <p className="text-xs lg:text-5xl text-white">
                 Pixel Perfect in a 3D Space
               </p>
             </div>
 
             {/* Text blocks */}
-            <div className="col-span-4 lg:col-span-3 lg:col-start-2 flex flex-col gap-8">
+            <div className="col-span-4 lg:col-span-3 lg:col-start-4">
               <TextBlock
                 label="The Challenge"
                 title="Pixel-Perfect in 3D Space"
@@ -859,6 +872,8 @@ export default function PagmarPage() {
                 Figma designs worked in 2D. 3D was different. How to maintain
                 precision with X, Y, Z coordinates?
               </TextBlock>
+            </div>
+            <div className="col-span-4 lg:col-span-3 lg:col-start-8">
               <TextBlock
                 label="My Solution"
                 title="Grid-Based Positioning"
@@ -870,7 +885,7 @@ export default function PagmarPage() {
             </div>
 
             {/* Two photos stacked */}
-            <div className="col-span-4 lg:col-span-4 lg:col-start-6 flex flex-col gap-4">
+            <div className="col-span-4 lg:col-span-10 lg:col-start-3 flex flex-row gap-4">
               <div
                 className="rounded-sm overflow-hidden"
                 style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
@@ -950,10 +965,10 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             Presentation
           </p>
-          <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+          <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-[160%] opacity-80">
             I presented Social Simulation as my graduation project at Bezalel —
             my first React project after months of intensive learning. The
             system was complex, so I ran extensive playtests to understand how
@@ -967,7 +982,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             What I Learned
           </p>{" "}
           <TextBlock
@@ -1025,7 +1040,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             What I Would do differently
           </p>{" "}
           <TextBlock
@@ -1063,10 +1078,10 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             Future Potential
           </p>
-          <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-relaxed opacity-80">
+          <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-[160%] opacity-80">
             This is just the beginning. Social Simulation proves the concept —
             non-linear journaling in 3D space, AI as a guide not a replacement,
             spatial navigation that feels natural. But the real potential lies
