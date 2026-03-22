@@ -2,16 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const SECTIONS = [
-  {
-    id: "hero",
-    label: "Overview",
-    subs: [],
-  },
-  {
-    id: "full-experience",
-    label: "Full Experience",
-    subs: [],
-  },
+  { id: "hero", label: "Overview", subs: [] },
+  { id: "full-experience", label: "Full Experience", subs: [] },
   {
     id: "research",
     label: "Research & Discovery",
@@ -33,11 +25,7 @@ const SECTIONS = [
       { id: "design-modularity", label: "Design for Modularity" },
     ],
   },
-  {
-    id: "design-system",
-    label: "Design System",
-    subs: [],
-  },
+  { id: "design-system", label: "Design System", subs: [] },
   {
     id: "reception",
     label: "Reception & Impact",
@@ -60,7 +48,7 @@ function findParent(activeId) {
   return null;
 }
 
-function SubList({ subs, activeId, scrollTo, isOpen }) {
+function SubList({ subs, activeId, hoveredId, scrollTo, isOpen }) {
   const ref = useRef(null);
   const [height, setHeight] = useState(0);
 
@@ -74,7 +62,7 @@ function SubList({ subs, activeId, scrollTo, isOpen }) {
     <div
       style={{
         overflow: "hidden",
-        height: height,
+        height,
         transition: "height 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
@@ -85,11 +73,13 @@ function SubList({ subs, activeId, scrollTo, isOpen }) {
             onClick={() => scrollTo(sub.id)}
             className="text-left cursor-pointer transition-opacity duration-200"
             style={{
-              fontSize: "0.625rem",
+              fontSize: "0.75rem",
               fontWeight: 400,
               color: "white",
-              opacity: activeId === sub.id ? 0.8 : 0.3,
+              opacity: activeId === sub.id || hoveredId === sub.id ? 0.8 : 0.3,
             }}
+            onMouseEnter={(e) => e.currentTarget.style.opacity = 0.8}
+            onMouseLeave={(e) => e.currentTarget.style.opacity = activeId === sub.id ? 0.8 : 0.3}
           >
             {sub.label}
           </button>
@@ -101,11 +91,15 @@ function SubList({ subs, activeId, scrollTo, isOpen }) {
 
 export default function PageNav() {
   const [activeId, setActiveId] = useState("hero");
+  const [hoveredSection, setHoveredSection] = useState(null);
+  const scrollingRef = useRef(false);
+  const scrollTimerRef = useRef(null);
 
   useEffect(() => {
     const visible = new Map();
 
     const pickActive = () => {
+      if (scrollingRef.current) return;
       let topmost = null;
       let topmostTop = Infinity;
       for (const [id, entry] of visible.entries()) {
@@ -119,9 +113,7 @@ export default function PageNav() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          visible.set(entry.target.id, entry);
-        }
+        for (const entry of entries) visible.set(entry.target.id, entry);
         pickActive();
       },
       { threshold: 0.2 },
@@ -138,18 +130,22 @@ export default function PageNav() {
   const activeParentId = findParent(activeId);
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    scrollingRef.current = true;
+    setActiveId(id);
+    window.dispatchEvent(new CustomEvent("lenis-scroll-to", { detail: id }));
+    clearTimeout(scrollTimerRef.current);
+    scrollTimerRef.current = setTimeout(() => {
+      scrollingRef.current = false;
+    }, 1500);
   };
+
+  const getIsOpen = (sectionId) => activeParentId === sectionId;
 
   return (
     <>
-      {/* Gradient fade behind the nav */}
       <div
         className="fixed left-0 top-0 h-full z-40 hidden lg:block pointer-events-none"
-        style={{
-          width: "19rem",
-          background: "linear-gradient(to right, #000000 0%, transparent 100%)",
-        }}
+        style={{ width: "19rem", background: "linear-gradient(to right, #000000 0%, transparent 100%)" }}
       />
       <nav
         className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-3 hidden lg:flex"
@@ -157,8 +153,14 @@ export default function PageNav() {
       >
         {SECTIONS.map((section) => {
           const isParentActive = activeParentId === section.id;
+          const isOpen = getIsOpen(section.id);
           return (
-            <div key={section.id} className="flex flex-col gap-1">
+            <div
+              key={section.id}
+              className="flex flex-col gap-1"
+              onMouseEnter={() => setHoveredSection(section.id)}
+              onMouseLeave={() => setHoveredSection(null)}
+            >
               <button
                 onClick={() => scrollTo(section.id)}
                 className="text-left cursor-pointer transition-opacity duration-200"
@@ -168,7 +170,7 @@ export default function PageNav() {
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color: "white",
-                  opacity: isParentActive ? 0.8 : 0.3,
+                  opacity: isParentActive || hoveredSection === section.id ? 0.8 : 0.3,
                 }}
               >
                 {section.label}
@@ -178,8 +180,9 @@ export default function PageNav() {
                 <SubList
                   subs={section.subs}
                   activeId={activeId}
+                  hoveredId={null}
                   scrollTo={scrollTo}
-                  isOpen={isParentActive}
+                  isOpen={isOpen}
                 />
               )}
             </div>

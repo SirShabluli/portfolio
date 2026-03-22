@@ -19,6 +19,12 @@ export default function SmoothScroll() {
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
+    const handleScrollTo = (e) => {
+      const el = document.getElementById(e.detail);
+      if (el) lenis.scrollTo(el, { offset: 0, duration: 1.2 });
+    };
+    window.addEventListener("lenis-scroll-to", handleScrollTo);
+
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
@@ -28,6 +34,7 @@ export default function SmoothScroll() {
     return () => {
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
+      window.removeEventListener("lenis-scroll-to", handleScrollTo);
     };
   }, []);
 

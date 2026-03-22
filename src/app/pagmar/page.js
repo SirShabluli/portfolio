@@ -327,7 +327,7 @@ export default function PagmarPage() {
               themselves over time?
             </RevealText>
           </div>
-          <div className="col-span-4 lg:col-span-6 lg:col-start-3 flex flex-col gap-4 mt-10">
+          <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-4 mt-10">
             <h3 className="text-4xl font-semibold">The Solution</h3>
             <p className="text-sm font-medium opacity-100 leading-[160%]">
               A system that turns journaling into a spatial, AI-guided
@@ -457,7 +457,7 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
           <div
-            className="col-span-4 lg:col-span-5 lg:col-start-7 rounded-sm overflow-hidden"
+            className="col-span-4 lg:col-span-6 lg:col-start-6 rounded-sm overflow-hidden"
             style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
           >
             <Image
@@ -858,7 +858,7 @@ export default function PagmarPage() {
         <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
           <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
             {/* Title */}
-            <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+            <div className="col-span-12 lg:col-span-10 lg:col-start-3">
               <p className="text-xs lg:text-5xl text-white">
                 Pixel Perfect in a 3D Space
               </p>
@@ -887,7 +887,7 @@ export default function PagmarPage() {
             </div>
 
             {/* Two photos stacked */}
-            <div className="col-span-4 lg:col-span-4 lg:col-start-6  gap-4">
+            <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-row gap-4">
               <div
                 className="rounded-sm overflow-hidden"
                 style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
@@ -1023,10 +1023,9 @@ export default function PagmarPage() {
             title="Code Architecture"
             className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
-            Delete unused components sooner. Avoid "god components" through
-            better separation of concerns. Under pressure, I jumped between
-            tasks—prompts evolved inconsistently. I should have researched them
-            upfront instead of iterating blindly.
+            Delete unused code sooner. Avoid god components through better
+            separation. Under pressure, prompts evolved inconsistently -
+            should've researched upfront, not iterated blindly.
           </TextBlock>
           <TextBlock
             label="#2"
