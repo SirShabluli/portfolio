@@ -10,13 +10,19 @@ export default function RevealText({ children, className, style }) {
   const ref = useRef(null);
 
   useEffect(() => {
-    const split = new SplitType(ref.current, { types: "chars" });
+    const split = new SplitType(ref.current, { types: "words,chars" });
+
+    // prevent mid-word line breaks
+    split.words.forEach((word) => {
+      word.style.whiteSpace = "nowrap";
+    });
 
     gsap.from(split.chars, {
       opacity: 0,
-      y: 20,
+      x: 20,
+
       stagger: 0.02,
-      duration: 0.6,
+      duration: 1.6,
       ease: "power2.out",
       scrollTrigger: {
         trigger: ref.current,

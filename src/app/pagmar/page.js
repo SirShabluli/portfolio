@@ -16,6 +16,7 @@ import TabPages from "../components/TabPages";
 import ClickToPlay from "../components/ClickToPlay";
 import ScrollDissolve from "../components/ScrollDissolve";
 import RevealText from "../components/RevealText";
+import LearnedTabs from "../components/LearnedTabs";
 
 const ConstellationCanvas = dynamic(
   () => import("../components/simulation/ConstellationCanvas"),
@@ -985,43 +986,16 @@ export default function PagmarPage() {
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
             What I Learned
-          </p>{" "}
-          <TextBlock
-            label="Insight #1"
-            title="Building Under Pressure"
-            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
-          >
-            Pressure reveals what matters. When time is scarce, you stop
-            second-guessing and start deciding. I learned to trust intuition,
-            cut features ruthlessly, and ship quick solutions that worked.
-          </TextBlock>
-          <TextBlock
-            label="Insight #2"
-            title="Technical Challenges"
-            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
-          >
-            No Claude Code meant I had to understand my own architecture deeply
-            - tracking every component manually forced clarity. Some concepts,
-            like 3D movement, can't be explained - only shown. I learned to
-            prototype rough, iterate fast, and read tiny reactions.
-          </TextBlock>
-          <TextBlock
-            label="Insight #3"
-            title="Complex systems need explicit guides"
-            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
-          >
-            No-mouse navigation (from gaming) confused older users but younger
-            ones adapted quickly. Complex systems need explicit guides—you can't
-            expect people to figure it out. Playtesting taught me: stop and
-            explain directly.
-          </TextBlock>
-          <div className="col-span-4 lg:col-span-5 lg:col-start-7 aspect-video bg-white/5 rounded-sm" />
+          </p>
+          <div className="min-h-[50rem] col-span-4 lg:col-span-10 lg:col-start-3">
+            <LearnedTabs />
+          </div>
           <TextBlock
             label="Insight #4"
             title="About Myself"
             className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
-            I'm stubborn. Hours debugging bring immense satisfaction when
+            I&apos;m stubborn. Hours debugging bring immense satisfaction when
             solved. I realized I could build complex things alone; research,
             design, code in parallel under pressure.
           </TextBlock>
