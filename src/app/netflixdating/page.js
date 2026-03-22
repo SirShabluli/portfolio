@@ -136,19 +136,16 @@ export default function NetflixDatingPage() {
               >
                 <span data-animation="fade">
                   <TextBlock label="the challenge" title="easy connections">
-                    In the Netflix world, there are many types of connections.
-                    The challenge was to find something that conveys the idea of
-                    two different things coming together - staying simple and
-                    universal, without relying on niche concepts.
+                    Netflix has many types of connections. I needed to convey
+                    "two different things coming together" simply and
+                    universally, without niche concepts.
                   </TextBlock>
                 </span>
                 <span data-animation="fade">
                   <TextBlock label="My Solution" title="obvious connection">
-                    {`Your couch is perfectly adjusted - the angles, the cushions, the softness.
-
-But when someone new enters the picture, maybe it's worth investing in something that works for both of you.
-
-Two couches side by side: one beige, one red velvet. Different styles, same vibe. It's not about matching perfectly - it's about being comfortable together.`}
+                    Your couch is perfectly adjusted. But when someone new
+                    enters, maybe it's worth investing in something that works
+                    for both.
                   </TextBlock>
                 </span>
               </div>
@@ -186,8 +183,8 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
                 <span data-animate="2" data-animation="fade">
                   <TextBlock label="the challenge" title="Define 'missing'">
                     The "Empty State" needed to tell the user: "You're missing
-                    something that could make your life easier"—and position the
-                    app as the solution.
+                    something that could make your life easier", and position
+                    the app as the solution.
                   </TextBlock>
                 </span>
                 <span data-animate="4" data-animation="fade">
@@ -195,11 +192,8 @@ Two couches side by side: one beige, one red velvet. Different styles, same vibe
                     label="My Solution"
                     title="Solution for a trivial pain"
                   >
-                    {`I identified the trivial pains of solo Netflix nights and illustrated them honestly.
-
-By showing an empty pizza box and a half-finished glass of wine, I validated the messy reality of watching alone.
-
-The message isn't "you need someone." It's "some things are just easier together."`}
+                    Empty pizza box, unfinished wine. Small honest moments from
+                    solo nights. Not "you need someone"—just "easier together."
                   </TextBlock>
                 </span>
                 {/* <Image
@@ -226,11 +220,8 @@ The message isn't "you need someone." It's "some things are just easier together
               >
                 <span data-animate="2" data-animation="fade">
                   <TextBlock label="the challenge" title="immediate dismissal">
-                    {`The "Share the App" screen often feels like a burden. Users feel the app is forcing them to do something they don't want to.
-
-Most people just dismiss it immediately.
-
-How do you make someone pause before closing the window—and maybe act differently?`}
+                    "Share the App" screens feel like a burden. Most dismiss
+                    immediately. How do you make someone pause before closing?
                   </TextBlock>
                   <span
                     data-animate="1"
@@ -246,15 +237,13 @@ How do you make someone pause before closing the window—and maybe act differen
                 className={`col-span-4 lg:col-span-4 phone-pocket lg:col-start-5 ${outline} flex items-center justify-center`}
               ></div>
               <div
-                className={`col-span-3 lg:col-span-3 lg:col-start-9 ${outline} flex flex-col gap-8 justify-center`}
+                className={`col-span-3 lg:col-span-2 lg:col-start-9 ${outline} flex flex-col gap-8 justify-center`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="My Solution" title="Irony">
-                    {`According to Netflix's rules, account sharing isn't allowed. Yet we all know the profile selection screen—filled with family members, friends, and "definitely not your ex."
-
-I took that familiar restriction and flipped it. This time, Netflix wants you to share.
-
-By mimicking the iconic "Who's Watching?" screen, I created a playful moment of recognition.`}
+                    Account sharing isn't allowed. Yet everyone knows that
+                    profile screen. I flipped it—this time Netflix wants you to
+                    share. Playful recognition through familiar UI.
                   </TextBlock>
                 </span>
                 <Image
@@ -275,9 +264,9 @@ By mimicking the iconic "Who's Watching?" screen, I created a playful moment of 
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="The Challenge" title="Defusing Frustration">
-                    {`The "Verification Failed" screen is all about frustration.
-
-It touches on pains people don't speak about - they might feel guilty, worried that their photos don't represent them, or concerned that someone else is using their image.`}
+                    "Verification Failed" = frustration. Touches unspoken pains:
+                    guilt, photos not representing you, someone using your
+                    image.
                   </TextBlock>
                 </span>
                 <span
@@ -293,21 +282,11 @@ It touches on pains people don't speak about - they might feel guilty, worried t
                 className={`lg:col-span-4 lg:col-start-5 phone-pocket ${outline}`}
               ></div>
               <div
-                className={`pt-50 lg:col-span-3 lg:col-start-9 ${outline} items-center flex flex-col gap-4`}
+                className={`pt-50 lg:col-span-3 lg:col-start-9 ${outline} items-start flex flex-col gap-10`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="My Solution" title="Empathy in frustration">
-                    I turned the colloquial term "Catfish" into the illustration
-                    itself: a grumpy cat wearing a fish hat, clearly
-                    unimpressed.
-                  </TextBlock>
-                </span>
-
-                <span data-animate="4" data-animation="fade" className="mb-10">
-                  <TextBlock label="" title="">
-                    {`This shifts blame from user to app - transforming "Why won't you verify me?" into "How dare you think I'm fake?"
-
-By humanizing the error with humor, the app becomes self-deprecating. Users are more likely to try again.`}
+                    A grumpy cat in a fish hat. Literally "Catfish."
                   </TextBlock>
                 </span>
 
@@ -317,6 +296,13 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
                   topText="Intended"
                   bottomText="PUN"
                 />
+                <span data-animate="4" data-animation="fade" className="mb-10">
+                  <TextBlock label="" title="">
+                    Shifts blame from user to app. "Why won't you verify me?"
+                    becomes "How dare you think I'm fake?" Humor makes the app
+                    self-deprecating. Users try again.
+                  </TextBlock>
+                </span>
               </div>
             </div>
           </section>
@@ -340,26 +326,19 @@ By humanizing the error with humor, the app becomes self-deprecating. Users are 
                 <span data-animate="2" data-animation="fade">
                   <TextBlock
                     label="the challenge"
-                    title="Same Same but Different"
+                    title="Elevating the Free Experience
+"
                   >
-                    The premium screen offers users an elevated
-                    experience—something they don't have yet. It's about adding
-                    what's missing. Premium usually gets a distinct color while
-                    staying true to the original brand.
+                    Premium shows what users don't have yet—elevated experience
+                    through distinct color, staying true to the original brand.
                   </TextBlock>
                 </span>
                 <span data-animate="4" data-animation="fade">
-                  <TextBlock
-                    label="My Solution"
-                    title="Solution for a trivial pain"
-                  >
-                    {`Literally an addition: a chaise lounge. An extra piece that upgrades the entire couch.
-
-For the color, I introduced a golden yellow—still warm and inviting, but distinctly premium.
-
-The shift from beige to gold signals luxury without abandoning the cozy aesthetic.
-
-If the app is about the living room experience, premium should be the ultimate piece of furniture. More comfort, more features, more luxury - without losing the homey vibe.`}
+                  <TextBlock label="My Solution" title="Adding Premium Comfort">
+                    A chaise lounge - literally an addition that upgrades the
+                    couch. Golden yellow instead of beige. Warm, inviting,
+                    distinctly premium. More comfort, more luxury—without losing
+                    the homey vibe.
                   </TextBlock>
                 </span>
               </div>
@@ -378,23 +357,16 @@ If the app is about the living room experience, premium should be the ultimate p
       <ScreenZoomSection imageSrc="/images/netflix-dating/screen.png">
         <span data-animate="2" data-animation="fade">
           <TextBlock label="the challenge" title="New Format">
-            Moving to desktop required rethinking the entire approach. A larger
-            canvas means more detail, more visual weight, and a different user
-            mindset. Beyond illustration, I needed to design the interface
-            itself and draw inspiration from the web.
+            Desktop required rethinking everything. Larger canvas, more detail,
+            different mindset. Beyond illustration - I needed to design the
+            interface.
           </TextBlock>
         </span>
         <span data-animate="4" data-animation="fade">
           <TextBlock label="My Solution" title="Multiplicity & Variety">
-            {`The larger screen allowed for more detail, so I chose one of the coziest elements possible: pajamas.
-
-By creating a repeating pattern of different pajama sets, I achieved multiple goals:
-
-Visual richness that scales flexibly across screen sizes.
-Variety that suggests diversity without being literal.
-Familiarity.
-
-The message: there are all kinds of people and pajamas - showing options without being cliché.`}
+            Larger screen allowed detail—I chose pajamas. Cozy, relatable.
+            Repeating patterns: visual richness, variety, familiarity. All kinds
+            of people, all kinds of pajamas.
           </TextBlock>
         </span>
       </ScreenZoomSection>
