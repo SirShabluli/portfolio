@@ -990,19 +990,25 @@ export default function PagmarPage() {
           <div className="min-h-[50rem] col-span-4 lg:col-span-10 lg:col-start-3">
             <LearnedTabs />
           </div>
-          <TextBlock
-            label="Insight #4"
-            title="About Myself"
-            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
-          >
-            I&apos;m stubborn. Hours debugging bring immense satisfaction when
-            solved. I realized I could build complex things alone; research,
-            design, code in parallel under pressure.
-          </TextBlock>
+          <div className="col-span-4 lg:col-span-7 lg:col-start-3 flex flex-col gap-4">
+            <TextBlock
+              label="Insight #4"
+              title="About Myself"
+              className="text-white"
+            >
+              I&apos;m stubborn. Hours debugging bring immense satisfaction when
+              solved.
+            </TextBlock>
+            <RevealText className="text-base lg:text-5xl font-regular opacity-60 leading-[130%]">
+              I realized I could build complex things alone; research, design,
+              code in parallel under pressure.
+            </RevealText>
+          </div>
+
           <TextBlock
             label="Insight #5"
             title="About AI"
-            className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
+            className="mt-30 text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
             GPT opened infinite possibilities. Learned: precise prompts, manage
             tokens, watch costs. People differ—some want flow, others structure.
