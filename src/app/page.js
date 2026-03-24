@@ -5,31 +5,39 @@ import Button from "./components/Button";
 const SLIDES = [
   {
     bg: "#1a1a2e",
-    label: "Placeholder 1",
-    role: "Product Designer",
-    year: "2024",
-    skills: "UX / Research / Prototype",
+    title: "Netflix Dating",
+    description:
+      "Illustration concept for a dating app where taste in shows becomes personality.",
+    role: "UI Design & Illustration",
+    year: "2025",
+    skills: "Adobe Illustrator - Figma - Illustration",
   },
   {
     bg: "#16213e",
-    label: "Placeholder 2",
-    role: "UI Designer",
-    year: "2023",
-    skills: "Interaction / Motion",
+    title: "I’ll Think About it Later",
+    description:
+      "Non-linear journaling tool powered by AI. Your thoughts become an explorable 3D world.",
+    role: "Research, Design & Fullstack Development",
+    year: "2025",
+    skills: "ReactJs - Three.js - AI Integration - UX Research",
   },
   {
     bg: "#0f3460",
-    label: "Placeholder 3",
-    role: "Full-Stack Designer",
+    title: "MEN’S TOILET",
+    description:
+      "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
+    role: "Design & Frontend Development",
     year: "2024",
-    skills: "Design Systems / Frontend",
+    skills: "Adobe Illustrator - Figma - HTML - CSS - Javascript",
   },
   {
     bg: "#533483",
-    label: "Placeholder 4",
-    role: "Brand Designer",
-    year: "2023",
-    skills: "Identity / Typography",
+    title: "Vegas Therapy",
+    description:
+      "Illustration concept for a dating app where taste in shows becomes personality.",
+    role: "Adobe Illustrator - Figma - Illustration",
+    year: "2025",
+    skills: "Adobe Illustrator - Figma - Illustration",
   },
 ];
 
@@ -132,18 +140,12 @@ export default function Home() {
       </div>
 
       {/* Bottom content — title, description, meta, button */}
-      <div className="absolute bottom-20 left-0 right-0 z-20 px-6 flex flex-col items-center gap-4 pointer-events-none">
-        <h1
-          style={{ fontSize: "48px", fontWeight: 500, lineHeight: 1.1 }}
-          className="w-full"
-        >
-          Designer who
-          <br />
-          codes.
+      <div className="absolute bottom-20 left-0 right-0 z-20 px-6 flex flex-col items-center gap-7 pointer-events-none">
+        <h1 className="w-full text-5xl font-medium leading-[1.1]">
+          {SLIDES[current].title}
         </h1>
-        <p className="font-sm opacity-60 max-w-xs leading-relaxed w-full">
-          UX + product design with real implementation. From research to shipped
-          interface.
+        <p className="font-sm opacity-80 max-w-xs leading-[140%] w-full">
+          {SLIDES[current].description}
         </p>
         <div className="flex gap-6 text-white w-full">
           <div className="flex flex-col gap-0.5">
@@ -167,8 +169,14 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <div className="w-full flex justify-center pointer-events-auto">
-          <Button variant="outline" color="white" size="small">
+        <div className="mt-5 w-full flex justify-center pointer-events-auto">
+          <Button
+            variant="outline"
+            color="white"
+            size="small"
+            className="text-base! font-medium"
+            style={{ fontFamily: "var(--font-raleway)" }}
+          >
             View Work
           </Button>
         </div>
