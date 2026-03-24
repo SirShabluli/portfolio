@@ -5,6 +5,7 @@ import Button from "./components/Button";
 const SLIDES = [
   {
     bg: "#1a1a2e",
+    image: null, // e.g. "/images/netflix-dating/cover.png"
     title: "Netflix Dating",
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
@@ -14,6 +15,7 @@ const SLIDES = [
   },
   {
     bg: "#16213e",
+    image: null,
     title: "I’ll Think About it Later",
     description:
       "Non-linear journaling tool powered by AI. Your thoughts become an explorable 3D world.",
@@ -23,6 +25,7 @@ const SLIDES = [
   },
   {
     bg: "#0f3460",
+    image: null,
     title: "MEN’S TOILET",
     description:
       "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
@@ -32,6 +35,7 @@ const SLIDES = [
   },
   {
     bg: "#533483",
+    image: null,
     title: "Vegas Therapy",
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
@@ -69,15 +73,16 @@ export default function Home() {
   };
 
   return (
-    <main
-      className="relative w-screen h-screen overflow-hidden bg-black text-white select-none cursor-grab active:cursor-grabbing"
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-      onMouseDown={onMouseDown}
-      onMouseUp={onMouseUp}
-    >
-      {/* Vertical sliding carousel */}
-      <div className="absolute inset-0">
+    <main className="relative w-screen h-screen overflow-hidden bg-black text-white select-none">
+      {/* Vertical sliding carousel — drag target */}
+      <div
+        className="absolute inset-0 cursor-grab active:cursor-grabbing"
+        style={{ touchAction: "none" }}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+      >
         {SLIDES.map((slide, i) => (
           <div
             key={i}
@@ -141,6 +146,13 @@ export default function Home() {
 
       {/* Bottom content — title, description, meta, button */}
       <div className="absolute bottom-20 left-0 right-0 z-20 px-6 flex flex-col items-center gap-7 pointer-events-none">
+        {SLIDES[current].image && (
+          <img
+            src={SLIDES[current].image}
+            alt={SLIDES[current].title}
+            className="w-full h-48 object-cover rounded-lg"
+          />
+        )}
         <h1 className="w-full text-5xl font-medium leading-[1.1]">
           {SLIDES[current].title}
         </h1>
