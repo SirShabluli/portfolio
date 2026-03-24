@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import PhoneShowcase from "../components/PhoneShowcase";
 import Image from "next/image";
 import AIProcess from "../components/AIProcess";
@@ -22,14 +23,14 @@ export default function NetflixDatingPage() {
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
-  // Configuration for each section
-  const sections = [
+  // Configuration for each section — memoized so PhoneShowcase's useGSAP doesn't re-run on every render
+  const sections = useMemo(() => [
     { xPosition: 0, rotation: 0, screenIndex: 2 },
     { xPosition: -25, rotation: Math.PI * 0.1, screenIndex: 0 },
     { xPosition: 0, rotation: Math.PI * 0, screenIndex: 4 },
     { xPosition: 0, rotation: Math.PI * -2, screenIndex: 1 },
     { xPosition: 25, rotation: Math.PI * 0, screenIndex: 3 },
-  ];
+  ], []);
 
   return (
     <>

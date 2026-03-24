@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import PhoneShowcase from "../components/PhoneShowcase";
@@ -161,14 +161,14 @@ export default function VegasPage() {
 
   const longPressHandlers = {};
 
-  // Configuration for each section
-  const sections = [
+  // Configuration for each section — memoized so PhoneShowcase's useGSAP doesn't re-run on every render
+  const sections = useMemo(() => [
     { xPosition: 0, rotation: 0, screenIndex: 11 },
     { xPosition: 0, rotation: Math.PI * 0.0, screenIndex: 12 },
     { xPosition: 0, rotation: Math.PI * 0, screenIndex: 13 },
     { xPosition: -25, rotation: Math.PI * 0, screenIndex: 14 },
     { xPosition: 25, rotation: Math.PI * 2, screenIndex: 15 },
-  ];
+  ], []);
 
   return (
     <>
