@@ -5,7 +5,8 @@ import Button from "./components/Button";
 
 const SLIDES = [
   {
-    bg: "#1a1a2e",
+    bg: "#000000",
+    bgImage: "/images/netflix-dating/pajamaGrid.png",
     image: "/images/netflix-dating/NetflixLogo.svg",
     imageClass: "px-5 w-full h-auto mb-0", // per-slide image styling
     title: "Dating",
@@ -42,9 +43,9 @@ const SLIDES = [
   },
   {
     bg: "#533483",
-    image: null,
-    imageClass: "",
-    title: "Vegas Therapy",
+    image: "/images/vegas/vegassign.svg",
+    imageClass: " w-full h-auto",
+    title: "Therapy",
     titleClass: "",
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
@@ -133,7 +134,16 @@ export default function Home() {
               transform: `translateY(${(i - offset) * 100}%)`,
               transition: animated ? "transform 700ms ease-in-out" : "none",
             }}
-          />
+          >
+            {slide.bgImage && (
+              <Image
+                src={slide.bgImage}
+                alt=""
+                fill
+                className="object-cover opacity-10 pointer-events-none"
+              />
+            )}
+          </div>
         ))}
       </div>
 
