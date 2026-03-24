@@ -35,7 +35,7 @@ export default function NetflixDatingPage() {
   return (
     <>
       {/* Project Intro Section */}
-      <section className="px-8 min-h-screen text-white relative overflow-hidden flex items-center justify-center">
+      <section className="px-8 min-h-screen bg-black text-white relative overflow-hidden flex items-center justify-center">
         <Image
           src="/images/netflix-dating/pajamaGrid.png"
           alt=""

@@ -1,12 +1,15 @@
 "use client";
 import { useState, useRef, useCallback } from "react";
+import Image from "next/image";
 import Button from "./components/Button";
 
 const SLIDES = [
   {
     bg: "#1a1a2e",
-    image: null, // e.g. "/images/netflix-dating/cover.png"
-    title: "Netflix Dating",
+    image: "/images/netflix-dating/NetflixLogo.svg",
+    imageClass: "px-5 w-full h-auto mb-0", // per-slide image styling
+    title: "Dating",
+    titleClass: "text-red-500 -mt-5", // per-slide title color/style
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
     role: "UI Design & Illustration",
@@ -16,7 +19,9 @@ const SLIDES = [
   {
     bg: "#16213e",
     image: null,
+    imageClass: "",
     title: "I'll Think About it Later",
+    titleClass: "",
     description:
       "Non-linear journaling tool powered by AI. Your thoughts become an explorable 3D world.",
     role: "Research, Design & Fullstack Development",
@@ -26,7 +31,9 @@ const SLIDES = [
   {
     bg: "#0f3460",
     image: null,
+    imageClass: "",
     title: "MEN'S TOILET",
+    titleClass: "",
     description:
       "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
     role: "Design & Frontend Development",
@@ -36,7 +43,9 @@ const SLIDES = [
   {
     bg: "#533483",
     image: null,
+    imageClass: "",
     title: "Vegas Therapy",
+    titleClass: "",
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
     role: "Adobe Illustrator - Figma - Illustration",
@@ -162,7 +171,10 @@ export default function Home() {
         {SLIDES.map((_, i) => (
           <button
             key={i}
-            onClick={() => { setAnimated(true); setOffset(i + 1); }}
+            onClick={() => {
+              setAnimated(true);
+              setOffset(i + 1);
+            }}
             className="w-0.5 rounded-full transition-all duration-300 cursor-pointer"
             style={{
               height: i === current ? "1.5rem" : "0.5rem",
@@ -176,32 +188,36 @@ export default function Home() {
       {/* Bottom content — title, description, meta, button */}
       <div className="absolute bottom-20 left-0 right-0 z-20 px-6 flex flex-col items-center gap-7 pointer-events-none">
         {SLIDES[current].image && (
-          <img
+          <Image
             src={SLIDES[current].image}
             alt={SLIDES[current].title}
-            className="w-full h-48 object-cover rounded-lg"
+            width={600}
+            height={600}
+            className={SLIDES[current].imageClass}
           />
         )}
-        <h1 className="w-full text-5xl font-medium leading-[1.1]">
+        <h1
+          className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${SLIDES[current].titleClass}`}
+        >
           {SLIDES[current].title}
         </h1>
-        <p className="font-sm opacity-80 max-w-xs leading-[140%] w-full">
+        <p className="font-sm opacity-80 max-w-xs font-medium leading-[140%] w-full">
           {SLIDES[current].description}
         </p>
-        <div className="flex gap-6 text-white w-full">
-          <div className="flex flex-col gap-0.5">
+        <div className="flex flex-col px-5 gap-2 text-white w-full">
+          <div className="flex flex-row justify-start gap-2.5">
             <span className="text-xs font-medium italic opacity-40">Role</span>
             <span className="text-xs font-medium opacity-80">
               {SLIDES[current].role}
             </span>
           </div>
-          <div className="flex flex-col gap-0.5">
+          <div className="flex justify-start flex-row gap-2.5">
             <span className="text-xs font-medium italic opacity-40">Year</span>
             <span className="text-xs font-medium opacity-80">
               {SLIDES[current].year}
             </span>
           </div>
-          <div className="flex flex-col gap-0.5">
+          <div className="flex justify-start flex-row gap-2.5">
             <span className="text-xs font-medium italic opacity-40">
               Skills
             </span>
