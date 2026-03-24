@@ -1,20 +1,178 @@
+"use client";
+import { useState, useRef } from "react";
+import Button from "./components/Button";
+
+const SLIDES = [
+  {
+    bg: "#1a1a2e",
+    label: "Placeholder 1",
+    role: "Product Designer",
+    year: "2024",
+    skills: "UX / Research / Prototype",
+  },
+  {
+    bg: "#16213e",
+    label: "Placeholder 2",
+    role: "UI Designer",
+    year: "2023",
+    skills: "Interaction / Motion",
+  },
+  {
+    bg: "#0f3460",
+    label: "Placeholder 3",
+    role: "Full-Stack Designer",
+    year: "2024",
+    skills: "Design Systems / Frontend",
+  },
+  {
+    bg: "#533483",
+    label: "Placeholder 4",
+    role: "Brand Designer",
+    year: "2023",
+    skills: "Identity / Typography",
+  },
+];
+
 export default function Home() {
+  const [current, setCurrent] = useState(0);
+  const dragStartY = useRef(null);
+
+  const prev = () => setCurrent((i) => (i - 1 + SLIDES.length) % SLIDES.length);
+  const next = () => setCurrent((i) => (i + 1) % SLIDES.length);
+
+  const onTouchStart = (e) => {
+    dragStartY.current = e.touches[0].clientY;
+  };
+  const onTouchEnd = (e) => {
+    if (dragStartY.current === null) return;
+    const delta = dragStartY.current - e.changedTouches[0].clientY;
+    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+    dragStartY.current = null;
+  };
+
+  const onMouseDown = (e) => {
+    dragStartY.current = e.clientY;
+  };
+  const onMouseUp = (e) => {
+    if (dragStartY.current === null) return;
+    const delta = dragStartY.current - e.clientY;
+    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
+    dragStartY.current = null;
+  };
+
   return (
-    <main className="min-h-screen bg-black text-white flex flex-col items-center justify-center">
-      <h1 className="text-6xl font-bold tracking-tighter italic">
-        EYAL.WORKS
-      </h1>
-      <p className="mt-4 text-gray-400 font-light">
-        Portfolio coming soon...
-      </p>
-      <a
-        href="https://www.linkedin.com/in/eyal-mo"
-        target="_blank"
-        rel="noreferrer"
-        className="mt-6 underline text-sm"
+    <main
+      className="relative w-screen h-screen overflow-hidden bg-black text-white select-none cursor-grab active:cursor-grabbing"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    >
+      {/* Vertical sliding carousel */}
+      <div className="absolute inset-0">
+        {SLIDES.map((slide, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 transition-transform duration-700 ease-in-out"
+            style={{
+              backgroundColor: slide.bg,
+              transform: `translateY(${(i - current) * 100}%)`,
+            }}
+          >
+            <span className="absolute inset-0 flex items-center justify-center text-white/10 text-4xl font-bold">
+              {slide.label}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Top gradient + nav */}
+      <div
+        className="absolute top-0 left-0 right-0 z-10 px-6 pt-8 pb-24 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, black 0%, transparent 100%)",
+        }}
       >
-        LinkedIn
-      </a>
+        <div className="flex items-center justify-between pointer-events-auto">
+          <span className="text-lg font-bold  uppercase">Eyal Mordechai</span>
+          <button
+            className="flex justify-center flex-col gap-1.5 cursor-pointer"
+            aria-label="Menu"
+          >
+            <span className="block w-6 h-px bg-white" />
+            <span className="block w-6 h-px bg-white" />
+            <span className="block w-4 h-px bg-white" />
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom gradient */}
+      <div
+        className="absolute bottom-0 left-0 right-0 z-10 pt-32 pointer-events-none"
+        style={{
+          background: "linear-gradient(to top, black 0%, transparent 100%)",
+          paddingBottom: "80px",
+        }}
+      />
+
+      {/* Vertical dots */}
+      <div className="flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
+        {SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrent(i)}
+            className="w-0.5 rounded-full transition-all duration-300 cursor-pointer"
+            style={{
+              height: i === current ? "1.5rem" : "0.5rem",
+              backgroundColor:
+                i === current ? "white" : "rgba(255,255,255,0.3)",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Bottom content — title, description, meta, button */}
+      <div className="absolute bottom-20 left-0 right-0 z-20 px-6 flex flex-col items-center gap-4 pointer-events-none">
+        <h1
+          style={{ fontSize: "48px", fontWeight: 500, lineHeight: 1.1 }}
+          className="w-full"
+        >
+          Designer who
+          <br />
+          codes.
+        </h1>
+        <p className="font-sm opacity-60 max-w-xs leading-relaxed w-full">
+          UX + product design with real implementation. From research to shipped
+          interface.
+        </p>
+        <div className="flex gap-6 text-white w-full">
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xs font-medium italic opacity-40">Role</span>
+            <span className="text-xs font-medium opacity-80">
+              {SLIDES[current].role}
+            </span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xs font-medium italic opacity-40">Year</span>
+            <span className="text-xs font-medium opacity-80">
+              {SLIDES[current].year}
+            </span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xs font-medium italic opacity-40">
+              Skills
+            </span>
+            <span className="text-xs font-medium opacity-80">
+              {SLIDES[current].skills}
+            </span>
+          </div>
+        </div>
+        <div className="w-full flex justify-center pointer-events-auto">
+          <Button variant="outline" color="white" size="small">
+            View Work
+          </Button>
+        </div>
+      </div>
     </main>
   );
 }
