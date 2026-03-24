@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Button from "./components/Button";
 
 const SLIDES = [
@@ -16,7 +16,7 @@ const SLIDES = [
   {
     bg: "#16213e",
     image: null,
-    title: "I’ll Think About it Later",
+    title: "I'll Think About it Later",
     description:
       "Non-linear journaling tool powered by AI. Your thoughts become an explorable 3D world.",
     role: "Research, Design & Fullstack Development",
@@ -26,7 +26,7 @@ const SLIDES = [
   {
     bg: "#0f3460",
     image: null,
-    title: "MEN’S TOILET",
+    title: "MEN'S TOILET",
     description:
       "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
     role: "Design & Frontend Development",
@@ -45,12 +45,43 @@ const SLIDES = [
   },
 ];
 
-export default function Home() {
-  const [current, setCurrent] = useState(0);
-  const dragStartY = useRef(null);
+// Tape: [clone of last, ...real slides, clone of first]
+// Real slides start at index 1
+const TAPE = [SLIDES[SLIDES.length - 1], ...SLIDES, SLIDES[0]];
 
-  const prev = () => setCurrent((i) => (i - 1 + SLIDES.length) % SLIDES.length);
-  const next = () => setCurrent((i) => (i + 1) % SLIDES.length);
+export default function Home() {
+  // offset starts at 1 (first real slide)
+  const [offset, setOffset] = useState(1);
+  const [animated, setAnimated] = useState(true);
+  const dragStartY = useRef(null);
+  const isTransitioning = useRef(false);
+
+  // real slide index for content (offset 1 = slide 0)
+  const current = (offset - 1 + SLIDES.length) % SLIDES.length;
+
+  const goTo = useCallback((newOffset) => {
+    if (isTransitioning.current) return;
+    isTransitioning.current = true;
+    setAnimated(true);
+    setOffset(newOffset);
+  }, []);
+
+  const next = useCallback(() => goTo(offset + 1), [offset, goTo]);
+  const prev = useCallback(() => goTo(offset - 1), [offset, goTo]);
+
+  // After transition ends, snap silently if on a clone
+  const onTransitionEnd = () => {
+    isTransitioning.current = false;
+    if (offset === 0) {
+      // was on clone-of-last, snap to real last
+      setAnimated(false);
+      setOffset(SLIDES.length);
+    } else if (offset === TAPE.length - 1) {
+      // was on clone-of-first, snap to real first
+      setAnimated(false);
+      setOffset(1);
+    }
+  };
 
   const onTouchStart = (e) => {
     dragStartY.current = e.touches[0].clientY;
@@ -83,19 +114,17 @@ export default function Home() {
         onMouseDown={onMouseDown}
         onMouseUp={onMouseUp}
       >
-        {SLIDES.map((slide, i) => (
+        {TAPE.map((slide, i) => (
           <div
             key={i}
-            className="absolute inset-0 transition-transform duration-700 ease-in-out"
+            onTransitionEnd={i === offset ? onTransitionEnd : undefined}
+            className="absolute inset-0"
             style={{
               backgroundColor: slide.bg,
-              transform: `translateY(${(i - current) * 100}%)`,
+              transform: `translateY(${(i - offset) * 100}%)`,
+              transition: animated ? "transform 700ms ease-in-out" : "none",
             }}
-          >
-            <span className="absolute inset-0 flex items-center justify-center text-white/10 text-4xl font-bold">
-              {slide.label}
-            </span>
-          </div>
+          />
         ))}
       </div>
 
@@ -107,7 +136,7 @@ export default function Home() {
         }}
       >
         <div className="flex items-center justify-between pointer-events-auto">
-          <span className="text-lg font-bold  uppercase">Eyal Mordechai</span>
+          <span className="text-lg font-bold uppercase">Eyal Mordechai</span>
           <button
             className="flex justify-center flex-col gap-1.5 cursor-pointer"
             aria-label="Menu"
@@ -133,7 +162,7 @@ export default function Home() {
         {SLIDES.map((_, i) => (
           <button
             key={i}
-            onClick={() => setCurrent(i)}
+            onClick={() => { setAnimated(true); setOffset(i + 1); }}
             className="w-0.5 rounded-full transition-all duration-300 cursor-pointer"
             style={{
               height: i === current ? "1.5rem" : "0.5rem",
