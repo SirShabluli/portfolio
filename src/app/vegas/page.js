@@ -43,6 +43,13 @@ export default function VegasPage() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    const onLoad = () => ScrollTrigger.refresh();
+    if (document.readyState === "complete") {
+      ScrollTrigger.refresh();
+    } else {
+      window.addEventListener("load", onLoad);
+    }
     // Sticker effect for large inspiration images
     if (largeImagesRef.current) {
       const largeImages =
@@ -146,6 +153,8 @@ export default function VegasPage() {
         },
       );
     }
+
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";

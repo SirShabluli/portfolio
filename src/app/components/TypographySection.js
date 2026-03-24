@@ -7,6 +7,7 @@ export default function TypographySection({
   data,
   bgColor = "black",
   textColor = "white",
+  showHebrew = false,
 }) {
   const alphabet =
     "Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz";
@@ -108,7 +109,7 @@ export default function TypographySection({
             );
           })}
           {/* Hebrew / Latin toggle */}
-          <div className="flex items-center gap-2 ml-auto">
+          {showHebrew && <div className="flex items-center gap-2 ml-auto">
             <button
               onClick={() => setHebrew(false)}
               className="cursor-pointer transition-opacity duration-200"
@@ -133,7 +134,7 @@ export default function TypographySection({
             >
               <span style={{ fontFamily: "var(--font-raleway)", fontSize: "0.65rem", color: textColor, fontWeight: 500, letterSpacing: "0.1em", textTransform: "uppercase" }}>HE</span>
             </button>
-          </div>
+          </div>}
         </div>
 
         {/* תצוגת האותיות - כאן קורה הקסם הוויזואלי */}

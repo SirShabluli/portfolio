@@ -821,6 +821,7 @@ export default function PagmarPage() {
           <TypographySection
             bgColor="black"
             textColor="white"
+            showHebrew
             data={{
               fonts: [
                 {

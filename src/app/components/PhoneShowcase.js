@@ -165,6 +165,9 @@ export default function PhoneShowcase({
           config.screenIndex || 0,
         );
       });
+
+      // Recalculate scroll positions after all layout is settled
+      ScrollTrigger.refresh();
     },
     { scope: mainRef, dependencies: [splineApp, sections] },
   );
