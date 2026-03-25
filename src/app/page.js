@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import Button from "./components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Parallax } from "swiper/modules";
@@ -19,6 +20,7 @@ const SLIDES = [
     role: "UI Design & Illustration",
     year: "2025",
     skills: "Adobe Illustrator - Figma - Illustration",
+    href: "/netflixdating",
   },
   {
     bg: "#16213e",
@@ -31,6 +33,7 @@ const SLIDES = [
     role: "Research, Design & Fullstack Development",
     year: "2025",
     skills: "ReactJs - Three.js - AI Integration - UX Research",
+    href: "/pagmar",
   },
   {
     bg: "#0f3460",
@@ -43,6 +46,7 @@ const SLIDES = [
     role: "Design & Frontend Development",
     year: "2024",
     skills: "Adobe Illustrator - Figma - HTML - CSS - Javascript",
+    href: "/toilet",
   },
   {
     bg: "#23577A",
@@ -56,6 +60,7 @@ const SLIDES = [
     role: "Adobe Illustrator - Figma - Illustration",
     year: "2025",
     skills: "Adobe Illustrator - Figma - Illustration",
+    href: "/vegas",
   },
 ];
 
@@ -91,77 +96,79 @@ export default function Home() {
               )}
               {/* Slide content */}
               <div className="absolute bottom-20 left-0 right-0 overflow-hidden">
-              <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
-                {s.image && (
-                  <div data-swiper-parallax="-350">
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      width={600}
-                      height={600}
-                      className={s.imageClass}
-                      style={s.imageStyle}
-                      priority={i === 0}
-                    />
-                  </div>
-                )}
-                <h1
-                  data-swiper-parallax-x="-200"
-                  data-swiper-parallax-y="-400"
-                  className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
-                >
-                  {s.title}
-                </h1>
-                <p
-                  data-swiper-parallax="-360"
-                  className="text-sm opacity-80 font-medium leading-[140%] w-full"
-                >
-                  {s.description}
-                </p>
-                <div
-                  data-swiper-parallax="-230"
-                  className="flex flex-col px-5 gap-2 text-white w-full"
-                >
-                  <div className="flex flex-row justify-start gap-2.5">
-                    <span className="text-xs font-medium italic opacity-40">
-                      Role
-                    </span>
-                    <span className="text-xs font-medium opacity-80">
-                      {s.role}
-                    </span>
-                  </div>
-                  <div className="flex flex-row justify-start gap-2.5">
-                    <span className="text-xs font-medium italic opacity-40">
-                      Year
-                    </span>
-                    <span className="text-xs font-medium opacity-80">
-                      {s.year}
-                    </span>
-                  </div>
-                  <div className="flex flex-row justify-start gap-2.5">
-                    <span className="text-xs font-medium italic opacity-40">
-                      Skills
-                    </span>
-                    <span className="text-xs font-medium opacity-80">
-                      {s.skills}
-                    </span>
-                  </div>
-                </div>
-                <div
-                  data-swiper-parallax="-120"
-                  className="mt-5 w-full flex justify-center pointer-events-auto"
-                >
-                  <Button
-                    variant="outline"
-                    color="white"
-                    size="small"
-                    className="text-base! font-medium"
-                    style={{ fontFamily: "var(--font-raleway)" }}
+                <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
+                  {s.image && (
+                    <div data-swiper-parallax="-350">
+                      <Image
+                        src={s.image}
+                        alt={s.title}
+                        width={600}
+                        height={600}
+                        className={s.imageClass}
+                        style={s.imageStyle}
+                        priority={i === 0}
+                      />
+                    </div>
+                  )}
+                  <h1
+                    data-swiper-parallax-x="-200"
+                    data-swiper-parallax-y="-400"
+                    className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
                   >
-                    View Work
-                  </Button>
+                    {s.title}
+                  </h1>
+                  <p
+                    data-swiper-parallax="-360"
+                    className="text-sm opacity-80 font-medium leading-[140%] w-full"
+                  >
+                    {s.description}
+                  </p>
+                  <div
+                    data-swiper-parallax="-230"
+                    className="flex flex-col px-5 gap-2 text-white w-full"
+                  >
+                    <div className="flex flex-row justify-start gap-2.5">
+                      <span className="text-xs font-medium italic opacity-40">
+                        Role
+                      </span>
+                      <span className="text-xs font-medium opacity-80">
+                        {s.role}
+                      </span>
+                    </div>
+                    <div className="flex flex-row justify-start gap-2.5">
+                      <span className="text-xs font-medium italic opacity-40">
+                        Year
+                      </span>
+                      <span className="text-xs font-medium opacity-80">
+                        {s.year}
+                      </span>
+                    </div>
+                    <div className="flex flex-row justify-start gap-2.5">
+                      <span className="text-xs font-medium italic opacity-40">
+                        Skills
+                      </span>
+                      <span className="text-xs font-medium opacity-80">
+                        {s.skills}
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    data-swiper-parallax="-120"
+                    className="mt-5 w-full flex justify-center pointer-events-auto"
+                  >
+                    <Link href={s.href}>
+                      <Button
+                        variant="outline"
+                        color="white"
+                        size="small"
+                        className="text-base! font-medium"
+                        style={{ fontFamily: "var(--font-raleway)" }}
+                      >
+                        View Work
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
-              </div>
               </div>
             </div>
           </SwiperSlide>
