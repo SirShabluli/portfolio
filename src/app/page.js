@@ -44,6 +44,7 @@ const SLIDES = [
     description:
       "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
     descriptionClass: "text-black",
+    metaClass: "text-black",
     role: "Design & Frontend Development",
     year: "2024",
     skills: "Adobe Illustrator - Figma - HTML - CSS - Javascript",
@@ -52,8 +53,8 @@ const SLIDES = [
   {
     bg: "#23577A",
     image: "/images/vegas/vegassign.svg",
-    imageClass: "w-full h-auto",
-    imageStyle: { height: "220px", objectFit: "contain" },
+    imageClass: "",
+    imageStyle: { width: "100%", height: "320px", objectFit: "contain" },
     title: "Therapy",
     titleClass: "",
     description:
@@ -75,7 +76,7 @@ export default function Home() {
         modules={[Mousewheel, Parallax]}
         direction="vertical"
         loop
-        spaceBetween={0}
+        spaceBetween={50}
         parallax
         speed={1200}
         touchRatio={1.5}
@@ -99,6 +100,22 @@ export default function Home() {
                     className="object-cover opacity-15 pointer-events-none"
                   />
                 )}
+                {/* Top fade */}
+                <div
+                  className="absolute top-0 left-0 right-0 h-20 pointer-events-none z-10"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom, black 0%, transparent 100%)",
+                  }}
+                />
+                {/* Bottom fade */}
+                <div
+                  className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none z-10"
+                  style={{
+                    background:
+                      "linear-gradient(to top, black 0%, transparent 100%)",
+                  }}
+                />
                 {/* Slide content */}
                 <div className="absolute bottom-20 left-0 right-0 overflow-hidden z-20">
                   <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
@@ -141,7 +158,7 @@ export default function Home() {
                       data-swiper-parallax-y="-20"
                       data-swiper-parallax-opacity="0"
                       data-swiper-parallax-duration="600"
-                      className="flex flex-col px-5 gap-2 text-white w-full"
+                      className={`flex flex-col px-5 gap-2 w-full ${s.metaClass ?? "text-white"}`}
                     >
                       <div className="flex flex-row justify-start gap-2.5">
                         <span className="text-xs font-medium italic opacity-40">
