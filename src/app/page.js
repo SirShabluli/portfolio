@@ -44,7 +44,7 @@ const SLIDES = [
     skills: "Adobe Illustrator - Figma - HTML - CSS - Javascript",
   },
   {
-    bg: "#533483",
+    bg: "#23577A",
     image: "/images/vegas/vegassign.svg",
     imageClass: "w-full h-auto",
     imageStyle: { height: "220px", objectFit: "contain" },
@@ -58,11 +58,9 @@ const SLIDES = [
   },
 ];
 
-
 export default function Home() {
   const [current, setCurrent] = useState(0);
   const contentRef = useRef(null);
-
 
   const slide = SLIDES[current];
 
@@ -72,7 +70,7 @@ export default function Home() {
       <Swiper
         direction="vertical"
         loop
-        speed={700}
+        speed={300}
         className="absolute inset-0 w-full h-full"
         onSlideChangeTransitionEnd={(swiper) => setCurrent(swiper.realIndex)}
       >
@@ -84,7 +82,7 @@ export default function Home() {
                   src={s.bgImage}
                   alt=""
                   fill
-                  className="object-cover opacity-10 pointer-events-none"
+                  className="object-cover opacity-100 pointer-events-none"
                 />
               )}
             </div>
