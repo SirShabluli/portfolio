@@ -76,7 +76,7 @@ export default function Home() {
         loop
         spaceBetween={50}
         parallax
-        speed={1500}
+        speed={1200}
         touchRatio={1.5}
         longSwipesRatio={0.1}
         mousewheel={{ sensitivity: 1 }}
@@ -85,88 +85,112 @@ export default function Home() {
       >
         {SLIDES.map((s, i) => (
           <SwiperSlide key={i}>
-            <div className="w-full h-full" style={{ backgroundColor: s.bg }}>
-              {s.bgImage && (
-                <Image
-                  src={s.bgImage}
-                  alt=""
-                  fill
-                  className="object-cover opacity-100 pointer-events-none"
+            <div className="w-full h-full px-4">
+              <div
+                className="w-full h-full rounded-2xl overflow-hidden"
+                style={{ backgroundColor: s.bg }}
+              >
+                {s.bgImage && (
+                  <Image
+                    src={s.bgImage}
+                    alt=""
+                    fill
+                    className="object-cover opacity-15 pointer-events-none"
+                  />
+                )}
+{/* Bottom fade */}
+                <div
+                  className="absolute inset-x-0 bottom-0 h-12 pointer-events-none z-10"
+                  style={{
+                    background: "linear-gradient(to top, black, transparent)",
+                  }}
                 />
-              )}
-              {/* Slide content */}
-              <div className="absolute bottom-20 left-0 right-0 overflow-hidden">
-                <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
-                  {s.image && (
-                    <div data-swiper-parallax="-350">
-                      <Image
-                        src={s.image}
-                        alt={s.title}
-                        width={600}
-                        height={600}
-                        className={s.imageClass}
-                        style={s.imageStyle}
-                        priority={i === 0}
-                      />
-                    </div>
-                  )}
-                  <h1
-                    data-swiper-parallax-x="-200"
-                    data-swiper-parallax-y="-400"
-                    className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
-                  >
-                    {s.title}
-                  </h1>
-                  <p
-                    data-swiper-parallax="-360"
-                    className="text-sm opacity-80 font-medium leading-[140%] w-full"
-                  >
-                    {s.description}
-                  </p>
-                  <div
-                    data-swiper-parallax="-230"
-                    className="flex flex-col px-5 gap-2 text-white w-full"
-                  >
-                    <div className="flex flex-row justify-start gap-2.5">
-                      <span className="text-xs font-medium italic opacity-40">
-                        Role
-                      </span>
-                      <span className="text-xs font-medium opacity-80">
-                        {s.role}
-                      </span>
-                    </div>
-                    <div className="flex flex-row justify-start gap-2.5">
-                      <span className="text-xs font-medium italic opacity-40">
-                        Year
-                      </span>
-                      <span className="text-xs font-medium opacity-80">
-                        {s.year}
-                      </span>
-                    </div>
-                    <div className="flex flex-row justify-start gap-2.5">
-                      <span className="text-xs font-medium italic opacity-40">
-                        Skills
-                      </span>
-                      <span className="text-xs font-medium opacity-80">
-                        {s.skills}
-                      </span>
-                    </div>
-                  </div>
-                  <div
-                    data-swiper-parallax="-120"
-                    className="mt-5 w-full flex justify-center pointer-events-auto"
-                  >
-                    <Link href={s.href}>
-                      <Button
-                        variant="outline"
-                        color="white"
-                        size="small"
-                        className="text-base! font-medium"
-                        style={{ fontFamily: "var(--font-raleway)" }}
+                {/* Slide content */}
+                <div className="absolute bottom-20 left-0 right-0 overflow-hidden z-20">
+                  <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
+                    {s.image && (
+                      <div
+                        data-swiper-parallax-y="-120"
+                        data-swiper-parallax-scale="0.85"
+                        data-swiper-parallax-opacity="0"
+                        data-swiper-parallax-duration="1400"
                       >
-                        View Work
-                      </Button>
-                    </Link>
+                        <Image
+                          src={s.image}
+                          alt={s.title}
+                          width={600}
+                          height={600}
+                          className={s.imageClass}
+                          style={s.imageStyle}
+                          priority={i === 0}
+                        />
+                      </div>
+                    )}
+                    <h1
+                      data-swiper-parallax-x="-80"
+                      data-swiper-parallax-y="-60"
+                      data-swiper-parallax-opacity="0"
+                      data-swiper-parallax-duration="1000"
+                      className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
+                    >
+                      {s.title}
+                    </h1>
+                    <p
+                      data-swiper-parallax-y="-40"
+                      data-swiper-parallax-opacity="0"
+                      data-swiper-parallax-duration="800"
+                      className="text-sm opacity-80 font-medium leading-[140%] w-full"
+                    >
+                      {s.description}
+                    </p>
+                    <div
+                      data-swiper-parallax-y="-20"
+                      data-swiper-parallax-opacity="0"
+                      data-swiper-parallax-duration="600"
+                      className="flex flex-col px-5 gap-2 text-white w-full"
+                    >
+                      <div className="flex flex-row justify-start gap-2.5">
+                        <span className="text-xs font-medium italic opacity-40">
+                          Role
+                        </span>
+                        <span className="text-xs font-medium opacity-80">
+                          {s.role}
+                        </span>
+                      </div>
+                      <div className="flex flex-row justify-start gap-2.5">
+                        <span className="text-xs font-medium italic opacity-40">
+                          Year
+                        </span>
+                        <span className="text-xs font-medium opacity-80">
+                          {s.year}
+                        </span>
+                      </div>
+                      <div className="flex flex-row justify-start gap-2.5">
+                        <span className="text-xs font-medium italic opacity-40">
+                          Skills
+                        </span>
+                        <span className="text-xs font-medium opacity-80">
+                          {s.skills}
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      data-swiper-parallax-opacity="0"
+                      data-swiper-parallax-duration="400"
+                      className="mt-5 w-full flex justify-center pointer-events-auto"
+                    >
+                      <Link href={s.href}>
+                        <Button
+                          variant="outline"
+                          color="white"
+                          size="small"
+                          className="text-base! font-medium"
+                          style={{ fontFamily: "var(--font-raleway)" }}
+                        >
+                          View Work
+                        </Button>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -175,34 +199,6 @@ export default function Home() {
         ))}
       </Swiper>
 
-      {/* Top gradient + nav */}
-      <div
-        className="absolute top-0 left-0 right-0 z-10 px-6 pt-8 pb-24 pointer-events-none"
-        style={{
-          background: "linear-gradient(to bottom, black 0%, transparent 100%)",
-        }}
-      >
-        <div className="flex items-center justify-between pointer-events-auto">
-          <span className="text-lg font-bold uppercase">Eyal Mordechai</span>
-          <button
-            className="flex justify-center flex-col gap-1.5 cursor-pointer"
-            aria-label="Menu"
-          >
-            <span className="block w-6 h-px bg-white" />
-            <span className="block w-6 h-px bg-white" />
-            <span className="block w-4 h-px bg-white" />
-          </button>
-        </div>
-      </div>
-
-      {/* Bottom gradient */}
-      <div
-        className="absolute bottom-0 left-0 right-0 z-10 pt-32 pointer-events-none"
-        style={{
-          background: "linear-gradient(to top, black 0%, transparent 100%)",
-          paddingBottom: "80px",
-        }}
-      />
 
       {/* Vertical dots */}
       <div className="flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
