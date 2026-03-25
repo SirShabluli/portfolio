@@ -1,9 +1,9 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Button from "./components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Mousewheel, Autoplay, Scrollbar } from "swiper/modules";
+import { Mousewheel, Parallax } from "swiper/modules";
 import "swiper/css";
 
 const SLIDES = [
@@ -61,18 +61,17 @@ const SLIDES = [
 
 export default function Home() {
   const [current, setCurrent] = useState(0);
-  const contentRef = useRef(null);
-
-  const slide = SLIDES[current];
 
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-black text-white select-none">
       {/* Swiper carousel */}
       <Swiper
-        modules={[Mousewheel, Autoplay]}
+        modules={[Mousewheel, Parallax]}
         direction="vertical"
         loop
-        speed={500}
+        spaceBetween={50}
+        parallax
+        speed={1500}
         touchRatio={5.5}
         longSwipesRatio={0.1}
         mousewheel={{ sensitivity: 1 }}
@@ -90,6 +89,77 @@ export default function Home() {
                   className="object-cover opacity-100 pointer-events-none"
                 />
               )}
+              {/* Slide content */}
+              <div className="absolute bottom-20 left-0 right-0 px-6 flex flex-col items-center gap-7 pointer-events-none">
+                {s.image && (
+                  <div data-swiper-parallax="-350">
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      width={600}
+                      height={600}
+                      className={s.imageClass}
+                      style={s.imageStyle}
+                      priority={i === 0}
+                    />
+                  </div>
+                )}
+                <h1
+                  data-swiper-parallax="-400"
+                  className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
+                >
+                  {s.title}
+                </h1>
+                <p
+                  data-swiper-parallax="-360"
+                  className="text-sm opacity-80 font-medium leading-[140%] w-full"
+                >
+                  {s.description}
+                </p>
+                <div
+                  data-swiper-parallax="-230"
+                  className="flex flex-col px-5 gap-2 text-white w-full"
+                >
+                  <div className="flex flex-row justify-start gap-2.5">
+                    <span className="text-xs font-medium italic opacity-40">
+                      Role
+                    </span>
+                    <span className="text-xs font-medium opacity-80">
+                      {s.role}
+                    </span>
+                  </div>
+                  <div className="flex flex-row justify-start gap-2.5">
+                    <span className="text-xs font-medium italic opacity-40">
+                      Year
+                    </span>
+                    <span className="text-xs font-medium opacity-80">
+                      {s.year}
+                    </span>
+                  </div>
+                  <div className="flex flex-row justify-start gap-2.5">
+                    <span className="text-xs font-medium italic opacity-40">
+                      Skills
+                    </span>
+                    <span className="text-xs font-medium opacity-80">
+                      {s.skills}
+                    </span>
+                  </div>
+                </div>
+                <div
+                  data-swiper-parallax="-120"
+                  className="mt-5 w-full flex justify-center pointer-events-auto"
+                >
+                  <Button
+                    variant="outline"
+                    color="white"
+                    size="small"
+                    className="text-base! font-medium"
+                    style={{ fontFamily: "var(--font-raleway)" }}
+                  >
+                    View Work
+                  </Button>
+                </div>
+              </div>
             </div>
           </SwiperSlide>
         ))}
@@ -138,61 +208,6 @@ export default function Home() {
             }}
           />
         ))}
-      </div>
-
-      {/* Bottom content — animated via GSAP */}
-      <div
-        ref={contentRef}
-        className="absolute bottom-20 left-0 right-0 z-20 px-6 flex flex-col items-center gap-7 pointer-events-none"
-      >
-        {slide.image && (
-          <Image
-            src={slide.image}
-            alt={slide.title}
-            width={600}
-            height={600}
-            className={slide.imageClass}
-            style={slide.imageStyle}
-            priority
-          />
-        )}
-        <h1
-          className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${slide.titleClass ?? ""}`}
-        >
-          {slide.title}
-        </h1>
-        <p className="text-sm opacity-80 font-medium leading-[140%] w-full">
-          {slide.description}
-        </p>
-        <div className="flex flex-col px-5 gap-2 text-white w-full">
-          <div className="flex flex-row justify-start gap-2.5">
-            <span className="text-xs font-medium italic opacity-40">Role</span>
-            <span className="text-xs font-medium opacity-80">{slide.role}</span>
-          </div>
-          <div className="flex flex-row justify-start gap-2.5">
-            <span className="text-xs font-medium italic opacity-40">Year</span>
-            <span className="text-xs font-medium opacity-80">{slide.year}</span>
-          </div>
-          <div className="flex flex-row justify-start gap-2.5">
-            <span className="text-xs font-medium italic opacity-40">
-              Skills
-            </span>
-            <span className="text-xs font-medium opacity-80">
-              {slide.skills}
-            </span>
-          </div>
-        </div>
-        <div className="mt-5 w-full flex justify-center pointer-events-auto">
-          <Button
-            variant="outline"
-            color="white"
-            size="small"
-            className="text-base! font-medium"
-            style={{ fontFamily: "var(--font-raleway)" }}
-          >
-            View Work
-          </Button>
-        </div>
       </div>
     </main>
   );
