@@ -3,6 +3,8 @@ import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Button from "./components/Button";
 import gsap from "gsap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const SLIDES = [
   {
@@ -133,37 +135,29 @@ export default function Home() {
 
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-black text-white select-none">
-      {/* Vertical sliding carousel — drag target */}
-      <div
-        className="absolute inset-0 cursor-grab active:cursor-grabbing"
-        style={{ touchAction: "none" }}
-        onTouchStart={onTouchStart}
-        onTouchEnd={onTouchEnd}
-        onMouseDown={onMouseDown}
-        onMouseUp={onMouseUp}
+      {/* Swiper carousel */}
+      <Swiper
+        direction="vertical"
+        loop
+        speed={700}
+        className="absolute inset-0 w-full h-full"
+        onSlideChangeTransitionEnd={(swiper) => setCurrent(swiper.realIndex)}
       >
-        {TAPE.map((s, i) => (
-          <div
-            key={i}
-            onTransitionEnd={i === offset ? onTransitionEnd : undefined}
-            className="absolute inset-0"
-            style={{
-              backgroundColor: s.bg,
-              transform: `translateY(${(i - offset) * 100}%)`,
-              transition: animated ? "transform 700ms ease-in-out" : "none",
-            }}
-          >
-            {s.bgImage && (
-              <Image
-                src={s.bgImage}
-                alt=""
-                fill
-                className="object-cover opacity-10 pointer-events-none"
-              />
-            )}
-          </div>
+        {SLIDES.map((s, i) => (
+          <SwiperSlide key={i}>
+            <div className="w-full h-full" style={{ backgroundColor: s.bg }}>
+              {s.bgImage && (
+                <Image
+                  src={s.bgImage}
+                  alt=""
+                  fill
+                  className="object-cover opacity-10 pointer-events-none"
+                />
+              )}
+            </div>
+          </SwiperSlide>
         ))}
-      </div>
+      </Swiper>
 
       {/* Top gradient + nav */}
       <div
