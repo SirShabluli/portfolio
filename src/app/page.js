@@ -85,9 +85,9 @@ export default function Home() {
       >
         {SLIDES.map((s, i) => (
           <SwiperSlide key={i}>
-            <div className="w-full h-full px-4">
+            <div className="w-full h-full">
               <div
-                className="w-full h-full rounded-2xl overflow-hidden"
+                className="w-full h-full overflow-hidden"
                 style={{ backgroundColor: s.bg }}
               >
                 {s.bgImage && (
@@ -98,7 +98,15 @@ export default function Home() {
                     className="object-cover opacity-15 pointer-events-none"
                   />
                 )}
-{/* Bottom fade */}
+                {/* Top fade */}
+                <div
+                  className="absolute inset-x-0 top-0 h-24 pointer-events-none z-10"
+                  style={{
+                    background:
+                      "linear-gradient(to bottom, black, transparent)",
+                  }}
+                />
+                {/* Bottom fade */}
                 <div
                   className="absolute inset-x-0 bottom-0 h-12 pointer-events-none z-10"
                   style={{
@@ -199,6 +207,22 @@ export default function Home() {
         ))}
       </Swiper>
 
+      {/* Bottom gradient */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-30"
+        style={{
+          background: "linear-gradient(to top, black 0%, transparent 100%)",
+        }}
+      />
+
+      {/* Vignette */}
+      <div
+        className="absolute inset-0 z-30 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.4) 100%)",
+        }}
+      />
 
       {/* Vertical dots */}
       <div className="flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
