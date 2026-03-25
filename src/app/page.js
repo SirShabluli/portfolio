@@ -77,7 +77,7 @@ export default function Home() {
         spaceBetween={50}
         parallax
         speed={1500}
-        touchRatio={5.5}
+        touchRatio={1.5}
         longSwipesRatio={0.1}
         mousewheel={{ sensitivity: 1 }}
         className="absolute inset-0 w-full h-full"
