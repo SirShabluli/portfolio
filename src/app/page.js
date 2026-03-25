@@ -1,8 +1,7 @@
 "use client";
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Button from "./components/Button";
-import gsap from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
@@ -59,77 +58,11 @@ const SLIDES = [
   },
 ];
 
-// Tape: [clone of last, ...real slides, clone of first]
-const TAPE = [SLIDES[SLIDES.length - 1], ...SLIDES, SLIDES[0]];
 
 export default function Home() {
-  const [offset, setOffset] = useState(1);
-  const [animated, setAnimated] = useState(true);
   const [current, setCurrent] = useState(0);
-  const dragStartY = useRef(null);
-  const isTransitioning = useRef(false);
   const contentRef = useRef(null);
-  const directionRef = useRef(1); // 1 = going next (up), -1 = going prev (down)
 
-  const goTo = useCallback((newOffset, dir) => {
-    if (isTransitioning.current) return;
-    isTransitioning.current = true;
-    directionRef.current = dir;
-
-    // Exit animation
-    gsap.to(contentRef.current, {
-      y: dir * -30,
-      opacity: 0,
-      duration: 0.3,
-      ease: "power2.in",
-      onComplete: () => {
-        // Update content mid-transition
-        const newCurrent = ((newOffset - 1) % SLIDES.length + SLIDES.length) % SLIDES.length;
-        setCurrent(newCurrent);
-        // Reset position for enter
-        gsap.set(contentRef.current, { y: dir * 30, opacity: 0 });
-        // Enter animation
-        gsap.to(contentRef.current, {
-          y: 0,
-          opacity: 1,
-          duration: 0.4,
-          ease: "power2.out",
-        });
-      },
-    });
-
-    setAnimated(true);
-    setOffset(newOffset);
-  }, []);
-
-  const next = useCallback(() => goTo(offset + 1, 1), [offset, goTo]);
-  const prev = useCallback(() => goTo(offset - 1, -1), [offset, goTo]);
-
-  const onTransitionEnd = () => {
-    isTransitioning.current = false;
-    if (offset === 0) {
-      setAnimated(false);
-      setOffset(SLIDES.length);
-    } else if (offset === TAPE.length - 1) {
-      setAnimated(false);
-      setOffset(1);
-    }
-  };
-
-  const onTouchStart = (e) => { dragStartY.current = e.touches[0].clientY; };
-  const onTouchEnd = (e) => {
-    if (dragStartY.current === null) return;
-    const delta = dragStartY.current - e.changedTouches[0].clientY;
-    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
-    dragStartY.current = null;
-  };
-  const onMouseDown = (e) => { dragStartY.current = e.clientY; };
-  const onMouseUp = (e) => {
-    if (dragStartY.current === null) return;
-    const delta = dragStartY.current - e.clientY;
-    if (Math.abs(delta) > 40) delta > 0 ? next() : prev();
-    dragStartY.current = null;
-  };
 
   const slide = SLIDES[current];
 
@@ -162,11 +95,16 @@ export default function Home() {
       {/* Top gradient + nav */}
       <div
         className="absolute top-0 left-0 right-0 z-10 px-6 pt-8 pb-24 pointer-events-none"
-        style={{ background: "linear-gradient(to bottom, black 0%, transparent 100%)" }}
+        style={{
+          background: "linear-gradient(to bottom, black 0%, transparent 100%)",
+        }}
       >
         <div className="flex items-center justify-between pointer-events-auto">
           <span className="text-lg font-bold uppercase">Eyal Mordechai</span>
-          <button className="flex justify-center flex-col gap-1.5 cursor-pointer" aria-label="Menu">
+          <button
+            className="flex justify-center flex-col gap-1.5 cursor-pointer"
+            aria-label="Menu"
+          >
             <span className="block w-6 h-px bg-white" />
             <span className="block w-6 h-px bg-white" />
             <span className="block w-4 h-px bg-white" />
@@ -188,14 +126,12 @@ export default function Home() {
         {SLIDES.map((_, i) => (
           <button
             key={i}
-            onClick={() => {
-              const dir = i > current ? 1 : -1;
-              goTo(i + 1, dir);
-            }}
+            onClick={() => setCurrent(i)}
             className="w-0.5 rounded-full transition-all duration-300 cursor-pointer"
             style={{
               height: i === current ? "1.5rem" : "0.5rem",
-              backgroundColor: i === current ? "white" : "rgba(255,255,255,0.3)",
+              backgroundColor:
+                i === current ? "white" : "rgba(255,255,255,0.3)",
             }}
           />
         ))}
@@ -217,7 +153,9 @@ export default function Home() {
             priority
           />
         )}
-        <h1 className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${slide.titleClass ?? ""}`}>
+        <h1
+          className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${slide.titleClass ?? ""}`}
+        >
           {slide.title}
         </h1>
         <p className="text-sm opacity-80 font-medium leading-[140%] w-full">
@@ -233,8 +171,12 @@ export default function Home() {
             <span className="text-xs font-medium opacity-80">{slide.year}</span>
           </div>
           <div className="flex flex-row justify-start gap-2.5">
-            <span className="text-xs font-medium italic opacity-40">Skills</span>
-            <span className="text-xs font-medium opacity-80">{slide.skills}</span>
+            <span className="text-xs font-medium italic opacity-40">
+              Skills
+            </span>
+            <span className="text-xs font-medium opacity-80">
+              {slide.skills}
+            </span>
           </div>
         </div>
         <div className="mt-5 w-full flex justify-center pointer-events-auto">
