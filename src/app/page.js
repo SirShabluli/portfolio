@@ -36,13 +36,14 @@ const SLIDES = [
     href: "/pagmar",
   },
   {
-    bg: "#0f3460",
+    bg: "#ffffff",
     image: null,
     imageClass: "",
     title: "MEN'S TOILET",
-    titleClass: "",
+    titleClass: "text-center text-black text-8xl font-dokdo leading-none",
     description:
       "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
+    descriptionClass: "text-black",
     role: "Design & Frontend Development",
     year: "2024",
     skills: "Adobe Illustrator - Figma - HTML - CSS - Javascript",
@@ -74,7 +75,7 @@ export default function Home() {
         modules={[Mousewheel, Parallax]}
         direction="vertical"
         loop
-        spaceBetween={50}
+        spaceBetween={0}
         parallax
         speed={1200}
         touchRatio={1.5}
@@ -98,21 +99,6 @@ export default function Home() {
                     className="object-cover opacity-15 pointer-events-none"
                   />
                 )}
-                {/* Top fade */}
-                <div
-                  className="absolute inset-x-0 top-0 h-24 pointer-events-none z-10"
-                  style={{
-                    background:
-                      "linear-gradient(to bottom, black, transparent)",
-                  }}
-                />
-                {/* Bottom fade */}
-                <div
-                  className="absolute inset-x-0 bottom-0 h-12 pointer-events-none z-10"
-                  style={{
-                    background: "linear-gradient(to top, black, transparent)",
-                  }}
-                />
                 {/* Slide content */}
                 <div className="absolute bottom-20 left-0 right-0 overflow-hidden z-20">
                   <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
@@ -139,7 +125,7 @@ export default function Home() {
                       data-swiper-parallax-y="-60"
                       data-swiper-parallax-opacity="0"
                       data-swiper-parallax-duration="1000"
-                      className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
+                      className={`w-full text-5xl font-medium flex justify-center ${s.titleClass ?? ""}`}
                     >
                       {s.title}
                     </h1>
@@ -147,7 +133,7 @@ export default function Home() {
                       data-swiper-parallax-y="-40"
                       data-swiper-parallax-opacity="0"
                       data-swiper-parallax-duration="800"
-                      className="text-sm opacity-80 font-medium leading-[140%] w-full"
+                      className={`text-sm opacity-80 font-medium leading-[140%] w-full ${s.descriptionClass ?? ""}`}
                     >
                       {s.description}
                     </p>
