@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import Image from "next/image";
 import Button from "./components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Mousewheel } from "swiper/modules";
+import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 
 const SLIDES = [
@@ -69,17 +69,14 @@ export default function Home() {
     <main className="relative w-screen h-screen overflow-hidden bg-black text-white select-none">
       {/* Swiper carousel */}
       <Swiper
-        modules={[FreeMode, Mousewheel]}
+        modules={[Mousewheel]}
         direction="vertical"
         loop
-        speed={600}
-        freeMode={{
-          sticky: true,
-          momentumRatio: 0.5,
-          momentumVelocityRatio: 0.8,
-        }}
-        mousewheel={{ sensitivity: 10 }}
+        speed={500}
+        touchRatio={1.5}
+        mousewheel={{ sensitivity: 1 }}
         className="absolute inset-0 w-full h-full"
+        onTouchEnd={(swiper) => swiper.slideToClosest()}
         onSlideChangeTransitionEnd={(swiper) => setCurrent(swiper.realIndex)}
       >
         {SLIDES.map((s, i) => (
