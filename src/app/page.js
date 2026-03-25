@@ -90,7 +90,8 @@ export default function Home() {
                 />
               )}
               {/* Slide content */}
-              <div className="absolute bottom-20 left-0 right-0 px-6 flex flex-col items-center gap-7 pointer-events-none">
+              <div className="absolute bottom-20 left-0 right-0 overflow-hidden">
+              <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
                 {s.image && (
                   <div data-swiper-parallax="-350">
                     <Image
@@ -105,7 +106,8 @@ export default function Home() {
                   </div>
                 )}
                 <h1
-                  data-swiper-parallax="-400"
+                  data-swiper-parallax-x="-200"
+                  data-swiper-parallax-y="-400"
                   className={`w-full text-5xl font-medium flex justify-center leading-[1.1] ${s.titleClass ?? ""}`}
                 >
                   {s.title}
@@ -159,6 +161,7 @@ export default function Home() {
                     View Work
                   </Button>
                 </div>
+              </div>
               </div>
             </div>
           </SwiperSlide>
