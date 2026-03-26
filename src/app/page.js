@@ -25,6 +25,7 @@ const SLIDES = [
   {
     bg: "#16213e",
     bgVideo: "/videos/pagmar/pagmarportraitr.mp4",
+    bgVideoFallback: "/images/pagmar/pagmarfallback.png",
     image: null,
     imageClass: "",
     title: "I'll Think About it Later",
@@ -103,12 +104,22 @@ export default function Home() {
                 )}
                 {s.bgVideo && (
                   <>
+                    {s.bgVideoFallback && (
+                      <Image
+                        src={s.bgVideoFallback}
+                        alt=""
+                        fill
+                        className="object-cover pointer-events-none"
+                      />
+                    )}
                     <video
                       src={s.bgVideo}
                       autoPlay
                       loop
                       muted
                       playsInline
+                      preload="none"
+                      poster={s.bgVideoFallback}
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
                     <div
