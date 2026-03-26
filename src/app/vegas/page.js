@@ -623,7 +623,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               "/images/vegas/mfp.png",
               "/images/vegas/meditate.jpg",
             ].map((src, i) => (
-              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
             )))}
           </div>
         </div>
@@ -647,7 +647,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               "/images/vegas/waterllama.png",
               "/images/vegas/appclue.jpg",
             ].map((src, i) => (
-              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
             )))}
           </div>
         </div>
