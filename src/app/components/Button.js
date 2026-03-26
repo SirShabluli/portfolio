@@ -20,7 +20,7 @@ export default function Button({
   const variantColor = {
     filled: {
       backgroundColor: color,
-      color: "var(--bg, #fff)",
+      color: color === "white" || color === "#ffffff" ? "#000000" : "#ffffff",
       borderColor: color,
     },
     outline: {

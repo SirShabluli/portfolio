@@ -39,6 +39,8 @@ const SLIDES = [
   },
   {
     bg: "#ffffff",
+    bgImage: "/images/main/toiletbg.png",
+    bgImageOpacity: 1,
     image: null,
     imageClass: "",
     subtitle: "A Guide to Proper Etiquette in the",
@@ -223,7 +225,7 @@ export default function Home() {
                     >
                       <Link href={s.href}>
                         <Button
-                          variant="outline"
+                          variant="filled"
                           color={s.buttonColor ?? "white"}
                           size="small"
                           className="text-base! font-medium"
