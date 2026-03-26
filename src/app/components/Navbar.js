@@ -4,9 +4,9 @@ import Link from "next/link";
 export default function Navbar() {
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-50 px-6 pt-8 pb-8 pointer-events-none"
+      className="fixed top-0 left-0 right-0 z-50 px-6 pt-4 pb-5 pointer-events-none"
       style={{
-        background: "linear-gradient(to bottom, black 0%, transparent 80%)",
+        background: "linear-gradient(to bottom, black 0%, transparent 100%)",
       }}
     >
       <div className="flex items-center justify-between pointer-events-auto">

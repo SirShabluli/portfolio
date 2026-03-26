@@ -41,12 +41,14 @@ const SLIDES = [
     bg: "#ffffff",
     image: null,
     imageClass: "",
+    subtitle: "A Guide to Proper Etiquette in the",
     title: "MEN'S TOILET",
-    titleClass: "text-center text-black text-8xl font-dokdo leading-none",
+    titleClass: "text-center text-black text-8xl font-dokdo leading-[0.85]",
     description:
       "Web game teaching bathroom etiquette with humor, code, and interactive challenges.",
     descriptionClass: "text-black",
     metaClass: "text-black",
+    buttonColor: "black",
     role: "Design & Frontend Development",
     year: "2024",
     skills: "Adobe Illustrator - Figma - HTML - CSS - Javascript",
@@ -54,9 +56,10 @@ const SLIDES = [
   },
   {
     bg: "#23577A",
-    image: "/images/vegas/vegassign.svg",
+    bgImage: "/images/main/vegasbg.png",
+    bgImageOpacity: 1,
+    image: null,
     imageClass: "",
-    imageStyle: { width: "100%", height: "320px", objectFit: "contain" },
     title: "Therapy",
     titleClass: "",
     description:
@@ -91,7 +94,7 @@ export default function Home() {
           <SwiperSlide key={i}>
             <div className="w-full h-full">
               <div
-                className="w-full h-full overflow-hidden"
+                className="w-full h-full overflow-hidden rounded-3xl"
                 style={{ backgroundColor: s.bg }}
               >
                 {s.bgImage && (
@@ -99,7 +102,8 @@ export default function Home() {
                     src={s.bgImage}
                     alt=""
                     fill
-                    className="object-cover opacity-15 pointer-events-none"
+                    className="object-cover pointer-events-none"
+                    style={{ opacity: s.bgImageOpacity ?? 0.15 }}
                   />
                 )}
                 {s.bgVideo && (
@@ -131,24 +135,8 @@ export default function Home() {
                     />
                   </>
                 )}
-                {/* Top fade */}
-                <div
-                  className="absolute top-0 left-0 right-0 h-20 pointer-events-none z-10"
-                  style={{
-                    background:
-                      "linear-gradient(to bottom, black 0%, transparent 100%)",
-                  }}
-                />
-                {/* Bottom fade */}
-                <div
-                  className="absolute bottom-0 left-0 right-0 h-10 pointer-events-none z-10"
-                  style={{
-                    background:
-                      "linear-gradient(to top, black 0%, transparent 100%)",
-                  }}
-                />
                 {/* Slide content */}
-                <div className="absolute bottom-20 left-0 right-0 overflow-hidden z-20">
+                <div className="absolute bottom-10 left-0 right-0 overflow-hidden z-20">
                   <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
                     {s.image && (
                       <div
@@ -168,6 +156,18 @@ export default function Home() {
                         />
                       </div>
                     )}
+                    {s.subtitle && (
+                      <p
+                        data-swiper-parallax-x="-80"
+                        data-swiper-parallax-y="-60"
+                        data-swiper-parallax-opacity="0"
+                        data-swiper-parallax-duration="1000"
+                        className="w-full text-center text-black text-2xl"
+                        style={{ fontFamily: "var(--font-reenie-beanie)" }}
+                      >
+                        {s.subtitle}
+                      </p>
+                    )}
                     <h1
                       data-swiper-parallax-x="-80"
                       data-swiper-parallax-y="-60"
@@ -181,7 +181,7 @@ export default function Home() {
                       data-swiper-parallax-y="-40"
                       data-swiper-parallax-opacity="0"
                       data-swiper-parallax-duration="800"
-                      className={`text-sm opacity-80 font-medium leading-[140%] w-full ${s.descriptionClass ?? ""}`}
+                      className={`text-sm px-4 opacity-80 font-medium text-center leading-[140%] w-full ${s.descriptionClass ?? ""}`}
                     >
                       {s.description}
                     </p>
@@ -224,7 +224,7 @@ export default function Home() {
                       <Link href={s.href}>
                         <Button
                           variant="outline"
-                          color="white"
+                          color={s.buttonColor ?? "white"}
                           size="small"
                           className="text-base! font-medium"
                           style={{ fontFamily: "var(--font-raleway)" }}
@@ -243,7 +243,7 @@ export default function Home() {
 
       {/* Bottom gradient */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-28 pointer-events-none z-30"
+        className="absolute bottom-0 left-0 right-0 h-14 pointer-events-none z-30"
         style={{
           background: "linear-gradient(to top, black 0%, transparent 100%)",
         }}
