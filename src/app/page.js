@@ -26,6 +26,8 @@ const SLIDES = [
     bg: "#16213e",
     bgVideo: "/videos/pagmar/pagmarportraitr.mp4",
     bgVideoFallback: "/images/pagmar/pagmarfallback.png",
+    bgVignette:
+      "radial-gradient(ellipse 100% 90% at 50% 30%, transparent 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.97) 100%)",
     image: null,
     imageClass: "",
     title: "I'll Think About it Later",
@@ -115,6 +117,7 @@ export default function Home() {
                         src={s.bgVideoFallback}
                         alt=""
                         fill
+                        priority
                         className="object-cover pointer-events-none"
                       />
                     )}
@@ -124,18 +127,17 @@ export default function Home() {
                       loop
                       muted
                       playsInline
-                      preload="none"
+                      preload="auto"
                       poster={s.bgVideoFallback}
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
-                    <div
-                      className="absolute inset-0 pointer-events-none"
-                      style={{
-                        background:
-                          "radial-gradient(ellipse 100% 60% at 50% 30%, transparent 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.97) 100%)",
-                      }}
-                    />
                   </>
+                )}
+                {s.bgVignette && (
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    style={{ background: s.bgVignette }}
+                  />
                 )}
                 {/* Slide content */}
                 <div className="absolute bottom-10 left-0 right-0 overflow-hidden z-20">

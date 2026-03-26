@@ -17,6 +17,7 @@ import {
 import MobilePhoneShowcase from "../components/MobilePhoneShowcase";
 import Lauryl from "../components/Lauryl";
 import HorizontalScroll from "../components/HorizontalScroll";
+
 import TextBlock from "../components/TextBlock";
 import VectorToggle from "../components/VectorToggle";
 import DayNightToggle from "../components/DayNightToggle";
@@ -162,13 +163,16 @@ export default function VegasPage() {
   const longPressHandlers = {};
 
   // Configuration for each section — memoized so PhoneShowcase's useGSAP doesn't re-run on every render
-  const sections = useMemo(() => [
-    { xPosition: 0, rotation: 0, screenIndex: 11 },
-    { xPosition: 0, rotation: Math.PI * 0.0, screenIndex: 12 },
-    { xPosition: 0, rotation: Math.PI * 0, screenIndex: 13 },
-    { xPosition: -25, rotation: Math.PI * 0, screenIndex: 14 },
-    { xPosition: 25, rotation: Math.PI * 2, screenIndex: 15 },
-  ], []);
+  const sections = useMemo(
+    () => [
+      { xPosition: 0, rotation: 0, screenIndex: 11 },
+      { xPosition: 0, rotation: Math.PI * 0.0, screenIndex: 12 },
+      { xPosition: 0, rotation: Math.PI * 0, screenIndex: 13 },
+      { xPosition: -25, rotation: Math.PI * 0, screenIndex: 14 },
+      { xPosition: 25, rotation: Math.PI * 2, screenIndex: 15 },
+    ],
+    [],
+  );
 
   return (
     <>
@@ -613,27 +617,14 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       >
         {/* Mobile marquee top */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div
-            className="flex gap-4 marquee-ltr"
-            style={{ width: "max-content" }}
-          >
-            {[
-              "/images/vegas/doctor.png",
-              "/images/vegas/mfp.png",
-              "/images/vegas/meditate.jpg",
+          <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
+            {[...Array(4)].flatMap(() => [
               "/images/vegas/doctor.png",
               "/images/vegas/mfp.png",
               "/images/vegas/meditate.jpg",
             ].map((src, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt=""
-                width={200}
-                height={200}
-                className="h-32 w-auto rounded-sm object-cover shrink-0"
-              />
-            ))}
+              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+            )))}
           </div>
         </div>
 
@@ -649,29 +640,15 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
         {/* Mobile marquee bottom */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div
-            className="flex gap-4 marquee-rtl"
-            style={{ width: "max-content" }}
-          >
-            {[
-              "/images/vegas/denstist.png",
-              "/images/vegas/oralb.jpg",
-              "/images/vegas/waterllama.png",
-              "/images/vegas/appclue.jpg",
+          <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
+            {[...Array(4)].flatMap(() => [
               "/images/vegas/denstist.png",
               "/images/vegas/oralb.jpg",
               "/images/vegas/waterllama.png",
               "/images/vegas/appclue.jpg",
             ].map((src, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt=""
-                width={200}
-                height={200}
-                className="h-32 w-auto rounded-sm object-cover shrink-0"
-              />
-            ))}
+              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+            )))}
           </div>
         </div>
         <div className="hidden lg:block col-span-9 relative h-full w-full">
@@ -761,16 +738,12 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="flex gap-4 marquee-ltr"
             style={{ width: "max-content" }}
           >
-            {[
+            {[...Array(4)].flatMap(() => [
               "/images/vegas/casinonight.jpg",
               "/images/vegas/slot.jpg",
               "/images/vegas/fountain.png",
               "/images/vegas/mc-casino.jpeg",
-              "/images/vegas/casinonight.jpg",
-              "/images/vegas/slot.jpg",
-              "/images/vegas/fountain.png",
-              "/images/vegas/mc-casino.jpeg",
-            ].map((src, i) => (
+            ]).map((src, i) => (
               <Image
                 key={i}
                 src={src}
@@ -799,18 +772,13 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="flex gap-4 marquee-rtl"
             style={{ width: "max-content" }}
           >
-            {[
+            {[...Array(4)].flatMap(() => [
               "/images/vegas/neoncasino.webp",
               "/images/vegas/vegassign.png",
               "/images/vegas/saussy.jpg",
               "/images/vegas/vegasnight1.jpg",
               "/images/vegas/seahouse.jpg",
-              "/images/vegas/neoncasino.webp",
-              "/images/vegas/vegassign.png",
-              "/images/vegas/saussy.jpg",
-              "/images/vegas/vegasnight1.jpg",
-              "/images/vegas/seahouse.jpg",
-            ].map((src, i) => (
+            ]).map((src, i) => (
               <Image
                 key={i}
                 src={src}
