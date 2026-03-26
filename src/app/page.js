@@ -24,6 +24,7 @@ const SLIDES = [
   },
   {
     bg: "#16213e",
+    bgVideo: "/videos/pagmar/pagmarportraitr.mp4",
     image: null,
     imageClass: "",
     title: "I'll Think About it Later",
@@ -99,6 +100,25 @@ export default function Home() {
                     fill
                     className="object-cover opacity-15 pointer-events-none"
                   />
+                )}
+                {s.bgVideo && (
+                  <>
+                    <video
+                      src={s.bgVideo}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                    />
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{
+                        background:
+                          "radial-gradient(ellipse 100% 60% at 50% 30%, transparent 0%, rgba(0,0,0,0.75) 60%, rgba(0,0,0,0.97) 100%)",
+                      }}
+                    />
+                  </>
                 )}
                 {/* Top fade */}
                 <div
