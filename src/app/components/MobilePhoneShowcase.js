@@ -41,7 +41,7 @@ export default function MobilePhoneShowcase({
   const steps = ["Challenge", section.screenNam || "Screen", "Solution"];
 
   return (
-    <div className="flex flex-col h-screen-dvh" style={{ backgroundColor: bgColor }}>
+    <div className="flex flex-col" style={{ height: "100svh", backgroundColor: bgColor }}>
       <Swiper
         direction="horizontal"
         initialSlide={0}
