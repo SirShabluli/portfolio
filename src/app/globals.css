@@ -2,8 +2,7 @@
 @import "lenis/dist/lenis.css";
 
 @utility h-screen-dvh {
-  height: 100vh;
-  height: 100dvh;
+  height: 100svh;
 }
 
 .swiper-wrapper {
