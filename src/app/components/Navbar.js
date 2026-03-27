@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const LINKS = [
@@ -12,11 +12,25 @@ const LINKS = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      setHidden(currentY > lastScrollY.current && currentY > 50);
+      lastScrollY.current = currentY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       {/* Navbar bar */}
-      <div
+      <motion.div
+        animate={{ y: hidden && !isOpen ? "-100%" : "0%" }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
         className="fixed top-0 left-0 right-0 z-50 px-6 pt-4 pb-5 pointer-events-none"
         style={{
           background: "linear-gradient(to bottom, black 0%, transparent 100%)",
@@ -51,7 +65,7 @@ export default function Navbar() {
             />
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Full-screen overlay */}
       <AnimatePresence>
