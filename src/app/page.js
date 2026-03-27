@@ -10,11 +10,10 @@ import "swiper/css";
 const SLIDES = [
   {
     bg: "#000000",
-    bgImage: "/images/netflix-dating/pajamaGrid.png",
-    image: "/images/netflix-dating/NetflixLogo.svg",
-    imageClass: "px-5 w-full h-auto  mb-0",
-    title: "Dating",
-    titleClass: "text-red-500 -mt-5",
+    image: "/images/main/netflixSplash.png",
+    imageClass: "w-full h-85 object-contain ",
+    title: "",
+    titleClass: "",
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
     role: "UI Design & Illustration",
@@ -60,11 +59,9 @@ const SLIDES = [
   },
   {
     bg: "#23577A",
-    bgImage: "/images/main/vegasbg.png",
-    bgImageOpacity: 1,
-    image: null,
-    imageClass: "",
-    title: "Therapy",
+    image: "/images/main/vegasSplash.png",
+    imageClass: "w-full h-85 object-contain ",
+    title: "",
     titleClass: "",
     description:
       "Illustration concept for a dating app where taste in shows becomes personality.",
@@ -107,8 +104,11 @@ export default function Home() {
                     src={s.bgImage}
                     alt=""
                     fill
-                    className="object-cover pointer-events-none"
-                    style={{ opacity: s.bgImageOpacity ?? 0.15 }}
+                    className="pointer-events-none"
+                    style={{
+                      opacity: s.bgImageOpacity ?? 0.15,
+                      objectFit: "cover",
+                    }}
                   />
                 )}
                 {s.bgVideo && (
@@ -139,10 +139,12 @@ export default function Home() {
                   </div>
                 )}
                 {/* Slide content */}
-                <div className="absolute bottom-10 left-0 right-0 overflow-hidden z-20">
-                  <div className="px-6 flex flex-col items-center gap-7 pointer-events-none">
+                <div className="absolute inset-0 top-16 bottom-10 z-20 flex flex-col px-6 pointer-events-none">
+                  {/* Top: image fills remaining space */}
+                  <div className="flex-1 flex items-center justify-center w-full min-h-0">
                     {s.image && (
                       <div
+                        className="w-full h-full flex items-center justify-center"
                         data-swiper-parallax-y="-120"
                         data-swiper-parallax-scale="0.85"
                         data-swiper-parallax-opacity="0"
@@ -159,6 +161,9 @@ export default function Home() {
                         />
                       </div>
                     )}
+                  </div>
+                  {/* Bottom: text content */}
+                  <div className="flex flex-col items-center gap-7 w-full">
                     {s.subtitle && (
                       <p
                         data-swiper-parallax-x="-80"
@@ -222,7 +227,7 @@ export default function Home() {
                     <div
                       data-swiper-parallax-opacity="0"
                       data-swiper-parallax-duration="400"
-                      className="mt-5 w-full flex justify-center pointer-events-auto"
+                      className="w-full flex justify-center pointer-events-auto"
                     >
                       <Link href={s.href}>
                         <Button
@@ -260,7 +265,6 @@ export default function Home() {
             "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.4) 100%)",
         }}
       />
-
 
       {/* Vertical dots */}
       <div className="flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">

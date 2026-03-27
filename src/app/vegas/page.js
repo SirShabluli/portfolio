@@ -349,11 +349,13 @@ export default function VegasPage() {
 
       {/* Title Section before PhoneShowcase */}
       <section className="min-h-screen pb-20 overflow-x-hidden bg-[#23577A] flex items-end justify-center">
-        <h1 className="display text-white">The Product</h1>
+        <h1 className="display flex justify-center text-center text-white">
+          The Product
+        </h1>
       </section>
 
       {/* Mobile alternative - visible only below lg */}
-      <div className="lg:hidden">
+      <div className="lg:hidden flex flex-col gap-8 bg-[#23577A]">
         {vegasSections.map((section) => (
           <MobilePhoneShowcase
             key={section.id}
@@ -617,14 +619,26 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       >
         {/* Mobile marquee top */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
-            {[...Array(4)].flatMap((_, r) => [
-              "/images/vegas/doctor.png",
-              "/images/vegas/mfp.png",
-              "/images/vegas/meditate.jpg",
-            ].map((src, i) => (
-              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
-            )))}
+          <div
+            className="flex gap-4 marquee-ltr"
+            style={{ width: "max-content" }}
+          >
+            {[...Array(4)].flatMap((_, r) =>
+              [
+                "/images/vegas/doctor.png",
+                "/images/vegas/mfp.png",
+                "/images/vegas/meditate.jpg",
+              ].map((src, i) => (
+                <Image
+                  key={`${r}-${i}`}
+                  src={src}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="h-32 w-auto rounded-sm object-cover shrink-0"
+                />
+              )),
+            )}
           </div>
         </div>
 
@@ -640,15 +654,27 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
         {/* Mobile marquee bottom */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
-            {[...Array(4)].flatMap((_, r) => [
-              "/images/vegas/denstist.png",
-              "/images/vegas/oralb.jpg",
-              "/images/vegas/waterllama.png",
-              "/images/vegas/appclue.jpg",
-            ].map((src, i) => (
-              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
-            )))}
+          <div
+            className="flex gap-4 marquee-rtl"
+            style={{ width: "max-content" }}
+          >
+            {[...Array(4)].flatMap((_, r) =>
+              [
+                "/images/vegas/denstist.png",
+                "/images/vegas/oralb.jpg",
+                "/images/vegas/waterllama.png",
+                "/images/vegas/appclue.jpg",
+              ].map((src, i) => (
+                <Image
+                  key={`${r}-${i}`}
+                  src={src}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="h-32 w-auto rounded-sm object-cover shrink-0"
+                />
+              )),
+            )}
           </div>
         </div>
         <div className="hidden lg:block col-span-9 relative h-full w-full">
@@ -738,21 +764,23 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="flex gap-4 marquee-ltr"
             style={{ width: "max-content" }}
           >
-            {[...Array(4)].flatMap(() => [
-              "/images/vegas/casinonight.jpg",
-              "/images/vegas/slot.jpg",
-              "/images/vegas/fountain.png",
-              "/images/vegas/mc-casino.jpeg",
-            ]).map((src, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt=""
-                width={200}
-                height={200}
-                className="h-32 w-auto rounded-sm object-cover shrink-0"
-              />
-            ))}
+            {[...Array(4)]
+              .flatMap(() => [
+                "/images/vegas/casinonight.jpg",
+                "/images/vegas/slot.jpg",
+                "/images/vegas/fountain.png",
+                "/images/vegas/mc-casino.jpeg",
+              ])
+              .map((src, i) => (
+                <Image
+                  key={i}
+                  src={src}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="h-32 w-auto rounded-sm object-cover shrink-0"
+                />
+              ))}
           </div>
         </div>
 
@@ -772,22 +800,24 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="flex gap-4 marquee-rtl"
             style={{ width: "max-content" }}
           >
-            {[...Array(4)].flatMap(() => [
-              "/images/vegas/neoncasino.webp",
-              "/images/vegas/vegassign.png",
-              "/images/vegas/saussy.jpg",
-              "/images/vegas/vegasnight1.jpg",
-              "/images/vegas/seahouse.jpg",
-            ]).map((src, i) => (
-              <Image
-                key={i}
-                src={src}
-                alt=""
-                width={200}
-                height={200}
-                className="h-32 w-auto rounded-sm object-cover shrink-0"
-              />
-            ))}
+            {[...Array(4)]
+              .flatMap(() => [
+                "/images/vegas/neoncasino.webp",
+                "/images/vegas/vegassign.png",
+                "/images/vegas/saussy.jpg",
+                "/images/vegas/vegasnight1.jpg",
+                "/images/vegas/seahouse.jpg",
+              ])
+              .map((src, i) => (
+                <Image
+                  key={i}
+                  src={src}
+                  alt=""
+                  width={200}
+                  height={200}
+                  className="h-32 w-auto rounded-sm object-cover shrink-0"
+                />
+              ))}
           </div>
         </div>
         {/* Collage: 9 cols, desktop only */}
@@ -1269,7 +1299,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
       >
         <PageGrid className="gap-y-8">
           <div className="col-span-12 lg:col-span-5 lg:col-start-2 flex flex-col justify-around mb-10 lg:mb-16">
-            <h2 className="text-8xl text-center lg:text-left lg:text-9xl font-bold leading-[120%] text-white">
+            <h2 className="text-8xl text-center lg:text-left lg:text-9xl font-bold leading-[120%] overflow-clip text-white">
               Key Insights
             </h2>
             <div>

@@ -6,46 +6,26 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 function Indicator({ steps, activeStep, textColor, bgColor, swiperRef }) {
-  const canGoLeft = activeStep > 0;
-  const canGoRight = activeStep < steps.length - 1;
-
   return (
-    <div className="flex items-center justify-center gap-3 py-4">
-      <button
-        onClick={() => swiperRef?.slidePrev()}
-        className="w-8 h-8 flex items-center justify-center border transition-opacity duration-300"
-        style={{
-          color: textColor,
-          opacity: canGoLeft ? 1 : 0,
-          borderColor: textColor,
-          background: "none",
-          cursor: canGoLeft ? "pointer" : "default",
-        }}
-      >
-        ←
-      </button>
-      <span
-        className="text-xs font-bold tracking-widest uppercase px-4 py-2"
-        style={{
-          backgroundColor: textColor,
-          color: bgColor,
-        }}
-      >
-        {steps[activeStep]}
-      </span>
-      <button
-        onClick={() => swiperRef?.slideNext()}
-        className="w-8 h-8 flex items-center justify-center border transition-opacity duration-300"
-        style={{
-          color: textColor,
-          opacity: canGoRight ? 1 : 0,
-          borderColor: textColor,
-          background: "none",
-          cursor: canGoRight ? "pointer" : "default",
-        }}
-      >
-        →
-      </button>
+    <div className="flex items-center justify-center gap-1 py-4 px-4">
+      {steps.map((label, i) => {
+        const isActive = i === activeStep;
+        return (
+          <button
+            key={i}
+            onClick={() => swiperRef?.slideTo(i)}
+            className="text-xs font-bold tracking-widest uppercase px-2 py-2 transition-all duration-300 cursor-pointer"
+            style={{
+              backgroundColor: isActive ? textColor : "transparent",
+              color: isActive ? bgColor : textColor,
+              border: `1px solid ${textColor}`,
+              opacity: isActive ? 1 : 0.5,
+            }}
+          >
+            {label}
+          </button>
+        );
+      })}
     </div>
   );
 }
@@ -55,29 +35,33 @@ export default function MobilePhoneShowcase({
   bgColor = "#23577A",
   textColor = "#ffffff",
 }) {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(0);
   const [swiperRef, setSwiperRef] = useState(null);
 
-  const steps = [
-    section.challenge.label,
-    section.screenName || "screen",
-    section.solution.label,
-  ];
+  const steps = ["Challenge", section.screenNam || "Screen", "Solution"];
 
   return (
-    <div className="flex flex-col" style={{ backgroundColor: bgColor }}>
+    <div className="flex flex-col h-full " style={{ backgroundColor: bgColor }}>
       <Swiper
         direction="horizontal"
-        initialSlide={1}
+        initialSlide={0}
         touchAngle={30}
         speed={400}
         onSwiper={setSwiperRef}
         onSlideChange={(swiper) => setActiveStep(swiper.activeIndex)}
-        style={{ width: "100%", color: textColor }}
+        style={{ width: "100%", flex: 1, minHeight: 0, color: textColor }}
       >
         {/* Slide 1 - Challenge */}
         <SwiperSlide>
-          <div className="w-screen flex flex-col justify-center h-screen px-8 pt-16 gap-6">
+          <div className="w-screen flex flex-col justify-center  h-full px-8 pt-16 gap-6">
+            {section.screenName && (
+              <h2
+                className="text-5xl items-center opacity-70 font-medium italic"
+                style={{ color: textColor }}
+              >
+                {section.screenName}
+              </h2>
+            )}
             <TextBlock
               label={section.challenge.label}
               title={section.challenge.title}
@@ -89,14 +73,14 @@ export default function MobilePhoneShowcase({
 
         {/* Slide 2 - Phone */}
         <SwiperSlide>
-          <div className="w-screen flex items-end justify-center h-screen">
+          <div className="w-screen flex items-end justify-center h-full">
             {section.screenSrc && (
               <Image
                 src={section.screenSrc}
                 alt={`Screen ${section.id}`}
                 width={400}
                 height={800}
-                className="w-[80vw] h-auto"
+                className="w-[75vw] h-auto"
               />
             )}
           </div>
@@ -104,7 +88,7 @@ export default function MobilePhoneShowcase({
 
         {/* Slide 3 - Solution */}
         <SwiperSlide>
-          <div className="w-screen flex flex-col justify-center h-screen px-8 pt-16 gap-6">
+          <div className="w-screen flex flex-col justify-center h-full px-8 pt-16 gap-6">
             <TextBlock
               label={section.solution.label}
               title={section.solution.title}
