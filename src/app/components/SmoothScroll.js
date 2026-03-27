@@ -19,6 +19,10 @@ export default function SmoothScroll() {
     // Sync Lenis with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
 
+    // Prevent ScrollTrigger from refreshing on mobile browser chrome resize
+    // (browser chrome appearing/disappearing changes window.innerHeight)
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
     const handleScrollTo = (e) => {
       const el = document.getElementById(e.detail);
       if (el) lenis.scrollTo(el, { offset: 0, duration: 1.2 });

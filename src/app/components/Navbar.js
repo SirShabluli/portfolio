@@ -18,7 +18,9 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       const currentY = window.scrollY;
-      setHidden(currentY > lastScrollY.current && currentY > 50);
+      const delta = currentY - lastScrollY.current;
+      if (Math.abs(delta) < 10) return;
+      setHidden(delta > 0 && currentY > 50);
       lastScrollY.current = currentY;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
