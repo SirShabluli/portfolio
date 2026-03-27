@@ -92,6 +92,7 @@ export default function Home() {
         longSwipesRatio={0.1}
         mousewheel={{ sensitivity: 1 }}
         className="absolute inset-0 w-full h-full"
+        onSlideChange={(swiper) => setCurrent(swiper.realIndex)}
         onSlideChangeTransitionEnd={(swiper) => setCurrent(swiper.realIndex)}
       >
         {SLIDES.map((s, i) => (
@@ -111,7 +112,7 @@ export default function Home() {
                   />
                 )}
                 {s.bgVideo && (
-                  <>
+                  <div className="absolute inset-0">
                     {s.bgVideoFallback && (
                       <Image
                         src={s.bgVideoFallback}
@@ -131,13 +132,11 @@ export default function Home() {
                       poster={s.bgVideoFallback}
                       className="absolute inset-0 w-full h-full object-cover pointer-events-none"
                     />
-                  </>
-                )}
-                {s.bgVignette && (
-                  <div
-                    className="absolute inset-0 pointer-events-none z-10"
-                    style={{ background: s.bgVignette }}
-                  />
+                    <div
+                      className="absolute inset-0 pointer-events-none"
+                      style={{ background: s.bgVignette }}
+                    />
+                  </div>
                 )}
                 {/* Slide content */}
                 <div className="absolute bottom-10 left-0 right-0 overflow-hidden z-20">
@@ -261,6 +260,7 @@ export default function Home() {
             "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.4) 100%)",
         }}
       />
+
 
       {/* Vertical dots */}
       <div className="flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">

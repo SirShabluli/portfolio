@@ -618,12 +618,12 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         {/* Mobile marquee top */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
           <div className="flex gap-4 marquee-ltr" style={{ width: "max-content" }}>
-            {[...Array(4)].flatMap(() => [
+            {[...Array(4)].flatMap((_, r) => [
               "/images/vegas/doctor.png",
               "/images/vegas/mfp.png",
               "/images/vegas/meditate.jpg",
             ].map((src, i) => (
-              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
             )))}
           </div>
         </div>
@@ -641,13 +641,13 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         {/* Mobile marquee bottom */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
           <div className="flex gap-4 marquee-rtl" style={{ width: "max-content" }}>
-            {[...Array(4)].flatMap(() => [
+            {[...Array(4)].flatMap((_, r) => [
               "/images/vegas/denstist.png",
               "/images/vegas/oralb.jpg",
               "/images/vegas/waterllama.png",
               "/images/vegas/appclue.jpg",
             ].map((src, i) => (
-              <Image key={i} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
+              <Image key={`${r}-${i}`} src={src} alt="" width={200} height={200} className="h-32 w-auto rounded-sm object-cover shrink-0" />
             )))}
           </div>
         </div>
