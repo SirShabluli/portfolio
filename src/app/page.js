@@ -76,7 +76,7 @@ export default function Home() {
   const [current, setCurrent] = useState(0);
 
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-black text-white select-none">
+    <main className="relative w-screen h-screen-dvh overflow-hidden bg-black text-white select-none">
       {/* Swiper carousel */}
       <Swiper
         modules={[Mousewheel, Parallax]}

@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
+@utility h-screen-dvh {
+  height: 100vh;
+  height: 100dvh;
+}
+
 .swiper-wrapper {
   transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
 }

@@ -112,7 +112,7 @@ export default function NetflixDatingPage() {
       </section>
 
       {/* Mobile Phone Showcase - visible only on mobile */}
-      <div className="md:hidden">
+      <div className="md:hidden flex flex-col gap-8 bg-[#000000]">
         {netflixSections.map((section) => (
           <MobilePhoneShowcase
             key={section.id}
