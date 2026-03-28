@@ -863,7 +863,7 @@ export default function PagmarPage() {
           />
         </div>
         {/* Slide 3: Pixel Perfect */}
-        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24">
+        <div className="min-w-screen w-screen lg:h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24">
           <PageGrid className="gap-y-8 w-full px-6 lg:px-12">
             {/* Title */}
             <div className="col-span-4 lg:col-span-10 lg:col-start-3">

@@ -119,7 +119,7 @@ export default function BiDiMockup() {
       {/* Mockup frame */}
       <div
         className="relative w-full rounded-sm overflow-hidden border border-white/10"
-        style={{ aspectRatio: "16/9", backgroundColor: "#080808" }}
+        style={{ aspectRatio: "16/9", backgroundColor: "#080808", fontSize: "clamp(0.4rem, 1.8vw, 1rem)", lineHeight: 1 }}
       >
         {/* ── Floating words (sides only, never center) ── */}
         {WORD_POSITIONS.map((pos, i) => {
@@ -138,7 +138,7 @@ export default function BiDiMockup() {
                 top: pos.top,
                 [resolvedSide]: pos.offset,
                 fontFamily: "'Masada', serif",
-                fontSize: "0.6rem",
+                fontSize: "0.6em",
                 color: "rgba(255,255,255,0.1)",
                 letterSpacing: "0.04em",
               }}
@@ -207,7 +207,7 @@ export default function BiDiMockup() {
             [isRTL ? "right" : "left"]: "0%",
             width: `${100 / 12}%`,
             alignItems: "center",
-            padding: "0 0.25rem",
+            padding: "0 0.25em",
             outline: showGrid ? "0.5px solid blue" : "none",
           }}
         >
@@ -217,7 +217,7 @@ export default function BiDiMockup() {
               className="transition-all duration-500"
               style={{
                 fontFamily: "'NarkissYairMono', monospace",
-                fontSize: "0.42rem",
+                fontSize: "0.42em",
                 color:
                   i === 1 ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.2)",
                 letterSpacing: "0.06em",
@@ -234,7 +234,7 @@ export default function BiDiMockup() {
             className="transition-all duration-500"
             style={{
               width: "1px",
-              height: "1.5rem",
+              height: "1.5em",
               backgroundColor: "rgba(255,255,255,0.4)",
               position: "absolute",
               top: "50%",
@@ -251,16 +251,16 @@ export default function BiDiMockup() {
             left: isRTL ? `${(100 / 12) * 9}%` : `${(100 / 12) * 1}%`,
             right: isRTL ? `${(100 / 12) * 1}%` : `${(100 / 12) * 9}%`,
             top: `${(100 / 9) * 1}%`,
-            gap: "0.2rem",
+            gap: "0.2em",
             textAlign: data.align,
-            margin: "0 0.3rem",
+            margin: "0 0.3em",
             outline: showGrid ? "0.5px solid blue" : "none",
           }}
         >
           <p
             style={{
               fontFamily: "'NarkissYairMono', monospace",
-              fontSize: "0.45rem",
+              fontSize: "0.45em",
               color: "rgba(255,255,255,1)",
               letterSpacing: "0.1em",
             }}
@@ -270,7 +270,7 @@ export default function BiDiMockup() {
           <p
             style={{
               fontFamily: "'NarkissYairMono', monospace",
-              fontSize: "0.8rem",
+              fontSize: "0.8em",
               color: "rgba(255,255,255,1)",
               letterSpacing: "0.08em",
             }}
@@ -279,15 +279,17 @@ export default function BiDiMockup() {
           </p>
         </div>
 
-        {/* ── Body text — cols 4–11 LTR / cols 2–9 RTL, vertically centered ── */}
+        {/* ── Body text — cols 4–11 LTR / cols 2–9 RTL, starts at row 2 ── */}
         <div
-          className="absolute top-0 bottom-0 flex flex-col justify-center"
+          className="absolute flex flex-col justify-start"
           style={{
             direction: data.dir,
             textAlign: data.align,
             left: isRTL ? `${(100 / 12) * 1}%` : `${(100 / 12) * 3}%`,
             right: isRTL ? `${(100 / 12) * 3}%` : `${(100 / 12) * 1}%`,
-            padding: "0 0.3rem",
+            top: `${(100 / 9) * 1}%`,
+            bottom: 0,
+            padding: "0 0.3em",
             outline: showGrid ? "0.5px solid blue" : "none",
             transition: "left 0.5s ease, right 0.5s ease",
           }}
@@ -298,7 +300,7 @@ export default function BiDiMockup() {
             style={{
               fontFamily: "'Masada', serif",
               fontWeight: 400,
-              fontSize: "0.78rem",
+              fontSize: "0.78em",
               color: "rgba(255,255,255,0.75)",
               lineHeight: 1.7,
               whiteSpace: "pre-line",
@@ -315,7 +317,7 @@ export default function BiDiMockup() {
           style={{
             [isRTL ? "left" : "right"]: `${100 / 12}%`,
             fontFamily: "'NarkissYairMono', monospace",
-            fontSize: "0.42rem",
+            fontSize: "0.42em",
             color: "rgba(255,255,255,0.18)",
             letterSpacing: "0.12em",
             outline: showGrid ? "1px solid red" : "none",
