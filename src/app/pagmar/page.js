@@ -252,10 +252,10 @@ export default function PagmarPage() {
             <h3 className="text-4xl font-semibold">The Challenge</h3>
             <p className="text-sm font-medium opacity-100 leading-[160%]">
               Traditional journaling treats thoughts like a document:
-              chronological, linear, one entry after another. But thinking isn&apos;t
-              like that. You lose your thread, want to branch off, need to add
-              context to something earlier—and the format fights you. It&apos;s hard
-              to start, harder to sustain.
+              chronological, linear, one entry after another. But thinking
+              isn&apos;t like that. You lose your thread, want to branch off,
+              need to add context to something earlier—and the format fights
+              you. It&apos;s hard to start, harder to sustain.
             </p>
           </div>
           <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex flex-col gap-4">
@@ -305,8 +305,8 @@ export default function PagmarPage() {
               title="Navigation should feel like wandering, not searching"
               className="text-white"
             >
-              Chronological order can&apos;t capture branching thoughts. There&apos;s a
-              magic to wandering.
+              Chronological order can&apos;t capture branching thoughts.
+              There&apos;s a magic to wandering.
             </TextBlock>
           </div>
           <div className="col-span-4 lg:col-span-2 lg:col-start-9">
@@ -323,8 +323,8 @@ export default function PagmarPage() {
           {/* Closing paragraph right */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
             <RevealText className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%]">
-              what if journaling wasn&apos;t about capturing thoughts in order, but
-              creating a space where they could exist, connect, and reveal
+              what if journaling wasn&apos;t about capturing thoughts in order,
+              but creating a space where they could exist, connect, and reveal
               themselves over time?
             </RevealText>
           </div>
@@ -374,8 +374,8 @@ export default function PagmarPage() {
               className="text-white"
             >
               Words from your writing float faintly in the background. When
-              you&apos;re stuck, press Tab — they come forward. Choose one, receive a
-              question that helps you go deeper.
+              you&apos;re stuck, press Tab — they come forward. Choose one,
+              receive a question that helps you go deeper.
             </TextBlock>
           </div>
           <div
@@ -637,8 +637,8 @@ export default function PagmarPage() {
               className="text-white"
             >
               Not everything you write carries equal weight. Some moments matter
-              more. Some words hold emotional charge. But in the flow, it&apos;s hard
-              to see which ones.
+              more. Some words hold emotional charge. But in the flow, it&apos;s
+              hard to see which ones.
             </TextBlock>
           </div>
           <div className="col-span-4 lg:col-span-3 lg:col-start-7">
@@ -725,8 +725,8 @@ export default function PagmarPage() {
               title="Creating Presence Without Distraction"
               className="text-white"
             >
-              Sound and particles can unlock emotion in ways text can&apos;t. The
-              challenge: creating atmospheres that adapt to your
+              Sound and particles can unlock emotion in ways text can&apos;t.
+              The challenge: creating atmospheres that adapt to your
               writing—comforting, energizing, reflective—without overwhelming.
             </TextBlock>
             <TextBlock
@@ -968,7 +968,9 @@ export default function PagmarPage() {
         id="reception"
         className="w-screen h-screen flex items-center justify-center bg-black"
       >
-        <h2 className="display text-center text-white">Reception and Impact</h2>
+        <h2 className="display overflow-hidden text-center text-white">
+          Reception and Impact
+        </h2>
       </section>
       <section
         id="presentation"
@@ -1046,8 +1048,8 @@ export default function PagmarPage() {
             title="Focus Over Options"
             className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
-            Less is more. With infinite AI possibilities, it&apos;s easy to get lost.
-            I&apos;d stay more focused on the overarching goal, prioritize
+            Less is more. With infinite AI possibilities, it&apos;s easy to get
+            lost. I&apos;d stay more focused on the overarching goal, prioritize
             ruthlessly, and eliminate features earlier.
           </TextBlock>
           <TextBlock
@@ -1055,9 +1057,10 @@ export default function PagmarPage() {
             title="Testing & Onboarding"
             className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
-            I&apos;d run more playtests across different demographics to optimize
-            clarity. Maybe add an on-demand help button—contextual guidance at
-            every stage, so if you&apos;re stuck, help appears without breaking flow.
+            I&apos;d run more playtests across different demographics to
+            optimize clarity. Maybe add an on-demand help button—contextual
+            guidance at every stage, so if you&apos;re stuck, help appears
+            without breaking flow.
           </TextBlock>
         </PageGrid>
       </section>

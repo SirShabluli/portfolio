@@ -9,6 +9,7 @@ import HorizontalScroll from "../components/HorizontalScroll";
 import TypographySection from "../components/TypographySection";
 import ColorPalette from "../components/ColorPalette";
 import { toiletTypography, toiletColors } from "../../data/projectData";
+import MobileToiletShowcase from "../components/MobileToiletShowcase";
 
 const inspoImages = [
   "/images/toilet/toiletinspo.jpg",
@@ -37,6 +38,8 @@ export default function Page() {
   }, []);
 
   useEffect(() => {
+    if (window.innerWidth < 1024) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const ctx = gsap.context(() => {
@@ -162,18 +165,18 @@ export default function Page() {
   return (
     <>
       {/* Project Intro Section */}
-      <section className="bg-white px-8 min-h-screen text-black flex items-center justify-center">
-        <div className="flex flex-col items-center max-w-7xl mx-auto relative z-10">
+      <section className="bg-white px-6 lg:px-8 min-h-screen text-black flex items-center justify-center">
+        <div className="flex flex-col items-center max-w-7xl mx-auto relative z-10 w-full">
           {/* Title */}
-          <div className="flex flex-col gap-4 justify-center items-center">
+          <div className="flex flex-col gap-2 lg:gap-4 justify-center items-center text-center">
             <span
-              className="text-5xl"
+              className="text-3xl lg:text-5xl"
               style={{ fontFamily: "var(--font-reenie-beanie)" }}
             >
               A Guide to Proper Etiquette in the
             </span>
             <h1
-              className="text-black text-[12rem] tracking-[-0.1em] -mt-15"
+              className="text-black text-[4.5rem] lg:text-[12rem] tracking-[-0.05em] lg:tracking-[-0.1em] leading-none lg:-mt-15"
               style={{ fontFamily: "var(--font-dokdo)" }}
             >
               Men&apos;s Toilet
@@ -187,13 +190,13 @@ export default function Page() {
             </a>
           </div>
           {/* Description + Metadata */}
-          <div className="flex flex-col text-left gap-1 mt-20 opacity-90 max-w-2xl">
+          <div className="flex flex-col text-left gap-1 mt-12 lg:mt-20 opacity-90 w-full lg:max-w-2xl">
             <p className="text-sm font-medium text-black text-left">
               An illustrated guide to the unspoken rules of men&apos;s restroom
               etiquette. A humorous take on social norms through visual
               storytelling and playful UI.
             </p>
-            <div className="flex flex-row gap-10 mt-10 text-left w-full">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-10 mt-8 lg:mt-10 text-left w-full">
               <div className="flex flex-col gap-1">
                 <p className="text-sm font-medium tracking-wider opacity-60">
                   role
@@ -232,13 +235,23 @@ export default function Page() {
       </section>
 
       {/* Content Section */}
-      <section className="bg-white px-8 min-h-screen text-black flex items-center justify-center">
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full">
+      <section className="bg-white px-6 lg:px-8 min-h-screen text-black flex items-center justify-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 max-w-7xl mx-auto w-full py-16 lg:py-0">
+          {/* Image - shown first on mobile */}
+          <div className="lg:col-span-4 lg:col-start-7 lg:row-span-2 lg:row-start-1 flex items-center justify-center">
+            <Image
+              src="/images/toilet/speak.svg"
+              alt="Toilet illustration"
+              width={400}
+              height={400}
+              className="w-2/3 lg:w-full h-auto"
+            />
+          </div>
           {/* Left - Display title */}
-          <h2 className="col-span-4 col-start-2 text-7xl text-black">
+          <h2 className="lg:col-span-4 lg:col-start-2 text-5xl lg:text-7xl text-black">
             The Rules No One Talks About
           </h2>
-          <div className="col-span-3 col-start-2">
+          <div className="lg:col-span-3 lg:col-start-2">
             <TextBlock
               label="the idea"
               title="Design and code a one-pager based on an article using basic HTML and CSS."
@@ -253,19 +266,9 @@ export default function Page() {
               despite the awkwardness, but because of it.
             </TextBlock>
           </div>
-          {/* Right - Image */}
-          <div className="col-span-4  col-start-7 row-span-2 row-start-1 flex items-center justify-center">
-            <Image
-              src="/images/toilet/speak.svg"
-              alt="Toilet illustration"
-              width={400}
-              height={400}
-              className="w-full h-auto"
-            />
-          </div>
         </div>
       </section>
-      <section className="relative w-full h-[120vh] overflow-hidden">
+      <section className="relative w-full h-[70vh] lg:h-[120vh] overflow-hidden">
         {inspoImages.map((src, i) => (
           <Image
             key={src}
@@ -277,11 +280,11 @@ export default function Page() {
           />
         ))}
         <div className="absolute inset-0 bg-black/40" />
-        <div className="absolute bottom-32 left-12 z-10 max-w-md">
-          <span className="text-5xl font-medium tracking-tight text-white">
+        <div className="absolute bottom-8 left-6 right-6 lg:bottom-32 lg:left-12 lg:right-auto z-10 lg:max-w-md">
+          <span className="text-3xl lg:text-5xl font-medium tracking-tight text-white">
             Inspiration
           </span>
-          <p className="text-sm text-white/90 mt-4 leading-relaxed">
+          <p className="text-sm text-white/90 mt-3 lg:mt-4 leading-relaxed">
             I drew inspiration from the walls of public bathrooms. In clubs and
             bathroom stalls, people leave messages - creating layers of graffiti
             and doodles. This allowed me to communicate ideas through humor and
@@ -292,9 +295,9 @@ export default function Page() {
         </div>
       </section>
       {/* Two TextBlocks Section */}
-      <section className="bg-white px-8 min-h-screen text-black flex items-center justify-center">
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full">
-          <div className="col-span-3 col-start-2">
+      <section className="bg-white px-6 lg:px-8 min-h-screen text-black flex items-center justify-center">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-12 lg:gap-8 max-w-7xl mx-auto w-full py-16 lg:py-0">
+          <div className="lg:col-span-3 lg:col-start-2">
             <TextBlock label="the challenge" title="uncomfortably inviting">
               Bathrooms are a topic people avoid. When I first pitched the idea,
               I saw the disgust on my classmates&apos; faces. That&apos;s when I
@@ -304,7 +307,7 @@ export default function Page() {
               lightness.
             </TextBlock>
           </div>
-          <div className="col-span-3 col-start-7">
+          <div className="lg:col-span-3 lg:col-start-7">
             <TextBlock label="my solution" title="Humor as Permission">
               I decided on a design that felt light and effortless—not trying
               too hard. Lots of humor. Something universal that men could relate
@@ -316,10 +319,15 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* Two TextBlocks Section 2 - Pinned */}
+      {/* Two TextBlocks Section 2 - Pinned (desktop) / Swipeable (mobile) */}
+      <div className="lg:hidden">
+        <MobileToiletShowcase />
+      </div>
+
+      {/* Desktop pinned version */}
       <section
         ref={pinSectionRef}
-        className="bg-white px-8 min-h-screen text-black flex items-center justify-center relative"
+        className="hidden lg:flex bg-white px-8 min-h-screen text-black items-center justify-center relative"
       >
         <div
           ref={overlayRef}
