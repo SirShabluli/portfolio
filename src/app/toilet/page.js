@@ -168,9 +168,9 @@ export default function Page() {
       <section className="bg-white px-6 lg:px-8 min-h-screen text-black flex items-center justify-center">
         <div className="flex flex-col items-center max-w-7xl mx-auto relative z-10 w-full">
           {/* Title */}
-          <div className="flex flex-col gap-2 lg:gap-4 justify-center items-center text-center">
+          <div className="flex flex-col mt-20 gap-2 lg:gap-4 justify-center items-center text-center">
             <span
-              className="text-3xl lg:text-5xl"
+              className="text-2xl lg:text-5xl"
               style={{ fontFamily: "var(--font-reenie-beanie)" }}
             >
               A Guide to Proper Etiquette in the
@@ -279,7 +279,7 @@ export default function Page() {
             style={{ opacity: activeInspo === i ? 1 : 0 }}
           />
         ))}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/70" />
         <div className="absolute bottom-8 left-6 right-6 lg:bottom-32 lg:left-12 lg:right-auto z-10 lg:max-w-md">
           <span className="text-3xl lg:text-5xl font-medium tracking-tight text-white">
             Inspiration
