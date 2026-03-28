@@ -57,7 +57,7 @@ const SCATTERED_WORDS = [
 ];
 const CLOUD_DATA = [
   {
-    centerEntity: "anxiety",
+    centerEntity: "Coffee",
     emotionWords: ["tension", "pressure", "rush", "freeze", "loop"],
   },
 ];

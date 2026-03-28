@@ -172,7 +172,7 @@ export default function PagmarPage() {
           </div>
           {/* Smaller title */}
           <div className="col-span-4 lg:col-start-4 lg:col-span-12 mt-32 lg:mt-0">
-            <p className="text-xs lg:text-2xl font-medium tracking-widest uppercase opacity-50 mb-4">
+            <p className="text-xl lg:text-2xl font-medium tracking-widest uppercase opacity-50 mb-4">
               A new AI integrated journaling experience
             </p>
           </div>
@@ -321,7 +321,7 @@ export default function PagmarPage() {
 
           {/* Closing paragraph right */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
-            <RevealText className="text-base lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%]">
+            <RevealText className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%]">
               what if journaling wasn't about capturing thoughts in order, but
               creating a space where they could exist, connect, and reveal
               themselves over time?
@@ -533,8 +533,8 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
           {/* Keyboard controls diagram */}
-          <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex items-center">
-            <div className="flex items-end gap-6">
+          <div className="col-span-4 lg:col-span-5 lg:col-start-7 flex items-center justify-center lg:justify-start">
+            <div className="flex flex-wrap items-end justify-center gap-6">
               {/* Esc */}
               <KeyCap label="Esc" size="large" bottomText="explore mode" />
               {/* Enter */}
