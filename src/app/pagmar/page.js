@@ -6,6 +6,7 @@ import PageGrid from "../components/PageGrid";
 import TextBlock from "../components/TextBlock";
 import ImageCarousel from "../components/ImageCarousel";
 import MindMapSVG from "../components/MindMapSVG";
+import MobileConstellationShowcase from "../components/MobileConstellationShowcase";
 import { LAYOUTS } from "../components/simulation/ConstellationCanvas";
 import Button from "../components/Button";
 import ConfigBackground from "../components/ConfigBackground";
@@ -167,7 +168,7 @@ export default function PagmarPage() {
           {/* Main title placeholder */}
           <div className="lg:col-start-4 col-span-4 lg:col-span-8">
             <h1 className="text-[4rem] lg:text-8xl font-bold leading-[1.2] tracking-tight">
-              I'll Think About it Later
+              I&apos;ll Think About it Later
             </h1>
           </div>
           {/* Smaller title */}
@@ -183,7 +184,7 @@ export default function PagmarPage() {
               A system that transforms how you write — spatially, emotionally,
               guided by questions that help you go deeper. Your thoughts become
               an explorable 3D world, revealing patterns and connections you
-              couldn't see before.
+              couldn&apos;t see before.
             </p>
             <div className="flex flex-wrap gap-6 lg:gap-10">
               <div className="flex flex-col gap-1">
@@ -251,9 +252,9 @@ export default function PagmarPage() {
             <h3 className="text-4xl font-semibold">The Challenge</h3>
             <p className="text-sm font-medium opacity-100 leading-[160%]">
               Traditional journaling treats thoughts like a document:
-              chronological, linear, one entry after another. But thinking isn't
+              chronological, linear, one entry after another. But thinking isn&apos;t
               like that. You lose your thread, want to branch off, need to add
-              context to something earlier—and the format fights you. It's hard
+              context to something earlier—and the format fights you. It&apos;s hard
               to start, harder to sustain.
             </p>
           </div>
@@ -304,7 +305,7 @@ export default function PagmarPage() {
               title="Navigation should feel like wandering, not searching"
               className="text-white"
             >
-              Chronological order can't capture branching thoughts. There's a
+              Chronological order can&apos;t capture branching thoughts. There&apos;s a
               magic to wandering.
             </TextBlock>
           </div>
@@ -322,7 +323,7 @@ export default function PagmarPage() {
           {/* Closing paragraph right */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
             <RevealText className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%]">
-              what if journaling wasn't about capturing thoughts in order, but
+              what if journaling wasn&apos;t about capturing thoughts in order, but
               creating a space where they could exist, connect, and reveal
               themselves over time?
             </RevealText>
@@ -373,7 +374,7 @@ export default function PagmarPage() {
               className="text-white"
             >
               Words from your writing float faintly in the background. When
-              you're stuck, press Tab — they come forward. Choose one, receive a
+              you&apos;re stuck, press Tab — they come forward. Choose one, receive a
               question that helps you go deeper.
             </TextBlock>
           </div>
@@ -434,7 +435,7 @@ export default function PagmarPage() {
             >
               I stripped it down to something familiar: a journal page. Date,
               time, a small question at the top — then space. Just text and a
-              blinking cursor that says "just write."
+              blinking cursor that says &quot;just write.&quot;
             </TextBlock>
           </div>
           <ScrollDissolve
@@ -506,7 +507,7 @@ export default function PagmarPage() {
               className="text-white"
             >
               Thoughts are messy — they branch, scatter, reconnect. Traditional
-              navigation (breadcrumbs, trees, nodes) can't handle that.
+              navigation (breadcrumbs, trees, nodes) can&apos;t handle that.
             </TextBlock>
           </div>
           <div className="col-span-4 lg:col-span-12">
@@ -615,10 +616,15 @@ export default function PagmarPage() {
         </PageGrid>
       </section>
 
+      {/* Feature #3 - AI-Generated Insights — mobile */}
+      <div className="lg:hidden">
+        <MobileConstellationShowcase />
+      </div>
+
       {/* Feature #3 - AI-Generated Insights */}
       <section
         id="ai-insights"
-        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+        className="hidden lg:flex w-full min-h-screen bg-black flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl lg:py-24  font-medium">
@@ -631,7 +637,7 @@ export default function PagmarPage() {
               className="text-white"
             >
               Not everything you write carries equal weight. Some moments matter
-              more. Some words hold emotional charge. But in the flow, it's hard
+              more. Some words hold emotional charge. But in the flow, it&apos;s hard
               to see which ones.
             </TextBlock>
           </div>
@@ -719,7 +725,7 @@ export default function PagmarPage() {
               title="Creating Presence Without Distraction"
               className="text-white"
             >
-              Sound and particles can unlock emotion in ways text can't. The
+              Sound and particles can unlock emotion in ways text can&apos;t. The
               challenge: creating atmospheres that adapt to your
               writing—comforting, energizing, reflective—without overwhelming.
             </TextBlock>
@@ -735,7 +741,22 @@ export default function PagmarPage() {
           </div>
 
           {/* Mood switcher */}
-          <div className="col-span-4 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch">
+          <div className="col-span-4 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch gap-4">
+            {/* Description — above buttons on mobile, middle on desktop */}
+            <div className="flex-1 flex items-center order-first lg:order-0">
+              <p
+                style={{
+                  fontFamily: "var(--font-raleway)",
+                  fontSize: "34px",
+                  fontWeight: 400,
+                  color: "white",
+                  lineHeight: 1.3,
+                  opacity: 0.5,
+                }}
+              >
+                {MOODS.find((m) => m.id === activeMood)?.description}
+              </p>
+            </div>
             <div className="flex flex-wrap gap-2">
               {MOODS.map((m) => (
                 <Button
@@ -749,20 +770,6 @@ export default function PagmarPage() {
                   {m.label}
                 </Button>
               ))}
-            </div>
-            <div className="flex-1 flex items-center">
-              <p
-                style={{
-                  fontFamily: "var(--font-raleway)",
-                  fontSize: "34px",
-                  fontWeight: 400,
-                  color: "white",
-                  lineHeight: 1.3,
-                  opacity: 0.5,
-                }}
-              >
-                {MOODS.find((m) => m.id === activeMood)?.description}
-              </p>
             </div>
           </div>
         </PageGrid>
@@ -856,10 +863,10 @@ export default function PagmarPage() {
           />
         </div>
         {/* Slide 3: Pixel Perfect */}
-        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
-          <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
+        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24">
+          <PageGrid className="gap-y-8 w-full px-6 lg:px-12">
             {/* Title */}
-            <div className="col-span-12 lg:col-span-10 lg:col-start-3">
+            <div className="col-span-4 lg:col-span-10 lg:col-start-3">
               <p className="text-xs lg:text-5xl text-white">
                 Pixel Perfect in a 3D Space
               </p>
@@ -888,7 +895,7 @@ export default function PagmarPage() {
             </div>
 
             {/* Two photos stacked */}
-            <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-row gap-4">
+            <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col lg:flex-row gap-4">
               <div
                 className="rounded-sm overflow-hidden"
                 style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
@@ -914,13 +921,13 @@ export default function PagmarPage() {
                 />
               </div>
             </div>
-          </div>
+          </PageGrid>
         </div>
         {/* Slide 4: Bidirectional Design */}
-        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24 px-6 lg:px-12">
-          <div className="grid grid-cols-12 gap-x-3 gap-y-8 w-full">
+        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex items-start pt-16 lg:pt-24">
+          <PageGrid className="gap-y-8 w-full px-6 lg:px-12">
             {/* Title */}
-            <div className="col-span-12 lg:col-span-10 lg:col-start-2">
+            <div className="col-span-4 lg:col-span-10 lg:col-start-2">
               <p className="text-xs lg:text-5xl text-white">
                 Bidirectional Design
               </p>
@@ -952,7 +959,7 @@ export default function PagmarPage() {
             <div className="col-span-4 lg:col-span-6 lg:col-start-6 flex flex-col gap-4">
               <BiDiMockup />
             </div>
-          </div>
+          </PageGrid>
         </div>
       </HorizontalScroll>
 
@@ -1032,15 +1039,15 @@ export default function PagmarPage() {
           >
             Delete unused code sooner. Avoid god components through better
             separation. Under pressure, prompts evolved inconsistently -
-            should've researched upfront, not iterated blindly.
+            should&apos;ve researched upfront, not iterated blindly.
           </TextBlock>
           <TextBlock
             label="#2"
             title="Focus Over Options"
             className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
-            Less is more. With infinite AI possibilities, it's easy to get lost.
-            I'd stay more focused on the overarching goal, prioritize
+            Less is more. With infinite AI possibilities, it&apos;s easy to get lost.
+            I&apos;d stay more focused on the overarching goal, prioritize
             ruthlessly, and eliminate features earlier.
           </TextBlock>
           <TextBlock
@@ -1048,9 +1055,9 @@ export default function PagmarPage() {
             title="Testing & Onboarding"
             className="text-white col-span-4 lg:col-span-3 lg:col-start-3"
           >
-            I'd run more playtests across different demographics to optimize
+            I&apos;d run more playtests across different demographics to optimize
             clarity. Maybe add an on-demand help button—contextual guidance at
-            every stage, so if you're stuck, help appears without breaking flow.
+            every stage, so if you&apos;re stuck, help appears without breaking flow.
           </TextBlock>
         </PageGrid>
       </section>
