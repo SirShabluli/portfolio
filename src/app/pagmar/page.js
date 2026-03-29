@@ -240,7 +240,7 @@ export default function PagmarPage() {
       {/* Research and Discovery */}
       <section
         id="research"
-        className="w-screen  h-20 flex text-center items-end justify-center bg-black"
+        className="w-screen min-h-[50vh] lg:h-screen flex text-center items-end justify-center bg-black"
       >
         <h2 className="display text-center text-white opacity-40">
           Research &amp; Discovery
@@ -349,7 +349,7 @@ export default function PagmarPage() {
       </section>
       <section
         id="key-features"
-        className="w-screen lg:h-screen flex items-center justify-center bg-black"
+        className="w-screen min-h-[50vh] lg:h-screen flex items-center justify-center bg-black"
       >
         <h2 className="display text-center text-white opacity-40">
           Key Features
@@ -754,7 +754,7 @@ export default function PagmarPage() {
           </div>
 
           {/* Mood switcher */}
-          <div className="col-span-4  min-h-100 mt-10 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch gap-20">
+          <div className="col-span-4 mt-6 lg:mt-10 lg:min-h-100 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch gap-8 lg:gap-20">
             {/* Description — above buttons on mobile, middle on desktop */}
             <div className="flex-1 flex items-center order-first lg:order-0">
               <motion.p
@@ -764,9 +764,9 @@ export default function PagmarPage() {
                   ease: "easeInOut",
                   delay: pendingMood ? 0 : 0.6,
                 }}
+                className="text-2xl lg:text-[34px]"
                 style={{
                   fontFamily: "var(--font-raleway)",
-                  fontSize: "34px",
                   fontWeight: 400,
                   color: "white",
                   lineHeight: 1.3,
@@ -982,7 +982,7 @@ export default function PagmarPage() {
       {/* Reception and Impact */}
       <section
         id="reception"
-        className="w-screen  flex items-center justify-center bg-black"
+        className="w-screen min-h-[50vh] lg:h-screen flex items-center justify-center bg-black"
       >
         <h2 className="display overflow-hidden text-center text-white">
           Reception and Impact
