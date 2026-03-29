@@ -76,14 +76,14 @@ export default function MobilePhoneShowcase({
 
         {/* Slide 2 - Phone */}
         <SwiperSlide>
-          <div className="w-screen flex items-end justify-center h-full">
+          <div className="w-screen flex items-end justify-center h-full overflow-hidden">
             {section.screenSrc && (
               <Image
                 src={section.screenSrc}
                 alt={`Screen ${section.id}`}
                 width={400}
                 height={800}
-                className="w-[75vw] h-auto"
+                className="max-w-[75vw] max-h-full w-auto h-auto object-contain"
               />
             )}
           </div>
