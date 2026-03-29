@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import PageGrid from "../components/PageGrid";
@@ -140,15 +141,16 @@ export default function PagmarPage() {
   const [activeLayoutId, setActiveLayoutId] = useState("tunnel");
   const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
   const [activeMood, setActiveMood] = useState("night");
-  const [moodVisible, setMoodVisible] = useState(true);
+  const [pendingMood, setPendingMood] = useState(null);
 
   function switchMood(id) {
     if (id === activeMood) return;
-    setMoodVisible(false);
-    setTimeout(() => {
-      setActiveMood(id);
-      setMoodVisible(true);
-    }, 400);
+    setPendingMood(id);   // mark as loading (keeps current visible)
+    setActiveMood(id);    // swap key → old exits, new mounts hidden
+  }
+
+  function handleVideoCanPlay(id) {
+    if (id === activeMood) setPendingMood(null); // fade in now that it's ready
   }
 
   return (
@@ -235,9 +237,9 @@ export default function PagmarPage() {
       {/* Research and Discovery */}
       <section
         id="research"
-        className="w-screen opacity-35 h-20 flex text-center items-end justify-center bg-black"
+        className="w-screen  h-20 flex text-center items-end justify-center bg-black"
       >
-        <h2 className="display text-center text-white">
+        <h2 className="display text-center text-white opacity-40">
           Research &amp; Discovery
         </h2>
       </section>
@@ -322,7 +324,7 @@ export default function PagmarPage() {
 
           {/* Closing paragraph right */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
-            <RevealText className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-60 leading-[130%]">
+            <RevealText className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-80 leading-[130%]">
               what if journaling wasn&apos;t about capturing thoughts in order,
               but creating a space where they could exist, connect, and reveal
               themselves over time?
@@ -330,7 +332,7 @@ export default function PagmarPage() {
           </div>
           <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-4 mt-10">
             <h3 className="text-4xl font-semibold">The Solution</h3>
-            <p className="text-sm font-medium opacity-100 leading-[160%]">
+            <p className="text-sm font-medium opacity-100 leading-[140%]">
               A system that turns journaling into a spatial, AI-guided
               experience. You write. The atmosphere responds. The question
               vanishes after you answer, leaving only your thoughts. You can
@@ -344,9 +346,11 @@ export default function PagmarPage() {
       </section>
       <section
         id="key-features"
-        className="w-screen h-screen flex items-center justify-center bg-black"
+        className="w-screen lg:h-screen flex items-center justify-center bg-black"
       >
-        <h2 className="display text-center text-white">Key Features</h2>
+        <h2 className="display text-center text-white opacity-40">
+          Key Features
+        </h2>
       </section>
       {/* Feature #1 - The Writing Experience */}
       <section
@@ -618,6 +622,11 @@ export default function PagmarPage() {
 
       {/* Feature #3 - AI-Generated Insights — mobile */}
       <div className="lg:hidden">
+        <div className="bg-black px-6 pt-16 pb-4">
+          <p className="section-title text-white">
+            Feature #3 — AI-Generated Insights
+          </p>
+        </div>
         <MobileConstellationShowcase />
       </div>
 
@@ -695,22 +704,23 @@ export default function PagmarPage() {
         className="relative w-full min-h-screen flex flex-col justify-center py-16 lg:pb-40 gap-8 overflow-hidden"
       >
         {/* Background video */}
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            opacity: moodVisible ? 1 : 0,
-            transition: "opacity 0.4s ease",
-          }}
-        >
-          <video
-            key={activeMood}
-            src={MOODS.find((m) => m.id === activeMood)?.video}
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover"
-          />
+        <div className="absolute inset-0 z-0">
+          <AnimatePresence>
+            <motion.video
+              key={activeMood}
+              src={MOODS.find((m) => m.id === activeMood)?.video}
+              autoPlay
+              loop
+              muted
+              playsInline
+              initial={{ opacity: 0 }}
+              animate={{ opacity: pendingMood ? 0 : 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+              onCanPlay={() => handleVideoCanPlay(activeMood)}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </AnimatePresence>
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <PageGrid className="relative z-10 gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
@@ -741,7 +751,7 @@ export default function PagmarPage() {
           </div>
 
           {/* Mood switcher */}
-          <div className="col-span-4 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch gap-4">
+          <div className="col-span-4  min-h-100 mt-10 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch gap-20">
             {/* Description — above buttons on mobile, middle on desktop */}
             <div className="flex-1 flex items-center order-first lg:order-0">
               <p

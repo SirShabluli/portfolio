@@ -76,13 +76,13 @@ export default function MobileConstellationShowcase() {
           <SwiperSlide key={slide.id}>
             <div className="w-screen flex flex-col h-full px-6 pt-0 pb-4">
               {/* Image with screen blend to remove black bg */}
-              <div className="flex-1 flex items-center justify-center overflow-hidden">
+              <div className="flex-1 flex items-center justify-center overflow-hidden min-h-0">
                 <Image
                   src={slide.img}
                   alt={slide.title}
                   width={600}
                   height={400}
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain max-h-full"
                   style={{ mixBlendMode: "screen" }}
                 />
               </div>
