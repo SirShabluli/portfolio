@@ -142,15 +142,18 @@ export default function PagmarPage() {
   const activeLayout = LAYOUTS.find((l) => l.id === activeLayoutId);
   const [activeMood, setActiveMood] = useState("night");
   const [pendingMood, setPendingMood] = useState(null);
+  const [visibleMoodText, setVisibleMoodText] = useState("night");
 
   function switchMood(id) {
     if (id === activeMood) return;
-    setPendingMood(id);   // mark as loading (keeps current visible)
-    setActiveMood(id);    // swap key → old exits, new mounts hidden
+    setPendingMood(id);
+    setActiveMood(id);
+    // swap description text after fade-out completes (0.4s)
+    setTimeout(() => setVisibleMoodText(id), 400);
   }
 
   function handleVideoCanPlay(id) {
-    if (id === activeMood) setPendingMood(null); // fade in now that it's ready
+    if (id === activeMood) setPendingMood(null);
   }
 
   return (
@@ -754,18 +757,23 @@ export default function PagmarPage() {
           <div className="col-span-4  min-h-100 mt-10 lg:col-span-4 lg:col-start-7 flex flex-col self-stretch gap-20">
             {/* Description — above buttons on mobile, middle on desktop */}
             <div className="flex-1 flex items-center order-first lg:order-0">
-              <p
+              <motion.p
+                animate={{ opacity: pendingMood ? 0 : 0.5 }}
+                transition={{
+                  duration: 0.4,
+                  ease: "easeInOut",
+                  delay: pendingMood ? 0 : 0.6,
+                }}
                 style={{
                   fontFamily: "var(--font-raleway)",
                   fontSize: "34px",
                   fontWeight: 400,
                   color: "white",
                   lineHeight: 1.3,
-                  opacity: 0.5,
                 }}
               >
-                {MOODS.find((m) => m.id === activeMood)?.description}
-              </p>
+                {MOODS.find((m) => m.id === visibleMoodText)?.description}
+              </motion.p>
             </div>
             <div className="flex flex-wrap gap-2">
               {MOODS.map((m) => (
@@ -827,10 +835,8 @@ export default function PagmarPage() {
       {/* Design System — horizontal scroll */}
       <HorizontalScroll id="design-system">
         {/* Slide 1: big title */}
-        <div className="min-w-screen w-screen h-screen shrink-0 bg-black flex justify-center items-center px-6 lg:px-12">
-          <p className="text-[clamp(3rem,10vw,9rem)] font-light  leading-none tracking-tight text-white">
-            Design system
-          </p>
+        <div className="min-w-screen w-screen min-h-80 shrink-0 bg-black flex justify-center items-center px-6 lg:px-12">
+          <p className="display">Design system</p>
         </div>
 
         {/* Slide 2: Typography */}
@@ -976,7 +982,7 @@ export default function PagmarPage() {
       {/* Reception and Impact */}
       <section
         id="reception"
-        className="w-screen h-screen flex items-center justify-center bg-black"
+        className="w-screen  flex items-center justify-center bg-black"
       >
         <h2 className="display overflow-hidden text-center text-white">
           Reception and Impact
@@ -1019,7 +1025,7 @@ export default function PagmarPage() {
               I&apos;m stubborn. Hours debugging bring immense satisfaction when
               solved.
             </TextBlock>
-            <RevealText className="text-base lg:text-5xl font-regular opacity-60 leading-[130%]">
+            <RevealText className="text-3xl lg:text-5xl font-regular opacity-60 leading-[130%]">
               I realized I could build complex things alone; research, design,
               code in parallel under pressure.
             </RevealText>

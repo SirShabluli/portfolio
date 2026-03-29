@@ -76,9 +76,9 @@ export default function LearnedTabs() {
         ))}
       </div>
       <div className="grid grid-cols-4 lg:grid-cols-12 gap-x-3 gap-y-10 lg:min-h-80">
-        <div className="col-span-4 lg:col-span-6 flex flex-col items-center gap-4">
+        <div className="col-span-4 lg:col-span-6 flex flex-col items-center gap-20 lg:gap-4">
           {activeTab.quote && (
-            <p className="heartbeat text-base lg:my-20 lg:text-9xl font-regular opacity-60 leading-[130%]">
+            <p className="heartbeat text-center text-9xl lg:my-20 lg:text-9xl font-bold opacity-60 lg:leading-[130%]">
               {count} Days
             </p>
           )}
