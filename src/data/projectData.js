@@ -382,7 +382,7 @@ export const toiletColors = [
 export const netflixSections = [
   {
     id: 1,
-    screenName: "Match",
+    screenName: "Something Good",
     screenSrc: "/images/netflix-dating/screens/match.png",
     quote: "might be your first step towards a new couch",
     challenge: {
@@ -414,7 +414,7 @@ export const netflixSections = [
   },
   {
     id: 3,
-    screenName: "Share",
+    screenName: "Share The App",
     screenSrc: "/images/netflix-dating/screens/share.png",
     quote: "Something smells fishy, but it might just be our mistake",
     challenge: {
@@ -430,7 +430,7 @@ export const netflixSections = [
   },
   {
     id: 4,
-    screenName: "Catfish",
+    screenName: "Something Bad",
     screenSrc: "/images/netflix-dating/screens/catfish.png",
     quote: "Something smells fishy, but it might just be our mistake",
     challenge: {
@@ -446,7 +446,7 @@ export const netflixSections = [
   },
   {
     id: 5,
-    screenName: "Premium",
+    screenName: "Premium Screen",
     screenSrc: "/images/netflix-dating/screens/premium.png",
     quote: "The upgrade that makes everything fall into place",
     challenge: {

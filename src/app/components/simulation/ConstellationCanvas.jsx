@@ -44,21 +44,19 @@ const LAYOUTS = [
 ];
 
 const SCATTERED_WORDS = [
-  "memory",
-  "doubt",
-  "noise",
-  "signal",
-  "body",
-  "absence",
-  "pattern",
-  "trace",
-  "echo",
-  "weight",
+  "sleep",
+  "must finish",
+  "possible",
+  "stressed",
+  "need to sleep",
+  "optimistic",
+  "I can do it",
+  "hold on",
 ];
 const CLOUD_DATA = [
   {
-    centerEntity: "Coffee",
-    emotionWords: ["tension", "pressure", "rush", "freeze", "loop"],
+    centerEntity: "Coffee Shop",
+    emotionWords: ["relaxed", "waste", "relief", "comfort", "lonely"],
   },
 ];
 const INSIGHTS = [

@@ -12,6 +12,7 @@ const SLIDES = [
     title: "Semantic Clusters",
     body: "After AI analysis, semantically related words cluster into floating clouds. Each cloud has a central concept with satellite words orbiting it — showing emotional themes side by side.",
     gif: "/images/pagmar/constellation-clouds.gif",
+    img: "/images/pagmar/cloud.png",
   },
   {
     id: "tunnel",
@@ -19,6 +20,7 @@ const SLIDES = [
     title: "Key Insights",
     body: "Key insights are placed on rotating circular rings receding into depth. Longer texts get larger rings. Looking through the tunnel gives a sense of accumulated layered thought.",
     gif: "/images/pagmar/constellation-tunnel.gif",
+    img: "/images/pagmar/tunnel.png",
   },
   {
     id: "scattered",
@@ -26,6 +28,7 @@ const SLIDES = [
     title: "Raw Input",
     body: "Words appear as they are written — unorganized, raw, filling the space. This is the unprocessed state before AI makes sense of it.",
     gif: "/images/pagmar/constellation-scattered.gif",
+    img: "/images/pagmar/scatter.png",
   },
 ];
 
@@ -59,7 +62,7 @@ export default function MobileConstellationShowcase() {
   const [swiperRef, setSwiperRef] = useState(null);
 
   return (
-    <div className="flex flex-col bg-black" style={{ height: "100svh" }}>
+    <div className="flex  flex-col bg-black" style={{ height: "100svh" }}>
       <Swiper
         direction="horizontal"
         initialSlide={0}
@@ -71,22 +74,24 @@ export default function MobileConstellationShowcase() {
       >
         {SLIDES.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <div className="w-screen flex flex-col h-full px-8 pt-16 pb-4 gap-6">
-              {/* GIF */}
+            <div className="w-screen flex flex-col h-full px-6 pt-0 pb-4">
+              {/* Image with screen blend to remove black bg */}
               <div className="flex-1 flex items-center justify-center overflow-hidden">
                 <Image
-                  src={slide.gif}
+                  src={slide.img}
                   alt={slide.title}
                   width={600}
                   height={400}
                   className="w-full h-full object-contain"
-                  unoptimized
+                  style={{ mixBlendMode: "screen" }}
                 />
               </div>
               {/* Text */}
-              <TextBlock label={slide.label} title={slide.title}>
-                {slide.body}
-              </TextBlock>
+              <div style={{ marginTop: "-24px" }}>
+                <TextBlock label={slide.label} title={slide.title}>
+                  {slide.body}
+                </TextBlock>
+              </div>
             </div>
           </SwiperSlide>
         ))}

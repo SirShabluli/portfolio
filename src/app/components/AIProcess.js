@@ -175,13 +175,13 @@ export default function AIProcess({ data }) {
 
       // Each step fades in when it hits the center of the viewport
       const steps = mobileRef.current.querySelectorAll(".mobile-step");
-      gsap.set(steps, { opacity: 0, scale: 0 });
+      gsap.set(steps, { opacity: 0, scale: 1 });
       steps.forEach((step) => {
         gsap.to(step, {
           opacity: 1,
-          scale: 1,
+
           duration: 0.3,
-          ease: "back.out(2.5)",
+          ease: "power2.out",
           scrollTrigger: {
             trigger: step,
             start: "top center",

@@ -10,13 +10,27 @@
 }
 
 @keyframes heartbeat {
-  0%   { transform: scale(1)    translate(0, 0); }
-  14%  { transform: scale(1.06) translate(-2px, -1px); }
-  28%  { transform: scale(1)    translate(2px, 1px); }
-  42%  { transform: scale(1.04) translate(-1px, 1px); }
-  56%  { transform: scale(1)    translate(1px, -1px); }
-  70%  { transform: scale(1)    translate(0, 0); }
-  100% { transform: scale(1)    translate(0, 0); }
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  14% {
+    transform: scale(1.06) translate(-2px, -1px);
+  }
+  28% {
+    transform: scale(1) translate(2px, 1px);
+  }
+  42% {
+    transform: scale(1.04) translate(-1px, 1px);
+  }
+  56% {
+    transform: scale(1) translate(1px, -1px);
+  }
+  70% {
+    transform: scale(1) translate(0, 0);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
 }
 
 .heartbeat {
@@ -154,12 +168,20 @@ body {
    =========================================== */
 
 @keyframes marquee-ltr {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes marquee-rtl {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 .marquee-ltr {
   animation: marquee-ltr 18s linear infinite;
@@ -185,8 +207,13 @@ body {
 @layer utilities {
   /* Display - Hero titles */
   .display {
-    @apply text-[5rem] md:text-[5rem] lg:text-display font-raleway font-bold leading-[1.2] tracking-normal;
+    @apply text-[3rem] md:text-[5rem] lg:text-display font-raleway font-bold leading-[1.2] tracking-normal;
   }
+  /* Section title - Feature/section headings (small on mobile, large on desktop) */
+  .section-title {
+    @apply text-2xl lg:text-5xl font-medium;
+  }
+
   /* Quote - Large decorative text */
   .quote {
     @apply text-[3rem] font-raleway font-medium opacity-50 leading-[130%] tracking-wide;

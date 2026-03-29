@@ -7,7 +7,7 @@ import "swiper/css";
 
 function Indicator({ steps, activeStep, textColor, bgColor, swiperRef }) {
   return (
-    <div className="flex items-center justify-center gap-1 py-4 px-4">
+    <div className="flex items-center justify-center gap-1 py-8 px-4">
       {steps.map((label, i) => {
         const isActive = i === activeStep;
         return (
@@ -41,7 +41,10 @@ export default function MobilePhoneShowcase({
   const steps = ["Challenge", section.screenNam || "Screen", "Solution"];
 
   return (
-    <div className="flex flex-col" style={{ height: "100svh", backgroundColor: bgColor }}>
+    <div
+      className="flex flex-col"
+      style={{ height: "100svh", backgroundColor: bgColor }}
+    >
       <Swiper
         direction="horizontal"
         initialSlide={0}
@@ -53,10 +56,10 @@ export default function MobilePhoneShowcase({
       >
         {/* Slide 1 - Challenge */}
         <SwiperSlide>
-          <div className="w-screen flex flex-col justify-center  h-full px-8 pt-16 gap-6">
+          <div className="w-screen flex flex-col justify-center  h-full px-6 pt-16 gap-12">
             {section.screenName && (
               <h2
-                className="text-5xl items-center opacity-70 font-medium italic"
+                className="text-5xl leading-[120%] items-center opacity-70 font-medium italic"
                 style={{ color: textColor }}
               >
                 {section.screenName}
@@ -88,7 +91,7 @@ export default function MobilePhoneShowcase({
 
         {/* Slide 3 - Solution */}
         <SwiperSlide>
-          <div className="w-screen flex flex-col justify-center h-full px-8 pt-16 gap-6">
+          <div className="w-screen flex flex-col justify-center h-full px-6 pt-16 gap-6">
             <TextBlock
               label={section.solution.label}
               title={section.solution.title}

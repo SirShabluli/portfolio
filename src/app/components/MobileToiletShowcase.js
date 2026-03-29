@@ -72,7 +72,7 @@ export default function MobileToiletShowcase() {
   return (
     <div className="flex flex-col bg-white" style={{ height: "100svh" }}>
       {/* Visual area — toilet always visible, overlay fades in on solution */}
-      <div className="flex-1 flex items-center justify-center relative min-h-0">
+      <div className="flex-1 flex items-center justify-center relative min-h-0 pt-16">
         {/* Toilet base — always shown */}
         <Image
           src="/images/toilet/Asla.svg"
@@ -122,7 +122,7 @@ export default function MobileToiletShowcase() {
       </div>
 
       {/* Text block — swaps based on active step */}
-      <div className="px-6 pb-4 text-black flex flex-col justify-start min-h-44">
+      <div className="px-6 py-6 text-black flex flex-col justify-start min-h-44">
         {activeStep === 0 ? (
           <TextBlock label="The Challenge" title="Cynics Don't Click">
             When people approach embarrassing projects, there&apos;s a natural

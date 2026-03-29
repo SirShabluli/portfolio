@@ -219,10 +219,10 @@ export default function PagmarPage() {
       {/* The Full Experience */}
       <section
         id="full-experience"
-        className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
+        className="w-full min-h-[50vh] bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-8 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             The Full Experience
           </p>
           {/* Video placeholder — replace src when ready */}
@@ -235,7 +235,7 @@ export default function PagmarPage() {
       {/* Research and Discovery */}
       <section
         id="research"
-        className="w-screen h-screen flex items-center justify-center bg-black"
+        className="w-screen opacity-35 h-20 flex text-center items-end justify-center bg-black"
       >
         <h2 className="display text-center text-white">
           Research &amp; Discovery
@@ -280,9 +280,9 @@ export default function PagmarPage() {
       {/* Anecdotes */}
       <section
         id="understanding"
-        className="bg-black py-16 lg:py-24 px-6 lg:px-12"
+        className="bg-black py-16 lg:py-24 px-0 lg:px-12"
       >
-        <PageGrid className="gap-y-12 gap-x-8 items-start">
+        <PageGrid className="gap-y-15 gap-x-8 items-start">
           <div className="col-span-4 lg:col-span-5 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl lg:py-24 font-semibold">
               Understanding the Space
@@ -354,7 +354,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-30"
       >
         <PageGrid className="gap-10 w-full px-6 lg:px-12">
-          <p className="col-span-4 font-medium lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl lg:my-20">
+          <p className="col-span-4 font-medium lg:col-span-10 lg:col-start-3 text-2xl lg:text-5xl lg:my-20">
             Feature #1 — The Writing Experience
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
@@ -400,7 +400,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen font-medium bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-30 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             The Composition
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
@@ -492,7 +492,7 @@ export default function PagmarPage() {
       {/* Feature #2 - Navigating the Mind Map */}
       <section id="mind-map" className="w-full bg-black pt-16 lg:pt-24">
         <PageGrid className="w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             Feature #2 — Navigating the Mind Map
           </p>
         </PageGrid>
@@ -577,7 +577,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             Composition Focus
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
@@ -627,7 +627,7 @@ export default function PagmarPage() {
         className="hidden lg:flex w-full min-h-screen bg-black flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl lg:py-24  font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-2xl lg:text-5xl lg:py-24  font-medium">
             Feature #3 — AI-Generated Insights
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
@@ -714,7 +714,7 @@ export default function PagmarPage() {
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <PageGrid className="relative z-10 gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:py-14 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:py-14 lg:col-span-10 lg:col-start-3 section-title">
             Feature #4 — Emotional Atmosphere
           </p>
 
@@ -780,7 +780,7 @@ export default function PagmarPage() {
       >
         <ConfigBackground />
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:py-24  lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:py-24  lg:col-span-10 lg:col-start-3 section-title">
             Building Tools to Build Faster
           </p>
           {/* Text blocks — left */}
@@ -867,7 +867,7 @@ export default function PagmarPage() {
           <PageGrid className="gap-y-8 w-full px-6 lg:px-12">
             {/* Title */}
             <div className="col-span-4 lg:col-span-10 lg:col-start-3">
-              <p className="text-xs lg:text-5xl text-white">
+              <p className="text-2xl lg:text-5xl text-white">
                 Pixel Perfect in a 3D Space
               </p>
             </div>
@@ -928,7 +928,7 @@ export default function PagmarPage() {
           <PageGrid className="gap-y-8 w-full px-6 lg:px-12">
             {/* Title */}
             <div className="col-span-4 lg:col-span-10 lg:col-start-2">
-              <p className="text-xs lg:text-5xl text-white">
+              <p className="text-2xl lg:text-5xl text-white">
                 Bidirectional Design
               </p>
             </div>
@@ -977,7 +977,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             Presentation
           </p>
           <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-[160%] opacity-80">
@@ -994,7 +994,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             What I Learned
           </p>
           <div className="min-h-[50rem] col-span-4 lg:col-span-10 lg:col-start-3">
@@ -1031,7 +1031,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             What I Would do differently
           </p>{" "}
           <TextBlock
@@ -1069,7 +1069,7 @@ export default function PagmarPage() {
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
-          <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-xs lg:text-5xl font-medium">
+          <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             Future Potential
           </p>
           <p className="col-span-4 lg:col-span-5 lg:col-start-3 text-sm font-medium leading-[160%] opacity-80">
