@@ -10,8 +10,11 @@ import "swiper/css";
 const SLIDES = [
   {
     bg: "#000000",
-    image: "/images/main/netflixSplash.png",
-    imageClass: "w-full h-85 object-contain ",
+    bgImage: "/images/main/netflixhero.png",
+    bgImageOpacity: 1,
+    bgVignette: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 70%)",
+    image: null,
+    imageClass: "",
     title: "",
     titleClass: "",
     description:
@@ -100,16 +103,24 @@ export default function Home() {
                 style={{ backgroundColor: s.bg }}
               >
                 {s.bgImage && (
-                  <Image
-                    src={s.bgImage}
-                    alt=""
-                    fill
-                    className="pointer-events-none"
-                    style={{
-                      opacity: s.bgImageOpacity ?? 0.15,
-                      objectFit: "cover",
-                    }}
-                  />
+                  <>
+                    <Image
+                      src={s.bgImage}
+                      alt=""
+                      fill
+                      className="pointer-events-none"
+                      style={{
+                        opacity: s.bgImageOpacity ?? 0.15,
+                        objectFit: "cover",
+                      }}
+                    />
+                    {s.bgVignette && (
+                      <div
+                        className="absolute inset-0 pointer-events-none z-10"
+                        style={{ background: s.bgVignette }}
+                      />
+                    )}
+                  </>
                 )}
                 {s.bgVideo && (
                   <div className="absolute inset-0">
