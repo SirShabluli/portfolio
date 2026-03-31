@@ -6,7 +6,8 @@ import Button from "./components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Parallax } from "swiper/modules";
 import "swiper/css";
-import DesktopCanvas from "./components/DesktopCanvas";
+import dynamic from "next/dynamic";
+const DesktopCanvas = dynamic(() => import("./components/DesktopCanvas"), { ssr: false });
 
 const SLIDES = [
   {
