@@ -1,8 +1,8 @@
 "use client";
 import { useState, useRef, useEffect, Suspense } from "react";
 import Link from "next/link";
-import { Canvas, useLoader, useFrame, extend } from "@react-three/fiber";
-import { useSpring, animated } from "@react-spring/three";
+import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
+import { useSpring } from "@react-spring/three";
 import { TextureLoader } from "three";
 import { shaderMaterial } from "@react-three/drei";
 
@@ -26,21 +26,15 @@ const PROJECTS = [
 ];
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
-// Vertex shader bends the mesh along Z → paper ripple feel.
-// Fragment shader just samples the texture + applies opacity.
 const PaperMaterial = shaderMaterial(
-  { uTexture: null, uOpacity: 1.0, uTime: 0.0 },
+  { uTexture: null, uOpacity: 1.0, uTexAspect: 1.0, uCardAspect: 1.0 },
 
   // ── VERTEX SHADER ──
   `
-    uniform float uTime;
     varying vec2 vUv;
     void main() {
       vUv = uv;
-      vec3 pos = position;
-      pos.z += sin(pos.x * 2.5 + uTime * 0.5) * 0.06;
-      pos.z += sin(pos.y * 3.0 + uTime * 0.4) * 0.05;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
   `,
 
@@ -48,9 +42,20 @@ const PaperMaterial = shaderMaterial(
   `
     uniform sampler2D uTexture;
     uniform float uOpacity;
+    uniform float uTexAspect;
+    uniform float uCardAspect;
     varying vec2 vUv;
     void main() {
-      vec4 color = texture2D(uTexture, vUv);
+      vec2 uv = vUv - 0.5;
+      float imgAspect = uTexAspect;
+      float cardAspect = uCardAspect;
+      if (imgAspect > cardAspect) {
+        uv.x *= cardAspect / imgAspect;
+      } else {
+        uv.y *= imgAspect / cardAspect;
+      }
+      uv += 0.5;
+      vec4 color = texture2D(uTexture, uv);
       color.a *= uOpacity;
       gl_FragColor = color;
     }
@@ -60,109 +65,151 @@ const PaperMaterial = shaderMaterial(
 extend({ PaperMaterial });
 
 // ─── CIRCLE LAYOUT ────────────────────────────────────────────────────────────
-// Cards sit on a horizontal ring (like a lazy susan).
-// The ring is rotated so the active card always faces the camera (front = -Z).
-//
-// RADIUS  — how big the circle is (Three.js units). Bigger = more spread out.
-// Each card's angle on the ring = (i / N) * 2π, then the whole ring is rotated
-// so that the active card's angle lands at the front (angle = 0 = -Z direction).
-const RADIUS = 3.5; // ← size of the ring
+const RADIUS = 3.5;
 const N = PROJECTS.length;
 
-// ─── CARD DIMENSIONS ──────────────────────────────────────────────────────────
-const CARD_W = 2.8; // ← width in Three.js units
-const CARD_DEPTH = 0.02; // ← thickness (edge depth)
+const CARD_W = 2.0;
+const CARD_H = CARD_W * 1.5;
+const CARD_DEPTH = 0.02;
 
-function getCircleTarget(index, active) {
-  // Angle of this card on the ring (evenly spaced)
-  const baseAngle = (index / N) * Math.PI * 2;
-  // Rotate ring so active card is at front (subtract active card's angle)
-  const activeAngle = (active / N) * Math.PI * 2;
-  const angle = baseAngle - activeAngle;
-
-  // Position on the ring: x = sin(angle) * R, z = -cos(angle) * R
-  // (z negative = front of scene where camera looks)
+function getCardTransform(index) {
+  const angle = (index / N) * Math.PI * 2;
   const x = Math.sin(angle) * RADIUS;
   const z = -Math.cos(angle) * RADIUS;
-
-  // Each card faces the center of the circle (tangent to ring)
-  // rotY = same angle so card always faces inward toward camera
-  const rotY = angle;
-
-  // Active card (angle ≈ 0) is closest → full opacity
-  // Cards behind (|angle| > π/2) fade out
-  const opacity = Math.max(0, Math.cos(angle) * 0.6 + 0.4);
-
-  return { pos: [x, 0, z], rot: [0, rotY, 0], opacity };
+  return { pos: [x, 0, z], rot: [0, angle, 0] };
 }
 
 // ─── CARD ─────────────────────────────────────────────────────────────────────
-function Card({ index, imageSrc, active }) {
+function Card({ index, imageSrc }) {
   const texture = useLoader(TextureLoader, imageSrc);
-  const matRef = useRef();
+  const { pos, rot } = getCardTransform(index);
 
-  const target = getCircleTarget(index, active);
-
-  const { pos, rot, opacity } = useSpring({
-    pos: target.pos,
-    rot: target.rot,
-    opacity: target.opacity,
-    config: { mass: 3, tension: 90, friction: 34 },
-  });
-
-  // Write uTime + uOpacity to shader every frame
-  useFrame((state) => {
-    if (!matRef.current) return;
-    matRef.current.uTime = state.clock.elapsedTime;
-    matRef.current.uOpacity = opacity.get();
-  });
-
-  const aspect = texture.image
-    ? texture.image.height / texture.image.width
-    : 9 / 16;
   const W = CARD_W;
-  const H = W * aspect;
+  const H = CARD_H;
 
   return (
-    // Group so the image face + side slab move/rotate together
-    <animated.group position={pos} rotation={rot}>
-      {/* Side slab — box gives the card physical depth, image on front face */}
+    <group position={pos} rotation={rot}>
       <mesh>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
-        {/*
-          6 materials for the 6 box faces: +x, -x, +y, -y, +z (front), -z (back)
-          Front face (+z) gets the paper shader with the image.
-          All other faces get a plain dark color.
-        */}
-        {/* box face order: +x, -x, +y, -y, +z (front), -z (back) */}
-        <meshBasicMaterial attach="material-0" color="#1a1a1a" toneMapped={false} />
-        <meshBasicMaterial attach="material-1" color="#1a1a1a" toneMapped={false} />
-        <meshBasicMaterial attach="material-2" color="#1a1a1a" toneMapped={false} />
-        <meshBasicMaterial attach="material-3" color="#1a1a1a" toneMapped={false} />
-        <paperMaterial attach="material-4" ref={matRef} uTexture={texture} transparent toneMapped={false} />
-        <paperMaterial attach="material-5" uTexture={texture} transparent toneMapped={false} />
+        <meshBasicMaterial
+          attach="material-0"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <meshBasicMaterial
+          attach="material-1"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <meshBasicMaterial
+          attach="material-2"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <meshBasicMaterial
+          attach="material-3"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <paperMaterial
+          attach="material-4"
+          uTexture={texture}
+          uTexAspect={
+            texture.image ? texture.image.width / texture.image.height : 1
+          }
+          uCardAspect={W / H}
+          transparent
+          toneMapped={false}
+        />
+        <paperMaterial
+          attach="material-5"
+          uTexture={texture}
+          uTexAspect={
+            texture.image ? texture.image.width / texture.image.height : 1
+          }
+          uCardAspect={W / H}
+          transparent
+          toneMapped={false}
+        />
       </mesh>
-    </animated.group>
+    </group>
+  );
+}
+
+// ─── CAMERA RIG ───────────────────────────────────────────────────────────────
+// Smoothly lerps the camera Z between normal (10) and zoomed-out (18).
+function CameraRig({ zoomedOut }) {
+  useFrame((state) => {
+    const target = zoomedOut ? 25 : 10;
+    state.camera.position.z += (target - state.camera.position.z) * 0.05;
+  });
+  return null;
+}
+
+// ─── RING GROUP ───────────────────────────────────────────────────────────────
+// rotation is a continuous value (never wraps) — no jump on loop.
+// When zoomedOut: auto-spins. When not: spring-driven to rotation target.
+function RingGroup({ rotation, zoomedOut }) {
+  const groupRef = useRef();
+  const wasZoomedOut = useRef(false);
+
+  const [{ ringRot }, api] = useSpring(() => ({
+    ringRot: rotation,
+    config: { mass: 3, tension: 90, friction: 34 },
+  }));
+
+  useEffect(() => {
+    if (!zoomedOut) {
+      api.start({ ringRot: rotation });
+    }
+  }, [rotation, zoomedOut, api]);
+
+  useFrame((_, delta) => {
+    if (!groupRef.current) return;
+    if (zoomedOut) {
+      wasZoomedOut.current = true;
+      groupRef.current.rotation.y -= delta * 0.4;
+    } else {
+      if (wasZoomedOut.current) {
+        wasZoomedOut.current = false;
+        const cur = groupRef.current.rotation.y;
+        api.set({ ringRot: cur });
+        api.start({ ringRot: rotation });
+      }
+      groupRef.current.rotation.y = ringRot.get();
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      {PROJECTS.map((p, i) => (
+        <Card key={i} index={i} imageSrc={p.image} />
+      ))}
+    </group>
   );
 }
 
 // ─── SCENE ────────────────────────────────────────────────────────────────────
-function Scene({ active }) {
+function Scene({ rotation, zoomedOut }) {
   return (
     <Suspense fallback={null}>
-      {PROJECTS.map((p, i) => (
-        <Card key={i} index={i} imageSrc={p.image} active={active} />
-      ))}
+      <CameraRig zoomedOut={zoomedOut} />
+      <RingGroup rotation={rotation} zoomedOut={zoomedOut} />
     </Suspense>
   );
 }
 
 // ─── DESKTOP CANVAS ───────────────────────────────────────────────────────────
 export default function DesktopCanvas() {
-  // active = which project is front-and-center (0–3)
-  const [active, setActive] = useState(0);
+  // steps is a continuous integer — never wraps, so ring never jumps
+  const [steps, setSteps] = useState(0);
+  const [aboutActive, setAboutActive] = useState(false);
 
-  // Scroll on the canvas area → cycle active card
+  const STEP = (Math.PI * 2) / N;
+  const rotation = -steps * STEP;
+  // active index for UI highlight
+  const active = ((steps % N) + N) % N;
+
   const containerRef = useRef();
   useEffect(() => {
     const el = containerRef.current;
@@ -171,12 +218,11 @@ export default function DesktopCanvas() {
     const onWheel = (e) => {
       e.preventDefault();
       acc += e.deltaY;
-      // Require 80px of scroll to advance one step → avoids accidental skips
       if (acc > 80) {
-        setActive((a) => Math.min(a + 1, PROJECTS.length - 1));
+        setSteps((s) => s + 1);
         acc = 0;
       } else if (acc < -80) {
-        setActive((a) => Math.max(a - 1, 0));
+        setSteps((s) => s - 1);
         acc = 0;
       }
     };
@@ -192,20 +238,39 @@ export default function DesktopCanvas() {
       {/* R3F Canvas */}
       <Canvas
         style={{ position: "absolute", inset: 0 }}
-        camera={{ position: [0, 3, 10], fov: 60 }}
+        camera={{ position: [0, 0, 10], fov: 40 }}
         frameloop="always"
       >
-        <Scene active={active} />
+        <Scene rotation={rotation} zoomedOut={aboutActive} />
       </Canvas>
 
+      {/* About button — top center */}
+      <div className="absolute top-8 p-10 left-0 right-0 z-10 flex justify-center">
+        <button
+          className="font-medium transition-all duration-300 cursor-pointer"
+          style={{
+            fontFamily: "var(--font-raleway)",
+            fontSize: aboutActive ? "1.5rem" : "1rem",
+            opacity: aboutActive ? 1 : 0.3,
+            letterSpacing: aboutActive ? "-0.02em" : "0",
+          }}
+          onClick={() => setAboutActive((v) => !v)}
+        >
+          About
+        </button>
+      </div>
+
       {/* Project name list — horizontal row at bottom */}
-      <div className="absolute bottom-10 left-0 right-0 z-10 flex flex-row justify-center gap-12 pointer-events-none">
+      <div
+        className="absolute bottom-10 left-0 right-0 z-10 flex flex-row justify-center gap-12 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: aboutActive ? 0 : 1, pointerEvents: aboutActive ? "none" : "auto" }}
+      >
         {PROJECTS.map((p, i) => (
           <Link
             key={i}
             href={p.href}
             className="group flex flex-col items-center gap-1 cursor-pointer pointer-events-auto"
-            onMouseEnter={() => setActive(i)}
+            onMouseEnter={() => setSteps(i)}
           >
             <span className="text-xs font-medium opacity-30 transition-opacity duration-300 group-hover:opacity-70">
               0{i + 1}
