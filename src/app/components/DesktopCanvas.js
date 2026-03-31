@@ -6,10 +6,22 @@ import { useSpring, animated } from "@react-spring/three";
 import { TextureLoader } from "three";
 
 const PROJECTS = [
-  { name: "Netflix Dating",            href: "/netflixdating", image: "/images/main/netflixhero.png" },
-  { name: "I'll Think About it Later", href: "/pagmar",        image: "/images/pagmar/pagmarfallback.png" },
-  { name: "Men's Toilet",              href: "/toilet",        image: "/images/main/toiletbg.png" },
-  { name: "What Happens in Vegas",     href: "/vegas",         image: "/images/main/vegashome.png" },
+  {
+    name: "Netflix Dating",
+    href: "/netflixdating",
+    image: "/images/main/netflixhero.png",
+  },
+  {
+    name: "I'll Think About it Later",
+    href: "/pagmar",
+    image: "/images/pagmar/pagmarfallback.png",
+  },
+  { name: "Men's Toilet", href: "/toilet", image: "/images/main/toiletbg.png" },
+  {
+    name: "What Happens in Vegas",
+    href: "/vegas",
+    image: "/images/main/vegashome.png",
+  },
 ];
 
 // Resting positions in 3D world space.
@@ -17,28 +29,30 @@ const PROJECTS = [
 // rot: [x, y, z]  — rotation in radians. ~0.1 ≈ 6°, ~0.2 ≈ 11°
 // ← TWEAK these to reposition cards →
 const SCATTER = [
-  { pos: [ 2.2,  0.5,  1.0], rot: [0,  0.08, -0.12] },
-  { pos: [ 3.0, -0.8, -0.5], rot: [0, -0.10,  0.15] },
-  { pos: [ 1.8,  1.2, -2.0], rot: [0,  0.12, -0.20] },
-  { pos: [ 3.5,  0.2, -3.5], rot: [0, -0.08,  0.25] },
+  { pos: [0.2, 0.5, 0.0], rot: [0, 0.28, -0.12] },
+  { pos: [3.0, -0.8, -0.5], rot: [0, -0.1, 0.15] },
+  { pos: [1.8, 1.2, -2.0], rot: [0, 0.12, -0.2] },
+  { pos: [3.5, 0.2, -3.5], rot: [0, -0.08, 0.25] },
 ];
 
 // Individual card — loads texture, springs to hover target
 function Card({ index, imageSrc, hovered, onPointerOver, onPointerOut }) {
   const texture = useLoader(TextureLoader, imageSrc);
   const sc = SCATTER[index];
-  const isHovered  = hovered === index;
+  const isHovered = hovered === index;
   const anyHovered = hovered !== -1;
 
   // Spring: slow + heavy feel. Tension=low → lazy. Friction=high → no overshoot.
   const { pos, rot, opacity } = useSpring({
-    pos:     isHovered ? [0, 0, 0] : sc.pos,
-    rot:     isHovered ? [0, 0, 0] : sc.rot,
-    opacity: isHovered ? 1 : anyHovered ? 0.25 : 0.92,
-    config:  { mass: 3, tension: 40, friction: 32 },
+    pos: isHovered ? [0, 0, 1] : sc.pos,
+    rot: isHovered ? [0, 0, 0] : sc.rot,
+    opacity: isHovered ? 1 : anyHovered ? 0 : 1,
+    config: { mass: 3, tension: 100, friction: 32 },
   });
 
-  const aspect = texture.image ? texture.image.height / texture.image.width : 9 / 16;
+  const aspect = texture.image
+    ? texture.image.height / texture.image.width
+    : 9 / 16;
   const W = 2.8; // ← card width in Three.js units
   const H = W * aspect;
 
@@ -71,8 +85,14 @@ function Scene({ hovered, setHovered }) {
           index={i}
           imageSrc={p.image}
           hovered={hovered}
-          onPointerOver={(e) => { e.stopPropagation(); setHovered(i); }}
-          onPointerOut={(e)  => { e.stopPropagation(); setHovered(-1); }}
+          onPointerOver={(e) => {
+            e.stopPropagation();
+            setHovered(i);
+          }}
+          onPointerOut={(e) => {
+            e.stopPropagation();
+            setHovered(-1);
+          }}
         />
       ))}
     </Suspense>
@@ -116,9 +136,9 @@ export default function DesktopCanvas() {
             <span
               className="font-medium transition-all duration-300 leading-tight"
               style={{
-                fontSize:      hovered === i ? "3.5rem" : "2rem",
-                opacity:       hovered === -1 ? 0.85 : hovered === i ? 1 : 0.2,
-                fontFamily:    "var(--font-raleway)",
+                fontSize: hovered === i ? "3.5rem" : "2rem",
+                opacity: hovered === -1 ? 0.85 : hovered === i ? 1 : 0.2,
+                fontFamily: "var(--font-raleway)",
                 letterSpacing: hovered === i ? "-0.02em" : "0",
               }}
             >
