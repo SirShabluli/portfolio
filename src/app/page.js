@@ -6,6 +6,7 @@ import Button from "./components/Button";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel, Parallax } from "swiper/modules";
 import "swiper/css";
+import DesktopCanvas from "./components/DesktopCanvas";
 
 const SLIDES = [
   {
@@ -82,7 +83,10 @@ export default function Home() {
 
   return (
     <main className="relative w-screen h-screen-dvh overflow-hidden bg-black text-white select-none">
-      {/* Swiper carousel */}
+      {/* Desktop canvas experience */}
+      <DesktopCanvas />
+      {/* Mobile Swiper carousel */}
+      <div className="lg:hidden absolute inset-0">
       <Swiper
         modules={[Mousewheel, Parallax]}
         direction="vertical"
@@ -261,10 +265,11 @@ export default function Home() {
           </SwiperSlide>
         ))}
       </Swiper>
+      </div>
 
       {/* Bottom gradient */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-14 pointer-events-none z-30"
+        className="lg:hidden absolute bottom-0 left-0 right-0 h-14 pointer-events-none z-30"
         style={{
           background: "linear-gradient(to top, black 0%, transparent 100%)",
         }}
@@ -272,7 +277,7 @@ export default function Home() {
 
       {/* Vignette */}
       <div
-        className="absolute inset-0 z-30 pointer-events-none"
+        className="lg:hidden absolute inset-0 z-30 pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 30%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.4) 100%)",
@@ -280,7 +285,7 @@ export default function Home() {
       />
 
       {/* Vertical dots */}
-      <div className="flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
+      <div className="lg:hidden flex flex-col gap-1.5 absolute right-6 top-1/2 -translate-y-1/2 z-20 pointer-events-auto">
         {SLIDES.map((_, i) => (
           <button
             key={i}
