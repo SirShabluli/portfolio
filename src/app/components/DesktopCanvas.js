@@ -157,16 +157,23 @@ function RingGroup({ rotation, zoomedOut }) {
     config: { mass: 3, tension: 90, friction: 34 },
   }));
 
+  // Scroll: animate to new rotation target
+  useEffect(() => {
+    if (!zoomedOut) {
+      api.start({ ringRot: rotation });
+    }
+  }, [rotation, api]);
+
+  // Exit About: snap to nearest card from current spin position
   useEffect(() => {
     if (!zoomedOut && groupRef.current) {
-      // Find the nearest card angle to current rotation
       const cur = groupRef.current.rotation.y;
       const STEP = (Math.PI * 2) / N;
       const nearestStep = Math.round(-cur / STEP);
       api.set({ ringRot: cur });
       api.start({ ringRot: -nearestStep * STEP });
     }
-  }, [zoomedOut, api]);
+  }, [zoomedOut]);
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
