@@ -151,7 +151,6 @@ function CameraRig({ zoomedOut }) {
 // When zoomedOut: auto-spins. When not: spring-driven to rotation target.
 function RingGroup({ rotation, zoomedOut }) {
   const groupRef = useRef();
-  const wasZoomedOut = useRef(false);
 
   const [{ ringRot }, api] = useSpring(() => ({
     ringRot: rotation,
@@ -159,23 +158,21 @@ function RingGroup({ rotation, zoomedOut }) {
   }));
 
   useEffect(() => {
-    if (!zoomedOut) {
-      api.start({ ringRot: rotation });
+    if (!zoomedOut && groupRef.current) {
+      // Find the nearest card angle to current rotation
+      const cur = groupRef.current.rotation.y;
+      const STEP = (Math.PI * 2) / N;
+      const nearestStep = Math.round(-cur / STEP);
+      api.set({ ringRot: cur });
+      api.start({ ringRot: -nearestStep * STEP });
     }
-  }, [rotation, zoomedOut, api]);
+  }, [zoomedOut, api]);
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
     if (zoomedOut) {
-      wasZoomedOut.current = true;
       groupRef.current.rotation.y -= delta * 0.4;
     } else {
-      if (wasZoomedOut.current) {
-        wasZoomedOut.current = false;
-        const cur = groupRef.current.rotation.y;
-        api.set({ ringRot: cur });
-        api.start({ ringRot: rotation });
-      }
       groupRef.current.rotation.y = ringRot.get();
     }
   });
