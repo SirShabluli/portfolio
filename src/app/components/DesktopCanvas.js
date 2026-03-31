@@ -54,27 +54,46 @@ const PaperMaterial = shaderMaterial(
       color.a *= uOpacity;
       gl_FragColor = color;
     }
-  `
+  `,
 );
 
 extend({ PaperMaterial });
 
-// ─── COVERFLOW LAYOUT ─────────────────────────────────────────────────────────
-// Given an index and the active index, compute where this card should sit.
-// offset = how many steps away from active (e.g. -1, 0, +1, +2)
-// Active card  → center (x=2, z=0), no rotation
-// Side cards   → fanned out: offset * 3 on X, pushed back on Z, rotated on Y
-function getCoverflowTarget(index, active) {
-  const offset = index - active;
-  const isActive = offset === 0;
-  return {
-    // x: active card centered at 0, side cards spread by 3 units
-    pos: [offset * 3, 0, isActive ? 0 : -Math.abs(offset) * 1.5],
-    // Y rotation: side cards angle away from camera (±0.7 rad ≈ 40°)
-    rot: [0, isActive ? 0 : -offset * 0.7, 0],
-    // Active full opacity, immediate neighbors dimmed, further ones nearly invisible
-    opacity: isActive ? 1 : Math.max(0, 1 - Math.abs(offset) * 0.5),
-  };
+// ─── CIRCLE LAYOUT ────────────────────────────────────────────────────────────
+// Cards sit on a horizontal ring (like a lazy susan).
+// The ring is rotated so the active card always faces the camera (front = -Z).
+//
+// RADIUS  — how big the circle is (Three.js units). Bigger = more spread out.
+// Each card's angle on the ring = (i / N) * 2π, then the whole ring is rotated
+// so that the active card's angle lands at the front (angle = 0 = -Z direction).
+const RADIUS = 3.5; // ← size of the ring
+const N = PROJECTS.length;
+
+// ─── CARD DIMENSIONS ──────────────────────────────────────────────────────────
+const CARD_W = 2.8; // ← width in Three.js units
+const CARD_DEPTH = 0.02; // ← thickness (edge depth)
+
+function getCircleTarget(index, active) {
+  // Angle of this card on the ring (evenly spaced)
+  const baseAngle = (index / N) * Math.PI * 2;
+  // Rotate ring so active card is at front (subtract active card's angle)
+  const activeAngle = (active / N) * Math.PI * 2;
+  const angle = baseAngle - activeAngle;
+
+  // Position on the ring: x = sin(angle) * R, z = -cos(angle) * R
+  // (z negative = front of scene where camera looks)
+  const x = Math.sin(angle) * RADIUS;
+  const z = -Math.cos(angle) * RADIUS;
+
+  // Each card faces the center of the circle (tangent to ring)
+  // rotY = same angle so card always faces inward toward camera
+  const rotY = angle;
+
+  // Active card (angle ≈ 0) is closest → full opacity
+  // Cards behind (|angle| > π/2) fade out
+  const opacity = Math.max(0, Math.cos(angle) * 0.6 + 0.4);
+
+  return { pos: [x, 0, z], rot: [0, rotY, 0], opacity };
 }
 
 // ─── CARD ─────────────────────────────────────────────────────────────────────
@@ -82,7 +101,7 @@ function Card({ index, imageSrc, active }) {
   const texture = useLoader(TextureLoader, imageSrc);
   const matRef = useRef();
 
-  const target = getCoverflowTarget(index, active);
+  const target = getCircleTarget(index, active);
 
   const { pos, rot, opacity } = useSpring({
     pos: target.pos,
@@ -101,20 +120,29 @@ function Card({ index, imageSrc, active }) {
   const aspect = texture.image
     ? texture.image.height / texture.image.width
     : 9 / 16;
-  const W = 2.8;
+  const W = CARD_W;
   const H = W * aspect;
 
   return (
-    <animated.mesh position={pos} rotation={rot}>
-      {/* 32×32 segments needed for smooth vertex-wave ripple */}
-      <planeGeometry args={[W, H, 32, 32]} />
-      <paperMaterial
-        ref={matRef}
-        uTexture={texture}
-        transparent
-        toneMapped={false}
-      />
-    </animated.mesh>
+    // Group so the image face + side slab move/rotate together
+    <animated.group position={pos} rotation={rot}>
+      {/* Side slab — box gives the card physical depth, image on front face */}
+      <mesh>
+        <boxGeometry args={[W, H, CARD_DEPTH]} />
+        {/*
+          6 materials for the 6 box faces: +x, -x, +y, -y, +z (front), -z (back)
+          Front face (+z) gets the paper shader with the image.
+          All other faces get a plain dark color.
+        */}
+        {/* box face order: +x, -x, +y, -y, +z (front), -z (back) */}
+        <meshBasicMaterial attach="material-0" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial attach="material-1" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial attach="material-2" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial attach="material-3" color="#1a1a1a" toneMapped={false} />
+        <paperMaterial attach="material-4" ref={matRef} uTexture={texture} transparent toneMapped={false} />
+        <paperMaterial attach="material-5" uTexture={texture} transparent toneMapped={false} />
+      </mesh>
+    </animated.group>
   );
 }
 
@@ -164,7 +192,7 @@ export default function DesktopCanvas() {
       {/* R3F Canvas */}
       <Canvas
         style={{ position: "absolute", inset: 0 }}
-        camera={{ position: [0, 0, 7], fov: 50 }}
+        camera={{ position: [0, 3, 10], fov: 60 }}
         frameloop="always"
       >
         <Scene active={active} />
@@ -179,9 +207,7 @@ export default function DesktopCanvas() {
             className="group flex flex-col items-center gap-1 cursor-pointer pointer-events-auto"
             onMouseEnter={() => setActive(i)}
           >
-            <span
-              className="text-xs font-medium opacity-30 transition-opacity duration-300 group-hover:opacity-70"
-            >
+            <span className="text-xs font-medium opacity-30 transition-opacity duration-300 group-hover:opacity-70">
               0{i + 1}
             </span>
             <span
