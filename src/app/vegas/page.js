@@ -617,28 +617,31 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         className="grid grid-cols-4 lg:grid-cols-12 bg-[#E4EBFF] items-center lg:py-0 lg:h-[110vh] overflow-hidden"
         ref={phoneImagesRef}
       >
-        {/* Mobile marquee top */}
+        {/* Mobile marquee */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div
-            className="flex gap-4 marquee-ltr"
-            style={{ width: "max-content" }}
-          >
-            {[...Array(4)].flatMap((_, r) =>
-              [
-                "/images/vegas/doctor.png",
-                "/images/vegas/mfp.png",
-                "/images/vegas/meditate.jpg",
-              ].map((src, i) => (
-                <Image
-                  key={`${r}-${i}`}
-                  src={src}
-                  alt=""
-                  width={200}
-                  height={200}
-                  className="h-32 w-auto rounded-sm object-cover shrink-0"
-                />
-              )),
-            )}
+          <div className="flex marquee-ltr" style={{ width: "max-content" }}>
+            {[0, 1].map((r) => (
+              <div key={r} className="flex gap-4 mr-4">
+                {[
+                  "/images/vegas/doctor.png",
+                  "/images/vegas/mfp.png",
+                  "/images/vegas/meditate.jpg",
+                  "/images/vegas/denstist.png",
+                  "/images/vegas/oralb.jpg",
+                  "/images/vegas/waterllama.png",
+                  "/images/vegas/appclue.jpg",
+                ].map((src, i) => (
+                  <Image
+                    key={i}
+                    src={src}
+                    alt=""
+                    width={300}
+                    height={300}
+                    className="h-56 w-auto rounded-sm object-cover shrink-0"
+                  />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -650,32 +653,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             authority. This became the wrapper—the medical disguise that makes
             Vegas feel prescribed, legitimate, doctor-approved.
           </TextBlock>
-        </div>
-
-        {/* Mobile marquee bottom */}
-        <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div
-            className="flex gap-4 marquee-rtl"
-            style={{ width: "max-content" }}
-          >
-            {[...Array(4)].flatMap((_, r) =>
-              [
-                "/images/vegas/denstist.png",
-                "/images/vegas/oralb.jpg",
-                "/images/vegas/waterllama.png",
-                "/images/vegas/appclue.jpg",
-              ].map((src, i) => (
-                <Image
-                  key={`${r}-${i}`}
-                  src={src}
-                  alt=""
-                  width={200}
-                  height={200}
-                  className="h-32 w-auto rounded-sm object-cover shrink-0"
-                />
-              )),
-            )}
-          </div>
         </div>
         <div className="hidden lg:block col-span-9 relative h-full w-full">
           {[
@@ -758,29 +735,33 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         className="grid grid-cols-4 lg:grid-cols-12 bg-black items-center lg:py-0 lg:h-[110vh] overflow-hidden"
         ref={largeImagesRef}
       >
-        {/* Mobile marquee top */}
+        {/* Mobile marquee */}
         <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div
-            className="flex gap-4 marquee-ltr"
-            style={{ width: "max-content" }}
-          >
-            {[...Array(4)]
-              .flatMap(() => [
-                "/images/vegas/casinonight.jpg",
-                "/images/vegas/slot.jpg",
-                "/images/vegas/fountain.png",
-                "/images/vegas/mc-casino.jpeg",
-              ])
-              .map((src, i) => (
-                <Image
-                  key={i}
-                  src={src}
-                  alt=""
-                  width={200}
-                  height={200}
-                  className="h-32 w-auto rounded-sm object-cover shrink-0"
-                />
-              ))}
+          <div className="flex marquee-ltr" style={{ width: "max-content" }}>
+            {[0, 1].map((r) => (
+              <div key={r} className="flex gap-4 mr-4">
+                {[
+                  "/images/vegas/casinonight.jpg",
+                  "/images/vegas/slot.jpg",
+                  "/images/vegas/fountain.png",
+                  "/images/vegas/mc-casino.jpeg",
+                  "/images/vegas/neoncasino.webp",
+                  "/images/vegas/vegassign.png",
+                  "/images/vegas/saussy.jpg",
+                  "/images/vegas/vegasnight1.jpg",
+                  "/images/vegas/seahouse.jpg",
+                ].map((src, i) => (
+                  <Image
+                    key={i}
+                    src={src}
+                    alt=""
+                    width={300}
+                    height={300}
+                    className="h-56 w-auto rounded-sm object-cover shrink-0"
+                  />
+                ))}
+              </div>
+            ))}
           </div>
         </div>
 
@@ -792,33 +773,6 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             These references shaped the dark mode palette and the sense of
             excess that lives beneath the clinical surface.
           </TextBlock>
-        </div>
-
-        {/* Mobile marquee bottom */}
-        <div className="lg:hidden col-span-4 overflow-hidden py-3">
-          <div
-            className="flex gap-4 marquee-rtl"
-            style={{ width: "max-content" }}
-          >
-            {[...Array(4)]
-              .flatMap(() => [
-                "/images/vegas/neoncasino.webp",
-                "/images/vegas/vegassign.png",
-                "/images/vegas/saussy.jpg",
-                "/images/vegas/vegasnight1.jpg",
-                "/images/vegas/seahouse.jpg",
-              ])
-              .map((src, i) => (
-                <Image
-                  key={i}
-                  src={src}
-                  alt=""
-                  width={200}
-                  height={200}
-                  className="h-32 w-auto rounded-sm object-cover shrink-0"
-                />
-              ))}
-          </div>
         </div>
         {/* Collage: 9 cols, desktop only */}
         <div className="hidden lg:block col-span-9 relative h-full w-full">

@@ -62,8 +62,10 @@ const SLIDES = [
   },
   {
     bg: "#23577A",
-    image: "/images/main/vegasSplash.png",
-    imageClass: "w-full h-85 object-contain ",
+    bgImage: "/images/main/vegashome.png",
+    bgImageOpacity: 1,
+    image: null,
+    imageClass: "",
     title: "",
     titleClass: "",
     description:

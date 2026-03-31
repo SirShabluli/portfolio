@@ -38,16 +38,16 @@ export default function MobilePhoneShowcase({
   const [activeStep, setActiveStep] = useState(0);
   const [swiperRef, setSwiperRef] = useState(null);
 
-  const steps = ["Challenge", section.screenNam || "Screen", "Solution"];
+  const steps = ["Challenge", section.screenName || "Screen", "Solution"];
 
   return (
     <div
-      className="flex flex-col"
-      style={{ height: "100svh", backgroundColor: bgColor }}
+      className="flex flex-col h-screen"
+      style={{ backgroundColor: bgColor }}
     >
       <Swiper
         direction="horizontal"
-        initialSlide={0}
+        initialSlide={1}
         touchAngle={30}
         speed={400}
         onSwiper={setSwiperRef}
@@ -57,14 +57,14 @@ export default function MobilePhoneShowcase({
         {/* Slide 1 - Challenge */}
         <SwiperSlide>
           <div className="w-screen flex flex-col justify-center  h-full px-6 pt-16 gap-12">
-            {section.screenName && (
+            {/* {section.screenName && (
               <h2
                 className="text-5xl leading-[120%] items-center opacity-70 font-medium italic"
                 style={{ color: textColor }}
               >
                 {section.screenName}
               </h2>
-            )}
+            )} */}
             <TextBlock
               label={section.challenge.label}
               title={section.challenge.title}
