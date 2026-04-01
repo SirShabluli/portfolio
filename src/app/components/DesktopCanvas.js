@@ -140,8 +140,10 @@ function Card({ index, imageSrc }) {
 // Smoothly lerps the camera Z between normal (10) and zoomed-out (18).
 function CameraRig({ zoomedOut }) {
   useFrame((state) => {
-    const target = zoomedOut ? 25 : 10;
-    state.camera.position.z += (target - state.camera.position.z) * 0.05;
+    const targetZ = zoomedOut ? 25 : 10;
+    const targetY = zoomedOut ? 3 : 0;
+    state.camera.position.z += (targetZ - state.camera.position.z) * 0.05;
+    state.camera.position.y += (targetY - state.camera.position.y) * 0.05;
   });
   return null;
 }
@@ -193,12 +195,49 @@ function RingGroup({ rotation, zoomedOut }) {
   );
 }
 
+// ─── ABOUT PHOTO PLANE ────────────────────────────────────────────────────────
+function AboutPlane({ visible }) {
+  const texture = useLoader(TextureLoader, "/images/main/yaaniani.png");
+  const meshRef = useRef();
+
+  const [{ opacity }, api] = useSpring(() => ({
+    opacity: 0,
+    config: { mass: 3, tension: 60, friction: 20 },
+  }));
+
+  useEffect(() => {
+    if (visible) {
+      const id = setTimeout(() => api.start({ opacity: 1 }), 300);
+      return () => clearTimeout(id);
+    } else {
+      api.start({ opacity: 0 });
+    }
+  }, [visible, api]);
+
+  useFrame(() => {
+    if (!meshRef.current) return;
+    meshRef.current.material.opacity = opacity.get();
+  });
+
+  const aspect = texture.image ? texture.image.width / texture.image.height : 1;
+  const h = 20;
+  const w = h * aspect;
+
+  return (
+    <mesh ref={meshRef} position={[0, 4, -8]}>
+      <planeGeometry args={[w, h]} />
+      <meshBasicMaterial map={texture} transparent toneMapped={false} />
+    </mesh>
+  );
+}
+
 // ─── SCENE ────────────────────────────────────────────────────────────────────
 function Scene({ rotation, zoomedOut }) {
   return (
     <Suspense fallback={null}>
       <CameraRig zoomedOut={zoomedOut} />
       <RingGroup rotation={rotation} zoomedOut={zoomedOut} />
+      <AboutPlane visible={zoomedOut} />
     </Suspense>
   );
 }
@@ -267,7 +306,10 @@ export default function DesktopCanvas() {
       {/* Project name list — horizontal row at bottom */}
       <div
         className="absolute bottom-10 left-0 right-0 z-10 flex flex-row justify-center gap-12 pointer-events-none transition-opacity duration-500"
-        style={{ opacity: aboutActive ? 0 : 1, pointerEvents: aboutActive ? "none" : "auto" }}
+        style={{
+          opacity: aboutActive ? 0 : 1,
+          pointerEvents: aboutActive ? "none" : "auto",
+        }}
       >
         {PROJECTS.map((p, i) => (
           <Link
