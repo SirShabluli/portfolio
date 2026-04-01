@@ -202,15 +202,25 @@ function AboutPlane({ visible }) {
 
   const [{ opacity }, api] = useSpring(() => ({
     opacity: 0,
-    config: { mass: 3, tension: 60, friction: 20 },
+    config: { mass: 1, tension: 60, friction: 40 },
   }));
 
   useEffect(() => {
     if (visible) {
-      const id = setTimeout(() => api.start({ opacity: 1 }), 300);
+      const id = setTimeout(
+        () =>
+          api.start({
+            opacity: 1,
+            config: { mass: 1, tension: 30, friction: 40 },
+          }),
+        400,
+      );
       return () => clearTimeout(id);
     } else {
-      api.start({ opacity: 0 });
+      api.start({
+        opacity: 0,
+        config: { mass: 1, tension: 100, friction: 30 },
+      });
     }
   }, [visible, api]);
 
