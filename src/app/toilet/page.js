@@ -325,9 +325,10 @@ export default function Page() {
       </div>
 
       {/* Desktop pinned version */}
+      <div className="hidden lg:block">
       <section
         ref={pinSectionRef}
-        className="hidden lg:flex bg-white px-8 min-h-screen text-black items-center justify-center relative"
+        className="flex bg-white px-8 min-h-screen text-black items-center justify-center relative"
       >
         <div
           ref={overlayRef}
@@ -408,6 +409,7 @@ export default function Page() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* Design System - Horizontal Scroll */}
       <section>
