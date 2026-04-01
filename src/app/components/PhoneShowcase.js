@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Mobile from "./Mobile";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -23,12 +23,19 @@ export default function PhoneShowcase({
   const [activeScreen, setActiveScreen] = useState(0);
   const [splineApp, setSplineApp] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [gsapReady, setGsapReady] = useState(false);
 
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
+  useEffect(() => {
+    if (!loaded) return;
+    const id = setTimeout(() => setGsapReady(true), 1000);
+    return () => clearTimeout(id);
+  }, [loaded]);
+
   useGSAP(
     () => {
-      if (!splineApp) return;
+      if (!splineApp || !gsapReady) return;
       const phoneModel = splineApp.findObjectByName("Mobile");
       if (phoneModel) phoneModel.scale.set(5, 5, 5);
 
@@ -169,7 +176,7 @@ export default function PhoneShowcase({
       // Recalculate scroll positions after all layout is settled
       ScrollTrigger.refresh();
     },
-    { scope: mainRef, dependencies: [splineApp, sections] },
+    { scope: mainRef, dependencies: [splineApp, gsapReady, sections] },
   );
 
   return (
@@ -202,7 +209,7 @@ export default function PhoneShowcase({
       {/* Preloader — covers everything until Spline is ready */}
       <div
         className="fixed inset-0 z-[9999] bg-black flex items-center justify-center transition-opacity duration-700 pointer-events-none"
-        style={{ opacity: loaded ? 0 : 1 }}
+        style={{ opacity: gsapReady ? 0 : 1 }}
       >
         <p className="text-white text-sm tracking-widest uppercase opacity-60 animate-pulse">
           Loading...
