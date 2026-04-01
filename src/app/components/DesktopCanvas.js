@@ -151,7 +151,7 @@ function CameraRig({ zoomedOut }) {
 // ─── RING GROUP ───────────────────────────────────────────────────────────────
 // rotation is a continuous value (never wraps) — no jump on loop.
 // When zoomedOut: auto-spins. When not: spring-driven to rotation target.
-function RingGroup({ rotation, zoomedOut }) {
+function RingGroup({ rotation, zoomedOut, onExitSnap }) {
   const groupRef = useRef();
 
   const [{ ringRot }, api] = useSpring(() => ({
@@ -174,6 +174,7 @@ function RingGroup({ rotation, zoomedOut }) {
       const nearestStep = Math.round(-cur / STEP);
       api.set({ ringRot: cur });
       api.start({ ringRot: -nearestStep * STEP });
+      onExitSnap(((nearestStep % N) + N) % N);
     }
   }, [zoomedOut]);
 
@@ -242,11 +243,11 @@ function AboutPlane({ visible }) {
 }
 
 // ─── SCENE ────────────────────────────────────────────────────────────────────
-function Scene({ rotation, zoomedOut }) {
+function Scene({ rotation, zoomedOut, onExitSnap }) {
   return (
     <Suspense fallback={null}>
       <CameraRig zoomedOut={zoomedOut} />
-      <RingGroup rotation={rotation} zoomedOut={zoomedOut} />
+      <RingGroup rotation={rotation} zoomedOut={zoomedOut} onExitSnap={onExitSnap} />
       <AboutPlane visible={zoomedOut} />
     </Suspense>
   );
@@ -294,7 +295,7 @@ export default function DesktopCanvas() {
         camera={{ position: [0, 0, 10], fov: 40 }}
         frameloop="always"
       >
-        <Scene rotation={rotation} zoomedOut={aboutActive} />
+        <Scene rotation={rotation} zoomedOut={aboutActive} onExitSnap={setSteps} />
       </Canvas>
 
       {/* About button — top center */}
