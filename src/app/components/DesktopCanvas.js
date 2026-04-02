@@ -214,7 +214,7 @@ function AboutPlane({ visible }) {
             opacity: 1,
             config: { mass: 1, tension: 30, friction: 40 },
           }),
-        400,
+        150,
       );
       return () => clearTimeout(id);
     } else {
@@ -231,11 +231,57 @@ function AboutPlane({ visible }) {
   });
 
   const aspect = texture.image ? texture.image.width / texture.image.height : 1;
-  const h = 20;
+  const h = 22;
   const w = h * aspect;
 
   return (
     <mesh ref={meshRef} position={[0, 4, -8]}>
+      <planeGeometry args={[w, h]} />
+      <meshBasicMaterial map={texture} transparent toneMapped={false} />
+    </mesh>
+  );
+}
+
+// ─── KEYBOARD PLANE ───────────────────────────────────────────────────────────
+function KeyboardPlane({ visible }) {
+  const texture = useLoader(TextureLoader, "/images/main/keyboard.png");
+  const meshRef = useRef();
+
+  const [{ opacity }, api] = useSpring(() => ({
+    opacity: 0,
+    config: { mass: 1, tension: 60, friction: 40 },
+  }));
+
+  useEffect(() => {
+    if (visible) {
+      const id = setTimeout(
+        () =>
+          api.start({
+            opacity: 1,
+            config: { mass: 1, tension: 30, friction: 40 },
+          }),
+        150,
+      );
+      return () => clearTimeout(id);
+    } else {
+      api.start({
+        opacity: 0,
+        config: { mass: 1, tension: 100, friction: 30 },
+      });
+    }
+  }, [visible, api]);
+
+  useFrame(() => {
+    if (!meshRef.current) return;
+    meshRef.current.material.opacity = opacity.get();
+  });
+
+  const aspect = texture.image ? texture.image.width / texture.image.height : 1;
+  const w = 18;
+  const h = w / aspect;
+
+  return (
+    <mesh ref={meshRef} position={[0, -6, -4]}>
       <planeGeometry args={[w, h]} />
       <meshBasicMaterial map={texture} transparent toneMapped={false} />
     </mesh>
@@ -247,8 +293,13 @@ function Scene({ rotation, zoomedOut, onExitSnap }) {
   return (
     <Suspense fallback={null}>
       <CameraRig zoomedOut={zoomedOut} />
-      <RingGroup rotation={rotation} zoomedOut={zoomedOut} onExitSnap={onExitSnap} />
+      <RingGroup
+        rotation={rotation}
+        zoomedOut={zoomedOut}
+        onExitSnap={onExitSnap}
+      />
       <AboutPlane visible={zoomedOut} />
+      <KeyboardPlane visible={zoomedOut} />
     </Suspense>
   );
 }
@@ -295,7 +346,11 @@ export default function DesktopCanvas() {
         camera={{ position: [0, 0, 10], fov: 40 }}
         frameloop="always"
       >
-        <Scene rotation={rotation} zoomedOut={aboutActive} onExitSnap={setSteps} />
+        <Scene
+          rotation={rotation}
+          zoomedOut={aboutActive}
+          onExitSnap={setSteps}
+        />
       </Canvas>
 
       {/* About button — top center */}
