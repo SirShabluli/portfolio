@@ -116,14 +116,32 @@ function Card({ index, imageSrc }) {
     <group position={pos} rotation={rot}>
       <mesh>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
-        <meshBasicMaterial attach="material-0" color="#1a1a1a" toneMapped={false} />
-        <meshBasicMaterial attach="material-1" color="#1a1a1a" toneMapped={false} />
-        <meshBasicMaterial attach="material-2" color="#1a1a1a" toneMapped={false} />
-        <meshBasicMaterial attach="material-3" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial
+          attach="material-0"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <meshBasicMaterial
+          attach="material-1"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <meshBasicMaterial
+          attach="material-2"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
+        <meshBasicMaterial
+          attach="material-3"
+          color="#1a1a1a"
+          toneMapped={false}
+        />
         <paperMaterial
           attach="material-4"
           uTexture={texture}
-          uTexAspect={texture.image ? texture.image.width / texture.image.height : 1}
+          uTexAspect={
+            texture.image ? texture.image.width / texture.image.height : 1
+          }
           uCardAspect={W / H}
           transparent
           toneMapped={false}
@@ -131,7 +149,9 @@ function Card({ index, imageSrc }) {
         <paperMaterial
           attach="material-5"
           uTexture={texture}
-          uTexAspect={texture.image ? texture.image.width / texture.image.height : 1}
+          uTexAspect={
+            texture.image ? texture.image.width / texture.image.height : 1
+          }
           uCardAspect={W / H}
           transparent
           toneMapped={false}
@@ -432,6 +452,148 @@ export default function DesktopCanvas() {
             View Study Case →
           </Button>
         </Link>
+      </div>
+
+      {/* About — grid overlay */}
+      <div
+        className="absolute inset-0 z-10 grid grid-cols-12 gap-4 px-10 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: aboutActive ? 1 : 0 }}
+      >
+        {/* Left panel: bio + experience — cols 1–3 */}
+        <div className="col-span-3 flex col-start-2 flex-col justify-center gap-8 pointer-events-auto">
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-xs opacity-40 tracking-widest uppercase"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              About me
+            </p>
+            <h2
+              className="text-5xl font-medium leading-tight"
+              style={{
+                fontFamily: "var(--font-raleway)",
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Eyal Mordechai
+            </h2>
+            <p
+              className="text-sm opacity-60 leading-relaxed mt-1"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Visual & interaction designer blending code and craft — building
+              experiences that feel as good as they look.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-xs opacity-40 tracking-widest uppercase"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Experience
+            </p>
+            {[
+              {
+                year: "2025",
+                role: "Graduation Project",
+                place: "Shenkar — HIT",
+              },
+              { year: "2024", role: "UI/UX Designer", place: "Freelance" },
+              { year: "2023", role: "Frontend Developer", place: "Freelance" },
+            ].map(({ year, role, place }) => (
+              <div
+                key={year + role}
+                className="flex flex-row gap-3 items-start"
+              >
+                <span
+                  className="text-xs opacity-30 w-8 shrink-0"
+                  style={{ fontFamily: "var(--font-raleway)" }}
+                >
+                  {year}
+                </span>
+                <div className="flex flex-col gap-0.5">
+                  <span
+                    className="text-xs font-medium opacity-80"
+                    style={{ fontFamily: "var(--font-raleway)" }}
+                  >
+                    {role}
+                  </span>
+                  <span
+                    className="text-xs opacity-40 italic"
+                    style={{ fontFamily: "var(--font-raleway)" }}
+                  >
+                    {place}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Center — 3D scene takes cols 4–9, leave empty */}
+        <div className="col-span-6 pointer-events-none" />
+
+        {/* Right panel: skills + education — cols 10–12 */}
+        <div className="col-span-3 col-start-10 flex flex-col justify-center gap-8 pointer-events-auto">
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-xs opacity-40 tracking-widest uppercase"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Design
+            </p>
+            {["Figma", "Adobe Illustrator", "Framer", "Motion Design"].map(
+              (s) => (
+                <span
+                  key={s}
+                  className="text-xs font-medium opacity-80"
+                  style={{ fontFamily: "var(--font-raleway)" }}
+                >
+                  {s}
+                </span>
+              ),
+            )}
+          </div>
+          <div className="flex flex-col gap-3">
+            <p
+              className="text-xs opacity-40 tracking-widest uppercase"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Development
+            </p>
+            {["React / Next.js", "Three.js / R3F", "GSAP", "Tailwind CSS"].map(
+              (s) => (
+                <span
+                  key={s}
+                  className="text-xs font-medium opacity-80"
+                  style={{ fontFamily: "var(--font-raleway)" }}
+                >
+                  {s}
+                </span>
+              ),
+            )}
+          </div>
+          <div className="flex flex-col gap-2">
+            <p
+              className="text-xs opacity-40 tracking-widest uppercase"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Education
+            </p>
+            <span
+              className="text-xs font-medium opacity-80"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Visual Communication Design
+            </span>
+            <span
+              className="text-xs opacity-40 italic"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              Shenkar — HIT, 2022–2025
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Project name list — horizontal row at bottom */}
