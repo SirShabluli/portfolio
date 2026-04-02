@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect, Suspense } from "react";
 import Link from "next/link";
+import Button from "./Button";
 import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
 import { useSpring } from "@react-spring/three";
 import { TextureLoader } from "three";
@@ -11,17 +12,41 @@ const PROJECTS = [
     name: "Netflix Dating",
     href: "/netflixdating",
     image: "/images/main/netflixhero.png",
+    description:
+      "A dating app concept built inside the Netflix universe — matching users by taste, not swipes.",
+    role: "UI Design & Illustration",
+    year: "2025",
+    skills: "Adobe Illustrator · Figma · Illustration",
   },
   {
     name: "I'll Think About it Later",
     href: "/pagmar",
     image: "/images/pagmar/pagmarfallback.png",
+    description:
+      "A productivity tool that turns procrastination into a structured, guilt-free workflow.",
+    role: "Research, Design & Fullstack Development",
+    year: "2025",
+    skills: "ReactJs · Three.js · AI Integration · UX Research",
   },
-  { name: "Men's Toilet", href: "/toilet", image: "/images/main/toiletbg.png" },
+  {
+    name: "Men's Toilet",
+    href: "/toilet",
+    image: "/images/main/toiletbg.png",
+    description:
+      "A playful social experiment exploring the unspoken rules of men's restroom etiquette.",
+    role: "Design & Frontend Development",
+    year: "2024",
+    skills: "Adobe Illustrator · Figma · HTML · CSS · Javascript",
+  },
   {
     name: "What Happens in Vegas",
     href: "/vegas",
     image: "/images/main/vegashome.png",
+    description:
+      "An immersive travel experience concept capturing the energy and excess of Las Vegas.",
+    role: "UI Design & Illustration",
+    year: "2025",
+    skills: "Adobe Illustrator · Figma · Illustration",
   },
 ];
 
@@ -91,32 +116,14 @@ function Card({ index, imageSrc }) {
     <group position={pos} rotation={rot}>
       <mesh>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
-        <meshBasicMaterial
-          attach="material-0"
-          color="#1a1a1a"
-          toneMapped={false}
-        />
-        <meshBasicMaterial
-          attach="material-1"
-          color="#1a1a1a"
-          toneMapped={false}
-        />
-        <meshBasicMaterial
-          attach="material-2"
-          color="#1a1a1a"
-          toneMapped={false}
-        />
-        <meshBasicMaterial
-          attach="material-3"
-          color="#1a1a1a"
-          toneMapped={false}
-        />
+        <meshBasicMaterial attach="material-0" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial attach="material-1" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial attach="material-2" color="#1a1a1a" toneMapped={false} />
+        <meshBasicMaterial attach="material-3" color="#1a1a1a" toneMapped={false} />
         <paperMaterial
           attach="material-4"
           uTexture={texture}
-          uTexAspect={
-            texture.image ? texture.image.width / texture.image.height : 1
-          }
+          uTexAspect={texture.image ? texture.image.width / texture.image.height : 1}
           uCardAspect={W / H}
           transparent
           toneMapped={false}
@@ -124,9 +131,7 @@ function Card({ index, imageSrc }) {
         <paperMaterial
           attach="material-5"
           uTexture={texture}
-          uTexAspect={
-            texture.image ? texture.image.width / texture.image.height : 1
-          }
+          uTexAspect={texture.image ? texture.image.width / texture.image.height : 1}
           uCardAspect={W / H}
           transparent
           toneMapped={false}
@@ -309,11 +314,30 @@ export default function DesktopCanvas() {
   // steps is a continuous integer — never wraps, so ring never jumps
   const [steps, setSteps] = useState(0);
   const [aboutActive, setAboutActive] = useState(false);
+  const [panelVisible, setPanelVisible] = useState(false);
+  const [displayedActive, setDisplayedActive] = useState(0);
 
   const STEP = (Math.PI * 2) / N;
   const rotation = -steps * STEP;
   // active index for UI highlight
   const active = ((steps % N) + N) % N;
+
+  // Hide panel on scroll, then after 1s update content + show
+  const panelTimerRef = useRef(null);
+  useEffect(() => {
+    clearTimeout(panelTimerRef.current);
+    // Use a two-step timeout: immediately queue a hide, then show after 1s
+    panelTimerRef.current = setTimeout(() => {
+      setDisplayedActive(active);
+      setPanelVisible(true);
+    }, 1000);
+    // Defer the hide to next tick so it's not synchronous in the effect body
+    const hideId = setTimeout(() => setPanelVisible(false), 0);
+    return () => {
+      clearTimeout(panelTimerRef.current);
+      clearTimeout(hideId);
+    };
+  }, [active]);
 
   const containerRef = useRef();
   useEffect(() => {
@@ -367,6 +391,47 @@ export default function DesktopCanvas() {
         >
           About
         </button>
+      </div>
+
+      {/* Project info panel — left of active card */}
+      <div
+        className="absolute top-1/2 -translate-y-1/2 z-10 flex flex-col items-start gap-6 w-72 transition-opacity duration-500"
+        style={{
+          left: "10%",
+          opacity: aboutActive || !panelVisible ? 0 : 1,
+          pointerEvents: aboutActive || !panelVisible ? "none" : "auto",
+        }}
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-xs opacity-40 tracking-widest uppercase">
+            0{displayedActive + 1}
+          </p>
+          <h2 className="section-title font-medium leading-tight">
+            {PROJECTS[displayedActive].name}
+          </h2>
+          <p className="text-sm font-medium opacity-60 leading-relaxed">
+            {PROJECTS[displayedActive].description}
+          </p>
+          <div className="flex flex-col gap-2">
+            {[
+              { label: "Role", value: PROJECTS[displayedActive].role },
+              { label: "Year", value: PROJECTS[displayedActive].year },
+              { label: "Skills", value: PROJECTS[displayedActive].skills },
+            ].map(({ label, value }) => (
+              <div key={label} className="flex flex-row gap-2.5">
+                <span className="text-xs font-medium italic opacity-40">
+                  {label}
+                </span>
+                <span className="text-xs font-medium opacity-80">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Link href={PROJECTS[displayedActive].href}>
+          <Button variant="filled" color="white" size="small">
+            View Study Case →
+          </Button>
+        </Link>
       </div>
 
       {/* Project name list — horizontal row at bottom */}
