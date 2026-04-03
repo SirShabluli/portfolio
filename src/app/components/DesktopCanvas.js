@@ -415,9 +415,11 @@ export default function DesktopCanvas() {
 
       {/* Project info panel — left of active card */}
       <div
-        className="absolute top-1/2 -translate-y-1/2 z-10 flex flex-col items-start gap-6 w-72 transition-opacity duration-500"
+        className="absolute top-1/2 -translate-y-1/2 z-10 flex flex-col items-start gap-6 w-72 transition-opacity duration-500 px-8 py-10 rounded-sm"
         style={{
           left: "10%",
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.1) 100%)",
           opacity: aboutActive || !panelVisible ? 0 : 1,
           pointerEvents: aboutActive || !panelVisible ? "none" : "auto",
         }}
