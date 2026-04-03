@@ -516,7 +516,7 @@ export const PROJECTS = [
     href: "/netflixdating",
     image: "/images/main/netflixhero.png",
     description:
-      "A dating app concept built inside the Netflix universe — matching users by taste, not swipes.",
+      "UI design for a fictional dating app set in the Netflix universe - where users match by streaming taste, not swipes.",
     role: "UI Design & Illustration",
     year: "2025",
     skills: "Adobe Illustrator · Figma · Illustration",
@@ -526,7 +526,7 @@ export const PROJECTS = [
     href: "/pagmar",
     image: "/images/pagmar/pagmarfallback.png",
     description:
-      "A productivity tool that turns procrastination into a structured, guilt-free workflow.",
+      "A fully functional web app - combining journaling, AI-powered insights, and 3D navigation in an experimental self-reflection tool.",
     role: "Research, Design & Fullstack Development",
     year: "2025",
     skills: "ReactJs · Three.js · AI Integration · UX Research",
@@ -536,7 +536,7 @@ export const PROJECTS = [
     href: "/toilet",
     image: "/images/main/toiletsplash.png",
     description:
-      "A playful social experiment exploring the unspoken rules of men's restroom etiquette.",
+      "Interactive browser game exploring men's restroom social dynamics through playful scenarios and humorous game mechanics.",
     role: "Design & Frontend Development",
     year: "2024",
     skills: "Adobe Illustrator · Figma · HTML · CSS · Javascript",

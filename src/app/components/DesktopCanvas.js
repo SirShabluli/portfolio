@@ -65,7 +65,7 @@ function getCardTransform(index) {
   const angle = (index / N) * Math.PI * 2; // evenly distribute around full circle
   const x = -Math.sin(angle) * RADIUS;
   const z = Math.cos(angle) * RADIUS;
-  return { pos: [x, 0, z], rot: [0, -angle, 0] }; // rotate card to face inward (toward center)
+  return { pos: [x, 0, z], rot: [0, angle, 0] }; // rotate card to face inward (toward center)
 }
 
 // ─── CARD ─────────────────────────────────────────────────────────────────────
