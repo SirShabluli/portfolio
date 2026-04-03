@@ -7,6 +7,7 @@ import { useSpring } from "@react-spring/three";
 import { TextureLoader } from "three";
 import { shaderMaterial } from "@react-three/drei";
 import { PROJECTS } from "../../data/projectData";
+import { useTransition } from "../context/TransitionContext";
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
 const PaperMaterial = shaderMaterial(
@@ -317,6 +318,13 @@ function Scene({ rotation, zoomedOut, onExitSnap }) {
 
 // ─── DESKTOP CANVAS ───────────────────────────────────────────────────────────
 export default function DesktopCanvas() {
+  const { signalReady } = useTransition();
+
+  // Signal the loading screen to hide once this component mounts
+  useEffect(() => {
+    signalReady();
+  }, []);
+
   // steps is a continuous integer — never wraps, so ring never jumps
   const [steps, setSteps] = useState(0);
   const [aboutActive, setAboutActive] = useState(false);
