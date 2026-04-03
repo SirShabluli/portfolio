@@ -413,47 +413,67 @@ export default function DesktopCanvas() {
         </button>
       </div>
 
-      {/* Project info panel — left of active card */}
+      {/* Project info panel — grid overlay */}
       <div
-        className="absolute top-1/2 -translate-y-1/2 z-10 flex flex-col items-start gap-6 w-72 transition-opacity duration-500 px-8 py-10 rounded-sm"
-        style={{
-          left: "10%",
-          background:
-            "linear-gradient(90deg, rgba(0,0,0,0.95) 80%, rgba(0,0,0,0.1) 100%)",
-          opacity: aboutActive || !panelVisible ? 0 : 1,
-          pointerEvents: aboutActive || !panelVisible ? "none" : "auto",
-        }}
+        className="absolute inset-0 z-10 grid grid-cols-12 gap-4 pointer-events-none transition-opacity duration-500"
+        style={{ opacity: aboutActive || !panelVisible ? 0 : 1 }}
       >
-        <div className="flex flex-col gap-4">
-          <p className="text-xs opacity-40 tracking-widest uppercase">
-            0{displayedActive + 1}
-          </p>
-          <h2 className="section-title font-medium leading-tight">
-            {PROJECTS[displayedActive].name}
-          </h2>
-          <p className="text-sm font-medium opacity-60 leading-relaxed">
-            {PROJECTS[displayedActive].description}
-          </p>
-          <div className="flex flex-col gap-2">
-            {[
-              { label: "Role", value: PROJECTS[displayedActive].role },
-              { label: "Year", value: PROJECTS[displayedActive].year },
-              { label: "Skills", value: PROJECTS[displayedActive].skills },
-            ].map(({ label, value }) => (
-              <div key={label} className="flex flex-row gap-2.5">
-                <span className="text-xs font-medium italic opacity-40">
-                  {label}
-                </span>
-                <span className="text-xs font-medium opacity-80">{value}</span>
-              </div>
-            ))}
+        {/* Panel content — cols 1–3 */}
+        <div
+          className="col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pointer-events-auto pl-[8.33vw] pr-8"
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(0,0,0,0.9) 80%, rgba(0,0,0,0) 100%)",
+          }}
+        >
+          <div className="flex flex-col gap-10">
+            <p
+              className="text-xs opacity-40 tracking-widest uppercase"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              0{displayedActive + 1}
+            </p>
+            <h2 className="section-title font-medium leading-tight">
+              {PROJECTS[displayedActive].name}
+            </h2>
+            <p
+              className="text-sm font-medium opacity-60 leading-relaxed"
+              style={{ fontFamily: "var(--font-raleway)" }}
+            >
+              {PROJECTS[displayedActive].description}
+            </p>
+            <div className="flex flex-col gap-2">
+              {[
+                { label: "Role", value: PROJECTS[displayedActive].role },
+                { label: "Year", value: PROJECTS[displayedActive].year },
+                { label: "Skills", value: PROJECTS[displayedActive].skills },
+              ].map(({ label, value }) => (
+                <div key={label} className="flex flex-row gap-2.5">
+                  <span
+                    className="text-xs font-medium italic opacity-40"
+                    style={{ fontFamily: "var(--font-raleway)" }}
+                  >
+                    {label}
+                  </span>
+                  <span
+                    className="text-xs font-medium opacity-80"
+                    style={{ fontFamily: "var(--font-raleway)" }}
+                  >
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
+          <Link href={PROJECTS[displayedActive].href}>
+            <Button variant="filled" color="white" size="small">
+              View Study Case →
+            </Button>
+          </Link>
         </div>
-        <Link href={PROJECTS[displayedActive].href}>
-          <Button variant="filled" color="white" size="small">
-            View Study Case →
-          </Button>
-        </Link>
+
+        {/* Rest of grid — transparent */}
+        <div className="col-span-9 pointer-events-none" />
       </div>
 
       {/* About — grid overlay */}
