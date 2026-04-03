@@ -48,6 +48,15 @@ const PROJECTS = [
     year: "2025",
     skills: "Adobe Illustrator · Figma · Illustration",
   },
+  {
+    name: "Placeholder",
+    href: "/",
+    image: "/images/main/netflixhero.png",
+    description: "A placeholder project — coming soon.",
+    role: "TBD",
+    year: "2025",
+    skills: "TBD",
+  },
 ];
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
@@ -90,21 +99,31 @@ const PaperMaterial = shaderMaterial(
 extend({ PaperMaterial });
 
 // ─── CIRCLE LAYOUT ────────────────────────────────────────────────────────────
+// Cards are placed evenly around a circle of radius RADIUS.
+// N = number of projects — all angle math derives from this automatically.
+// To add/remove a card: just edit PROJECTS above. Nothing else needs changing.
 const RADIUS = 3.5;
 const N = PROJECTS.length;
 
 const CARD_W = 2.0;
-const CARD_H = CARD_W * 1.5;
-const CARD_DEPTH = 0.02;
+const CARD_H = CARD_W * 1.5; // portrait ratio
+const CARD_DEPTH = 0.02; // thin so it looks like a physical card
 
+// Returns 3D position + Y rotation for card at `index`.
+// Card 0 → angle 0 → z = -RADIUS (directly in front of camera).
+// Each card is spaced (360/N)° further clockwise around the ring.
 function getCardTransform(index) {
-  const angle = (index / N) * Math.PI * 2;
+  const angle = (index / N) * Math.PI * 2; // evenly distribute around full circle
   const x = Math.sin(angle) * RADIUS;
   const z = -Math.cos(angle) * RADIUS;
-  return { pos: [x, 0, z], rot: [0, angle, 0] };
+  return { pos: [x, 0, z], rot: [0, -angle, 0] }; // rotate card to face inward (toward center)
 }
 
 // ─── CARD ─────────────────────────────────────────────────────────────────────
+// A thin box with 6 faces:
+//   material-0..3 → right, left, top, bottom edges → dark fill
+//   material-4    → front face → project image via PaperMaterial shader (cover-fit)
+//   material-5    → back face  → same image (faces away, not normally visible)
 function Card({ index, imageSrc }) {
   const texture = useLoader(TextureLoader, imageSrc);
   const { pos, rot } = getCardTransform(index);
@@ -116,6 +135,7 @@ function Card({ index, imageSrc }) {
     <group position={pos} rotation={rot}>
       <mesh>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
+        {/* Edges — dark solid color */}
         <meshBasicMaterial
           attach="material-0"
           color="#1a1a1a"
@@ -136,6 +156,7 @@ function Card({ index, imageSrc }) {
           color="#1a1a1a"
           toneMapped={false}
         />
+        {/* Front face — project image, object-fit cover via shader */}
         <paperMaterial
           attach="material-4"
           uTexture={texture}
@@ -146,6 +167,7 @@ function Card({ index, imageSrc }) {
           transparent
           toneMapped={false}
         />
+        {/* Back face — same image, faces away from camera */}
         <paperMaterial
           attach="material-5"
           uTexture={texture}
@@ -162,7 +184,9 @@ function Card({ index, imageSrc }) {
 }
 
 // ─── CAMERA RIG ───────────────────────────────────────────────────────────────
-// Smoothly lerps the camera Z between normal (10) and zoomed-out (18).
+// Runs every frame and lerps camera position toward a target.
+// Normal mode:      z=10, y=0  → close up, eye-level
+// About/zoomed-out: z=25, y=3  → pulled back and slightly above the scene
 function CameraRig({ zoomedOut }) {
   useFrame((state) => {
     const targetZ = zoomedOut ? 25 : 10;
@@ -174,32 +198,45 @@ function CameraRig({ zoomedOut }) {
 }
 
 // ─── RING GROUP ───────────────────────────────────────────────────────────────
-// rotation is a continuous value (never wraps) — no jump on loop.
-// When zoomedOut: auto-spins. When not: spring-driven to rotation target.
+// Holds all cards and rotates as one group around the Y axis.
+//
+// SCROLLING:
+//   - `steps` (in DesktopCanvas) increments/decrements by 1 on each scroll tick.
+//   - `rotation = -steps * (2π/N)` — one step = one card slot.
+//   - The spring animates toward each new target, giving it the springy feel.
+//   - `steps` is never reset or modded — it's always a growing/shrinking integer
+//     so the spring never sees a sudden value jump when looping past card 0.
+//
+// ABOUT MODE:
+//   - zoomedOut=true → auto-spin takes over (delta * 0.4 per frame).
+//   - zoomedOut=false → read the raw current Y rotation, round to the nearest
+//     card slot, snap the spring there, and sync `steps` back in the parent.
 function RingGroup({ rotation, zoomedOut, onExitSnap }) {
   const groupRef = useRef();
 
+  // Spring drives the ring Y rotation — mass/tension/friction control the feel.
   const [{ ringRot }, api] = useSpring(() => ({
     ringRot: rotation,
     config: { mass: 3, tension: 90, friction: 34 },
   }));
 
-  // Scroll: animate to new rotation target
+  // New scroll step arrived → animate spring to new rotation target.
+  // Skipped during About mode so auto-spin isn't fighting the spring.
   useEffect(() => {
     if (!zoomedOut) {
       api.start({ ringRot: rotation });
     }
   }, [rotation, api]);
 
-  // Exit About: snap to nearest card from current spin position
+  // Exiting About mode → snap ring to nearest card and sync parent steps.
   useEffect(() => {
     if (!zoomedOut && groupRef.current) {
       const cur = groupRef.current.rotation.y;
       const STEP = (Math.PI * 2) / N;
-      const nearestStep = Math.round(-cur / STEP);
-      api.set({ ringRot: cur });
-      api.start({ ringRot: -nearestStep * STEP });
-      onExitSnap(((nearestStep % N) + N) % N);
+      const nearestStep = Math.round(cur / STEP);
+      api.set({ ringRot: cur }); // start spring from current pos
+      api.start({ ringRot: nearestStep * STEP }); // animate to nearest card slot
+      onExitSnap(((nearestStep % N) + N) % N); // tell parent which card is active
     }
   }, [zoomedOut]);
 
@@ -338,7 +375,7 @@ export default function DesktopCanvas() {
   const [displayedActive, setDisplayedActive] = useState(0);
 
   const STEP = (Math.PI * 2) / N;
-  const rotation = -steps * STEP;
+  const rotation = steps * STEP;
   // active index for UI highlight
   const active = ((steps % N) + N) % N;
 
@@ -420,7 +457,7 @@ export default function DesktopCanvas() {
       >
         {/* Panel content — cols 1–3 */}
         <div
-          className="col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pointer-events-auto pl-[8.33vw] pr-8"
+          className="col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pointer-events-auto pl-[8.33vw] pr-12"
           style={{
             background:
               "linear-gradient(90deg, rgba(0,0,0,0.9) 80%, rgba(0,0,0,0) 100%)",
@@ -473,7 +510,7 @@ export default function DesktopCanvas() {
         </div>
 
         {/* Rest of grid — transparent */}
-        <div className="col-span-9 pointer-events-none" />
+        <div className="col-span-8 pointer-events-none" />
       </div>
 
       {/* About — grid overlay */}
