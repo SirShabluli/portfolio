@@ -31,7 +31,7 @@ const PROJECTS = [
   {
     name: "Men's Toilet",
     href: "/toilet",
-    image: "/images/main/toiletbg.png",
+    image: "/images/main/toiletsplash.png",
     description:
       "A playful social experiment exploring the unspoken rules of men's restroom etiquette.",
     role: "Design & Frontend Development",
@@ -48,15 +48,15 @@ const PROJECTS = [
     year: "2025",
     skills: "Adobe Illustrator · Figma · Illustration",
   },
-  {
-    name: "Placeholder",
-    href: "/",
-    image: "/images/main/netflixhero.png",
-    description: "A placeholder project — coming soon.",
-    role: "TBD",
-    year: "2025",
-    skills: "TBD",
-  },
+  // {
+  //   name: "Placeholder",
+  //   href: "/",
+  //   image: "/images/main/netflixhero.png",
+  //   description: "A placeholder project — coming soon.",
+  //   role: "TBD",
+  //   year: "2025",
+  //   skills: "TBD",
+  // },
 ];
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
@@ -457,7 +457,7 @@ export default function DesktopCanvas() {
       >
         {/* Panel content — cols 1–3 */}
         <div
-          className="col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pointer-events-auto pl-[8.33vw] pr-12"
+          className="col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pointer-events-auto pl-[8.33vw] pr-15"
           style={{
             background:
               "linear-gradient(90deg, rgba(0,0,0,0.9) 80%, rgba(0,0,0,0) 100%)",
