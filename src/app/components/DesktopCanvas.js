@@ -489,8 +489,9 @@ export default function DesktopCanvas() {
               className="text-sm opacity-60 leading-relaxed mt-1"
               style={{ fontFamily: "var(--font-raleway)" }}
             >
-              Visual & interaction designer blending code and craft — building
-              experiences that feel as good as they look.
+              Creative Technologist — I build interactive experiences and
+              scalable products, merging design thinking with React, Three.js,
+              and modern web development.
             </p>
           </div>
           <div className="flex flex-col gap-3">

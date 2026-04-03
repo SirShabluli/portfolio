@@ -542,11 +542,11 @@ export const PROJECTS = [
     skills: "Adobe Illustrator · Figma · HTML · CSS · Javascript",
   },
   {
-    name: "What Happens in Vegas",
+    name: "Vegas Retreat",
     href: "/vegas",
     image: "/images/main/vegashome.png",
     description:
-      "An immersive travel experience concept capturing the energy and excess of Las Vegas.",
+      "Visual design for a satirical travel app - illustrated screens treating Vegas excess as wellness advice with dark humor.",
     role: "UI Design & Illustration",
     year: "2025",
     skills: "Adobe Illustrator · Figma · Illustration",
