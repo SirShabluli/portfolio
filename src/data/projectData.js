@@ -534,7 +534,7 @@ export const PROJECTS = [
   {
     name: "Men's Toilet",
     href: "/toilet",
-    image: "/images/main/toiletsplash.png",
+    image: "/images/main/ToiletSplash.png",
     description:
       "Interactive browser game exploring men's restroom social dynamics through playful scenarios and humorous game mechanics.",
     role: "Design & Frontend Development",
