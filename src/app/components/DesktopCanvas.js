@@ -6,58 +6,7 @@ import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
 import { useSpring } from "@react-spring/three";
 import { TextureLoader } from "three";
 import { shaderMaterial } from "@react-three/drei";
-
-const PROJECTS = [
-  {
-    name: "Netflix Dating",
-    href: "/netflixdating",
-    image: "/images/main/netflixhero.png",
-    description:
-      "A dating app concept built inside the Netflix universe — matching users by taste, not swipes.",
-    role: "UI Design & Illustration",
-    year: "2025",
-    skills: "Adobe Illustrator · Figma · Illustration",
-  },
-  {
-    name: "I'll Think About it Later",
-    href: "/pagmar",
-    image: "/images/pagmar/pagmarfallback.png",
-    description:
-      "A productivity tool that turns procrastination into a structured, guilt-free workflow.",
-    role: "Research, Design & Fullstack Development",
-    year: "2025",
-    skills: "ReactJs · Three.js · AI Integration · UX Research",
-  },
-  {
-    name: "Men's Toilet",
-    href: "/toilet",
-    image: "/images/main/toiletsplash.png",
-    description:
-      "A playful social experiment exploring the unspoken rules of men's restroom etiquette.",
-    role: "Design & Frontend Development",
-    year: "2024",
-    skills: "Adobe Illustrator · Figma · HTML · CSS · Javascript",
-  },
-  {
-    name: "What Happens in Vegas",
-    href: "/vegas",
-    image: "/images/main/vegashome.png",
-    description:
-      "An immersive travel experience concept capturing the energy and excess of Las Vegas.",
-    role: "UI Design & Illustration",
-    year: "2025",
-    skills: "Adobe Illustrator · Figma · Illustration",
-  },
-  // {
-  //   name: "Placeholder",
-  //   href: "/",
-  //   image: "/images/main/netflixhero.png",
-  //   description: "A placeholder project — coming soon.",
-  //   role: "TBD",
-  //   year: "2025",
-  //   skills: "TBD",
-  // },
-];
+import { PROJECTS } from "../../data/projectData";
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
 const PaperMaterial = shaderMaterial(
