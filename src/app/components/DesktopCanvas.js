@@ -74,7 +74,7 @@ function getCardTransform(index) {
 //   material-0..3 → right, left, top, bottom edges → dark fill
 //   material-4    → front face → project image via PaperMaterial shader (cover-fit)
 //   material-5    → back face  → same image (faces away, not normally visible)
-function Card({ index, imageSrc, isActive, href }) {
+function Card({ index, imageSrc, isActive, href, zoomedOut, onZoomedClick }) {
   const texture = useLoader(TextureLoader, imageSrc);
   const { pos, rot } = getCardTransform(index);
   const router = useRouter();
@@ -82,9 +82,14 @@ function Card({ index, imageSrc, isActive, href }) {
   const W = CARD_W;
   const H = CARD_H;
 
+  const handleClick = () => {
+    if (zoomedOut) onZoomedClick();
+    else if (isActive) router.push(href);
+  };
+
   return (
     <group position={pos} rotation={rot}>
-      <mesh onClick={() => isActive && router.push(href)}>
+      <mesh onClick={handleClick}>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
         {/* Edges — dark solid color */}
         <meshBasicMaterial
@@ -162,7 +167,7 @@ function CameraRig({ zoomedOut }) {
 //   - zoomedOut=true → auto-spin takes over (delta * 0.4 per frame).
 //   - zoomedOut=false → read the raw current Y rotation, round to the nearest
 //     card slot, snap the spring there, and sync `steps` back in the parent.
-function RingGroup({ rotation, zoomedOut, onExitSnap, active }) {
+function RingGroup({ rotation, zoomedOut, onExitSnap, active, onZoomedClick }) {
   const groupRef = useRef();
 
   // Spring drives the ring Y rotation — mass/tension/friction control the feel.
@@ -203,7 +208,7 @@ function RingGroup({ rotation, zoomedOut, onExitSnap, active }) {
   return (
     <group ref={groupRef}>
       {PROJECTS.map((p, i) => (
-        <Card key={i} index={i} imageSrc={p.image} isActive={i === active} href={p.href} />
+        <Card key={i} index={i} imageSrc={p.image} isActive={i === active} href={p.href} zoomedOut={zoomedOut} onZoomedClick={onZoomedClick} />
       ))}
     </group>
   );
@@ -302,7 +307,7 @@ function KeyboardPlane({ visible }) {
 }
 
 // ─── SCENE ────────────────────────────────────────────────────────────────────
-function Scene({ rotation, zoomedOut, onExitSnap, active }) {
+function Scene({ rotation, zoomedOut, onExitSnap, active, onZoomedClick }) {
   return (
     <Suspense fallback={null}>
       <CameraRig zoomedOut={zoomedOut} />
@@ -311,6 +316,7 @@ function Scene({ rotation, zoomedOut, onExitSnap, active }) {
         zoomedOut={zoomedOut}
         onExitSnap={onExitSnap}
         active={active}
+        onZoomedClick={onZoomedClick}
       />
       <AboutPlane visible={zoomedOut} />
       <KeyboardPlane visible={zoomedOut} />
@@ -384,6 +390,7 @@ export default function DesktopCanvas() {
           zoomedOut={aboutActive}
           onExitSnap={setSteps}
           active={active}
+          onZoomedClick={() => setAboutActive(false)}
         />
       </Canvas>
 
