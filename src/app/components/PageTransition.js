@@ -14,7 +14,7 @@ export default function PageTransition({ children }) {
           className="fixed inset-0 z-100 bg-black pointer-events-none"
           initial={{ opacity: 1 }}
           animate={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
         />
       </AnimatePresence>
     </>

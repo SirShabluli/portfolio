@@ -6,7 +6,7 @@ const TransitionContext = createContext(null);
 
 export function TransitionProvider({ children }) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(true); // true on initial load — cleared by first signalReady
+  const [isLoading, setIsLoading] = useState(false);
   // resolveReady is called by the incoming page when it's ready to be shown
   const resolveReadyRef = useRef(null);
 

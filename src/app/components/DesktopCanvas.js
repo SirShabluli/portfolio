@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect, Suspense } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Button from "./Button";
 import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
@@ -7,7 +8,6 @@ import { useSpring } from "@react-spring/three";
 import { TextureLoader } from "three";
 import { shaderMaterial } from "@react-three/drei";
 import { PROJECTS } from "../../data/projectData";
-import { useTransition } from "../context/TransitionContext";
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
 const PaperMaterial = shaderMaterial(
@@ -74,16 +74,17 @@ function getCardTransform(index) {
 //   material-0..3 → right, left, top, bottom edges → dark fill
 //   material-4    → front face → project image via PaperMaterial shader (cover-fit)
 //   material-5    → back face  → same image (faces away, not normally visible)
-function Card({ index, imageSrc }) {
+function Card({ index, imageSrc, isActive, href }) {
   const texture = useLoader(TextureLoader, imageSrc);
   const { pos, rot } = getCardTransform(index);
+  const router = useRouter();
 
   const W = CARD_W;
   const H = CARD_H;
 
   return (
     <group position={pos} rotation={rot}>
-      <mesh>
+      <mesh onClick={() => isActive && router.push(href)}>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
         {/* Edges — dark solid color */}
         <meshBasicMaterial
@@ -161,7 +162,7 @@ function CameraRig({ zoomedOut }) {
 //   - zoomedOut=true → auto-spin takes over (delta * 0.4 per frame).
 //   - zoomedOut=false → read the raw current Y rotation, round to the nearest
 //     card slot, snap the spring there, and sync `steps` back in the parent.
-function RingGroup({ rotation, zoomedOut, onExitSnap }) {
+function RingGroup({ rotation, zoomedOut, onExitSnap, active }) {
   const groupRef = useRef();
 
   // Spring drives the ring Y rotation — mass/tension/friction control the feel.
@@ -202,7 +203,7 @@ function RingGroup({ rotation, zoomedOut, onExitSnap }) {
   return (
     <group ref={groupRef}>
       {PROJECTS.map((p, i) => (
-        <Card key={i} index={i} imageSrc={p.image} />
+        <Card key={i} index={i} imageSrc={p.image} isActive={i === active} href={p.href} />
       ))}
     </group>
   );
@@ -301,7 +302,7 @@ function KeyboardPlane({ visible }) {
 }
 
 // ─── SCENE ────────────────────────────────────────────────────────────────────
-function Scene({ rotation, zoomedOut, onExitSnap }) {
+function Scene({ rotation, zoomedOut, onExitSnap, active }) {
   return (
     <Suspense fallback={null}>
       <CameraRig zoomedOut={zoomedOut} />
@@ -309,6 +310,7 @@ function Scene({ rotation, zoomedOut, onExitSnap }) {
         rotation={rotation}
         zoomedOut={zoomedOut}
         onExitSnap={onExitSnap}
+        active={active}
       />
       <AboutPlane visible={zoomedOut} />
       <KeyboardPlane visible={zoomedOut} />
@@ -318,13 +320,6 @@ function Scene({ rotation, zoomedOut, onExitSnap }) {
 
 // ─── DESKTOP CANVAS ───────────────────────────────────────────────────────────
 export default function DesktopCanvas() {
-  const { signalReady } = useTransition();
-
-  // Signal the loading screen to hide once this component mounts
-  useEffect(() => {
-    signalReady();
-  }, []);
-
   // steps is a continuous integer — never wraps, so ring never jumps
   const [steps, setSteps] = useState(0);
   const [aboutActive, setAboutActive] = useState(false);
@@ -388,6 +383,7 @@ export default function DesktopCanvas() {
           rotation={rotation}
           zoomedOut={aboutActive}
           onExitSnap={setSteps}
+          active={active}
         />
       </Canvas>
 
