@@ -171,8 +171,11 @@ export default function PagmarPage() {
 
         <PageGrid className="relative z-10 gap-8 w-full px-6 lg:px-12 pb-20 lg:pb-28">
           {/* Main title placeholder */}
-          <div className="lg:col-start-4 col-span-4 lg:col-span-8">
-            <h1 className="text-[4rem] lg:text-8xl font-bold leading-[1.2] tracking-tight">
+          <div className="lg:col-start-4  col-span-4 lg:col-span-6">
+            <h1
+              className="text-3xl lg:text-8xl font-bold leading-[1.2] tracking-tight"
+              style={{ fontFamily: "Masada, serif", fontWeight: 800 }}
+            >
               I&apos;ll Think About it Later
             </h1>
           </div>

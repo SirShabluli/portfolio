@@ -98,6 +98,7 @@
   --font-netflix: var(--font-netflix-sans);
   --font-reenie: var(--font-reenie-beanie);
   --font-dokdo: var(--font-dokdo);
+  --font-masada: "Masada", serif;
 
   /* Font Sizes - customize these values */
   --text-xs: 0.75rem; /* 12px */
@@ -132,6 +133,10 @@ body {
   width: 100%;
   overflow-x: clip;
   user-select: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  text-wrap: pretty;
 }
 
 .h-screen {
