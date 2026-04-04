@@ -8,6 +8,7 @@ import { useSpring } from "@react-spring/three";
 import { TextureLoader } from "three";
 import { shaderMaterial } from "@react-three/drei";
 import { PROJECTS } from "../../data/projectData";
+import RevealText from "./RevealText";
 
 // ─── PAPER SHADER ─────────────────────────────────────────────────────────────
 const PaperMaterial = shaderMaterial(
@@ -208,7 +209,15 @@ function RingGroup({ rotation, zoomedOut, onExitSnap, active, onZoomedClick }) {
   return (
     <group ref={groupRef}>
       {PROJECTS.map((p, i) => (
-        <Card key={i} index={i} imageSrc={p.image} isActive={i === active} href={p.href} zoomedOut={zoomedOut} onZoomedClick={onZoomedClick} />
+        <Card
+          key={i}
+          index={i}
+          imageSrc={p.image}
+          isActive={i === active}
+          href={p.href}
+          zoomedOut={zoomedOut}
+          onZoomedClick={onZoomedClick}
+        />
       ))}
     </group>
   );
@@ -399,7 +408,6 @@ export default function DesktopCanvas() {
         <button
           className="font-medium transition-all duration-300 cursor-pointer"
           style={{
-            fontFamily: "var(--font-raleway)",
             fontSize: aboutActive ? "1.5rem" : "1rem",
             opacity: aboutActive ? 1 : 0.3,
             letterSpacing: aboutActive ? "-0.02em" : "0",
@@ -424,19 +432,13 @@ export default function DesktopCanvas() {
           }}
         >
           <div className="flex flex-col gap-10">
-            <p
-              className="text-xs opacity-40 tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
+            <p className="text-xs opacity-40 tracking-widest uppercase">
               0{displayedActive + 1}
             </p>
             <h2 className="section-title font-medium leading-tight">
               {PROJECTS[displayedActive].name}
             </h2>
-            <p
-              className="text-sm font-medium opacity-60 leading-relaxed"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
+            <p className="text-sm font-medium opacity-60 leading-relaxed">
               {PROJECTS[displayedActive].description}
             </p>
             <div className="flex flex-col gap-2">
@@ -446,16 +448,10 @@ export default function DesktopCanvas() {
                 { label: "Skills", value: PROJECTS[displayedActive].skills },
               ].map(({ label, value }) => (
                 <div key={label} className="flex flex-row gap-2.5">
-                  <span
-                    className="text-xs font-medium italic opacity-40"
-                    style={{ fontFamily: "var(--font-raleway)" }}
-                  >
+                  <span className="text-xs font-medium italic opacity-40">
                     {label}
                   </span>
-                  <span
-                    className="text-xs font-medium opacity-80"
-                    style={{ fontFamily: "var(--font-raleway)" }}
-                  >
+                  <span className="text-xs font-medium opacity-80">
                     {value}
                   </span>
                 </div>
@@ -475,142 +471,113 @@ export default function DesktopCanvas() {
 
       {/* About — grid overlay */}
       <div
-        className="absolute inset-0 z-10 grid grid-cols-12 gap-4 px-10 pointer-events-none transition-opacity duration-500"
+        className="absolute inset-0 z-10 grid grid-cols-12 gap-4 px-3 pointer-events-none transition-opacity duration-500"
         style={{ opacity: aboutActive ? 1 : 0 }}
       >
         {/* Left panel: bio + experience — cols 1–3 */}
-        <div className="col-span-3 flex col-start-2 flex-col justify-center gap-8 pointer-events-auto">
-          <div className="flex flex-col gap-2">
-            <p
-              className="text-xs opacity-40 tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              About me
-            </p>
-            <h2
-              className="text-5xl font-medium leading-tight"
-              style={{
-                fontFamily: "var(--font-raleway)",
-                letterSpacing: "-0.02em",
-              }}
-            >
+        <div className="col-span-4 flex col-start-1 flex-col justify-between px-20 pointer-events-auto">
+          {/* Top: bio */}
+          <div className="flex flex-col gap-2 mt-10">
+            <h2 className="text-5xl uppercase font-bold leading-tight">
               Eyal Mordechai
             </h2>
-            <p
-              className="text-sm opacity-60 leading-relaxed mt-1"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Creative Technologist — I build interactive experiences and
-              scalable products, merging design thinking with React, Three.js,
-              and modern web development.
+            <p className="text-xl opacity-80 font-medium">
+              Creative Developer with a Product Mindset
             </p>
+            <RevealText
+              className="text-3xl italic opacity-60 leading-relaxed mt-1"
+              trigger={aboutActive}
+              duration={1}
+            >
+              I build interactive experiences and scalable products, merging
+              design thinking with React, 3D, and modern web development.
+            </RevealText>
           </div>
-          <div className="flex flex-col gap-3">
-            <p
-              className="text-xs opacity-40 tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Experience
-            </p>
-            {[
-              {
-                year: "2025",
-                role: "Graduation Project",
-                place: "Shenkar — HIT",
-              },
-              { year: "2024", role: "UI/UX Designer", place: "Freelance" },
-              { year: "2023", role: "Frontend Developer", place: "Freelance" },
-            ].map(({ year, role, place }) => (
-              <div
-                key={year + role}
-                className="flex flex-row gap-3 items-start"
-              >
-                <span
-                  className="text-xs opacity-30 w-8 shrink-0"
-                  style={{ fontFamily: "var(--font-raleway)" }}
-                >
-                  {year}
+
+          {/* Bottom: core focus + education */}
+          <div className="flex flex-col gap-6 mt-10">
+            <div className="flex flex-col gap-3">
+              <p className="text-xs opacity-40 tracking-widest uppercase">
+                Core Focus
+              </p>
+              {[
+                "Interactive Product Development",
+                "Motion & UX-driven Interfaces",
+                "Creative Technology",
+              ].map((s) => (
+                <span key={s} className="text-xs font-medium opacity-80">
+                  {s}
                 </span>
-                <div className="flex flex-col gap-0.5">
-                  <span
-                    className="text-xs font-medium opacity-80"
-                    style={{ fontFamily: "var(--font-raleway)" }}
-                  >
-                    {role}
-                  </span>
-                  <span
-                    className="text-xs opacity-40 italic"
-                    style={{ fontFamily: "var(--font-raleway)" }}
-                  >
-                    {place}
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+            <div className="flex flex-col gap-3">
+              <p className="text-xs opacity-40 tracking-widest uppercase">
+                Design & Product Thinking
+              </p>
+              {[
+                "UX / Interaction Design",
+                "Prototyping",
+                "Systems thinking",
+              ].map((s) => (
+                <span key={s} className="text-xs font-medium opacity-80">
+                  {s}
+                </span>
+              ))}
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="text-xs opacity-40 tracking-widest uppercase">
+                Education
+              </p>
+              <span className="text-xs font-medium opacity-80">
+                B.Des, Visual Communication
+              </span>
+              <span className="text-xs opacity-40 italic">
+                Bezalel Academy, 2021–2025
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Center — 3D scene takes cols 4–9, leave empty */}
         <div className="col-span-6 pointer-events-none" />
 
-        {/* Right panel: skills + education — cols 10–12 */}
+        {/* Right panel — cols 10–12 */}
         <div className="col-span-3 col-start-10 flex flex-col justify-center gap-8 pointer-events-auto">
           <div className="flex flex-col gap-3">
-            <p
-              className="text-xs opacity-40 tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Design
+            <p className="text-xs opacity-40 tracking-widest uppercase">
+              Core Focus
             </p>
-            {["Figma", "Adobe Illustrator", "Framer", "Motion Design"].map(
-              (s) => (
-                <span
-                  key={s}
-                  className="text-xs font-medium opacity-80"
-                  style={{ fontFamily: "var(--font-raleway)" }}
-                >
-                  {s}
-                </span>
-              ),
-            )}
+            {[
+              "Interactive Product Development",
+              "Motion & UX-driven Interfaces",
+              "Creative Technology",
+            ].map((s) => (
+              <span key={s} className="text-xs font-medium opacity-80">
+                {s}
+              </span>
+            ))}
           </div>
           <div className="flex flex-col gap-3">
-            <p
-              className="text-xs opacity-40 tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Development
+            <p className="text-xs opacity-40 tracking-widest uppercase">
+              Design & Product Thinking
             </p>
-            {["React / Next.js", "Three.js / R3F", "GSAP", "Tailwind CSS"].map(
+            {["UX / Interaction Design", "Prototyping", "Systems thinking"].map(
               (s) => (
-                <span
-                  key={s}
-                  className="text-xs font-medium opacity-80"
-                  style={{ fontFamily: "var(--font-raleway)" }}
-                >
+                <span key={s} className="text-xs font-medium opacity-80">
                   {s}
                 </span>
               ),
             )}
           </div>
           <div className="flex flex-col gap-2">
-            <p
-              className="text-xs opacity-40 tracking-widest uppercase"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
+            <p className="text-xs opacity-40 tracking-widest uppercase">
               Education
             </p>
-            <span
-              className="text-xs font-medium opacity-80"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Visual Communication Design
+            <span className="text-xs font-medium opacity-80">
+              B.Des, Visual Communication
             </span>
-            <span
-              className="text-xs opacity-40 italic"
-              style={{ fontFamily: "var(--font-raleway)" }}
-            >
-              Shenkar — HIT, 2022–2025
+            <span className="text-xs opacity-40 italic">
+              Bezalel Academy, 2021–2025
             </span>
           </div>
         </div>
@@ -639,7 +606,6 @@ export default function DesktopCanvas() {
               style={{
                 fontSize: active === i ? "1.5rem" : "1rem",
                 opacity: active === i ? 1 : 0.3,
-                fontFamily: "var(--font-raleway)",
                 letterSpacing: active === i ? "-0.02em" : "0",
               }}
             >

@@ -231,7 +231,7 @@ export default function PagmarPage() {
             The Full Experience
           </p>
           {/* Video placeholder — replace src when ready */}
-          <div className="col-span-4 lg:col-span-10 lg:col-start-2 aspect-video bg-white/5 rounded-sm overflow-hidden">
+          <div className="col-span-4 lg:col-span-9 lg:col-start-3 aspect-video bg-white/5 rounded-sm overflow-hidden">
             {/* <video src="/images/pagmar/demo.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" /> */}
           </div>
         </PageGrid>
@@ -270,14 +270,15 @@ export default function PagmarPage() {
               width={800}
               height={800}
               className="w-full h-auto rounded-sm"
+              preload={true}
             />
-            <Image
+            {/* <Image
               src="/images/pagmar/journal.png"
               alt="Journal"
               width={800}
               height={800}
               className="w-3/4 h-auto rounded-sm self-end"
-            />
+            /> */}
           </div>
         </PageGrid>
       </section>
@@ -386,7 +387,7 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
           <div
-            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col lg:mt-20"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col lg:mt-20"
             style={{ gap: 15 }}
           >
             <ClickToPlay
@@ -394,7 +395,7 @@ export default function PagmarPage() {
               className="bg-white/5 rounded-sm overflow-hidden"
               style={{ aspectRatio: "1755/1080" }}
             />
-            <p className="text-sm font-medium leading-[160%] opacity-40 lg:pl-[10%]">
+            <p className="text-sm font-medium leading-[160%] opacity-40 ">
               Write freely. Stuck? Tab → choose word → get question. Question
               vanishes, thoughts remain.
             </p>
@@ -564,7 +565,7 @@ export default function PagmarPage() {
             </div>
           </div>
           <div
-            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col lg:mt-20"
             style={{ gap: 20 }}
           >
             <ClickToPlay
@@ -598,7 +599,7 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
           <div
-            className="col-span-4 lg:col-span-10 lg:col-start-2 flex flex-col"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col lg:mt-20"
             style={{ gap: 20 }}
           >
             <ClickToPlay
