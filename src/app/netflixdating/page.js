@@ -378,7 +378,7 @@ export default function NetflixDatingPage() {
         <HorizontalScroll>
           <div className="min-w-screen w-screen overflow-x-hidden h-screen bg-black flex items-center justify-center shrink-0">
             <h1 className="display flex text-center text-white">
-              Design System
+              Design Language
             </h1>
           </div>
           <div className="min-w-screen w-screen h-screen shrink-0">

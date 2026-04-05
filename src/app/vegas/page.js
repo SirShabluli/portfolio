@@ -1120,7 +1120,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             className="min-w-screen w-screen h-screen flex items-center justify-center shrink-0 transition-colors duration-500 relative overflow-hidden"
             style={{ backgroundColor: isDark ? "#000000" : "#23577A" }}
           >
-            <h1
+            <WipeText
+              as="h1"
               className="display text-center lg:display transition-all duration-500 z-10"
               style={
                 isDark
@@ -1133,8 +1134,8 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                   : { color: "white", filter: "none" }
               }
             >
-              Design System
-            </h1>
+              Design Language
+            </WipeText>
             {/* Dark-only scattered icons */}
             <div
               className="absolute transition-opacity duration-700"

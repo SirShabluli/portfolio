@@ -22,7 +22,7 @@ const SECTIONS = [
       { id: "atmosphere", label: "Emotional Atmosphere" },
     ],
   },
-  { id: "design-system", label: "Design System", subs: [] },
+  { id: "design-system", label: "Design Language", subs: [] },
   {
     id: "reception",
     label: "Reception & Impact",
@@ -63,7 +63,11 @@ function SubList({ subs, activeId, hoveredId, scrollTo, isOpen }) {
         transition: "height 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <div ref={ref} className="flex flex-col gap-0.5 pt-0.5" style={{ paddingLeft: "0.625rem" }}>
+      <div
+        ref={ref}
+        className="flex flex-col gap-0.5 pt-0.5"
+        style={{ paddingLeft: "0.625rem" }}
+      >
         {subs.map((sub) => (
           <button
             key={sub.id}
@@ -75,8 +79,10 @@ function SubList({ subs, activeId, hoveredId, scrollTo, isOpen }) {
               color: "white",
               opacity: activeId === sub.id || hoveredId === sub.id ? 0.8 : 0.3,
             }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = 0.8}
-            onMouseLeave={(e) => e.currentTarget.style.opacity = activeId === sub.id ? 0.8 : 0.3}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = 0.8)}
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.opacity = activeId === sub.id ? 0.8 : 0.3)
+            }
           >
             {sub.label}
           </button>
@@ -142,7 +148,10 @@ export default function PageNav() {
     <>
       <div
         className="fixed left-0 top-0 h-full z-40 hidden lg:block pointer-events-none"
-        style={{ width: "19rem", background: "linear-gradient(to right, #000000 0%, transparent 100%)" }}
+        style={{
+          width: "19rem",
+          background: "linear-gradient(to right, #000000 0%, transparent 100%)",
+        }}
       />
       <nav
         className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex-col gap-3 hidden lg:flex"
@@ -167,7 +176,8 @@ export default function PageNav() {
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color: "white",
-                  opacity: isParentActive || hoveredSection === section.id ? 0.8 : 0.3,
+                  opacity:
+                    isParentActive || hoveredSection === section.id ? 0.8 : 0.3,
                 }}
               >
                 {section.label}

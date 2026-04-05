@@ -326,96 +326,96 @@ export default function Page() {
 
       {/* Desktop pinned version */}
       <div className="hidden lg:block">
-      <section
-        ref={pinSectionRef}
-        className="flex bg-white px-8 min-h-screen text-black items-center justify-center relative"
-      >
-        <div
-          ref={overlayRef}
-          className="absolute inset-0 bg-black z-10 pointer-events-none"
-          style={{ opacity: 0 }}
-        />
-        <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative">
+        <section
+          ref={pinSectionRef}
+          className="flex bg-white px-8 min-h-screen text-black items-center justify-center relative"
+        >
           <div
-            ref={challengeRef}
-            className="z-20 col-span-3 col-start-2 flex items-center"
-          >
-            <TextBlock label="The Challenge" title="Cynics Don't Click">
-              When people approach embarrassing projects, there&apos;s a natural
-              distance. A protective layer of cynicism.
-            </TextBlock>
-          </div>
-          <div className="col-span-3 p-5 col-start-5 row-start-1 flex items-center z-2 justify-center">
-            <Image
-              src="/images/toilet/Asla.svg"
-              alt="Asla illustration"
-              width={300}
-              height={300}
-              className="w-auto h-auto"
-            />
-          </div>
-          <div className="col-span-3 col-start-5 row-start-1 z-30 flex flex-col items-center justify-center pointer-events-none">
-            <div className="relative flex items-center justify-center">
-              <span
-                ref={readyRef}
-                className="absolute text-white text-7xl opacity-0"
-                style={{ fontFamily: "var(--font-dokdo)" }}
-              >
-                Ready...
-              </span>
-              <span
-                ref={setRef}
-                className="absolute text-white text-7xl opacity-0"
-                style={{ fontFamily: "var(--font-dokdo)" }}
-              >
-                Set...
-              </span>
-              <span
-                ref={goRef}
-                className="absolute text-white text-7xl opacity-0"
-                style={{ fontFamily: "var(--font-dokdo)" }}
-              >
-                Go!
-              </span>
+            ref={overlayRef}
+            className="absolute inset-0 bg-black z-10 pointer-events-none"
+            style={{ opacity: 0 }}
+          />
+          <div className="grid grid-cols-12 gap-8 max-w-7xl mx-auto w-full relative">
+            <div
+              ref={challengeRef}
+              className="z-20 col-span-3 col-start-2 flex items-center"
+            >
+              <TextBlock label="The Challenge" title="Cynics Don't Click">
+                When people approach embarrassing projects, there&apos;s a
+                natural distance. A protective layer of cynicism.
+              </TextBlock>
             </div>
-            <div ref={frameContainerRef} className="relative mt-4 opacity-0">
+            <div className="col-span-3 p-5 col-start-5 row-start-1 flex items-center z-2 justify-center">
               <Image
-                src="/images/toilet/frame.svg"
-                alt="Frame"
+                src="/images/toilet/Asla.svg"
+                alt="Asla illustration"
                 width={300}
                 height={300}
-                className="absolute top-0 left-1/2 -translate-x-1/2 invert"
-              />
-              <Image
-                ref={arrowRef}
-                src="/images/toilet/arrough.svg"
-                alt="Arrow"
-                width={300}
-                height={300}
-                style={{ clipPath: "inset(0 0 0 0)" }}
+                className="w-auto h-auto"
               />
             </div>
+            <div className="col-span-3 col-start-5 row-start-1 z-30 flex flex-col items-center justify-center pointer-events-none">
+              <div className="relative flex items-center justify-center">
+                <span
+                  ref={readyRef}
+                  className="absolute text-white text-7xl opacity-0"
+                  style={{ fontFamily: "var(--font-dokdo)" }}
+                >
+                  Ready...
+                </span>
+                <span
+                  ref={setRef}
+                  className="absolute text-white text-7xl opacity-0"
+                  style={{ fontFamily: "var(--font-dokdo)" }}
+                >
+                  Set...
+                </span>
+                <span
+                  ref={goRef}
+                  className="absolute text-white text-7xl opacity-0"
+                  style={{ fontFamily: "var(--font-dokdo)" }}
+                >
+                  Go!
+                </span>
+              </div>
+              <div ref={frameContainerRef} className="relative mt-4 opacity-0">
+                <Image
+                  src="/images/toilet/frame.svg"
+                  alt="Frame"
+                  width={300}
+                  height={300}
+                  className="absolute top-0 left-1/2 -translate-x-1/2 invert"
+                />
+                <Image
+                  ref={arrowRef}
+                  src="/images/toilet/arrough.svg"
+                  alt="Arrow"
+                  width={300}
+                  height={300}
+                  style={{ clipPath: "inset(0 0 0 0)" }}
+                />
+              </div>
+            </div>
+            <div
+              ref={solutionRef}
+              className="z-20 col-span-3 col-start-9 opacity-0 flex items-center"
+            >
+              <TextBlock label="My Solution" title="Countdown to Commitment">
+                I created a timed urinal selection game. The countdown creates
+                urgency. The timer removes hesitation. Even the most distant,
+                skeptical viewer gets pulled in and forgets they&apos;re making
+                ridiculous decisions about urinal etiquette.
+              </TextBlock>
+            </div>
           </div>
-          <div
-            ref={solutionRef}
-            className="z-20 col-span-3 col-start-9 opacity-0 flex items-center"
-          >
-            <TextBlock label="My Solution" title="Countdown to Commitment">
-              I created a timed urinal selection game. The countdown creates
-              urgency. The timer removes hesitation. Even the most distant,
-              skeptical viewer gets pulled in and forgets they&apos;re making
-              ridiculous decisions about urinal etiquette.
-            </TextBlock>
-          </div>
-        </div>
-      </section>
+        </section>
       </div>
 
       {/* Design System - Horizontal Scroll */}
       <section>
         <HorizontalScroll>
           <div className="min-w-screen w-screen h-screen bg-white flex items-center justify-center shrink-0">
-            <h1 className="display text-black">Design System</h1>
+            <h1 className="display text-black">Design Language</h1>
           </div>
           <div className="min-w-screen w-screen h-screen shrink-0">
             <TypographySection

@@ -28,27 +28,29 @@ export default function WipeText({
       wrapper.appendChild(line);
     });
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: "top 85%",
-        end: "top 20%",
-        scrub: 0.6,
-      },
-    });
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          end: "top 20%",
+          scrub: 0.6,
+        },
+      });
 
-    split.lines.forEach((line, i) => {
-      tl.fromTo(
-        line,
-        { clipPath: "inset(0 100% 0 0)" },
-        { clipPath: "inset(0 0% 0 0)", ease: "power3.inOut", duration: 1 },
-        i * stagger
-      );
+      split.lines.forEach((line, i) => {
+        tl.fromTo(
+          line,
+          { clipPath: "inset(0 100% 0 0)" },
+          { clipPath: "inset(0 0% 0 0)", ease: "power3.inOut", duration: 1 },
+          i * stagger
+        );
+      });
     });
 
     return () => {
+      ctx.revert();
       split.revert();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
     };
   }, []);
 

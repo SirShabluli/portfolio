@@ -853,7 +853,7 @@ export default function PagmarPage() {
       <HorizontalScroll id="design-system">
         {/* Slide 1: big title */}
         <div className="min-w-screen w-screen min-h-80 shrink-0 bg-black flex justify-center items-center px-6 lg:px-12">
-          <p className="display">Design system</p>
+          <p className="display">Design Language</p>
         </div>
 
         {/* Slide 2: Typography */}
