@@ -12,9 +12,9 @@ export default function Button({
     "inline-flex items-center justify-center transition-all hover:opacity-80 duration-200 cursor-pointer";
 
   const sizeStyles = {
-    small: "px-4 py-2 text-sm font-bold",
-    medium: "px-6 py-3 text-base font-bold",
-    large: "px-8 py-4 text-lg font-bold",
+    small: "px-4 py-2 text-sm font-bold rounded-sm",
+    medium: "px-6 py-3 text-base font-bold rounded-md",
+    large: "px-8 py-4 text-lg font-bold rounded-sm",
   };
 
   const variantColor = {

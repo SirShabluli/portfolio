@@ -163,7 +163,7 @@ export default function Page() {
   }, []);
 
   return (
-    <>
+    <div className="bg-white">
       {/* Project Intro Section */}
       <section className="bg-white px-6 lg:px-8 min-h-screen text-black flex items-center justify-center">
         <div className="flex flex-col items-center max-w-7xl mx-auto relative z-10 w-full">
@@ -176,7 +176,7 @@ export default function Page() {
               A Guide to Proper Etiquette in the
             </span>
             <h1
-              className="text-black text-[4.5rem] lg:text-[12rem] tracking-[-0.05em] lg:tracking-[-0.1em] leading-none lg:-mt-15"
+              className="text-black text-[4.5rem] lg:text-[12rem] tracking-[-0.05em] lg:tracking-[-0.widest] leading-[160%] lg:-mt-15"
               style={{ fontFamily: "var(--font-dokdo)" }}
             >
               Men&apos;s Toilet
@@ -186,7 +186,7 @@ export default function Page() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button size="small">Visit Site</Button>
+              <Button size="large">Visit Site ↗</Button>
             </a>
           </div>
           {/* Description + Metadata */}
@@ -429,6 +429,6 @@ export default function Page() {
           </div>
         </HorizontalScroll>
       </section>
-    </>
+    </div>
   );
 }

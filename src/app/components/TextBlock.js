@@ -49,7 +49,7 @@ export default function TextBlock({
           labelRef.current,
           { opacity: 0, y: 14 },
           { opacity: 0.5, y: 0, duration: 0.5, ease: "power2.out" },
-          "-=0.1",
+          "-=0.9",
         );
       }
 
