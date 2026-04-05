@@ -1,66 +1,84 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useTransition } from "../context/TransitionContext";
+import { gsap } from "gsap";
+
+const LETTERS = ["E", "y", "a", "l"];
 
 export default function LoadingScreen() {
-  const { isLoading } = useTransition();
   const [visible, setVisible] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const animFrameRef = useRef(null);
-  const startTimeRef = useRef(null);
-
-  // Duration the bar takes to go 0 → 85% (the remaining 15% waits for signalReady)
-  const FILL_DURATION = 800; // ms
+  const overlayRef = useRef(null);
+  const lettersRef = useRef([]);
 
   useEffect(() => {
-    if (isLoading) {
-      setVisible(true);
-      setProgress(0);
-      startTimeRef.current = performance.now();
+    // Only show on the first visit of the session
+    if (sessionStorage.getItem("loaded")) return;
+    sessionStorage.setItem("loaded", "1");
 
-      const tick = (now) => {
-        const elapsed = now - startTimeRef.current;
-        // Ease to 85%, then hold until page signals ready
-        const t = Math.min(elapsed / FILL_DURATION, 1);
-        const eased = t < 1 ? 1 - Math.pow(1 - t, 3) : 1; // ease-out cubic
-        setProgress(eased * 85);
-        if (t < 1) animFrameRef.current = requestAnimationFrame(tick);
-      };
+    setVisible(true);
 
-      animFrameRef.current = requestAnimationFrame(tick);
-    } else {
-      // Page is ready — shoot to 100% then fade out
-      cancelAnimationFrame(animFrameRef.current);
-      setProgress(100);
-      const hide = setTimeout(() => setVisible(false), 400);
-      return () => clearTimeout(hide);
-    }
+    const letters = lettersRef.current.filter(Boolean);
+    gsap.set(letters, { clipPath: "inset(0 100% 0 0)" });
 
-    return () => cancelAnimationFrame(animFrameRef.current);
-  }, [isLoading]);
+    // Animate letters in immediately
+    gsap.to(letters, {
+      clipPath: "inset(0 0% 0 0)",
+      duration: 0.6,
+      ease: "power3.inOut",
+      stagger: 0.08,
+    });
+
+    // Wait for BOTH: 1.5s minimum AND window load (all assets)
+    let windowLoaded = document.readyState === "complete";
+    let minElapsed = false;
+    let dismissed = false;
+
+    const tryDismiss = () => {
+      if (dismissed || !windowLoaded || !minElapsed) return;
+      dismissed = true;
+      gsap.to(overlayRef.current, {
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+        onComplete: () => setVisible(false),
+      });
+    };
+
+    const onLoad = () => {
+      windowLoaded = true;
+      tryDismiss();
+    };
+
+    if (!windowLoaded) window.addEventListener("load", onLoad);
+
+    const timer = setTimeout(() => {
+      minElapsed = true;
+      tryDismiss();
+    }, 1500);
+
+    return () => {
+      window.removeEventListener("load", onLoad);
+      clearTimeout(timer);
+    };
+  }, []);
 
   if (!visible) return null;
 
   return (
     <div
-      className="fixed inset-0 z-[9999] bg-black pointer-events-auto"
-      style={{
-        opacity: !isLoading && progress === 100 ? 0 : 1,
-        transition: !isLoading ? "opacity 0.4s ease" : "none",
-      }}
+      ref={overlayRef}
+      className="fixed inset-0 z-200 bg-black flex items-center justify-center pointer-events-auto"
     >
-      {/* Progress bar — thin line at top */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-white/10">
-        <div
-          className="h-full bg-white"
-          style={{
-            width: `${progress}%`,
-            transition:
-              progress === 100
-                ? "width 0.25s ease-out"
-                : "width 0.1s linear",
-          }}
-        />
+      <div className="flex">
+        {LETTERS.map((char, i) => (
+          <span
+            key={i}
+            ref={(el) => (lettersRef.current[i] = el)}
+            className="display text-white"
+            style={{ fontFamily: "var(--font-raleway)" }}
+          >
+            {char}
+          </span>
+        ))}
       </div>
     </div>
   );

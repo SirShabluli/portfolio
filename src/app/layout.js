@@ -3,6 +3,7 @@ import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Navbar from "./components/Navbar";
 import PageTransition from "./components/PageTransition";
+import LoadingScreen from "./components/LoadingScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${cinzel.variable} ${raleway.variable} ${reenieBeanie.variable} ${dokdo.variable} ${montserrat.variable} antialiased`}
       >
+        <LoadingScreen />
         <SmoothScroll />
         <Navbar />
         <PageTransition>{children}</PageTransition>
