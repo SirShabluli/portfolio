@@ -18,6 +18,7 @@ import TabPages from "../components/TabPages";
 import ClickToPlay from "../components/ClickToPlay";
 import ScrollDissolve from "../components/ScrollDissolve";
 import RevealText from "../components/RevealText";
+import WipeText from "../components/WipeText";
 import LearnedTabs from "../components/LearnedTabs";
 
 const ConstellationCanvas = dynamic(
@@ -161,15 +162,23 @@ export default function PagmarPage() {
       {/* Hero */}
       <section
         id="hero"
-        className="relative min-h-screen flex items-end overflow-hidden"
+        className="relative min-h-screen flex items-center overflow-hidden"
       >
-        {/* Background photo — swap src when ready */}
+        {/* Background video */}
         <div className="absolute inset-0 z-0">
-          {/* <Image src="/images/pagmar/hero-bg.jpg" alt="" fill className="object-cover" /> */}
+          <video
+            src="/videos/pagmar/pagmardemo.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/80" />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/20" />
         </div>
 
-        <PageGrid className="relative z-10 gap-8 w-full px-6 lg:px-12 pb-20 lg:pb-28">
+        <PageGrid className="relative z-10 gap-8 w-full px-6 lg:px-12 py-20 lg:py-28">
           {/* Main title placeholder */}
           <div className="lg:col-start-4  col-span-4 lg:col-span-6">
             <h1
@@ -243,11 +252,15 @@ export default function PagmarPage() {
       {/* Research and Discovery */}
       <section
         id="research"
-        className="w-screen min-h-[50vh] lg:h-screen flex text-center items-end justify-center bg-black"
+        className="w-screen min-h-[50vh] lg:h-[50vh]  flex items-end bg-black py-16 lg:py-24 px-6 lg:px-12"
       >
-        <h2 className="display text-center text-white opacity-40">
-          Research &amp; Discovery
-        </h2>
+        <PageGrid>
+          <div className="col-span-6 lg:col-span-10 text-center lg:col-start-4">
+            <WipeText className="display text-white  opacity-40">
+              Research &amp; Discovery
+            </WipeText>
+          </div>
+        </PageGrid>
       </section>
 
       {/* The Challenge */}
@@ -258,7 +271,7 @@ export default function PagmarPage() {
         <PageGrid className="gap-12 items-center">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex flex-col gap-4">
             <h3 className="text-4xl font-semibold">The Challenge</h3>
-            <p className="text-sm font-medium opacity-100 leading-[160%]">
+            <p className="text-sm font-medium opacity-100 leading-[190%]">
               Traditional journaling treats thoughts like a document:
               chronological, linear, one entry after another. But thinking
               isn&apos;t like that. You lose your thread, want to branch off,
@@ -339,7 +352,7 @@ export default function PagmarPage() {
           </div>
           <div className="col-span-4 lg:col-span-4 lg:col-start-3 flex flex-col gap-4 mt-10">
             <h3 className="text-4xl font-semibold">The Solution</h3>
-            <p className="text-sm font-medium opacity-100 leading-[140%]">
+            <p className="text-sm font-medium opacity-100 leading-[190%]">
               A system that turns journaling into a spatial, AI-guided
               experience. You write. The atmosphere responds. The question
               vanishes after you answer, leaving only your thoughts. You can
@@ -353,11 +366,11 @@ export default function PagmarPage() {
       </section>
       <section
         id="key-features"
-        className="w-screen min-h-[50vh] lg:h-screen flex items-center justify-center bg-black"
+        className="w-screen min-h-[50vh]  flex items-end justify-center bg-black"
       >
-        <h2 className="display text-center text-white opacity-40">
+        <WipeText className="display text-center text-white opacity-40">
           Key Features
-        </h2>
+        </WipeText>
       </section>
       {/* Feature #1 - The Writing Experience */}
       <section
@@ -988,9 +1001,9 @@ export default function PagmarPage() {
         id="reception"
         className="w-screen min-h-[50vh] lg:h-screen flex items-center justify-center bg-black"
       >
-        <h2 className="display overflow-hidden text-center text-white">
+        <WipeText className="display text-center text-white">
           Reception and Impact
-        </h2>
+        </WipeText>
       </section>
       <section
         id="presentation"

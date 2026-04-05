@@ -24,13 +24,16 @@ export default function NetflixDatingPage() {
   const outline = showOutlines ? "outline outline-1 outline-red-500" : "";
 
   // Configuration for each section — memoized so PhoneShowcase's useGSAP doesn't re-run on every render
-  const sections = useMemo(() => [
-    { xPosition: 0, rotation: 0, screenIndex: 2 },
-    { xPosition: -25, rotation: Math.PI * 0.1, screenIndex: 0 },
-    { xPosition: 0, rotation: Math.PI * 0, screenIndex: 4 },
-    { xPosition: 0, rotation: Math.PI * -2, screenIndex: 1 },
-    { xPosition: 25, rotation: Math.PI * 0, screenIndex: 3 },
-  ], []);
+  const sections = useMemo(
+    () => [
+      { xPosition: 0, rotation: 0, screenIndex: 2 },
+      { xPosition: -25, rotation: Math.PI * 0.1, screenIndex: 0 },
+      { xPosition: 0, rotation: Math.PI * 0, screenIndex: 4 },
+      { xPosition: 0, rotation: Math.PI * -2, screenIndex: 1 },
+      { xPosition: 25, rotation: Math.PI * 0, screenIndex: 3 },
+    ],
+    [],
+  );
 
   return (
     <>
@@ -107,7 +110,7 @@ export default function NetflixDatingPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className="hidden lg:flex min-h-screen bg-black items-center justify-center">
+      <section className="hidden lg:flex  bg-black items-center justify-center">
         <h1 className=" display text-white">The Product</h1>
       </section>
 
@@ -219,26 +222,26 @@ export default function NetflixDatingPage() {
               <div
                 className={`col-span-3 lg:col-span-3 ${outline} lg:col-start-2 flex flex-col justify-center gap-5`}
               >
+                <span
+                  data-animate="1"
+                  data-animation="fade"
+                  className="mt-5 flex items-center quote opacity-60"
+                >
+                  &ldquo;Share the word. Sometimes sharing is not
+                  spoiling&ldquo;
+                </span>
                 <span data-animate="2" data-animation="fade">
                   <TextBlock label="the challenge" title="immediate dismissal">
                     "Share the App" screens feel like a burden. Most dismiss
                     immediately. How do you make someone pause before closing?
                   </TextBlock>
-                  <span
-                    data-animate="1"
-                    data-animation="fade"
-                    className="mt-5 flex items-center text-lg"
-                  >
-                    &ldquo;Something smells fishy, but it might just be our
-                    mistake&ldquo;
-                  </span>
                 </span>
               </div>
               <div
                 className={`col-span-4 lg:col-span-4 phone-pocket lg:col-start-5 ${outline} flex items-center justify-center`}
               ></div>
               <div
-                className={`col-span-3 lg:col-span-2 lg:col-start-9 ${outline} flex flex-col gap-8 justify-center`}
+                className={`col-span-3 lg:col-span-3 lg:col-start-9 ${outline} flex flex-col gap-8 justify-center`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="My Solution" title="Irony">
@@ -374,7 +377,7 @@ export default function NetflixDatingPage() {
       <section>
         <HorizontalScroll>
           <div className="min-w-screen w-screen overflow-x-hidden h-screen bg-black flex items-center justify-center shrink-0">
-            <h1 className="text-8xl flex text-center lg:display text-white">
+            <h1 className="display flex text-center text-white">
               Design System
             </h1>
           </div>
