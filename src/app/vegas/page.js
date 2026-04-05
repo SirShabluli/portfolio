@@ -23,6 +23,7 @@ import VectorToggle from "../components/VectorToggle";
 import DayNightToggle from "../components/DayNightToggle";
 import NumberedTextBlock from "../components/NumberedTextBlock";
 import PageGrid from "../components/PageGrid";
+import WipeText from "../components/WipeText";
 
 export default function VegasPage() {
   const [isDark, setIsDark] = useState(false);
@@ -200,9 +201,9 @@ export default function VegasPage() {
       <section className="bg-[#23577A] px-3 lg:px-8 text-white flex items-center justify-center relative overflow-hidden">
         <PageGrid className="gap-8 max-w-7xl mx-auto items-center relative z-10 w-full">
           {/* Logo */}
-          <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col gap-7 justify-center items-center min-h-screen lg:min-h-0">
+          <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex flex-col gap-0 justify-center items-center min-h-screen lg:min-h-0">
             {/* Vegas sign + scattered icons relative to it */}
-            <div className="relative w-[130%] lg:w-full">
+            <div className="relative w-[130%] ">
               <Image
                 src="/images/vegas/vegassign.svg"
                 alt="Project preview"
@@ -303,7 +304,7 @@ export default function VegasPage() {
             </p>
           </div>
           {/* Description + Metadata */}
-          <div className="col-span-4 lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 pb-16 lg:pb-0 mt-0 lg:mt-20 opacity-90">
+          <div className="col-span-4 lg:col-span-6 lg:col-start-4 flex flex-col text-left gap-1 pb-16 opacity-90">
             <p className="text-sm lg:text-lg font-medium text-white text-left">
               A travel app for Vegas—disguised as a medical wellness platform.
               Complete with prescription language, clinical UI, and neon sins
@@ -348,10 +349,13 @@ export default function VegasPage() {
       </section>
 
       {/* Title Section before PhoneShowcase */}
-      <section className="min-h-screen pb-20 overflow-x-hidden bg-[#23577A] flex items-end justify-center">
-        <h1 className="display flex justify-center text-center text-white">
+      <section className=" pt-20 overflow-x-hidden bg-[#23577A] flex items-end justify-center">
+        <WipeText
+          as="h1"
+          className="display flex justify-center text-center text-white"
+        >
           The Product
-        </h1>
+        </WipeText>
       </section>
 
       {/* Mobile alternative - visible only below lg */}
@@ -380,21 +384,18 @@ export default function VegasPage() {
               <div
                 className={`col-span-4 md:col-span-3 ${outline} md:col-start-2 flex flex-col justify-center gap-9`}
               >
+                <TextBlock label="the challenge" title="First Impression">
+                  How do I signal this is Vegas wrapped in medical language —
+                  without explaining it? Too medical kills the joke. Too obvious
+                  kills the tension.
+                </TextBlock>
                 <span>
-                  <TextBlock label="the challenge" title="First Impression">
-                    How do I immediately signal that this is a Vegas app wrapped
-                    in medical language - without explaining it explicitly? If
-                    it looks too medical, users won't get the joke. If it's too
-                    obvious, there's no tension.
-                  </TextBlock>
-                </span>
-                <span>
-                  <TextBlock label="My Solution" title="obvious connection">
-                    {`A man using an inhaler - a medical device, a health moment, routine treatment. But his thought bubble explodes with Vegas: neon dice, slot machines,  martini glasses, cannabis. The contrast is instant and absurd.
+                  <TextBlock label="My Solution" title="Instant Absurdity">
+                    {`A man using an inhaler - a medical device for routine treatment. 
+  But his thought bubble explodes with Vegas. The contrast is instant and absurd.
 
-The image says: medical treatment.
- The thought bubble says: Vegas addiction. 
-The copy reveals: satire.`}
+  The image says medical. The thought bubble says Vegas. 
+  The copy reveals satire.`}
                   </TextBlock>
                 </span>
               </div>
@@ -407,7 +408,7 @@ The copy reveals: satire.`}
                 <span
                   data-animate="1"
                   data-animation="fade"
-                  className="mt-10 flex items-center text-2xl line-height-1.4"
+                  className="mt-10 flex items-center quote opacity-60 line-height-1.4"
                 >
                   explore scientifically proven sins, selected by top doctors in
                   Vegas refined through years of irresponsible research.
@@ -425,15 +426,14 @@ The copy reveals: satire.`}
                     label="the challenge"
                     title="Making Organization Feel Clinical"
                   >
-                    In this app's universe, everything is medical. If users
-                    organize their Vegas trips into collections, what's the
-                    medical equivalent? Where do you store your "prescriptions"?
+                    If users organize Vegas trips into collections, what's the
+                    medical equivalent? Where do you store "prescriptions"?
                   </TextBlock>
                 </span>
                 <span
                   data-animate="1"
                   data-animation="fade"
-                  className="mt-1 flex items-center text-2xl line-height-1.4"
+                  className="mt-1 flex items-center quote opacity-60 line-height-1.4"
                 >
                   organize favorite destinations, tips, and itineraries into
                   customizable collections, making it easy to plan future trips
@@ -450,9 +450,10 @@ The copy reveals: satire.`}
                     label="My Solution"
                     title="Medicine Cabinet as Collection System"
                   >
-                    {`A hand placing a new bottle on a medicine shelf. Clean, organized,  like a pharmacy cabinet. The bottles look clinical - clean labels,  medical colors, orderly arrangement. But inside each bottle: dark backgrounds with neon Vegas sins glowing.  Dice, cards, cocktails trapped in prescription containers.
-
-The duality: medical organization on the surface, Vegas chaos contained within."`}
+                    {`Medicine shelf. Clinical bottles with clean labels. 
+  But inside: neon Vegas chaos - dice, cards, cocktails. 
+  
+  Organization meets temptation.`}
                   </TextBlock>
                 </span>
                 {/* <Image
@@ -528,15 +529,15 @@ Reviews become your Vegas constellation - a trail others can follow.`}
               >
                 <span data-animate="4" data-animation="fade">
                   <TextBlock label="The Challenge" title="empty state">
-                    {`in a medical app about Vegas sins, emptiness isn't cute—it's
-                  unsettling. How do I make the absence of "treatments" feel
-                  like something's missing from your life?`}
+                    {`In a medical app about Vegas sins, emptiness should feel 
+  unsettling. How do I make the absence of "treatments" 
+  feel like something's missing?`}
                   </TextBlock>
                 </span>
                 <span
                   data-animate="1"
                   data-animation="fade"
-                  className="mt-5 flex items-center text-lg"
+                  className="mt-5 flex items-center quote "
                 >
                   An empty cabinet might not seem urgent, until it is. Small
                   actions today can prevent bigger issues tomorrow.
@@ -550,20 +551,18 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                     label="My Solution"
                     title="Stripping Away the Life"
                   >
-                    I removed the vibrant color palette that fills the rest of
-                    the app. What's left: muted tones, sterile shelves, absence.
-                    Three simple lines form a sad face on the empty shelf
-                    -minimal, but enough to give the scene life and convey the
-                    feeling.
+                    Strip away the vibrant palette. Muted tones, sterile
+                    shelves, emptiness. A simple sad face on the shelf — minimal
+                    withdrawal.
                   </TextBlock>
                 </span>
 
-                <Lauryl
+                {/* <Lauryl
                   data-animate="4"
                   data-animation="sticker"
                   topText="Intended"
                   bottomText="PUN"
-                />
+                /> */}
               </div>
             </div>
           </section>
@@ -584,19 +583,15 @@ Reviews become your Vegas constellation - a trail others can follow.`}
                 <span data-animate="2" data-animation="fade">
                   <TextBlock
                     label="the challenge"
-                    title="Gamification in the Medical Metaphor"
+                    title="Rewarding Bad Behavior"
                   >
-                    Travel apps use badges to encourage exploration—miles
-                    traveled, countries visited, generic achievements. In a
+                    Travel apps use badges for exploration. In a
                     Vegas-as-medicine app, what does "progression" mean? How do
-                    I turn gamification into something that fits the metaphor?
+                    I turn gamification into medical metaphor?
                   </TextBlock>
                 </span>
                 <span data-animate="4" data-animation="fade">
-                  <TextBlock
-                    label="My Solution"
-                    title="From Patient to Expert Junkie"
-                  >
+                  <TextBlock label="My Solution" title="Patient Becomes Expert">
                     {`The more destinations you explore, the more "experienced" you become— not with travel, but with substances.`}
                   </TextBlock>
                 </span>
@@ -646,11 +641,11 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         </div>
 
         <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12 py-10 lg:py-0">
-          <TextBlock label="Inspiration" title="" className="text-[#23577A]">
-            I studied wellness apps—Calm, Headspace, medical tracking apps.
+          <TextBlock label="" title="Inspiration" className="text-[#23577A]">
+            I studied wellness apps-Calm, Headspace, medical tracking apps.
             Clean interfaces. Soft blues and whites. Gentle icons. Sterile
             language. Everything designed to create trust, safety, clinical
-            authority. This became the wrapper—the medical disguise that makes
+            authority. This became the wrapper-the medical disguise that makes
             Vegas feel prescribed, legitimate, doctor-approved.
           </TextBlock>
         </div>
@@ -767,7 +762,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
 
         {/* Text: full width on mobile, 3 cols on desktop */}
         <div className="col-span-4 lg:col-span-3 z-20 px-6 lg:px-12 py-10 lg:py-0">
-          <TextBlock label="Inspiration" title="" className="text-white">
+          <TextBlock label="" title="Inspiration" className="text-white">
             The visual world of Vegas at night—neon signs, slot machines, casino
             floors, fountain shows. Raw energy captured in light and color.
             These references shaped the dark mode palette and the sense of
@@ -969,7 +964,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         {...longPressHandlers}
       >
         {/* Center: Title + Toggle */}
-        <div className="flex flex-col items-center gap-6 z-10">
+        <div className="flex flex-col items-center gap-12 z-10">
           <h1
             className="text-center text-7xl font-medium transition-colors duration-500"
             style={
@@ -985,6 +980,14 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           >
             Dual Visual Language
           </h1>
+          <p
+            className="text-center leading-[190%] max-w-md text-sm font-medium opacity-100 transition-colors duration-500"
+            style={{ color: isDark ? "#FEDCBB" : "#23577A" }}
+          >
+            Two visual modes. Clean medical blue for the surface - clinical,
+            trustworthy, legitimate. Dark mode reveals neon chaos - glowing sins
+            in every color. The app's duality made literal.
+          </p>
           {/* <button
             onClick={() => setIsDark(!isDark)}
             className={`px-4 py-2 rounded-full text-sm font-medium tracking-wider transition-all duration-300 ${
@@ -1236,7 +1239,7 @@ Reviews become your Vegas constellation - a trail others can follow.`}
             <ColorPalette
               colors={isDark ? vegasDarkColors : vegasLightColors}
               isDark={isDark}
-              description="A dual palette — clinical calm meets neon chaos"
+              description="A dual palette - clinical calm meets neon chaos"
               darkTextStyle={{ fillColor: "#FEDCBB", strokeColor: "#ED174B" }}
               onToggle={() => setIsDark(!isDark)}
               lightBgColor="#23577A"
@@ -1278,24 +1281,21 @@ Reviews become your Vegas constellation - a trail others can follow.`}
           {/* Numbered Insights */}
           <div className="col-span-12 lg:col-span-3 lg:col-start-2">
             <NumberedTextBlock number="1" title="Contrast Creates Meaning">
-              Medical language only works because Vegas is its opposite. The
-              tension between sterile UI and neon chaos isn't decoration—it's
-              the concept. Remove one side, and the satire collapses.
+              Medical vs. Vegas. Sterile vs. neon. The tension is the concept.
+              Remove either side, the satire dies.
             </NumberedTextBlock>
           </div>
-          <div className="col-span-12 lg:col-span-3 lg:col-start-5">
+          <div className=" col-span-12 lg:col-span-3 lg:col-start-5">
             <NumberedTextBlock number="2" title="Commitment Sells the Joke">
-              Half-ironic doesn't work. The app fully commits to the medical
-              metaphor— prescription language, clinical colors, wellness
-              framing. The deeper the commitment, the sharper the contrast when
-              Vegas breaks through.
+              Half-ironic doesn't work. The app fully commits to medical
+              metaphor - prescriptions, clinical colors, wellness framing.
+              Deeper commitment makes the Vegas breakthrough sharper.
             </NumberedTextBlock>
           </div>
           <div className="col-span-12 lg:col-span-3 lg:col-start-8">
             <NumberedTextBlock number="3" title="Visual Language Can Lie">
               Clean UI says "trust me." Dark illustrations say "but not really."
-              The gap between surface and core is where the message lives.
-              Design became a tool for deliberate contradiction.{" "}
+              The gap between surface and core is where the satire lives.
             </NumberedTextBlock>
           </div>
         </PageGrid>
@@ -1305,7 +1305,9 @@ Reviews become your Vegas constellation - a trail others can follow.`}
         className="min-h-screen bg-[#23577A] flex items-center justify-center"
         {...longPressHandlers}
       >
-        <h1 className="display overflow-hidden text-white">Reception</h1>
+        <WipeText as="h1" className="display text-white">
+          Reception
+        </WipeText>
       </section>
       <section></section>
       {/* Phone showcase with all sections */}

@@ -425,7 +425,7 @@ export default function DesktopCanvas() {
       >
         {/* Panel content — cols 1–3 */}
         <div
-          className="col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pointer-events-auto pl-[8.33vw] pr-15"
+          className={`col-span-4 col-start-1 flex flex-col justify-center gap-10 h-screen items-start pl-[8.33vw] pr-15 ${aboutActive || !panelVisible ? "pointer-events-none" : "pointer-events-auto"}`}
           style={{
             background:
               "linear-gradient(90deg, rgba(0,0,0,0.9) 80%, rgba(0,0,0,0) 100%)",
@@ -460,7 +460,7 @@ export default function DesktopCanvas() {
           </div>
           <Link href={PROJECTS[displayedActive].href}>
             <Button variant="filled" color="white" size="small">
-              View Study Case →
+              View Study Case
             </Button>
           </Link>
         </div>
@@ -475,7 +475,7 @@ export default function DesktopCanvas() {
         style={{ opacity: aboutActive ? 1 : 0 }}
       >
         {/* Left panel: bio + experience — cols 1–3 */}
-        <div className="col-span-4 flex col-start-1 flex-col justify-between px-20 pointer-events-auto">
+        <div className={`col-span-4 flex col-start-1 flex-col justify-between px-20 ${aboutActive ? "pointer-events-auto" : "pointer-events-none"}`}>
           {/* Top: bio */}
           <div className="flex flex-col gap-2 mt-10">
             <h2 className="text-5xl uppercase font-bold leading-tight">
@@ -542,7 +542,7 @@ export default function DesktopCanvas() {
         <div className="col-span-6 pointer-events-none" />
 
         {/* Right panel — cols 10–12 */}
-        <div className="col-span-3 col-start-10 flex flex-col justify-center gap-8 pointer-events-auto">
+        <div className={`col-span-3 col-start-10 flex flex-col justify-center gap-8 ${aboutActive ? "pointer-events-auto" : "pointer-events-none"}`}>
           <div className="flex flex-col gap-3">
             <p className="text-xs opacity-40 tracking-widest uppercase">
               Core Focus

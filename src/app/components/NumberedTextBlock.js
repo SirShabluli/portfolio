@@ -18,7 +18,7 @@ export default function NumberedTextBlock({
           <span className="text-xl lg:text-2xl font-light italic">{title}</span>
         )}
         {children && (
-          <p className="mt-2 text-sm lg:text-xs font-medium leading-[150%] lg:leading-[130%] whitespace-pre-line">
+          <p className="mt-2 text-sm lg:text-xs font-medium leading-[150%] lg:leading-[190%] whitespace-pre-line">
             {children}
           </p>
         )}

@@ -255,7 +255,7 @@ export default function AIProcess({ data }) {
       {/* Desktop — existing pinned version */}
       <section
         ref={mainRef}
-        className="hidden md:flex relative justify- h-screen overflow-hidden bg-black"
+        className="hidden md:flex relative align-center h-screen overflow-hidden bg-black"
       >
         {data.map((step, index) => (
           <StepSection key={step.id} step={step} index={index} />
