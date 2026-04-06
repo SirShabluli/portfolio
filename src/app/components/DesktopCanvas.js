@@ -6,7 +6,7 @@ import Button from "./Button";
 import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
 import { useSpring } from "@react-spring/three";
 import { TextureLoader, VideoTexture } from "three";
-import { shaderMaterial } from "@react-three/drei";
+import { shaderMaterial, useProgress } from "@react-three/drei";
 import { PROJECTS } from "../../data/projectData";
 import RevealText from "./RevealText";
 
@@ -106,6 +106,9 @@ function Card({
     vid.muted = true;
     vid.playsInline = true;
     vid.play();
+    vid.addEventListener("canplay", () => {
+      window.dispatchEvent(new Event("video-card-ready"));
+    }, { once: true });
     videoElRef.current = vid;
     videoTextureRef.current = new VideoTexture(vid);
   }
@@ -351,10 +354,25 @@ function KeyboardPlane({ visible }) {
   );
 }
 
+// ─── PROGRESS TRACKER ─────────────────────────────────────────────────────────
+// Fires a custom event when all Three.js assets are loaded (progress = 100).
+function ProgressTracker() {
+  const { progress } = useProgress();
+  const fired = useRef(false);
+  useEffect(() => {
+    if (progress === 100 && !fired.current) {
+      fired.current = true;
+      window.dispatchEvent(new Event("three-loaded"));
+    }
+  }, [progress]);
+  return null;
+}
+
 // ─── SCENE ────────────────────────────────────────────────────────────────────
 function Scene({ rotation, zoomedOut, onExitSnap, active, onZoomedClick }) {
   return (
     <Suspense fallback={null}>
+      <ProgressTracker />
       <CameraRig zoomedOut={zoomedOut} />
       <RingGroup
         rotation={rotation}

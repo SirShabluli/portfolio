@@ -27,13 +27,15 @@ export default function LoadingScreen() {
       stagger: 0.08,
     });
 
-    // Wait for BOTH: 1.5s minimum AND window load (all assets)
+    // Wait for ALL: 1.5s minimum + window load + Three.js assets + video card
     let windowLoaded = document.readyState === "complete";
+    let threeLoaded = false;
+    let videoReady = false;
     let minElapsed = false;
     let dismissed = false;
 
     const tryDismiss = () => {
-      if (dismissed || !windowLoaded || !minElapsed) return;
+      if (dismissed || !windowLoaded || !minElapsed || !threeLoaded || !videoReady) return;
       dismissed = true;
       gsap.to(overlayRef.current, {
         opacity: 0,
@@ -43,12 +45,20 @@ export default function LoadingScreen() {
       });
     };
 
-    const onLoad = () => {
-      windowLoaded = true;
-      tryDismiss();
-    };
+    const onLoad = () => { windowLoaded = true; tryDismiss(); };
+    const onThreeLoaded = () => { threeLoaded = true; tryDismiss(); };
+    const onVideoReady = () => { videoReady = true; tryDismiss(); };
 
     if (!windowLoaded) window.addEventListener("load", onLoad);
+    window.addEventListener("three-loaded", onThreeLoaded);
+    window.addEventListener("video-card-ready", onVideoReady);
+
+    // Fallback: if no Three.js canvas or video on this page, unblock after 3s max
+    const fallback = setTimeout(() => {
+      threeLoaded = true;
+      videoReady = true;
+      tryDismiss();
+    }, 3000);
 
     const timer = setTimeout(() => {
       minElapsed = true;
@@ -57,7 +67,10 @@ export default function LoadingScreen() {
 
     return () => {
       window.removeEventListener("load", onLoad);
+      window.removeEventListener("three-loaded", onThreeLoaded);
+      window.removeEventListener("video-card-ready", onVideoReady);
       clearTimeout(timer);
+      clearTimeout(fallback);
     };
   }, []);
 
