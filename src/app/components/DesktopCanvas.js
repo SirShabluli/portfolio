@@ -471,13 +471,15 @@ export default function DesktopCanvas() {
 
       {/* About — grid overlay */}
       <div
-        className="absolute inset-0 z-10 grid grid-cols-12 gap-4 px-3 pointer-events-none transition-opacity duration-500"
+        className="absolute inset-0 z-10 grid grid-cols-12 gap-4 px-3 pointer-events-none transition-opacity duration-500 items-center"
         style={{ opacity: aboutActive ? 1 : 0 }}
       >
         {/* Left panel: bio + experience — cols 1–3 */}
-        <div className={`col-span-4 flex col-start-1 flex-col justify-between px-20 ${aboutActive ? "pointer-events-auto" : "pointer-events-none"}`}>
+        <div
+          className={`col-span-4 flex col-start-1 flex-col justify-between px-20 self-stretch py-20 ${aboutActive ? "pointer-events-auto" : "pointer-events-none"}`}
+        >
           {/* Top: bio */}
-          <div className="flex flex-col gap-2 mt-10">
+          <div className="flex flex-col gap-2 mt-20">
             <h2 className="text-5xl uppercase font-bold leading-tight">
               Eyal Mordechai
             </h2>
@@ -485,7 +487,7 @@ export default function DesktopCanvas() {
               Creative Developer with a Product Mindset
             </p>
             <RevealText
-              className="text-3xl italic opacity-60 leading-relaxed mt-1"
+              className="text-3xl font-medium italic opacity-60 leading-relaxed mt-10"
               trigger={aboutActive}
               duration={1}
             >
@@ -538,48 +540,45 @@ export default function DesktopCanvas() {
           </div>
         </div>
 
-        {/* Center — 3D scene takes cols 4–9, leave empty */}
-        <div className="col-span-6 pointer-events-none" />
-
-        {/* Right panel — cols 10–12 */}
-        <div className={`col-span-3 col-start-10 flex flex-col justify-center gap-8 ${aboutActive ? "pointer-events-auto" : "pointer-events-none"}`}>
-          <div className="flex flex-col gap-3">
-            <p className="text-xs opacity-40 tracking-widest uppercase">
-              Core Focus
-            </p>
-            {[
-              "Interactive Product Development",
-              "Motion & UX-driven Interfaces",
-              "Creative Technology",
-            ].map((s) => (
-              <span key={s} className="text-xs font-medium opacity-80">
-                {s}
-              </span>
-            ))}
-          </div>
-          <div className="flex flex-col gap-3">
-            <p className="text-xs opacity-40 tracking-widest uppercase">
-              Design & Product Thinking
-            </p>
-            {["UX / Interaction Design", "Prototyping", "Systems thinking"].map(
-              (s) => (
+        {/* Right panel — absolute right, vertically centered */}
+        <div
+          className={`absolute top-1/2 -translate-y-1/2 right-20 flex flex-col gap-6 ${aboutActive ? "pointer-events-auto" : "pointer-events-none"}`}
+        >
+          {[
+            {
+              label: "Creative Stack",
+              items: [
+                "Three.js / React Three Fiber",
+                "GSAP / Framer Motion",
+                "WebGL",
+                "Spline 3D",
+              ],
+            },
+            {
+              label: "Product Stack",
+              items: [
+                "React / Next.js",
+                "Tailwind CSS",
+                "REST APIs",
+                "Component Architecture",
+              ],
+            },
+            {
+              label: "Design",
+              items: ["Figma", "Adobe Suite"],
+            },
+          ].map(({ label, items }) => (
+            <div key={label} className="flex flex-col gap-2">
+              <p className="text-xs opacity-40 tracking-widest uppercase">
+                {label}
+              </p>
+              {items.map((s) => (
                 <span key={s} className="text-xs font-medium opacity-80">
                   {s}
                 </span>
-              ),
-            )}
-          </div>
-          <div className="flex flex-col gap-2">
-            <p className="text-xs opacity-40 tracking-widest uppercase">
-              Education
-            </p>
-            <span className="text-xs font-medium opacity-80">
-              B.Des, Visual Communication
-            </span>
-            <span className="text-xs opacity-40 italic">
-              Bezalel Academy, 2021–2025
-            </span>
-          </div>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
 
