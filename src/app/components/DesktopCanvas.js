@@ -5,7 +5,7 @@ import Link from "next/link";
 import Button from "./Button";
 import { Canvas, useLoader, extend, useFrame } from "@react-three/fiber";
 import { useSpring } from "@react-spring/three";
-import { TextureLoader } from "three";
+import { TextureLoader, VideoTexture } from "three";
 import { shaderMaterial } from "@react-three/drei";
 import { PROJECTS } from "../../data/projectData";
 import RevealText from "./RevealText";
@@ -30,7 +30,18 @@ const PaperMaterial = shaderMaterial(
     uniform float uTexAspect;
     uniform float uCardAspect;
     varying vec2 vUv;
+
+    float roundedBox(vec2 uv, float radius) {
+      vec2 q = abs(uv - 0.5) - (0.5 - radius);
+      return length(max(q, 0.0)) - radius;
+    }
+
     void main() {
+      // Rounded corner mask
+      float r = 0.01;
+      float d = roundedBox(vUv, r);
+      if (d > 0.0) discard;
+
       vec2 uv = vUv - 0.5;
       float imgAspect = uTexAspect;
       float cardAspect = uCardAspect;
@@ -75,11 +86,42 @@ function getCardTransform(index) {
 //   material-0..3 → right, left, top, bottom edges → dark fill
 //   material-4    → front face → project image via PaperMaterial shader (cover-fit)
 //   material-5    → back face  → same image (faces away, not normally visible)
-function Card({ index, imageSrc, isActive, href, zoomedOut, onZoomedClick }) {
-  const texture = useLoader(TextureLoader, imageSrc);
+function Card({
+  index,
+  imageSrc,
+  videoSrc,
+  isActive,
+  href,
+  zoomedOut,
+  onZoomedClick,
+}) {
+  const imageTexture = useLoader(TextureLoader, imageSrc);
+  const videoTextureRef = useRef(null);
+
+  const videoElRef = useRef(null);
+  if (videoSrc && !videoTextureRef.current) {
+    const vid = document.createElement("video");
+    vid.src = videoSrc;
+    vid.loop = true;
+    vid.muted = true;
+    vid.playsInline = true;
+    vid.play();
+    videoElRef.current = vid;
+    videoTextureRef.current = new VideoTexture(vid);
+  }
+
+  const texture = videoTextureRef.current ?? imageTexture;
+  const videoEl = videoElRef.current;
+  const texAspect = videoSrc
+    ? videoEl && videoEl.videoWidth
+      ? videoEl.videoWidth / videoEl.videoHeight
+      : 16 / 9
+    : imageTexture.image
+      ? imageTexture.image.width / imageTexture.image.height
+      : 1;
+
   const { pos, rot } = getCardTransform(index);
   const router = useRouter();
-
   const W = CARD_W;
   const H = CARD_H;
 
@@ -92,7 +134,6 @@ function Card({ index, imageSrc, isActive, href, zoomedOut, onZoomedClick }) {
     <group position={pos} rotation={rot}>
       <mesh onClick={handleClick}>
         <boxGeometry args={[W, H, CARD_DEPTH]} />
-        {/* Edges — dark solid color */}
         <meshBasicMaterial
           attach="material-0"
           color="#1a1a1a"
@@ -113,24 +154,18 @@ function Card({ index, imageSrc, isActive, href, zoomedOut, onZoomedClick }) {
           color="#1a1a1a"
           toneMapped={false}
         />
-        {/* Front face — project image, object-fit cover via shader */}
         <paperMaterial
           attach="material-4"
           uTexture={texture}
-          uTexAspect={
-            texture.image ? texture.image.width / texture.image.height : 1
-          }
+          uTexAspect={texAspect}
           uCardAspect={W / H}
           transparent
           toneMapped={false}
         />
-        {/* Back face — same image, faces away from camera */}
         <paperMaterial
           attach="material-5"
           uTexture={texture}
-          uTexAspect={
-            texture.image ? texture.image.width / texture.image.height : 1
-          }
+          uTexAspect={texAspect}
           uCardAspect={W / H}
           transparent
           toneMapped={false}
@@ -213,6 +248,7 @@ function RingGroup({ rotation, zoomedOut, onExitSnap, active, onZoomedClick }) {
           key={i}
           index={i}
           imageSrc={p.image}
+          videoSrc={p.video}
           isActive={i === active}
           href={p.href}
           zoomedOut={zoomedOut}

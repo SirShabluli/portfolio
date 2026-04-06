@@ -525,6 +525,7 @@ export const PROJECTS = [
     name: "I'll Think About it Later",
     href: "/pagmar",
     image: "/images/pagmar/pagmarfallback.png",
+    video: "/videos/pagmar/pagmardemo.mp4",
     description:
       "A fully functional web app - combining journaling, AI-powered insights, and 3D navigation in an experimental self-reflection tool.",
     role: "Research, Design & Fullstack Development",
