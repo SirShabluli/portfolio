@@ -41,7 +41,7 @@ export default function ClickToPlay({ src, style, className }) {
         playsInline
         preload="metadata"
         onEnded={handleEnded}
-        className="w-full h-full object-cover"
+        className="w-full h-full object-contain"
       />
       {!playing && (
         <div className="absolute inset-0 flex items-center justify-center">

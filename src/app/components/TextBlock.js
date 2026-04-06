@@ -2,7 +2,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import SplitType from "split-type";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -53,18 +52,12 @@ export default function TextBlock({
         );
       }
 
-      // 3. Body: word-by-word scatter
+      // 3. Body: reveal as one piece
       if (bodyRef.current) {
-        const split = new SplitType(bodyRef.current, { types: "words" });
-        tl.from(
-          split.words,
-          {
-            opacity: 0,
-            y: 10,
-            stagger: 0.015,
-            duration: 0.45,
-            ease: "power2.out",
-          },
+        tl.fromTo(
+          bodyRef.current,
+          { opacity: 0, y: -14 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
           "-=0.3",
         );
       }

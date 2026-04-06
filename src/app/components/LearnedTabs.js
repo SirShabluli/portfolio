@@ -60,53 +60,58 @@ export default function LearnedTabs() {
   }, [active]);
 
   return (
-    <div className="w-full flex flex-col gap-14">
-      <div className="flex flex-wrap gap-2">
-        {TABS.map((tab) => (
-          <Button
-            key={tab.id}
-            variant={active === tab.id ? "filled" : "outline"}
-            color="white"
-            size="small"
-            onClick={() => setActive(tab.id)}
-            style={active === tab.id ? { color: "black" } : {}}
-          >
-            {tab.label}
-          </Button>
-        ))}
-      </div>
-      <div className="grid grid-cols-4 lg:grid-cols-12 gap-x-3 gap-y-10 lg:min-h-80">
-        <div className="col-span-4 lg:col-span-6 flex flex-col items-center gap-20 lg:gap-4">
+    <div className="w-full flex flex-col gap-8">
+      {/* Media frame — fixed aspect ratio so all tabs share same height */}
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 lg:col-span-9 aspect-video rounded-sm overflow-hidden relative"
+          style={activeTab.video ? { border: "0.5px solid rgba(255,255,255,0.2)" } : {}}
+        >
           {activeTab.quote && (
-            <p className="heartbeat text-center text-9xl lg:my-20 lg:text-9xl font-bold opacity-60 lg:leading-[130%]">
+            <p className="heartbeat absolute inset-0 flex items-center justify-center text-9xl font-bold opacity-60">
               {count} Days
             </p>
           )}
-          <p className="text-sm font-medium leading-[160%] opacity-80">
-            {activeTab.content}
-          </p>
-        </div>
-        {activeTab.image && (
-          <div
-            className="col-span-4 lg:col-span-4 lg:col-start-1 rounded-sm overflow-hidden"
-            style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
-          >
+          {activeTab.image && (
             <Image
               src={activeTab.image}
               alt=""
-              width={800}
-              height={600}
-              className="w-full h-auto"
+              fill
+              className="object-contain"
             />
-          </div>
-        )}
-        {activeTab.video && (
-          <ClickToPlay
-            src={activeTab.video}
-            className="col-span-4 lg:col-span-7 lg:col-start-1 rounded-sm overflow-hidden"
-            style={{ aspectRatio: "16/9" }}
-          />
-        )}
+          )}
+          {activeTab.video && (
+            <ClickToPlay
+              src={activeTab.video}
+              className="absolute inset-0 w-full h-full"
+              style={{ border: "none" }}
+            />
+          )}
+        </div>
+      </div>
+
+      {/* Description */}
+      <div className="grid grid-cols-12">
+        <p className="col-span-12 lg:col-span-9 text-sm font-medium leading-[160%] opacity-80 min-h-20">
+          {activeTab.content}
+        </p>
+      </div>
+
+      {/* Buttons */}
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 lg:col-span-9 flex flex-wrap justify-center gap-2">
+          {TABS.map((tab) => (
+            <Button
+              key={tab.id}
+              variant={active === tab.id ? "filled" : "outline"}
+              color="white"
+              size="small"
+              onClick={() => setActive(tab.id)}
+              style={active === tab.id ? { color: "black" } : {}}
+            >
+              {tab.label}
+            </Button>
+          ))}
+        </div>
       </div>
     </div>
   );

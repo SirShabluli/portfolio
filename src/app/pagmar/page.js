@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import PageGrid from "../components/PageGrid";
@@ -147,14 +147,14 @@ export default function PagmarPage() {
 
   function switchMood(id) {
     if (id === activeMood) return;
+    // Phase 1: fade to black + fade out text
     setPendingMood(id);
-    setActiveMood(id);
-    // swap description text after fade-out completes (0.4s)
-    setTimeout(() => setVisibleMoodText(id), 400);
-  }
-
-  function handleVideoCanPlay(id) {
-    if (id === activeMood) setPendingMood(null);
+    // Phase 2: after fade-to-black completes, swap video src + text
+    setTimeout(() => {
+      setActiveMood(id);
+      setVisibleMoodText(id);
+      // Phase 3: overlay fades out once video fires onCanPlay
+    }, 700);
   }
 
   return (
@@ -344,7 +344,10 @@ export default function PagmarPage() {
 
           {/* Closing paragraph right */}
           <div className="col-span-4 lg:col-span-8 lg:col-start-3 flex items-center h-full">
-            <RevealText className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-80 leading-[130%]">
+            <RevealText
+              duration={1.2}
+              className="text-3xl lg:py-24 lg:text-5xl font-regular opacity-80 leading-[140%]"
+            >
               what if journaling wasn&apos;t about capturing thoughts in order,
               but creating a space where they could exist, connect, and reveal
               themselves over time?
@@ -377,8 +380,8 @@ export default function PagmarPage() {
         id="writing-experience"
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-30"
       >
-        <PageGrid className="gap-10 w-full px-6 lg:px-12">
-          <p className="col-span-4 font-medium lg:col-span-10 lg:col-start-3 text-2xl lg:text-5xl lg:my-20">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
+          <p className="col-span-4 font-medium lg:col-span-10 lg:col-start-3 text-2xl lg:text-5xl">
             Feature #1 — The Writing Experience
           </p>
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
@@ -403,7 +406,7 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
           <div
-            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col lg:mt-20"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col"
             style={{ gap: 15 }}
           >
             <ClickToPlay
@@ -423,7 +426,7 @@ export default function PagmarPage() {
         id="composition"
         className="w-full min-h-screen font-medium bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
-        <PageGrid className="gap-y-8 lg:gap-y-30 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             The Composition
           </p>
@@ -469,7 +472,7 @@ export default function PagmarPage() {
             className="col-span-4 lg:col-span-9 lg:col-start-3 rounded-sm overflow-hidden"
             style={{ border: "0.5px solid rgba(255,255,255,0.2)" }}
           />
-          <div className="col-span-4 lg:col-span-3 lg:col-start-3 flex items-center">
+          <div className="col-span-4 lg:col-span-2 lg:col-start-3 flex items-center">
             <TextBlock
               label="New Challenge Arised"
               title="Long Entries Need Room"
@@ -523,7 +526,7 @@ export default function PagmarPage() {
       </section>
       {/* Mapping Non-Linear Thought */}
       <section className="w-full bg-black py-16 lg:py-24">
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <div className="col-span-4 lg:col-span-3 lg:col-start-3">
             <TextBlock
               label="The Challenge"
@@ -581,7 +584,7 @@ export default function PagmarPage() {
             </div>
           </div>
           <div
-            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col lg:mt-20"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col"
             style={{ gap: 20 }}
           >
             <ClickToPlay
@@ -589,7 +592,7 @@ export default function PagmarPage() {
               className="bg-white/5 rounded-sm overflow-hidden"
               style={{ aspectRatio: "1722/1080" }}
             />
-            <p className="text-xs font-medium leading-[160%] opacity-50 lg:pl-[10%]">
+            <p className="text-xs font-medium leading-[160%] opacity-50">
               Move with arrows, zoom with W/S, Enter to step inside, Esc to
               explore. No mouse—just spatial wandering.
             </p>
@@ -600,7 +603,7 @@ export default function PagmarPage() {
         id="composition-focus"
         className="w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
-        <PageGrid className="gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             Composition Focus
           </p>
@@ -615,7 +618,7 @@ export default function PagmarPage() {
             </TextBlock>
           </div>
           <div
-            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col lg:mt-20"
+            className="col-span-4 lg:col-span-9 lg:col-start-3 flex flex-col"
             style={{ gap: 20 }}
           >
             <ClickToPlay
@@ -623,7 +626,7 @@ export default function PagmarPage() {
               className="bg-white/5 rounded-sm overflow-hidden"
               style={{ aspectRatio: "1722/1080" }}
             />
-            <p className="text-xs opacity-50 font-mono lg:pl-[10%]">
+            <p className="text-sm opacity-50 font-mono ">
               Enter: world disappears. Esc: world returns. Focus ↔ exploration.
             </p>
           </div>
@@ -655,7 +658,7 @@ export default function PagmarPage() {
         id="ai-insights"
         className="hidden lg:flex w-full min-h-screen bg-black flex-col justify-center py-16 lg:py-24 gap-8"
       >
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 text-2xl lg:text-5xl lg:py-24  font-medium">
             Feature #3 — AI-Generated Insights
           </p>
@@ -725,25 +728,28 @@ export default function PagmarPage() {
       >
         {/* Background video */}
         <div className="absolute inset-0 z-0">
-          <AnimatePresence>
-            <motion.video
-              key={activeMood}
-              src={MOODS.find((m) => m.id === activeMood)?.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              initial={{ opacity: 0 }}
-              animate={{ opacity: pendingMood ? 0 : 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              onCanPlay={() => handleVideoCanPlay(activeMood)}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </AnimatePresence>
+          <video
+            key={activeMood}
+            src={MOODS.find((m) => m.id === activeMood)?.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            onCanPlay={() => setPendingMood(null)}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
           <div className="absolute inset-0 bg-black/50" />
+          {/* Black overlay for fade-to-black transition */}
+          <motion.div
+            className="absolute inset-0 bg-black"
+            animate={{ opacity: pendingMood ? 1 : 0 }}
+            transition={{
+              duration: pendingMood ? 0.7 : 0.5,
+              ease: "easeInOut",
+            }}
+          />
         </div>
-        <PageGrid className="relative z-10 gap-y-8 lg:gap-y-22 w-full px-6 lg:px-12">
+        <PageGrid className="relative z-10 gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:py-14 lg:col-span-10 lg:col-start-3 section-title">
             Feature #4 — Emotional Atmosphere
           </p>
@@ -777,11 +783,11 @@ export default function PagmarPage() {
               <motion.p
                 animate={{ opacity: pendingMood ? 0 : 0.5 }}
                 transition={{
-                  duration: 0.4,
+                  duration: pendingMood ? 0.7 : 1.0,
                   ease: "easeInOut",
-                  delay: pendingMood ? 0 : 0.6,
+                  delay: pendingMood ? 0 : 0.3,
                 }}
-                className="text-2xl lg:text-[34px]"
+                className="text-2xl lg:text-4xl "
                 style={{
                   fontFamily: "var(--font-raleway)",
                   fontWeight: 400,
@@ -796,11 +802,17 @@ export default function PagmarPage() {
               {MOODS.map((m) => (
                 <Button
                   key={m.id}
-                  variant={activeMood === m.id ? "filled" : "outline"}
+                  variant={
+                    (pendingMood ?? activeMood) === m.id ? "filled" : "outline"
+                  }
                   color="#ffffff"
                   size="small"
                   onClick={() => switchMood(m.id)}
-                  style={activeMood === m.id ? { color: "#000000" } : {}}
+                  style={
+                    (pendingMood ?? activeMood) === m.id
+                      ? { color: "#000000" }
+                      : {}
+                  }
                 >
                   {m.label}
                 </Button>
@@ -814,7 +826,7 @@ export default function PagmarPage() {
         className="relative w-full min-h-screen bg-black flex flex-col justify-center py-16 lg:py-24 gap-8"
       >
         <ConfigBackground />
-        <PageGrid className="gap-y-8 lg:gap-y-12 w-full px-6 lg:px-12">
+        <PageGrid className="gap-y-8 lg:gap-y-20 w-full px-6 lg:px-12">
           <p className="col-span-4 lg:py-24  lg:col-span-10 lg:col-start-3 section-title">
             Building Tools to Build Faster
           </p>
@@ -1030,7 +1042,7 @@ export default function PagmarPage() {
           <p className="col-span-4 lg:col-span-10 lg:col-start-3 section-title">
             What I Learned
           </p>
-          <div className="min-h-[50rem] col-span-4 lg:col-span-10 lg:col-start-3">
+          <div className="min-h-[50rem] col-span-4 lg:col-span-10 lg:col-start-5">
             <LearnedTabs />
           </div>
           <div className="col-span-4 lg:col-span-7 lg:col-start-3 flex flex-col gap-4">

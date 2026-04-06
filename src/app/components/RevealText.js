@@ -8,7 +8,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 // trigger prop: if provided, animation fires when trigger becomes true (no scroll needed)
 // without trigger prop: original scroll-based behavior
-export default function RevealText({ children, className, style, trigger, duration = 1.6, stagger = 0.02 }) {
+export default function RevealText({
+  children,
+  className,
+  style,
+  trigger,
+  duration = 1.6,
+  stagger = 0.02,
+}) {
   const ref = useRef(null);
 
   useEffect(() => {
